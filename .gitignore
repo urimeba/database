@@ -122,3 +122,13 @@ dmypy.json
 
 # Pyre type checker
 .pyre/
+
+Pipfile
+
+Pipfile.lock
+
+Apps/Clases/migrations/
+
+Apps/Ejercicios/migrations/
+
+react-database/node_modules/.bin/
