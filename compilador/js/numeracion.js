@@ -1,3 +1,5 @@
+var contadorLinea=2;
+
 window.addEventListener('load', cambiarTextArea, false);
 function cambiarTextArea() {
 
@@ -10,7 +12,7 @@ function cambiarTextArea() {
     
 }
 function alerta(e){
-    console.log(e.target.nodeName)
+    
 if(e.target.nodeName === 'DIV') {
     var contenidoTextA=e.target.innerHTML.split(' ').map(e=>e.trim(' ')).filter(e=>e!="");
     agregar(span(contenidoTextA), e.target);
@@ -35,33 +37,52 @@ function span(contenidoTextA){
 }
 function agregar(arreglo,target){
     var text=document.createElement('TEXTAREA');
-    text.addEventListener('keypress', sumar)
+    text.addEventListener('keydown', sumar)
     text.classList.add("textarea");
     
     for (const iterator of arreglo) {
         text.innerText += iterator.innerText + ' ';
-        console.log(iterator);
+       
         
     }
     target.innerHTML="";
     target.appendChild(text);
+    text.focus();
     
 
 
 }
 
 function sumar(e) {
+  
+    
+    
+
     if(e.key === 'Enter') {
-        insertAfter(document.createElement('div'), e);
+        var incremento=e.target.parentElement.parentElement.offsetHeight+19;
+        e.target.parentElement.parentElement.style.height=incremento+'px';
+    //    e.target.rows++;
+        var item=document.createElement('div');
+        item.classList.add('number');
+        var padre=document.getElementById('numbers-container');
+        padre.appendChild(item);
+
+
+        item.innerText=contadorLinea;
+       contadorLinea++;
+    }
+    if(e.key === 'Backspace') {
+        if(quitarLinea(e.target.value)) {
+            var decremento=e.target.parentElement.parentElement.offsetHeight-19;
+            e.target.parentElement.parentElement.style.height=decremento+'px';
+            e.target.parentElement.parentElement.parentElement.parentElement.children[0].lastElementChild.remove()
+        contadorLinea--;
+        }
     }
 }
 
-function insertAfter(e,i){ 
-    console.log(e, i)
-    if(e.nextSibling){ 
-        e.parentElement.insertBefore(i,e.nextSibling); 
-    } else { 
-        e.parentElement.appendChild(i); 
-    }
-}
+function quitarLinea(str) {
+    return str.split('\n').pop() === ''
     
+}
+

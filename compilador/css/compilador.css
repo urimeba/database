@@ -220,26 +220,35 @@
         border:none;
         height: 25px;
     }
-    #lines-container{
+    #lines-creciente{
         width: 100%;
-       
+       background-color: red;
         display: flex;
-        flex-direction: column;
+       
         background-color: #424556;
     }
- 
+    #numbers-container{
+        width: 35px;
+        display: flex;
+        flex-direction: column;
+    }
+ #lines-container{
+     width: calc(100% - 35px);
+     display: flex;
+     flex-direction: column;
+ }
    
     
     .number{
         width: 35px;
         background-color: #9A9A9A;
         color: white;
-        border-bottom: 1px solid #333645;
+        
         height: 100%;
         display: flex;
         justify-content: center;
         align-items: center;
-
+        max-height: 19px;
     }
     .textarea{
         width: 100%;
@@ -248,9 +257,11 @@
         border: none;
         resize: none;
         color: white;
+        overflow: hidden;
+        position: relative;
     }
     .letras-contenido{
-        color: red;
+        color: white;
         width: 100%;
         padding-left: 17px;
     }
@@ -258,15 +269,15 @@
     .line{
         width: 100%;
         height: 19px;
-        background-color:424556;
         display: flex;
-        margin: 1px;
+       
     }
     #compilador-mid{
         width: 100%;
         height: 85%;
         background-color: #424556;
         overflow: auto;
+       overflow-x: hidden;
     }
     #mid-rigth-container{
        
@@ -291,4 +302,6 @@
         height: 85%;
         background-color: #424556;
     }
+
 }
+
