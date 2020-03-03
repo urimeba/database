@@ -123,12 +123,10 @@ dmypy.json
 # Pyre type checker
 .pyre/
 
-Pipfile
-
-Pipfile.lock
+Apps/Ejercicios/migrations/
 
 Apps/Clases/migrations/
 
-Apps/Ejercicios/migrations/
+Pipfile
 
-react-database/node_modules/.bin/
+*.lock
