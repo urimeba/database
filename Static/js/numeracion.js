@@ -4,6 +4,7 @@ window.addEventListener('load', cambiarTextArea, false);
 function cambiarTextArea() {
 
     var letras=document.getElementsByClassName('letras-contenido');
+    
   
     for (const letra of letras) {
         letra.addEventListener('click',alerta);
@@ -39,6 +40,7 @@ function agregar(arreglo,target){
     var text=document.createElement('TEXTAREA');
     text.addEventListener('keydown', sumar)
     text.classList.add("textarea");
+    text.setAttribute("id", "textarea");
     
     for (const iterator of arreglo) {
         text.innerText += iterator.innerText + ' ';

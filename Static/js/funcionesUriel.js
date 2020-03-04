@@ -16,36 +16,86 @@ function getCookie(name) {
 }
 
 compile = async () => {
-    let query = document.getElementById("textarea").value;
 
-    if(query.length==0){
-        alert("Debes escribir algo en la consola");
-        return
+    let query = "";
+
+    if(document.getElementById("textarea")!=null){
+        query = document.getElementById("textarea").value;
+        // console.log(query);
+    }else{
+        // let padre = document.getElementById("letras-contenido");
+        query = document.getElementById("letras-contenido").textContent;
     }
 
-    
-    let request = await fetch('http://148.220.52.121:3000', {
-        method: 'POST',
-        headers: {
-            'Content-Type': 'applicaction/json',
-            'Accep': 'applicaction/json'
-        },
-        body: JSON.stringify({ query: "Select * from hr.employees" }),
-        credentials: 'include'
-    })
-    let response = await request.json()
-
-    console.log(response)
-
+    // console.log(query);
     
 
-    // $.ajax({ 
-    //     type: 'POST',
-    //     url: 'http://148.220.52.121:3000',
-    //     data: {query:query},
-    //     success: function(data){
-    //         console.log(data);
+
+    $.ajax({ 
+        type: 'POST',
+        url: 'http://148.220.208.96:3000/',
+        data: {query:query},
+        success: function(data){
+            // console.log(data);
+            // console.log(Object.keys(data).length);
+
+            if(Object.keys(data).length == 3){
+                console.log("---ERROR---")
+
+                let divResults = document.getElementById("salida-middle");
+                divResults.innerHTML="";
+                divResults.appendChild(document.createTextNode(data['english']));
+
+                return 
+            }
+
+            let columnas = data['metaData'];
+            let filas = data['rows'];
+
+            // console.log(columnas.length);
+            // console.log(filas.length);
+
+            let tabla = document.createElement("table");
+            let headers = document.createElement("tr");
+
+            tabla.appendChild(headers);
+
+            columnas.forEach(element => {
+                // console.log(element['name'])
+                let aux = document.createElement("th");
+                aux.appendChild(document.createTextNode(element['name']));
+                headers.appendChild(aux);
+            });
+
             
-    //     }
-    // });
+
+            filas.forEach(element => {
+                // console.log(element);
+                let result = document.createElement("tr");
+                tabla.appendChild(result);
+
+                element.forEach(properties => {
+                    // console.log(properties);
+
+                    let aux = document.createElement("td");
+                    aux.appendChild(document.createTextNode(properties))
+                    result.appendChild(aux);
+                });
+                
+                
+            });
+
+            let divResults = document.getElementById("salida-middle");
+            divResults.innerHTML="";
+            divResults.appendChild(tabla);
+           
+        },
+        error: function(error){
+            alert("Error", "Error de conectividad. Verifica tu conexion a Internet");
+
+
+        },
+
+        timeout: 5000
+    });
 }
