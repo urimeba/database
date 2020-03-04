@@ -130,3 +130,5 @@ Apps/Clases/migrations/
 Pipfile
 
 *.lock
+
+.vscode/

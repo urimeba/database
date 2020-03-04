@@ -1,10 +1,14 @@
+{% load static %}
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="css/compilador.css">
-    <script src="./js/numeracion.js" ></script>
+    <link rel="stylesheet" href="{% static 'css/compilador.css' %}">
+    <script src="{% static 'js/numeracion.js' %}" ></script>
+    <script src="{% static 'js/funcionesUriel.js' %}" ></script>
+    <script src="{% static 'js/jQuery.js' %}" ></script>
+    <!-- <script src="./js/numeracion.js" ></script> -->
     <link href="https://fonts.googleapis.com/css?family=Montserrat&display=swap" rel="stylesheet"> 
     <title>Compilador</title>
 </head>
@@ -27,7 +31,8 @@
                         </div>
                         <div class="navbar-notification navbar-avatar">
                             <div class="navbar-picture">
-                                <img src="./img/perfil.jpg" alt="" class="img-profile">
+                                <img src="{% static 'img/perfil.jpg' %}" alt="" class="img-profile">
+                                <!-- <img src="./img/perfil.jpg" alt="" class="img-profile"> -->
                             </div>
                         </div>
                     </div>
@@ -43,7 +48,7 @@
                         <div id="opciones-container">
                             
                         </div>
-                        <div id="run-container">
+                        <div id="run-container" onclick="compile()">
                             
                             <button id="run-button">Run</button>
                             <!-- <button id="erase-button">Borrar</button> -->
@@ -66,12 +71,6 @@
             </div>
     
         </div>
-        
-        
-        
-        
-        
-        
             </div>
 </body>
 </html>

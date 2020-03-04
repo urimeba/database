@@ -25,7 +25,7 @@ SECRET_KEY = '$j%4gtvt-_6e@nwuw*eejm2-15^c_firai7i^r(abf%&4v0u^f'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['*']
 
 
 # Application definition
@@ -37,6 +37,8 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'Apps.Clases',
+    'Apps.Ejercicios'
 ]
 
 MIDDLEWARE = [
@@ -56,7 +58,7 @@ TEMPLATES = [
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
         'DIRS': [
 
-            os.path.join(BASE_DIR, 'react-database/build'),
+            os.path.join(BASE_DIR, 'Templates'),
         ],
         'APP_DIRS': True,
         'OPTIONS': {
@@ -123,5 +125,5 @@ USE_TZ = True
 STATIC_URL = '/static/'
 STATICFILES_DIRS=[
 
-     os.path.join(BASE_DIR, 'react-database/build/static'),
+     os.path.join(BASE_DIR, 'Static'),
 ]
