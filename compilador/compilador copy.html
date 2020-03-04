@@ -1,14 +1,10 @@
-{% load static %}
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="{% static 'css/compilador.css' %}">
-    <script src="{% static 'js/numeracion.js' %}" ></script>
-    <script src="{% static 'js/funcionesUriel.js' %}" ></script>
-    <script src="{% static 'js/jQuery.js' %}" ></script>
-    <!-- <script src="./js/numeracion.js" ></script> -->
+    <link rel="stylesheet" href="css/compilador.css">
+    <script src="./js/numeracion.js" ></script>
     <link href="https://fonts.googleapis.com/css?family=Montserrat&display=swap" rel="stylesheet"> 
     <title>Compilador</title>
 </head>
@@ -31,8 +27,7 @@
                         </div>
                         <div class="navbar-notification navbar-avatar">
                             <div class="navbar-picture">
-                                <img src="{% static 'img/perfil.jpg' %}" alt="" class="img-profile">
-                                <!-- <img src="./img/perfil.jpg" alt="" class="img-profile"> -->
+                                <img src="./img/perfil.jpg" alt="" class="img-profile">
                             </div>
                         </div>
                     </div>
@@ -53,18 +48,19 @@
                            
                         </div>
                         <div id="compilador-mid">
-                            <div id="lines-creciente">
-                                <div id="numbers-container">
-                                    <div class="number">1</div>
-                                   
+                            <div class="console">
+                                <div class="output">
+                                
+                                
+                                    <span class="seperator">== == == == == == == == == == == == == == == == == ==</span></br>
+                                    <span>Hope you have fun discovering all the <span class="red">hidden gems</span>!</span>
+                                    </br>
+                                    <span class="blue">type '<span class="grey">help</span>' to see a list of comands available</span><br>
                                 </div>
-                                <div id="lines-container">
-                                    
-                                    <div class="line"> <div class="letras-contenido">/***********/Inserta tus Sentencias SQl/*************/</div></div>
-                                    
-                                   
+                                <div class="action">
+                                    <span>dev$ </span>
+                                    <textarea class="input" name="input" cols="30" rows="1"></textarea>
                                 </div>
-
                             </div>
                         </div>
                     </div>
@@ -80,6 +76,12 @@
             </div>
     
         </div>
+        
+        
+        
+        
+        
+        
             </div>
 </body>
 </html>
