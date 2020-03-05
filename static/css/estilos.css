@@ -130,17 +130,18 @@
                 display: flex;
                 justify-content: center;
                 align-items: center;
+                margin-top: 5%;
             }
             #imagenback{
-                width: 35px;
+                width: 30px;
                 height: 30px;
                 /*margin-right: 10%;*/
                /* padding-left:20%;
                 padding-right: 5%;*/
             }
             #imagenperfil{
-               width:60px;
-                height: 60px;
+               width:58px;
+                height: 58px;
                 padding: 0% 10% 0% 10%;
             }
                 .imgRedonda {
