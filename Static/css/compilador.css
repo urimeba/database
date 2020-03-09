@@ -300,7 +300,7 @@
        
         display: flex;
         justify-content: start;
-        align-items: center;
+        align-items: start;
         overflow: auto;
         }
         table {     font-family: "Lucida Sans Unicode", "Lucida Grande", Sans-Serif;
