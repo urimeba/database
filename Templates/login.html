@@ -1,23 +1,20 @@
+{% load static %}
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="estilos.css">
+    <link rel="stylesheet" href="{% static 'css/estilos.css' %}">
     <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700&display=swap" rel="stylesheet">    <title>Login</title>
 </head>
 <body>
     <div id="principalLogin">
         <div id="divimagenLogin">
-            <img src="imagenlogin.png" alt="">
+            <img src="{% static 'img/imagenlogin.png' %}" alt="">
         </div>
-
         <div id="divdatosLogin">    
-           <!--  <div id="divtituloLogin">
-                
-            </div> -->
             <div id="contenidodatosLogin">
-                <form action="#" method="POST">
+                <!-- <form action="#" method="POST">
                     <p id="tituloLogin">Iniciar Sesión</p>
                     <p id="subtituloLogin">Expediente</p>
                     <input id="inputLogin" type="text" placeholder="123456">
@@ -28,11 +25,13 @@
                         <p>tu contraseña  es tu expediente seguido </p> 
                         <p> de un punto.</p>
                     </div>
-                    
                     <button id="botonLogin">Iniciar Sesión</button>
-    
-                </form>
-                
+                </form> -->
+                {% csrf_token %}
+                <p id="tituloLogin">Iniciar Sesión</p>
+                {{ form.as_p}}
+                <input type="submit" id="botonLogin">Iniciar Sesión</button>
+ 
             </div>
         </div>
     </div>

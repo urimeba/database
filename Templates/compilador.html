@@ -4,8 +4,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="css/compilador.css">
-    <link rel="stylesheet" href="./js/lib/codemirror.css">
+    <link rel="stylesheet" href="{% static 'css/compilador.css' %}">
+    <link rel="stylesheet" href="{% static 'js/lib/codemirror.css' %}">
     <link href="https://fonts.googleapis.com/css?family=Montserrat&display=swap" rel="stylesheet"> 
     <title>Compilador</title>
 </head>
@@ -29,7 +29,6 @@
                         <div class="navbar-notification navbar-avatar">
                             <div class="navbar-picture">
                                 <img src="{% static 'img/perfil.jpg' %}" alt="" class="img-profile">
-                                <!-- <img src="./img/perfil.jpg" alt="" class="img-profile"> -->
                             </div>
                         </div>
                     </div>
@@ -49,11 +48,7 @@
                             </div>
                         </div>
                         <div id="compilador-bottom">
-                          
                                 <textarea name="code" id="code"></textarea>
-   
-                                   
-                           
                         </div>
                     </div>
                     <div id="container-bottom"></div>
@@ -62,8 +57,12 @@
         </div>
      </div>
      
-     <script src="./js/lib/codemirror.js"></script>
+     <!-- <script src="./js/lib/codemirror.js"></script>
      <script src="./js/mode/sql/sql.js"></script>
-     <script src="./js/Compilador.js" ></script>
+     <script src="./js/Compilador.js" ></script> -->
+
+     <script src="{% static 'js/lib/codemirror.js' %}"></script>
+     <script src="{% static 'js/lib/codemirror.js' %}"></script>
+     <script src="{% static 'js/lib/codemirror.js' %}"></script>
 </body>
 </html>
