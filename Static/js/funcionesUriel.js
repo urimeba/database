@@ -4,13 +4,13 @@ function getCookie(name) {
         var cookies = document.cookie.split(';');
         for (var i = 0; i < cookies.length; i++) {  
             var cookie = cookies[i].trim();
-            // Does this cookie string begin with the name we want?
             if (cookie.substring(0, name.length + 1) == (name + '=')) {
                 cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
                 break;
             }}}
     return cookieValue;
 }
+
 
 compile = async () => {
     let query = code.getValue();
@@ -21,7 +21,7 @@ compile = async () => {
         data: {query:query},
         success: function(data){
 
-            let divResults = document.getElementById("container-bottom");
+            let divResults = document.getElementById("tablas-container");
             divResults.innerHTML="";
 
             if(Object.keys(data).length == 3){
