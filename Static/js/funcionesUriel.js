@@ -13,23 +13,18 @@ function getCookie(name) {
 }
 
 compile = async () => {
-    let query = "";
-
-    if(document.getElementById("textarea")!=null){
-        query = document.getElementById("textarea").value;
-    }else{
-        query = document.getElementById("letras-contenido").textContent;
-    }
-
+    let query = code.getValue();
 
     $.ajax({ 
         type: 'POST',
-        url: 'http://148.220.52.121:3000/',
+        url: 'http://148.220.52.132:3000/',
         data: {query:query},
         success: function(data){
+
+            let divResults = document.getElementById("container-bottom");
+            divResults.innerHTML="";
+
             if(Object.keys(data).length == 3){
-                let divResults = document.getElementById("salida-middle");
-                divResults.innerHTML="";
                 divResults.appendChild(document.createTextNode(data['english']));
                 return
             }
@@ -58,8 +53,6 @@ compile = async () => {
                 });
             });
 
-            let divResults = document.getElementById("salida-middle");
-            divResults.innerHTML="";
             divResults.appendChild(tabla);
            
         },

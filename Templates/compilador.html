@@ -6,7 +6,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="{% static 'css/compilador.css' %}">
     <link rel="stylesheet" href="{% static 'js/compilador lib/codemirror.css' %}">
-    
     <link href="https://fonts.googleapis.com/css?family=Montserrat&display=swap" rel="stylesheet"> 
     <title>Compilador</title>
 </head>
@@ -45,6 +44,7 @@
                             <p id="titulo">Compilador <b>Oracle</b></p>
                             <div id="buttons">
                                 <button id="borrar">Clear</button>
+                                <!-- <button id="play"> Play</button> -->
                                 <button id="play" onclick="compile()"> Play</button>
                             </div>
                         </div>
@@ -95,5 +95,6 @@
      <script src="{% static 'js/sql.js' %}"></script>
      <script src="{% static 'js/Compilador.js' %}"></script>
      <script src="{% static 'js/funcionesUriel.js' %}"></script>
+     <script src="{% static 'js/jQuery.js' %}"></script>
 </body>
 </html>
