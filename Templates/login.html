@@ -30,7 +30,12 @@
                 {% csrf_token %}
                 <p id="tituloLogin">Iniciar Sesión</p>
                 {{ form.as_p}}
-                <input type="submit" id="botonLogin">Iniciar Sesión</button>
+                <div id="parrafoLogin">
+                    <p>Si es la primera vez que inicias sesión,</p> 
+                    <p>tu contraseña  es tu expediente seguido </p> 
+                    <p> de un punto.</p>
+                </div>
+                <input type="submit" id="botonLogin" value="Iniciar sesión">
  
             </div>
         </div>
