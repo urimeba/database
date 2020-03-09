@@ -122,7 +122,7 @@
     
     .user-information {
         width: 100%;
-        background-color: red;
+         
         display: flex;
         justify-content: space-around;
         align-items: center;
@@ -155,43 +155,59 @@
     #mid-container{
 
         width: 100%;
-        height: 85%;
-        justify-content:center;
+        height: 90%;
+      
         display: flex;
-        align-items: center;
+      align-items: center;
        
         
-        
     }
-    #mid-container-content{
+    #container-top{
         width: 90%;
-        height: 100%;
-        justify-content: space-between;
-        display: flex;
-        align-items: center;
-
-    }
-    #mid-left-container{
-        background-color: aqua;
-        width: 60%;
-        height: 100%;
+        height: 48%;
+        
         display: flex;
         flex-direction: column;
+    }
+    #container-bottom{
+        width: 90%;
+        height: 47%;
+        background-color: #424556;
+        box-shadow: 2px 2px 8px 0px rgb(43, 42, 45);
+    }
+    #mid-container-ajuste{
+        justify-content:space-between;
+        display: flex;
+        align-items: center;
+        
+        width: 100%;
+        height: 95%;
+        flex-direction: column;
+
     }
     #compilador-top{
         width: 100%;
         height: 15%;
-        background-color: #333645;
-        color: white;
+       
         display: flex;
-        align-items: center;
-        font-size: 20px;
+    }
+    #compilador-bottom{
+        width: 100%;
+        height: 85%;
+        background-color: #424556;;
+        overflow-x: hidden;
+        overflow-y: hidden;
+        box-shadow: 2px 2px 8px 0px rgb(43, 42, 45);
     }
     #titulo{
+        display: flex;
+        align-items: center;
         width: 60%;
+        color: white;
+        padding-left: 20px;
     }
     #buttons{
-        width: 40%;
+        width: 35%;
         
         height: 100%;
         display: flex;
@@ -199,46 +215,30 @@
         align-items: center;
     }
     #play{
-        background-color: rgb(35, 221, 81);
+        background-color: rgb(38, 166, 154);
     }
     #play:hover{
-        background-color: rgb(24, 153, 56);
+        background-color: rgb(44, 189, 174);
     }
     #borrar{
        margin-right: 35px;
-       background-color: #2399DD;
+       background-color: rgb(229, 115, 115);
     }
     #borrar:hover{
        
-        background-color: rgb(23, 114, 167);
+        background-color: rgb(243, 120, 120);
      }
     #buttons>button{
+        box-shadow: 6px 6px 13px 0px rgba(51,51,51,1);
        cursor: pointer;
-        width: 50px;
-        
+        width: 100px;
+        border-radius: 4px;
         color: white;
         border:none;
-        height: 25px;
+        height: 32px;
+        font-size: 1rem;
     }
-    #lines-creciente{
-        width: 100%;
-       background-color: red;
-        display: flex;
-       
-        background-color: #424556;
-    }
-    #numbers-container{
-        width: 35px;
-        display: flex;
-        flex-direction: column;
-    }
- #lines-container{
-     width: calc(100% - 35px);
-     display: flex;
-     flex-direction: column;
- }
-   
-    
+
     .number{
         width: 35px;
         background-color: #9A9A9A;
@@ -250,58 +250,49 @@
         align-items: center;
         max-height: 19px;
     }
+
+    #lines-creciente{
+        width: 100%;
+     
+        display: flex;
+      
+        
+    }
+   
+    #numbers-container{
+        width: 35px;
+      
+        display: flex;
+        flex-direction: column;
+        
+    }
+    #lines-container{
+        width: calc(100% - 35px);
+        display: flex;
+        flex-direction: column;
+        
+    }
     .textarea{
         width: 100%;
-        height: 100%;
-        background: none;
+       height: 190px;
+        background: red;
         border: none;
         resize: none;
         color: white;
         overflow: hidden;
-        position: relative;
+       
+      
     }
     .letras-contenido{
         color: white;
         width: 100%;
-        padding-left: 17px;
-    }
-    
-    .line{
-        width: 100%;
-        height: 19px;
-        display: flex;
+        height: 190px;
+        
        
-    }
-    #compilador-mid{
-        width: 100%;
-        height: 85%;
-        background-color: #424556;
-        overflow: auto;
-       overflow-x: hidden;
-    }
-    #mid-rigth-container{
-       
-        width: 38%;
-        height: 100%;
-        display: flex;
-        flex-direction: column;
-    }
-    #salida-top{
-        font-size: 17px;
-        font-weight: 700;
-        color: white;
-        width: 100%;
-        height: 15%;
-        display: flex;
-        align-items: center;
-        justify-content: end;
         
     }
-    #salida-middle{
-        width: 100%;
-        height: 85%;
-        background-color: #424556;
-    }
+    
+    
 
 }
 

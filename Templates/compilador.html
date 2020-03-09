@@ -4,11 +4,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="{% static 'css/compilador.css' %}">
-    <script src="{% static 'js/numeracion.js' %}" ></script>
-    <script src="{% static 'js/funcionesUriel.js' %}" ></script>
-    <script src="{% static 'js/jQuery.js' %}" ></script>
-    <!-- <script src="./js/numeracion.js" ></script> -->
+    <link rel="stylesheet" href="css/compilador.css">
+    <link rel="stylesheet" href="./js/lib/codemirror.css">
     <link href="https://fonts.googleapis.com/css?family=Montserrat&display=swap" rel="stylesheet"> 
     <title>Compilador</title>
 </head>
@@ -42,44 +39,31 @@
 
 
             <div id="mid-container">
-                <div id="mid-container-content">
-                    <div id="mid-left-container">
+                <div id="mid-container-ajuste">
+                    <div id="container-top">
                         <div id="compilador-top">
                             <p id="titulo">Compilador <b>Oracle</b></p>
                             <div id="buttons">
                                 <button id="borrar">Clear</button>
                                 <button id="play" onclick="compile()"> Play</button>
                             </div>
+                        </div>
+                        <div id="compilador-bottom">
+                          
+                                <textarea name="code" id="code"></textarea>
+   
+                                   
                            
                         </div>
-                        <div id="compilador-mid">
-                            <div id="lines-creciente">
-                                <div id="numbers-container">
-                                    <div class="number">1</div>
-                                   
-                                </div>
-                                <div id="lines-container">
-                                    
-                                    <div class="line"></div> <div class="letras-contenido">/***********/iniciar/*************/</div></div>
-                                    
-                                   
-                                </div>
-
-                            </div>
-                        </div>
                     </div>
-                    <div id="mid-rigth-container">
-                        <div id="salida-top">
-                            <p>Salida</p>
-                        </div>
-                        <div id="salida-middle">
-                            
-                        </div>
-                    </div>
+                    <div id="container-bottom"></div>
                 </div>
             </div>
-    
         </div>
-            </div>
+     </div>
+     
+     <script src="./js/lib/codemirror.js"></script>
+     <script src="./js/mode/sql/sql.js"></script>
+     <script src="./js/Compilador.js" ></script>
 </body>
 </html>
