@@ -27,15 +27,27 @@
                     </div>
                     <button id="botonLogin">Iniciar Sesión</button>
                 </form> -->
-                {% csrf_token %}
+
+                {% if messages %}
+                    {% for message in messages %}
+                        {{ message }}
+                    {% endfor %}
+                {% endif %} 
+                
                 <p id="tituloLogin">Iniciar Sesión</p>
-                {{ form.as_p}}
-                <div id="parrafoLogin">
-                    <p>Si es la primera vez que inicias sesión,</p> 
-                    <p>tu contraseña  es tu expediente seguido </p> 
-                    <p> de un punto.</p>
-                </div>
-                <input type="submit" id="botonLogin" value="Iniciar sesión">
+                <form action="#" method="POST">
+                    {% csrf_token %}
+                    {% for field in form %}
+                        <label id="inputLogin" for="{{ field.name }}">{{ field.label }}</label>
+                        {{ field }}
+                    {% endfor %}
+                    <div id="parrafoLogin">
+                        <p>Si es la primera vez que inicias sesión,</p> 
+                        <p>tu contraseña  es tu expediente seguido </p> 
+                        <p> de un punto.</p>
+                    </div>
+                    <input type="submit" value="Iniciar sesión" id="botonLogin">
+                </form>
  
             </div>
         </div>

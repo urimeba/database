@@ -20,6 +20,8 @@ from django.views.generic import TemplateView
 
 urlpatterns = [
     # path('', TemplateView.as_view(template_name='index.html')),
-    path('', views_clases.home, ''),
-    path('compilador', TemplateView.as_view(template_name='compilador.html')),
+    path('', views_clases.home, name=''),
+    path('dashboard', views_clases.dashboard, name='dashboard'),
+    path('compilador', views_clases.compilador, name='compilador'),
+    
 ]
