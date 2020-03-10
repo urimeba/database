@@ -19,3 +19,7 @@ code= CodeMirror.fromTextArea(document.getElementById('code'), {
 });
 
 
+
+function limpiar(){
+  console.log(code.setValue(''));
+}
