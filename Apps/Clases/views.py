@@ -33,7 +33,9 @@ def home(request):
 def dashboard(request):
     return render(request, 'index.html')
 
-def compilador(request):
+def compilator(request):
     return render(request, 'compilador.html')
 
+def profile(request):
+    return render(request, 'profile.html')
 

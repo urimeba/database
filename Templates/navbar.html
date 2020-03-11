@@ -1,8 +1,9 @@
+{% load static %}
 <html lang="en"><head>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<title>Document</title>
-	<link rel="stylesheet" href=".././static/css/styles.css">
+	<title>Perfil</title>
+	<link rel="stylesheet" href="{% static 'css/estilosEladio.css' %}">
 </head>
 <body>
 
@@ -36,11 +37,11 @@
 				</div>
 				<div>
 					<p class="txt-white"><strong>¡Bienvenido!</strong></p>
-					<p class="txt-gray">Sanchez Carlos Manuel</p>
+					<p class="txt-gray">{{request.user.get_full_name}}</p>
 				</div>
 				<div>
 					<p class="txt-white"><strong>Correo</strong></p>
-					<p class="txt-gray">cmsmcmsm230598@gmail.com</p>
+					<p class="txt-gray">{{request.user.email}}</p>
 				</div>
 				<div>
 					<p class="txt-white"><strong>Promedio</strong></p>
