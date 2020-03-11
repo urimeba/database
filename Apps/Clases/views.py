@@ -1,41 +1,54 @@
-from django.shortcuts import render, redirect
-from Apps.Clases import forms as forms_clases
-from django.http import HttpResponse
 from django.contrib.auth import authenticate, login
+from django.contrib.auth.views import LoginView
+from django.shortcuts import render, redirect, HttpResponse
+from Apps.Clases import forms as forms_clases
 from Apps.Clases import models as models_clases
-from django.shortcuts import get_object_or_404
 from django.contrib import messages
+from django.contrib.auth.decorators import login_required
+from django.conf import settings
 
 
-# Create your views here.
-def home(request):
-    if request.method == 'POST':   
-        form = forms_clases.formLogin(request.POST)
-        if form.is_valid():
-            expediente = form.cleaned_data['expediente']
-            password = form.cleaned_data['password']
+class Login(LoginView):
+    template_name = 'login.html'
 
-            # print(expediente)
-            # print(password)
+    def get(self, request, *args, **kwargs):
+        if request.user.is_authenticated:
+            return redirect(settings.LOGIN_REDIRECT_URL)
 
-            user = authenticate(request, username=expediente, password=password)
-            if user is not None:
-                login(request, user)
-                return redirect('dashboard')
-            else:
-                messages.add_message(request, messages.ERROR, 'Usuario o contraseña incorrectos')
+        return super().get(request, *args, **kwargs)
 
-    else:
-        form = forms_clases.formLogin()
+# # Create your views here.
+# def loginn(request):
+#     if request.method == 'POST':
+#         form = forms_clases.formLogin(request.POST)
+#         if form.is_valid():
+#             expediente = form.cleaned_data['expediente']
+#             password = form.cleaned_data['password']
 
-    return render(request, 'login.html', {'form':form})
+#             # print(expediente)
+#             # print(password)
 
+#             user = authenticate(request, username=expediente, password=password)
+#             if user is not None:
+#                 login(request, user)
+#                 return redirect('dashboard')
+#             else:
+#                 messages.add_message(request, messages.ERROR, 'Usuario o contraseña incorrectos')
+
+#     else:
+#         form = forms_clases.formLogin()
+
+#     return render(request, 'login.html', {'form':form})
+
+@login_required
 def dashboard(request):
-    return render(request, 'index.html')
+    return render(request, 'dashboard.html')
 
+@login_required
 def compilator(request):
     return render(request, 'compilador.html')
 
+@login_required
 def profile(request):
     return render(request, 'profile.html')
 

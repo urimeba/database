@@ -1,4 +1,5 @@
 {% load static %}
+{% load widget_tweaks %}
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -37,10 +38,13 @@
                 <p id="tituloLogin">Iniciar Sesión</p>
                 <form action="#" method="POST">
                     {% csrf_token %}
-                    {% for field in form %}
-                        <label id="inputLogin" for="{{ field.name }}">{{ field.label }}</label>
-                        {{ field }}
-                    {% endfor %}
+
+                    <label for="inputLogin" for="{{ form.username.name }}" id="subtituloLogin">Expediente</label>
+                    {% render_field form.username id="inputLogin" placeholder="267788" %}
+
+                    <label id="inputLogin" for="{{ form.password.name }}" id="subtituloLogin">Contraseña</label>
+                    {% render_field form.password id="inputLogin" placeholder="********" %}
+
                     <div id="parrafoLogin">
                         <p>Si es la primera vez que inicias sesión,</p> 
                         <p>tu contraseña  es tu expediente seguido </p> 
