@@ -1,74 +1,52 @@
 {% load static %}
-<html lang="en"><head>
-	<meta charset="UTF-8">
-	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<title>Perfil</title>
-	<link rel="stylesheet" href="{% static 'css/estilosEladio.css' %}">
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{% static 'css/compilador.css' %}">
+    <link rel="stylesheet" href="{% static 'js/compilador lib/codemirror.css' %}">
+    <link href="https://fonts.googleapis.com/css?family=Montserrat&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="{% static 'css/indexEstilos.css' %}">   
+    <title>Compilador</title>
 </head>
 <body>
+    <div id="Principal">
+      
+        <div class="container">
+            <div class="row">
+                <nav>
+                    <div class="navbar-logo">Data<strong>Base</strong></div>
+                    <ul class="navbar-list">
+                        <li class="opciones"><a href="{% url 'dashboard' %}">Inicio</a></li>
+                        <li class="opciones"><a href="{% url 'dashboard' %}">Contenido</a></li>
+                        <li class="opciones"><a href="{% url 'compilator' %}">Herramientas</a></li>
+                    </ul>		
+                    <div class="navbar-profile">
+                        <div class="navbar-notification">
+                           
+                            <div class="navbar-notification-count">1</div>
+                        </div>
+                        <div class="navbar-notification navbar-avatar">
+                            <div class="navbar-picture">
+                                <img src="{% static 'img/perfil.jpg' %}" alt="" class="img-profile">
+                            </div>
+                        </div>
+                    </div>
+                </nav>
+                
+            </div>
 
+            {% block content %}
+            {% endblock %}
 
-	<div class="container blue-dark-1">
-		<div class="row">
-			<nav class="center blue-dark-1">
-				<div class="navbar-logo txt-white txt-gray">Data<strong class="txt-white">Base</strong></div>
-				<ul class="navbar-list txt-white">
-					<li class="center">Inicio</li>
-					<li class="center">Contenido</li>
-					<li class="center">Herramientas</li>
-				</ul>		
-				<div class="navbar-profile">
-					<div class="navbar-notification">
-						<div class="navbar-notification-count center txt-white">1</div>
-					</div>
-					<div class="navbar-notification navbar-avatar">
-						<div class="navbar-picture"></div>
-					</div>
-				</div>
-			</nav>
-		</div>
-		
-		<div class="row">
-			<section class="user-information blue-dark-2 fs-15">
-				<div>
-					<div class="navbar-notification navbar-avatar user-avatar">
-						<div class="navbar-picture"></div>
-					</div>
-				</div>
-				<div>
-					<p class="txt-white"><strong>¡Bienvenido!</strong></p>
-					<p class="txt-gray">{{request.user.get_full_name}}</p>
-				</div>
-				<div>
-					<p class="txt-white"><strong>Correo</strong></p>
-					<p class="txt-gray">{{request.user.email}}</p>
-				</div>
-				<div>
-					<p class="txt-white"><strong>Promedio</strong></p>
-					<p class="center-x txt-gray">0.0</p>
-				</div>
-			</section>
-		</div>
-		
-		<div class="row">
-			<div class="article-text txt-white">
-				<h2 class="fs-30 font-bold">Progreso del alumno</h2>
-				<p class="fs-18">Gráfica de estadísticas de cada unidad del alumno se muestran los aciertos por cada intento de los ejercicios de la unidad.</p>
-			</div>
-			<div class="article-information blue-dark-2">
+        </div>
+     </div>
 
-			</div>
-		</div>
-
-		<div class="row">
-			<section class="user-score">
-				<div class="score blue-dark-2"></div>
-				<div class="score blue-dark-2"></div>
-				<div class="score blue-dark-2"></div>
-				<div class="score blue-dark-2"></div>
-			</section>
-		</div>
-	</div>
-
+     <script src="{% static 'js/compilador lib/codemirror.js' %}"></script>
+     <script src="{% static 'js/sql.js' %}"></script>
+     <script src="{% static 'js/Compilador.js' %}"></script>
+     <script src="{% static 'js/funcionesUriel.js' %}"></script>
+     <script src="{% static 'js/jQuery.js' %}"></script>
 </body>
 </html>

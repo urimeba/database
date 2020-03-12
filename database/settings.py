@@ -131,6 +131,6 @@ STATIC_URL = '/static/'
 STATICFILES_DIRS=[os.path.join(BASE_DIR, 'Static'),]
 AUTH_USER_MODEL = 'Clases.User'
 
-LOGIN_URL="loginn"
+LOGIN_URL="Loginn"
 LOGIN_REDIRECT_URL="dashboard"
-LOGOUT_REDIRECT_URL="loginn"
+LOGOUT_REDIRECT_URL="Loginn"

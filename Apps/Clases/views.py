@@ -8,7 +8,7 @@ from django.contrib.auth.decorators import login_required
 from django.conf import settings
 
 
-class Login(LoginView):
+class Loginn(LoginView):
     template_name = 'login.html'
 
     def get(self, request, *args, **kwargs):
@@ -16,29 +16,6 @@ class Login(LoginView):
             return redirect(settings.LOGIN_REDIRECT_URL)
 
         return super().get(request, *args, **kwargs)
-
-# # Create your views here.
-# def loginn(request):
-#     if request.method == 'POST':
-#         form = forms_clases.formLogin(request.POST)
-#         if form.is_valid():
-#             expediente = form.cleaned_data['expediente']
-#             password = form.cleaned_data['password']
-
-#             # print(expediente)
-#             # print(password)
-
-#             user = authenticate(request, username=expediente, password=password)
-#             if user is not None:
-#                 login(request, user)
-#                 return redirect('dashboard')
-#             else:
-#                 messages.add_message(request, messages.ERROR, 'Usuario o contraseña incorrectos')
-
-#     else:
-#         form = forms_clases.formLogin()
-
-#     return render(request, 'login.html', {'form':form})
 
 @login_required
 def dashboard(request):

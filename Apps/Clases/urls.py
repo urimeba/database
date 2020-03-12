@@ -19,8 +19,7 @@ from . import views as views_clases
 from django.views.generic import TemplateView
 
 urlpatterns = [
-    # path('', TemplateView.as_view(template_name='index.html')),
-    path('', views_clases.Login.as_view(), name='loginn'),
+    path('', views_clases.Loginn.as_view(), name='Loginn'),
     path('dashboard', views_clases.dashboard, name='dashboard'),
     path('compilator', views_clases.compilator, name='compilator'),
     path('profile', views_clases.profile, name='profile'),

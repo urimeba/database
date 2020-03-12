@@ -1,88 +1,36 @@
+{% extends 'navbar.html' %}
 {% load static %}
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="{% static 'css/indexEstilos.css' %}">
-    <link href="https://fonts.googleapis.com/css?family=Montserrat&display=swap" rel="stylesheet"> 
-    <title>Inicio</title>
-</head>
-<body>
-    <div id="Principal">
-      
-<div class="container">
-	<div class="row">
-		<nav>
-			<div class="navbar-logo">Data<strong>Base</strong></div>
-			<ul class="navbar-list">
-				<li class="opciones">Inicio</li>
-				<li class="opciones">Contenido</li>
-				<li class="opciones">Herramientas</li>
-			</ul>		
-			<div class="navbar-profile">
-				<div class="navbar-notification">
-                   
-					<div class="navbar-notification-count">1</div>
-				</div>
-				<div class="navbar-notification navbar-avatar">
-					<div class="navbar-picture">
-                        <!-- <img src="./img/perfil.jpg" alt="" class="img-profile"> -->
-                        <img src="{% static 'img/perfil.jpg' %}" alt="" class="img-profile">
-                    </div>
-				</div>
-			</div>
-        </nav>
-        
-    </div>
-    <div id="mid-container">
-    
-            <div id="img-dashboard-container">
-                <img src="{% static 'img/code.png' %}}" alt="" class="img">
-                <!-- <img src="./img/code.png" alt="" class="img"> -->
-            </div>
-            <div id="right-dashboard-container">
-            <div id="right-dashboard-container-top">
-                <div id="rectangulo"> </div>
-                <h1 id="dashboard-title">Inicio</h1>
-            </div>
-                <div id="right-dashboard-container-middle">
-                    <P>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras tincidunt lacus ac ipsum bibendum fermentum. Fusce tempor dolor a metus egestas, ut finibus eros convallis.</P>
-                </div>
-                
-               
-                
-            </div>
-        
-    </div>
-    <div id="bottom-container">
-        <div id="cuadros-container">
-            <div class="dashboard-cuadros">
+{% block content %}
 
-            </div>
-            <div class="dashboard-cuadros">
-
-            </div>
-            <div class="dashboard-cuadros">
-
-            </div>
-            <div class="dashboard-cuadros">
-
+<div id="mid-container">
+        <div id="img-dashboard-container">
+            <img src="{% static 'img/code.png' %}}" alt="" class="img">
+        </div>
+        <div id="right-dashboard-container">
+        <div id="right-dashboard-container-top">
+            <div id="rectangulo"> </div>
+            <h1 id="dashboard-title">Inicio</h1>
+        </div>
+            <div id="right-dashboard-container-middle">
+                <P>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras tincidunt lacus ac ipsum bibendum fermentum. Fusce tempor dolor a metus egestas, ut finibus eros convallis.</P>
             </div>
         </div>
     </div>
-    <footer>
-        
-        <b>Centro de Desarrollo 2020 &copy. </b>
-    </footer>
-</div>
-
-
-
-
-
-
+<div id="bottom-container">
+    <div id="cuadros-container">
+        <div class="dashboard-cuadros">
+        </div>
+        <div class="dashboard-cuadros">
+        </div>
+        <div class="dashboard-cuadros">
+        </div>
+        <div class="dashboard-cuadros">
+        </div>
     </div>
-   
-</body>
-</html>
+</div>
+<footer>
+    
+    <b>Centro de Desarrollo 2020 &copy. </b>
+</footer>
+
+{% endblock %}
