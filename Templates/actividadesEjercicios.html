@@ -1,29 +1,43 @@
+{% load static %}
 <!DOCTYPE html>
 <html>
 <head>
 	<title>Ejercicicos</title>
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<link rel="stylesheet" type="text/css" href="estilos.css">
+	<link rel="stylesheet" type="text/css" href="{% static 'css/estilos.css' %}">
 	<link href="https://fonts.googleapis.com/css?family=Montserrat:400,700&display=swap" rel="stylesheet"> 
 </head>
 <body>
 	<div id="principalEjercicios">
 		<div id="menuEjercicios">
 			<div id="encabezado-menuEjercicios">
-				<img id="imagenback" src="imagenback.png">
-				<img id="imagenperfil" src="imagenperfil.jpeg" class="imgRedonda">
+				<img id="imagenback" src="{% static 'img/imagenback.png' %}">
+				<img id="imagenperfil" class="imgRedonda" src="{% static 'img/imagenperfil.png' %}">
 				<p id="tituloEjercicio" class="titulo-data">Data</p>
 				<p id="tituloEjercicio" class="titulo-base">Bass</p>
 			</div>
 			<div id="unidadesEjercicios">
 				<p>Unidades</p>
-				<div id="unidadesEjerciciosContenedor">
-					<div class="u1">1</div>
-					<div class="u2">2</div>
-					<div class="u3">3</div>
-					<div class="u3">4</div>
+				
+				{% if unidades %}
+				<div class="unidadesEjerciciosContenedor active">
+					{% for unidad in unidades %}
+						{% if unidad.is_active %}
+							<div class="u2">{{forloop.counter}}</div>
+						{% endif %}
+					{% endfor %}
 				</div>
+				<div class="unidadesEjerciciosContenedor">
+					{% for unidad in unidades %}
+						{% if not unidad.is_active %}
+							<div class="u3">{{forloop.counter}}</div>
+						{% endif %}
+					{% endfor %}
+				</div>
+				{% else %}
+					<p>No existen unidades por el momento. Intentalo nuevamente mas tarde</p>
+				{% endif %}
 				
 			</div>
 			<div id="temasEjercicios">

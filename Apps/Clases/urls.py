@@ -23,5 +23,6 @@ urlpatterns = [
     path('dashboard', views_clases.dashboard, name='dashboard'),
     path('compilator', views_clases.compilator, name='compilator'),
     path('profile', views_clases.profile, name='profile'),
-    
+    path('exercises', views_clases.exercises, name='exercises'),
+    path('close', views_clases.close, name='close'),
 ]

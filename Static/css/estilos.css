@@ -178,11 +178,11 @@
                     height: 40.5%;
                     margin-top: 2%;
                 }
-                    #unidadesEjerciciosContenedor{
+                    .unidadesEjerciciosContenedor{
                         /*background-color: yellow;*/
                         background-color: #172464;
                         width: 80%;
-                        height: 80%;
+                        height: 40%;
                         margin-top: 3%;
                         margin-left: 10%;
                         display: flex;
@@ -192,16 +192,18 @@
                         flex-wrap: wrap;
                     }
                     
-                    #unidadesEjerciciosContenedor>div{
-                        /*margin: 1%;*/
+                    .unidadesEjerciciosContenedor>div {
+                        display: block;
                         height: 30%;
                         width: 90px;
                         display: flex;
                         justify-content: center;
                         align-items: center;
                         font-size: 18px;
-                        /*background-color: #FF5A09;*/
                         border-radius: 5px;
+                    }
+                    .unidadesEjerciciosContenedor.active > div:last-child {
+                        background-color: #FF5A09;
                     }
                     .u1{
                           background-color: #FF5A09;
@@ -212,7 +214,7 @@
                        
                     }
                      .u3{
-                        background-color: white;                       
+                        background-color: grey;                       
                     }
 
                     #temasEjerciciosContenedor{
