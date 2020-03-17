@@ -84,17 +84,27 @@ class Parcial(models.Model):
     def __str__(self):
         return str(self.numero)
 
+
 class Unidad(models.Model):
+
+    unidades = [
+        (1, 'Unidad 1'),
+        (2, 'Unidad 2'),
+        (3, 'Unidad 3')
+    ]
+
     parcial = models.ForeignKey('ClaseParcial', on_delete=models.CASCADE)
+    title = models.CharField(max_length=300)
     presentation = models.FileField(upload_to='presentaciones/%Y/%m/%d/', max_length=100, blank=True, null=True)
     description = models.CharField(max_length=200, blank=True, null=True)
     is_active = models.BooleanField(default=False)
+    unidad = models.IntegerField(choices=unidades)
 
     class Meta:
-        verbose_name = 'Unidad'
-        verbose_name_plural = 'Unidades'
+        verbose_name = 'Subtema'
+        verbose_name_plural = 'Subtemas'
 
     def __str__(self):
-        return str(self.parcial) + " - Unidad#" + str(self.pk)
+        return "Unidad #" + str(self.unidad) + " - Subtema#" + str(self.pk)
 
     

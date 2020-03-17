@@ -18,39 +18,34 @@
 				<p id="tituloEjercicio" class="titulo-base">Bass</p>
 			</div>
 			<div id="unidadesEjercicios">
-				<p>Unidades</p>
-				
-				{% if unidades %}
-				<div class="unidadesEjerciciosContenedor active">
-					{% for unidad in unidades %}
-						{% if unidad.is_active %}
-							<div class="u2">{{forloop.counter}}</div>
-						{% endif %}
-					{% endfor %}
-				</div>
+				<p>Temas</p>
+				{% if temas %}
 				<div class="unidadesEjerciciosContenedor">
-					{% for unidad in unidades %}
-						{% if not unidad.is_active %}
-							<div class="u3">{{forloop.counter}}</div>
+					{% for tema in temas %}
+						{% if tema.is_active %}
+							<div class="u2">{{forloop.counter}}</div>
+						{% else %}
+						<div class="u3">{{forloop.counter}}</div>
 						{% endif %}
 					{% endfor %}
 				</div>
 				{% else %}
-					<p>No existen unidades por el momento. Intentalo nuevamente mas tarde</p>
+					<p>No existen temas por el momento. Intentalo nuevamente mas tarde</p>
 				{% endif %}
 				
 			</div>
 			<div id="temasEjercicios">
-				<p>Temas</p>
+				<p>Ejercicios</p>
 				<div id="temasEjerciciosContenedor">
-					<div class="t1">1</div>
-				<div class="t2">2</div>
-				<div class="t3">3</div>
-				<div class="t4">4</div>
-				<div class="t5">5</div>
-				<div class="t6">6</div>
-				<div class="t7">7</div>
-
+					{% if ejercicios %}
+						{% for ejercicio in ejercicios %}
+							{% if ejercicio.is_activated %}
+								<div class="t6">{{ejercicio.id}}</div>
+							{% endif %}
+						{% endfor %}
+					{% else %}
+						<p>No hay ejercicios por el momento. Intenta mas tarde o habla con el Profesor.</p>
+					{% endif %}
 				</div>
 			</div>
 		</div>
@@ -58,25 +53,22 @@
 		<div id="contenidoEjercicios">
 			<div id="encabezado-contenidoEjercicios">
 				<div id="titulo-contenidoEjercicos">
-					<p>Unidad 3. Conceptos Básicos</p>
+					<p>Unidad {{ultima_unidad.id}}. {{ultima_unidad.title}}</p>
 					<div id="subtitulo-contenidoEjercicios">
 						<p id="calificacion">Calificación:</p>
 						<p>0/0 pts.</p>
 					</div>
-					
 				</div>
 				<div id="descripcion-contenidoEjercicios">
 				<div id="titulo-descripcion-contenidoEjercicios">
-					<p>Instrucciones de la unidad:</p>
+					<p>Descripción de la unidad</p>
 				</div>
-				<p>El alumno deberá arrastrar las correspondientes 
-				respuestas a las direfentes columnas con esto el alumno aprenderá a la distinción de 
-				DML (DataManipulationLanguage) y DDL (DataDefinitionLanguage)  </p>
+					<p>
+						{{ ultima_unidad.description}}
+					</p>
 				</div>
 			</div>
-
 			<div id="contenido-contenidoEjercicios">
-				<!-- <p>asdfvb</p> -->
 			</div>
 		</div>
 	</div>
