@@ -1,13 +1,14 @@
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.views import LoginView
 from django.shortcuts import render, redirect, HttpResponse
+from django.http import JsonResponse
 from Apps.Clases import forms as forms_clases
 from Apps.Clases import models as models_clases
 from Apps.Ejercicios import models as models_ejercicios
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
 from django.conf import settings
-
+import json
 
 class Loginn(LoginView):
     template_name = 'login.html'
@@ -50,6 +51,18 @@ def exercises(request):
 
     return render(request, 'actividadesEjercicios.html')
 
+@login_required
+def changeUnity(request):
+    idUnity = request.POST.get('idUnity')
+    
+    unity = models_clases.Unidad.objects.get(id=idUnity)
+    data = {}
+    data['title'] = unity.title
+    data['description'] = unity.description
+    data['presentation'] = unity.presentation
+    return JsonResponse(data)
+
+@login_required
 def close(request):
     logout(request)
     return redirect(settings.LOGOUT_REDIRECT_URL)

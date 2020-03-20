@@ -95,7 +95,7 @@ class Unidad(models.Model):
 
     parcial = models.ForeignKey('ClaseParcial', on_delete=models.CASCADE)
     title = models.CharField(max_length=300)
-    presentation = models.FileField(upload_to='presentaciones/%Y/%m/%d/', max_length=100, blank=True, null=True)
+    presentation = models.CharField(max_length=1500)
     description = models.CharField(max_length=200, blank=True, null=True)
     is_active = models.BooleanField(default=False)
     unidad = models.IntegerField(choices=unidades)

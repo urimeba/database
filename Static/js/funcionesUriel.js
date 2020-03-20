@@ -1,3 +1,8 @@
+var server = 'http://148.220.52.132:3000/';
+window.onload = function(){
+    getLastUnity();
+}
+
 function getCookie(name) {
     var cookieValue = null;
     if (document.cookie && document.cookie != '') {
@@ -11,13 +16,12 @@ function getCookie(name) {
     return cookieValue;
 }
 
-
 compile = async () => {
     let query = code.getValue();
 
     $.ajax({ 
         type: 'POST',
-        url: 'http://148.220.52.132:3000/',
+        url: server,
         data: {query:query},
         success: function(data){
 
@@ -61,4 +65,58 @@ compile = async () => {
         },
         timeout: 5000
     });
+}
+
+getLastUnity = () => {
+    try {
+        let unities = document.getElementsByClassName("u2");
+        unities[unities.length-1].setAttribute("class", "u1");
+
+        for(let x=0; x<unities.length; x++){
+            unities[x].addEventListener("click", function(){
+                changeUnity(this.id);
+            })
+        }
+    } catch (error) {
+        console.log(error);
+    }
+}
+
+changeUnity = async (id) => {
+    let idUnity = id;
+    let csrftoken = getCookie('csrftoken')
+
+    $.ajax({ 
+        type: 'POST',
+        url: 'http://localhost:8000/changeUnity',
+        data: {idUnity: idUnity, csrfmiddlewaretoken: csrftoken},
+        success: function(data){
+            // console.log(data);
+
+            let title = document.getElementById("title")
+            let description = document.getElementById("description");
+            let presentation = document.getElementById("contenido-contenidoEjercicios");
+
+            title.innerHTML = "";
+            description.innerHTML="";
+            presentation.innerHTML=data['presentation'];
+
+            title.appendChild(document.createTextNode(data['title']));
+            description.appendChild(document.createTextNode(data['description']));
+        }
+    });
+
+    let unities = document.getElementsByClassName("u1");
+    unities[0].setAttribute("class", "u2");
+
+    let new_unity = document.getElementById(id);
+    new_unity.setAttribute("class", "u1");
+    new_unity.removeEventListener("click", changeUnity);
+
+    let new_unities = document.getElementsByClassName("u2");
+    for(let x=0; x<new_unities.length; x++){
+        new_unities[x].addEventListener("click", function(){
+            changeUnity(this.id);
+        })
+    }
 }

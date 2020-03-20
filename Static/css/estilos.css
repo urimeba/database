@@ -213,6 +213,11 @@
                         background-color: white;
                        
                     }
+
+                    .u2:hover{
+                        cursor: pointer;
+
+                    }
                      .u3{
                         background-color: grey;                       
                     }

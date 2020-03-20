@@ -2,11 +2,13 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<title>Ejercicicos</title>
+	<title>Ejercicios</title>
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<link rel="stylesheet" type="text/css" href="{% static 'css/estilos.css' %}">
 	<link href="https://fonts.googleapis.com/css?family=Montserrat:400,700&display=swap" rel="stylesheet"> 
+	<script src="{% static 'js/funcionesUriel.js' %}"></script>
+	<script src="{% static 'js/jQuery.js' %}"></script>
 </head>
 <body>
 	<div id="principalEjercicios">
@@ -23,14 +25,14 @@
 				<div class="unidadesEjerciciosContenedor">
 					{% for tema in temas %}
 						{% if tema.is_active %}
-							<div class="u2">{{forloop.counter}}</div>
+							<div class="u2" id="{{ tema.id }}">{{forloop.counter}}</div>
 						{% else %}
-						<div class="u3">{{forloop.counter}}</div>
+							<div class="u3">{{forloop.counter}}</div>
 						{% endif %}
 					{% endfor %}
 				</div>
 				{% else %}
-					<p>No existen temas por el momento. Intentalo nuevamente mas tarde</p>
+					<p>No hay temas por el momento. Intenta mas tarde o habla con el Profesor.</p>
 				{% endif %}
 				
 			</div>
@@ -53,27 +55,32 @@
 		<div id="contenidoEjercicios">
 			<div id="encabezado-contenidoEjercicios">
 				<div id="titulo-contenidoEjercicos">
-					<p>Unidad {{ultima_unidad.id}}. {{ultima_unidad.title}}</p>
+					{% if ultima_unidad %}
+						<p id="title" >Unidad {{ultima_unidad.id}}. {{ultima_unidad.title}}</p>
+					{% else %}
+						<p id="title">No hay unidades activas por el momento. Intenta mas tarde o habla con el Profesor.</p>
+					{% endif %}
 					<div id="subtitulo-contenidoEjercicios">
 						<p id="calificacion">Calificación:</p>
 						<p>0/0 pts.</p>
 					</div>
 				</div>
 				<div id="descripcion-contenidoEjercicios">
-				<div id="titulo-descripcion-contenidoEjercicios">
-					<p>Descripción de la unidad</p>
-				</div>
-					<p>
-						{{ ultima_unidad.description}}
-					</p>
+				
+					{% if ultima_unidad %}
+					<div id="titulo-descripcion-contenidoEjercicios">
+						<p>Descripción de la unidad</p>
+					</div>
+						<p id="description">{{ ultima_unidad.description}}</p>
+					{% else %}
+						<p id="description">No hay unidades activas por el momento. Intenta mas tarde o habla con el Profesor.</p>
+					{% endif %}
 				</div>
 			</div>
 			<div id="contenido-contenidoEjercicios">
+				{{ ultima_unidad.presentation | safe }}
 			</div>
 		</div>
 	</div>
-	<script type="text/javascript">
-		
-	</script>
 </body>
 </html>

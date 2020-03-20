@@ -25,4 +25,5 @@ urlpatterns = [
     path('profile', views_clases.profile, name='profile'),
     path('exercises', views_clases.exercises, name='exercises'),
     path('close', views_clases.close, name='close'),
+    path('changeUnity', views_clases.changeUnity, name='changeUnity'),
 ]
