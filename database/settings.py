@@ -134,3 +134,6 @@ AUTH_USER_MODEL = 'Clases.User'
 LOGIN_URL="Loginn"
 LOGIN_REDIRECT_URL="dashboard"
 LOGOUT_REDIRECT_URL="Loginn"
+
+MEDIA_URL = '/Templates/'
+MEDIA_ROOT = os.path.join(BASE_DIR, 'Templates')

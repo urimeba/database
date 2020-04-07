@@ -1,0 +1,45 @@
+{% extends 'ejercicios/baseEjercicios.html' %}
+
+{% block content %}
+    <table id="tabla-{{idEjercicio}}">
+        <tr>
+            <th>Nombre SMBD 1</th>
+            <th>Nombre SMBD 2</th>
+            <th>Nombre SMBD 3</th>
+        </tr>
+
+        <tr>
+            <td contenteditable='true'>Caracteristica 1</td>
+            <td contenteditable='true'>Caracteristica 1</td>
+            <td contenteditable='true'>Caracteristica 1</td>
+        </tr>
+
+        <tr>
+            <td contenteditable='true'>Caracteristica 2</td>
+            <td contenteditable='true'>Caracteristica 2</td>
+            <td contenteditable='true'>Caracteristica 2</td>
+        </tr>
+
+        <tr>
+            <td contenteditable='true'>Caracteristica 3</td>
+            <td contenteditable='true'>Caracteristica 3</td>
+            <td contenteditable='true'>Caracteristica 3</td>
+        </tr>
+
+        
+
+        <tr>
+            <td contenteditable='true'>Caracteristica 4</td>
+            <td contenteditable='true'>Caracteristica 4</td>
+            <td contenteditable='true'>Caracteristica 4</td>
+        </tr>
+
+        <tr>
+            <td contenteditable='true'>Caracteristica 5</td>
+            <td contenteditable='true'>Caracteristica 5</td>
+            <td contenteditable='true'>Caracteristica 5</td>
+        </tr>
+    </table>
+
+    <button onclick="enviarEjercicio2({{idEjercicio}})">Enviar</button>
+{% endblock %}

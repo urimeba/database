@@ -17,6 +17,7 @@ class Ejercicio(models.Model):
     tipo = models.ForeignKey('tipoEjercicio', on_delete=models.CASCADE)
     is_activated = models.BooleanField(default=False, blank=False, null=False)
     description = models.CharField(max_length=500, blank=True, null=True)
+    archivo = models.FileField(upload_to='ejercicios/')
 
     class Meta:
         verbose_name = 'Ejercicio'

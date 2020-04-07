@@ -25,9 +25,9 @@
 				<div class="unidadesEjerciciosContenedor">
 					{% for tema in temas %}
 						{% if tema.is_active %}
-							<div class="u2" id="{{ tema.id }}">{{forloop.counter}}</div>
+							<div class="u2" id="{{ tema.id }}">{{forloop.counter0}}</div>
 						{% else %}
-							<div class="u3">{{forloop.counter}}</div>
+							<div class="u3">{{forloop.counter0}}</div>
 						{% endif %}
 					{% endfor %}
 				</div>
@@ -42,7 +42,7 @@
 					{% if ejercicios %}
 						{% for ejercicio in ejercicios %}
 							{% if ejercicio.is_activated %}
-								<div class="t6">{{ejercicio.id}}</div>
+								<div class="t6" id="ejercicio-{{ejercicio.id}}" onclick="getEjercicio(this.id)">{{ejercicio.id}}</div>
 							{% endif %}
 						{% endfor %}
 					{% else %}

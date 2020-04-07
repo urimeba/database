@@ -84,12 +84,12 @@ getLastUnity = () => {
 
 changeUnity = async (id) => {
     let idUnity = id;
-    let csrftoken = getCookie('csrftoken')
+    let token = getCookie('csrftoken');
 
     $.ajax({ 
         type: 'POST',
-        url: 'http://localhost:8000/changeUnity',
-        data: {idUnity: idUnity, csrfmiddlewaretoken: csrftoken},
+        url: 'http://127.0.0.1:8000/changeUnity',
+        data: {idUnity: idUnity, csrfmiddlewaretoken: token},
         success: function(data){
             // console.log(data);
 
@@ -119,4 +119,80 @@ changeUnity = async (id) => {
             changeUnity(this.id);
         })
     }
+}
+
+
+getEjercicio = (id) =>{
+    let idEjercicio = id.split('-');
+    idEjercicio = idEjercicio[1];
+
+    let token = getCookie('csrftoken');
+    $.ajax({ 
+        type: 'POST',
+        url: 'http://127.0.0.1:8000/getEjercicio',
+        data: {idEjercicio: idEjercicio, csrfmiddlewaretoken: token},
+        success: function(data){
+            // console.log(data);
+            let divPadre = document.getElementById('contenido-contenidoEjercicios');
+            divPadre.innerHTML='';
+            divPadre.innerHTML=data;
+        }
+    });
+
+}
+
+enviarEjercicio2 = (id) =>{
+    let tabla = document.getElementById("tabla-"+id);
+    let filas = tabla.getElementsByTagName("tr");
+    let respuestas = []
+    let estado = true;
+
+    for(let x=0; x<filas.length; x++){
+
+        let res = filas[x].getElementsByTagName("td");
+
+        for(let y=0; y<res.length; y++){
+            // console.log(res[y].innerText);
+            let txt = res[y].innerText;
+            txt.trim;
+            // console.log(txt);
+            respuestas.push(txt);
+        }
+
+    }
+
+    // console.log(respuestas);
+
+    for(let x=0; x<respuestas.length; x++){
+        // console.log(respuestas[x]);
+        if(respuestas[x]==''){
+            estado=false;
+        }
+    }
+
+    let confirmacion;
+    if(!estado){
+        confirmacion = confirm("Parece que tu ejercicio no esta completo. Deseas mandarlo de todos modos");
+    }
+
+    if(estado || confirmacion){
+        let token = getCookie('csrftoken');
+        $.ajax({ 
+            type: 'POST',
+            url: 'http://127.0.0.1:8000/setRespuestas',
+            data: {respuestas: JSON.stringify(respuestas), idEjercicio:id, csrfmiddlewaretoken: token},
+            success: function(data){
+                // console.log(data);
+                alert(data)
+            }
+        });
+
+    }
+
+    
+
+
+   
+
+
 }
