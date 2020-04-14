@@ -1,22 +1,23 @@
+from django.shortcuts import render, redirect
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.views import LoginView
-from django.shortcuts import render, redirect, HttpResponse
-from django.http import JsonResponse
-from Apps.Clases import forms as forms_clases
-from Apps.Clases import models as models_clases
+from django.http import JsonResponse, HttpResponse
+from Apps.Usuarios.models import Alumno
+from Apps.Clases.models import Unidad, Parcial
 from Apps.Ejercicios.models import Ejercicio, Respuesta, Pregunta, Intentos
-from django.contrib import messages
-from django.contrib.auth.decorators import login_required
+from django.contrib.auth.decorators import login_required, user_passes_test
 from django.conf import settings
 import json
+from .forms import formLogin
 
 class Loginn(LoginView):
     template_name = 'login.html'
-
     def get(self, request, *args, **kwargs):
         if request.user.is_authenticated:
             return redirect(settings.LOGIN_REDIRECT_URL)
-
+        else:
+            form = formLogin()
+            return render(request, 'login.html', {'form':form})
         return super().get(request, *args, **kwargs)
 
 @login_required
@@ -24,88 +25,53 @@ def dashboard(request):
     return render(request, 'dashboard.html')
 
 @login_required
-def compilator(request):
+def compilador(request):
     return render(request, 'compilador.html')
 
 @login_required
-def profile(request):
+def perfil(request):
     return render(request, 'profile.html')
 
 @login_required
-def exercises(request):
-    alumno = models_clases.Alumno.objects.get(usuario=request.user.id)
-    clase = alumno.clase
-    parciales = models_clases.ClaseParcial.objects.filter(clase=clase)
-    temas = models_clases.Unidad.objects.filter(parcial__in=parciales)
+def unidades(request):
+    alumno = Alumno.objects.get(usuario=request.user.id)
+    parciales = Parcial.objects.filter(clase=alumno.clase)
+    unidades = Unidad.objects.filter(parcial__in=parciales, is_active=True)
 
     if(alumno.clase.is_active):
-        if(temas.count()>0):
-            ultima_unidad = temas.filter(is_active=True).last()
-            ejercicios = Ejercicio.objects.filter(unidad=ultima_unidad)
-            return render(request, 'actividadesEjercicios.html', {'temas': temas, 'ejercicios':ejercicios, 'ultima_unidad':ultima_unidad})
+        if(unidades.count() > 0):
+            idUltimaUnidad = unidades.last().id
+            return redirect('unidad', pk=idUltimaUnidad)
         else:
             return render(request, 'actividadesEjercicios.html')
     else:
-        print("NO ES ACTIVA")
+        return redirect('dashboard')
 
-
-    return render(request, 'actividadesEjercicios.html')
-
-@login_required
-def changeUnity(request):
-    idUnity = request.POST.get('idUnity')
+def unidad(request, pk):
+    alumno = Alumno.objects.get(usuario=request.user.id)
+    parciales = Parcial.objects.filter(clase=alumno.clase)
+    unidades = Unidad.objects.filter(parcial__in=parciales)
     
-    unity = models_clases.Unidad.objects.get(id=idUnity)
-    ejercicios = Ejercicio.objects.filter(unidad=unity)
-    print(ejercicios)
-    data = {}
-    data['title'] = unity.title
-    data['description'] = unity.description
-    data['presentation'] = unity.presentation
-    return JsonResponse(data)
+
+    try:
+        unidad_seleccionada = unidades.get(pk=pk)
+    except:
+        return redirect('unidades')
+
+    if(unidad_seleccionada.is_active):
+        ejercicios = Ejercicio.objects.filter(unidad__id=unidad_seleccionada.id)
+        return render(request, 'actividadesEjercicios.html', 
+            {'unidades': unidades, 
+            'ejercicios':ejercicios, 
+            'unidad_seleccionada':unidad_seleccionada
+            })
+    else:
+        return redirect('unidades')
 
 @login_required
-def close(request):
+def cerrarSesion(request):
     logout(request)
     return redirect(settings.LOGOUT_REDIRECT_URL)
-
-@login_required
-def getEjercicio(request):
-    idEjercicio = request.POST.get('idEjercicio')
-    ejercicio = Ejercicio.objects.get(id=idEjercicio)
-
-    tipo = ejercicio.tipo
-    descripcion = ejercicio.description
-    archivo = ejercicio.archivo
-
-
-    return render(request, str(archivo), {
-        'ejercicio':ejercicio,
-        'idEjercicio':idEjercicio
-    })
-    
-
-@login_required
-def setRespuestas(request):
-    respuestas = request.POST.get('respuestas')
-    idEjercicio = request.POST.get('idEjercicio')
-    alumno = models_clases.Alumno.objects.get(usuario__id=request.user.id)
-    ejercicio = Ejercicio.objects.get(id=idEjercicio)
-    pregunta = Pregunta.objects.get(ejercicio__id=idEjercicio)
-
-    numeroIntentos = Intentos.objects.filter(ejercicio__id=idEjercicio, alumno=alumno).count()
-    print(numeroIntentos)
-    if(numeroIntentos<=2):
-        
-        Intentos.objects.create(ejercicio=ejercicio, alumno=alumno)
-
-        respuestas = json.loads(respuestas)
-        for respuesta in respuestas:
-            Respuesta.objects.create(pregunta=pregunta, alumno=alumno, respuesta=respuesta)
-
-        return HttpResponse("Respuesta enviadas correctamente")
-    else:
-        return HttpResponse("Has alcanzado el numero de intentos maximo para este ejercicio")
 
 
 

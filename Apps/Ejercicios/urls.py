@@ -16,8 +16,13 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path
 from django.views.generic import TemplateView
+from Apps.Ejercicios import views as views_ejercicios
 
 urlpatterns = [
-    path('admin/', admin.site.urls),
-    path('', TemplateView.as_view(template_name='index.html')),
+    path('<int:pk>', views_ejercicios.ejercicio, name='ejercicio'),
+    
+    # path('getEjercicio', views_ejercicios.getEjercicio, name='getEjercicio'),
+    # path('setRespuestas', views_ejercicios.setRespuestas, name='setRespuestas'),
+    # path('pruebas', views_ejercicios.pruebas, name='pruebas'),
+    
 ]

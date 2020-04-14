@@ -1,9 +1,8 @@
 from django import forms
-from Apps.Clases import models as models_clases
 
 class formLogin(forms.Form):
-    expediente = forms.CharField(label='Expediente', required=True, max_length=6, widget=forms.NumberInput(attrs={'id':'inputLogin'}))
-    password = forms.CharField(label='Contraseña', required=True, max_length=20, widget=forms.PasswordInput(attrs={'id':'inputLogin'}))
+    username = forms.CharField(max_length=6, label='Expediente', required=True,  widget=forms.NumberInput(attrs={}))
+    password = forms.CharField(max_length=20, label='Contraseña', required=True, widget=forms.PasswordInput(attrs={}))
 
     def clean(self):
         cleaned_data = super(formLogin, self).clean()

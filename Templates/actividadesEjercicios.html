@@ -9,6 +9,9 @@
 	<link href="https://fonts.googleapis.com/css?family=Montserrat:400,700&display=swap" rel="stylesheet"> 
 	<script src="{% static 'js/funcionesUriel.js' %}"></script>
 	<script src="{% static 'js/jQuery.js' %}"></script>
+	<link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+	<script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+	<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 </head>
 <body>
 	<div id="principalEjercicios">
@@ -21,11 +24,18 @@
 			</div>
 			<div id="unidadesEjercicios">
 				<p>Temas</p>
-				{% if temas %}
+				{% if unidades %}
+				
 				<div class="unidadesEjerciciosContenedor">
-					{% for tema in temas %}
-						{% if tema.is_active %}
-							<div class="u2" id="{{ tema.id }}">{{forloop.counter0}}</div>
+					{% for unidad in unidades %}
+						{% if unidad.is_active %}
+						<a href="{% url 'unidad' pk=unidad.id %}">
+							{% if unidad.id == unidad_seleccionada.id %}
+								<div class="u1" id="unidad-{{ unidad.id }}">{{forloop.counter0}}</div>
+							{% else %}
+								<div class="u2" id="unidad-{{ unidad.id }}">{{forloop.counter0}}</div>
+							{% endif %}
+						</a>
 						{% else %}
 							<div class="u3">{{forloop.counter0}}</div>
 						{% endif %}
@@ -40,11 +50,17 @@
 				<p>Ejercicios</p>
 				<div id="temasEjerciciosContenedor">
 					{% if ejercicios %}
-						{% for ejercicio in ejercicios %}
-							{% if ejercicio.is_activated %}
-								<div class="t6" id="ejercicio-{{ejercicio.id}}" onclick="getEjercicio(this.id)">{{ejercicio.id}}</div>
-							{% endif %}
-						{% endfor %}
+						{% if ejercicios.count > 0 %}
+							{% for ejercicio in ejercicios %}
+								{% if ejercicio.is_active %}
+									<a href="{% url 'ejercicio' pk=ejercicio.unidad.id id=ejercicio.id %}">
+										<div class="t6" id="ejercicio-{{ejercicio.id}}">{{forloop.counter}}</div>
+									</a>
+								{% endif %}
+							{% endfor %}
+						{% else %}
+						<p>No hay ejercicios por el momento. Intenta mas tarde o habla con el Profesor.</p>
+						{% endif %}
 					{% else %}
 						<p>No hay ejercicios por el momento. Intenta mas tarde o habla con el Profesor.</p>
 					{% endif %}
@@ -55,8 +71,10 @@
 		<div id="contenidoEjercicios">
 			<div id="encabezado-contenidoEjercicios">
 				<div id="titulo-contenidoEjercicos">
-					{% if ultima_unidad %}
-						<p id="title" >Unidad {{ultima_unidad.id}}. {{ultima_unidad.title}}</p>
+					{% if unidad_seleccionada %}
+						<p id="title" >Unidad {{unidad_seleccionada.id}}. {{unidad_seleccionada.titulo}}</p>
+					{% elif ejercicio_seleccionado %}
+					<p id="title" >Ejercicio {{ejercicio_seleccionado.id}}. Unidad: {{ejercicio_seleccionado.unidad}}</p>
 					{% else %}
 						<p id="title">No hay unidades activas por el momento. Intenta mas tarde o habla con el Profesor.</p>
 					{% endif %}
@@ -67,18 +85,33 @@
 				</div>
 				<div id="descripcion-contenidoEjercicios">
 				
-					{% if ultima_unidad %}
+					{% if unidad_seleccionada %}
 					<div id="titulo-descripcion-contenidoEjercicios">
 						<p>Descripción de la unidad</p>
 					</div>
-						<p id="description">{{ ultima_unidad.description}}</p>
+						<p id="description">{{ unidad_seleccionada.descripcion}}</p>
+					{% elif ejercicio_seleccionado %}
+					<div id="titulo-descripcion-contenidoEjercicios">
+						<p>Descripción del ejercicio</p>
+					</div>
+						<p id="description">{{ ejercicio_seleccionado.descripcion}}</p>
 					{% else %}
 						<p id="description">No hay unidades activas por el momento. Intenta mas tarde o habla con el Profesor.</p>
 					{% endif %}
 				</div>
 			</div>
 			<div id="contenido-contenidoEjercicios">
-				{{ ultima_unidad.presentation | safe }}
+				{% if unidad_seleccionada %}
+					{{ unidad_seleccionada.presentacion | safe }}
+				{% elif ejercicio_seleccionado %}
+					<br>
+				{% else %}
+					<p id="description">No hay unidades/ejercicios activos por el momento. Intenta mas tarde o habla con el Profesor.</p>
+				{% endif %}
+
+				{% block ejercicio %}
+				{% endblock %}
+				
 			</div>
 		</div>
 	</div>
