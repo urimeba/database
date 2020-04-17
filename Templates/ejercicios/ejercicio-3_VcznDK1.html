@@ -1,0 +1,67 @@
+
+
+{% extends 'actividadesEjercicios.html' %}
+
+{% block ejercicio %}
+<style>
+    #sortable1, #sortable2, #sortable3, #sortable4, #sortable5 { list-style-type: none; margin: 0; float: left; margin-right: 10px; background: #eee; padding: 5px; width: 143px;}
+    #sortable1 li, #sortable2 li, #sortable3 li, #sortable4 li, #sortable5 li { margin: 5px; padding: 5px; font-size: 1.2em; width: 120px; }
+  </style>
+  
+  <script>
+    $( function() {
+
+      $( "ul.droptrue" ).sortable({
+        connectWith: "ul"
+      });
+   
+      $( "#sortable1, #sortable2, #sortable3, #sortable4, #sortable5").disableSelection();
+    } );
+  </script>
+
+
+
+<ul id="sortable1" class="droptrue">
+  Arrasta las propiedades a las tablas que consideres correctas
+  <li class="ui-state-default">titulo</li>
+  <li class="ui-state-default">genero</li>
+  <li class="ui-state-default">consola</li>
+  <li class="ui-state-default">desarrollador</li>
+  <li class="ui-state-default">precio</li>
+  <li class="ui-state-default">fecha de lanzamiento</li>
+  <li class="ui-state-default">nombre</li>
+  <li class="ui-state-default">telefono</li>
+  <li class="ui-state-default">direccion</li>
+  <li class="ui-state-default">clave</li>
+  <li class="ui-state-default">nombre</li>
+  <li class="ui-state-default">sucursal</li>
+  <li class="ui-state-default">salario</li>
+  <li class="ui-state-default">nombre</li>
+  <li class="ui-state-default">direccion</li>
+  <li class="ui-state-default">correo electronico</li>
+  <li class="ui-state-default">telefono</li>
+</ul>
+
+<ul id="sortable2" class="droptrue">
+  Videojuegos
+  <li class="ui-state-default ui-state-disabled">idVideojuego</li>
+
+</ul>
+
+<ul id="sortable3" class="droptrue">
+  Proveedores
+  <li class="ui-state-default ui-state-disabled">idProveedor</li>
+</ul>
+
+<ul id="sortable4" class="droptrue">
+  Empleados
+  <li class="ui-state-default ui-state-disabled">idEmpleado</li>
+</ul>
+
+<ul id="sortable5" class="droptrue">
+  Clientes
+  <li class="ui-state-default ui-state-disabled">idCliente</li>
+</ul>
+ 
+<!-- <br style="clear:both"> -->
+{% endblock %}

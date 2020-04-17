@@ -56,10 +56,6 @@ def ejercicio(request, pk, id):
         return redirect('unidad', pk=ultima_unidad.id)
 
     
-    print(ejercicio.archivo)
-
-    
-    
     return render(request, str(ejercicio.archivo),{
         'ejercicio_seleccionado':ejercicio,
         'unidades': unidades, 
