@@ -1,42 +1,69 @@
+{% load static %}
 <!DOCTYPE html>
 <html>
 <head>
-	<title>Ejercicicos</title>
+	<title>Ejercicios</title>
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<link rel="stylesheet" type="text/css" href="estilos.css">
+	<link rel="stylesheet" type="text/css" href="{% static 'css/estilos.css' %}">
 	<link href="https://fonts.googleapis.com/css?family=Montserrat:400,700&display=swap" rel="stylesheet"> 
+	<script src="{% static 'js/funcionesUriel.js' %}"></script>
+	<script src="{% static 'js/jQuery.js' %}"></script>
+	<link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+	<script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+	<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 </head>
 <body>
 	<div id="principalEjercicios">
 		<div id="menuEjercicios">
 			<div id="encabezado-menuEjercicios">
-				<img id="imagenback" src="imagenback.png">
-				<img id="imagenperfil" src="imagenperfil.jpeg" class="imgRedonda">
+				<img id="imagenback" src="{% static 'img/imagenback.png' %}">
+				<img id="imagenperfil" class="imgRedonda" src="{% static 'img/imagenperfil.png' %}">
 				<p id="tituloEjercicio" class="titulo-data">Data</p>
 				<p id="tituloEjercicio" class="titulo-base">Bass</p>
 			</div>
 			<div id="unidadesEjercicios">
-				<p>Unidades</p>
-				<div id="unidadesEjerciciosContenedor">
-					<div class="u1">1</div>
-					<div class="u2">2</div>
-					<div class="u3">3</div>
-					<div class="u3">4</div>
+				<p>Temas</p>
+				{% if unidades %}
+				
+				<div class="unidadesEjerciciosContenedor">
+					{% for unidad in unidades %}
+						{% if unidad.is_active %}
+						<a href="{% url 'unidad' pk=unidad.id %}">
+							{% if unidad.id == unidad_seleccionada.id %}
+								<div class="u1" id="unidad-{{ unidad.id }}">{{forloop.counter0}}</div>
+							{% else %}
+								<div class="u2" id="unidad-{{ unidad.id }}">{{forloop.counter0}}</div>
+							{% endif %}
+						</a>
+						{% else %}
+							<div class="u3">{{forloop.counter0}}</div>
+						{% endif %}
+					{% endfor %}
 				</div>
+				{% else %}
+					<p>No hay temas por el momento. Intenta mas tarde o habla con el Profesor.</p>
+				{% endif %}
 				
 			</div>
 			<div id="temasEjercicios">
-				<p>Temas</p>
+				<p>Ejercicios</p>
 				<div id="temasEjerciciosContenedor">
-					<div class="t1">1</div>
-				<div class="t2">2</div>
-				<div class="t3">3</div>
-				<div class="t4">4</div>
-				<div class="t5">5</div>
-				<div class="t6">6</div>
-				<div class="t7">7</div>
-
+					{% if ejercicios %}
+						{% if ejercicios.count > 0 %}
+							{% for ejercicio in ejercicios %}
+								{% if ejercicio.is_active %}
+									<a href="{% url 'ejercicio' pk=ejercicio.unidad.id id=ejercicio.id %}">
+										<div class="t6" id="ejercicio-{{ejercicio.id}}">{{forloop.counter}}</div>
+									</a>
+								{% endif %}
+							{% endfor %}
+						{% else %}
+						<p>No hay ejercicios por el momento. Intenta mas tarde o habla con el Profesor.</p>
+						{% endif %}
+					{% else %}
+						<p>No hay ejercicios por el momento. Intenta mas tarde o habla con el Profesor.</p>
+					{% endif %}
 				</div>
 			</div>
 		</div>
@@ -44,30 +71,49 @@
 		<div id="contenidoEjercicios">
 			<div id="encabezado-contenidoEjercicios">
 				<div id="titulo-contenidoEjercicos">
-					<p>Unidad 3. Conceptos Básicos</p>
+					{% if unidad_seleccionada %}
+						<p id="title" >Unidad {{unidad_seleccionada.id}}. {{unidad_seleccionada.titulo}}</p>
+					{% elif ejercicio_seleccionado %}
+					<p id="title" >Ejercicio {{ejercicio_seleccionado.id}}. Unidad: {{ejercicio_seleccionado.unidad}}</p>
+					{% else %}
+						<p id="title">No hay unidades activas por el momento. Intenta mas tarde o habla con el Profesor.</p>
+					{% endif %}
 					<div id="subtitulo-contenidoEjercicios">
 						<p id="calificacion">Calificación:</p>
 						<p>0/0 pts.</p>
 					</div>
-					
 				</div>
 				<div id="descripcion-contenidoEjercicios">
-				<div id="titulo-descripcion-contenidoEjercicios">
-					<p>Instrucciones de la unidad:</p>
-				</div>
-				<p>El alumno deberá arrastrar las correspondientes 
-				respuestas a las direfentes columnas con esto el alumno aprenderá a la distinción de 
-				DML (DataManipulationLanguage) y DDL (DataDefinitionLanguage)  </p>
+				
+					{% if unidad_seleccionada %}
+					<div id="titulo-descripcion-contenidoEjercicios">
+						<p>Descripción de la unidad</p>
+					</div>
+						<p id="description">{{ unidad_seleccionada.descripcion}}</p>
+					{% elif ejercicio_seleccionado %}
+					<div id="titulo-descripcion-contenidoEjercicios">
+						<p>Descripción del ejercicio</p>
+					</div>
+						<p id="description">{{ ejercicio_seleccionado.descripcion}}</p>
+					{% else %}
+						<p id="description">No hay unidades activas por el momento. Intenta mas tarde o habla con el Profesor.</p>
+					{% endif %}
 				</div>
 			</div>
-
 			<div id="contenido-contenidoEjercicios">
-				<!-- <p>asdfvb</p> -->
+				{% if unidad_seleccionada %}
+					{{ unidad_seleccionada.presentacion | safe }}
+				{% elif ejercicio_seleccionado %}
+					<br>
+				{% else %}
+					<p id="description">No hay unidades/ejercicios activos por el momento. Intenta mas tarde o habla con el Profesor.</p>
+				{% endif %}
+
+				{% block ejercicio %}
+				{% endblock %}
+				
 			</div>
 		</div>
 	</div>
-	<script type="text/javascript">
-		
-	</script>
 </body>
 </html>

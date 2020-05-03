@@ -132,3 +132,5 @@ Pipfile
 *.lock
 
 .vscode/
+
+Apps/Usuarios/migrations/

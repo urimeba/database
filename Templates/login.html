@@ -1,5 +1,4 @@
 {% load static %}
-{% load widget_tweaks %}
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -28,22 +27,19 @@
                     </div>
                     <button id="botonLogin">Iniciar Sesión</button>
                 </form> -->
-
-                {% if messages %}
-                    {% for message in messages %}
-                        {{ message }}
-                    {% endfor %}
-                {% endif %} 
                 
-                <p id="tituloLogin">Iniciar Sesión</p>
                 <form action="#" method="POST">
+                    <p id="tituloLogin">Iniciar Sesión</p>
                     {% csrf_token %}
 
-                    <label for="inputLogin" for="{{ form.username.name }}" id="subtituloLogin">Expediente</label>
-                    {% render_field form.username id="inputLogin" placeholder="267788" %}
+                    {{ form.non_field_errors }}
 
-                    <label id="inputLogin" for="{{ form.password.name }}" id="subtituloLogin">Contraseña</label>
-                    {% render_field form.password id="inputLogin" placeholder="********" %}
+                    {% for field in form %}
+                    <label for="{{ form.field.name }}">{{field.label_tag}}</label>
+                        {{ field.errors }}
+                        {{ field }}
+                        {{ field.help_text }}
+                    {% endfor %}
 
                     <div id="parrafoLogin">
                         <p>Si es la primera vez que inicias sesión,</p> 

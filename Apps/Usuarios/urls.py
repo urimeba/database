@@ -15,14 +15,9 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path
-from django.views.generic import TemplateView
-from Apps.Ejercicios import views as views_ejercicios
+from Apps.Usuarios import views as views_usuarios
 
 urlpatterns = [
-    path('<int:pk>', views_ejercicios.ejercicio, name='ejercicio'),
-    
-    # path('getEjercicio', views_ejercicios.getEjercicio, name='getEjercicio'),
-    # path('setRespuestas', views_ejercicios.setRespuestas, name='setRespuestas'),
-    path('pruebas', views_ejercicios.pruebas, name='pruebas'),
+    # path('', views_usuarios.Loginn, name='login'),
     
 ]

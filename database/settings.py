@@ -37,9 +37,9 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'widget_tweaks',
     'Apps.Clases',
-    'Apps.Ejercicios'
+    'Apps.Ejercicios',
+    'Apps.Usuarios'
 ]
 
 MIDDLEWARE = [
@@ -129,8 +129,12 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 STATICFILES_DIRS=[os.path.join(BASE_DIR, 'Static'),]
-AUTH_USER_MODEL = 'Clases.User'
 
-LOGIN_URL="loginn"
+AUTH_USER_MODEL = 'Usuarios.User'
+
+LOGIN_URL="Loginn"
 LOGIN_REDIRECT_URL="dashboard"
-LOGOUT_REDIRECT_URL="loginn"
+LOGOUT_REDIRECT_URL="Loginn"
+
+MEDIA_URL = '/Templates/'
+MEDIA_ROOT = os.path.join(BASE_DIR, 'Templates')

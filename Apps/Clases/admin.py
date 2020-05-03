@@ -1,12 +1,7 @@
 from django.contrib import admin
-from Apps.Clases import models as models_clases
-from django.contrib.auth.admin import UserAdmin
-from .models import User
+from Apps.Clases.models import Clase, Parcial, Unidad
 
 # Register your models here.
-admin.site.register(User, UserAdmin )
-admin.site.register(models_clases.Alumno)
-admin.site.register(models_clases.Profesor)
-admin.site.register(models_clases.Clase)
-admin.site.register(models_clases.ClaseParcial)
-admin.site.register(models_clases.Unidad)
+admin.site.register(Clase)
+admin.site.register(Parcial)
+admin.site.register(Unidad)

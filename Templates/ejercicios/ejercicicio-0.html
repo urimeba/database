@@ -1,0 +1,116 @@
+
+
+{% extends 'actividadesEjercicios.html' %}
+
+{% block ejercicio %}
+<style>
+    li {
+    list-style-type: none;
+    width: 200px;
+    background:yellow;
+    border: solid 1px black;
+}
+#sortable1>li, #sortable2>li {
+    background: aqua;
+}
+
+li.filled {
+    background: #DDD !important;
+}
+span.delete {
+    background:red;
+    float:right;
+    width: 15px;
+    text-align:center;
+    cursor:pointer;
+}
+
+  </style>
+  
+  <script>
+  </script>
+
+Los/Las <select name="" id="">
+  <option value="">sistemas</option>
+  <option value="">computadoras</option>
+  <option value="buena">datos</option>
+</select>
+son informacion que describen propiedades de cosas, humanos, acciones, etc. <br>
+
+
+Los/Las <select name="" id="">
+  <option value="">sistemas</option>
+  <option value="buena">bases de datos</option>
+  <option value="">datos</option>
+</select>
+son conjuntos de informacion y datos integrados y relacionados <br>
+
+Los <select name="" id="">
+  <option value="buena">datos relacionados</option>
+  <option value="">sistemas</option>
+  <option value="">usuarios</option>
+</select> 
+son descripciones logicas y coherentes de hechos <br>
+
+
+Los objetivos de 
+<select name="" id="">
+  <option value="buena">una coleccion integrada</option>
+  <option value="">un sistema de base de datos</option>
+  <option value="">una relacion de datos</option>
+</select>
+son compartir informacion y 
+manipular uniformemente una unidad de almacenamiento secundaria <br>
+
+
+Un sistema manejador de base de datos es 
+<select name="" id="">
+  <option value="">la programacion y lenguaje de una BD</option>
+  <option value="buena">conjunto de programas de administracion de BD</option>
+  <option value="">el proceso del sistema operativo que controla la BD</option>
+</select>
+<br>
+
+
+Selecciona la opcion que NO es una de las partes de un sistema de BD
+<select name="" id="">
+  <option value="">Un SMDB</option>
+  <option value="">Aplicacion que maneja la BD</option>
+  <option value="buena">Un gerente de proyectos</option>
+</select>
+<br>
+
+Selecciona la opcion que NO forma parte del concepto de abstraccion de datos
+<select name="" id="">
+  <option value="">Ocultar detalles de almacenamiento</option>
+  <option value="buena">Llevar la informacion a su minima expresion</option>
+  <option value="">Modificar el modelo sin afectar el funcionamiento</option>
+</select>
+<br>
+
+Selecciona la opcion que NO forma parte de un sistema de almacenamiento de datos
+<select name="" id="">
+  <option value="buena">Procesos del sistema operativo</option>
+  <option value="">Archivos</option>
+  <option value="">DMBS</option>
+</select>
+<br>
+
+A que se refiere la confiabilidad
+<select name="" id="">
+  <option value="buena">Restricciones y consistencia</option>
+  <option value="">Consistencia y abstraccion</option>
+  <option value="">Redundancia y disponibilidad</option>
+</select>
+<br>
+
+A que se refiere la eficiencia
+<select name="" id="">
+  <option value="">Maximizar redundancia</option>
+  <option value="buena">Minimizar redundancia</option>
+  <option value="">Evitar redundancia</option>
+</select>
+
+
+
+{% endblock %}

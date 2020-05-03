@@ -17,12 +17,19 @@ from django.contrib import admin
 from django.urls import path
 from . import views as views_clases
 from django.views.generic import TemplateView
+from Apps.Clases import views as views_clases
+from Apps.Ejercicios import views as views_ejercicios
 
 urlpatterns = [
-    # path('', TemplateView.as_view(template_name='index.html')),
-    path('', views_clases.Login.as_view(), name='loginn'),
+    path('', views_clases.Loginn.as_view(), name='Loginn'),
     path('dashboard', views_clases.dashboard, name='dashboard'),
-    path('compilator', views_clases.compilator, name='compilator'),
-    path('profile', views_clases.profile, name='profile'),
+    path('compilador', views_clases.compilador, name='compilador'),
+    path('perfil', views_clases.perfil, name='perfil'),
+    path('cerrarSesion', views_clases.cerrarSesion, name='cerrarSesion'),
+
+    path('unidades', views_clases.unidades, name='unidades'),
+    path('unidad/<int:pk>', views_clases.unidad, name='unidad'),
+    path('unidad/<int:pk>/ejercicio/<int:id>', views_ejercicios.ejercicio, name='ejercicio'),
+    
     
 ]

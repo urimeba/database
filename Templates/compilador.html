@@ -1,69 +1,22 @@
-{% load static %}
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="{% static 'css/compilador.css' %}">
-    <link rel="stylesheet" href="{% static 'js/compilador lib/codemirror.css' %}">
-    <link href="https://fonts.googleapis.com/css?family=Montserrat&display=swap" rel="stylesheet"> 
-    <title>Compilador</title>
-</head>
-<body>
-    <div id="Principal">
-      
-        <div class="container">
-            <div class="row">
-                <nav>
-                    <div class="navbar-logo">Data<strong>Base</strong></div>
-                    <ul class="navbar-list">
-                        <li class="opciones">Inicio</li>
-                        <li class="opciones">Contenido</li>
-                        <li class="opciones">Herramientas</li>
-                    </ul>		
-                    <div class="navbar-profile">
-                        <div class="navbar-notification">
-                           
-                            <div class="navbar-notification-count">1</div>
-                        </div>
-                        <div class="navbar-notification navbar-avatar">
-                            <div class="navbar-picture">
-                                <img src="{% static 'img/perfil.jpg' %}" alt="" class="img-profile">
-                            </div>
-                        </div>
-                    </div>
-                </nav>
-                
-            </div>
 
-
-            <div id="mid-container">
-                <div id="mid-container-ajuste">
-                    <div id="container-top">
-                        <div id="compilador-top">
-                            <p id="titulo">Compilador <b>Oracle</b></p>
-                            <div id="buttons">
-                                <button id="borrar" onclick="limpiar()">Clear</button>
-                                <button id="play" onclick="compile()"> Play</button>
-                            </div>
-                        </div>
-                        <div id="compilador-bottom">
-                                <textarea name="code" id="code"></textarea>
-                        </div>
-                    </div>
-                    <div id="container-bottom">
-                        <div id="tablas-container">
-                        </div>
-                    </div>
-                </div>
+{% extends 'navbar.html' %}
+{% block content %}
+<div id="mid-container-ajuste">
+    <div id="container-top">
+        <div id="compilador-top">
+            <p id="titulo">Compilador <b>Oracle</b></p>
+            <div id="buttons">
+                <button id="borrar" onclick="limpiar()">Clear</button>
+                <button id="play" onclick="compile()"> Play</button>
             </div>
         </div>
-     </div>
-
-     <script src="{% static 'js/compilador lib/codemirror.js' %}"></script>
-     <script src="{% static 'js/sql.js' %}"></script>
-     <script src="{% static 'js/Compilador.js' %}"></script>
-     <script src="{% static 'js/funcionesUriel.js' %}"></script>
-     <script src="{% static 'js/jQuery.js' %}"></script>
-</body>
-</html>
+        <div id="compilador-bottom">
+                <textarea name="code" id="code"></textarea>
+        </div>
+    </div>
+    <div id="container-bottom">
+        <div id="tablas-container">
+        </div>
+    </div>
+</div>
+{% endblock %}
