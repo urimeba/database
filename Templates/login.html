@@ -35,12 +35,15 @@
                     {{ form.non_field_errors }}
 
                     {% for field in form %}
-                    <label for="{{ form.field.name }}">{{field.label_tag}}</label>
-                        {{ field.errors }}
-                        {{ field }}
+                    <label class="inputsLogin" for="{{ form.field.name }}">{{field.label_tag}}</label>
+                        <br>  
+                    {{field.errors }}
+                        <br>
+                        {{field}}
+                        <br>
                         {{ field.help_text }}
+                        <br>
                     {% endfor %}
-
                     <div id="parrafoLogin">
                         <p>Si es la primera vez que inicias sesión,</p> 
                         <p>tu contraseña  es tu expediente seguido </p> 

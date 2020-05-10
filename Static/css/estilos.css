@@ -65,7 +65,7 @@
             padding-left: .5rem;
         }
        
-        #subtituloLogin{
+        .subtituloLogin{
             padding-top:5%;
             padding-bottom:5%;
             color: #f2f2f2;
@@ -102,8 +102,17 @@
             border-style: none;
             color: white;
         }
-
-
+        #id_username{
+            width: 100%;
+            height: 26px;
+        }
+        #id_password{
+            width:97%;
+        }
+        .inputsLogin{
+            color: white;
+        }
+        
 /*---------ESTILOS actividadesEjercicios------------*/
         #principalEjercicios{
              position: absolute;
