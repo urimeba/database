@@ -60,12 +60,12 @@
             
         }
 
-        input[type=password], input[type=text] {
+        /* input[type=password], input[type=text] {
             padding-top: .5rem;
             padding-left: .5rem;
-        }
+        } */
        
-        #subtituloLogin{
+        .subtituloLogin{
             padding-top:5%;
             padding-bottom:5%;
             color: #f2f2f2;
@@ -102,8 +102,18 @@
             border-style: none;
             color: white;
         }
-
-
+        #id_username{
+            width: 100%;
+            height: 26px;
+        }
+        #id_password{
+            width:100%;
+            height: 26px;
+        }
+        .inputsLogin{
+            color: white;
+        }
+        
 /*---------ESTILOS actividadesEjercicios------------*/
         #principalEjercicios{
              position: absolute;
@@ -364,13 +374,45 @@
             margin-top: 20%;
          }
          /*---------ESTILOS actividadesEjercicios------------*/
-        #contenido-contenidoEjercicios{
-            background-color: brown;
-        }
         #encabezado-menuEjercicios{
             width:60%;
         }
     }
+
+        /*------- ESTILOS enlaces de Navbar Dashboard --------- */
+        .opcionInicio{
+            text-decoration: none;
+            color: white;
+        }
+        .opcionContenido{
+            text-decoration: none;
+            color: white;
+        }
+        .opcionHerramientas{
+            text-decoration: none;
+            color: white;
+        }
+        .img-logout{
+            width: 75%;
+            height: 75%;
+            margin-left:20%;
+        }
+        .navbar-logout {
+            display: flex;
+            justify-content: flex-end;
+            align-items: flex-end;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            background-color: #eeeeee;
+            background-repeat: no-repeat;
+            background-size: 30px 30px;
+            background-position: center; 
+            /* background-image: url('../img/logout6.png'); */
+            cursor: pointer;
+        }
+
+        /*-----------------------------------------------*/
         @media(max-width:1122px ){
             #unidadesEjerciciosContenedor{
                 overflow-y: scroll;

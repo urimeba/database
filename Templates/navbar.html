@@ -8,6 +8,7 @@
     <link rel="stylesheet" href="{% static 'js/compilador lib/codemirror.css' %}">
     <link href="https://fonts.googleapis.com/css?family=Montserrat&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="{% static 'css/indexEstilos.css' %}">   
+    <link rel="stylesheet" href="{% static 'css/estilos.css' %}">
     <title>Compilador</title>
 </head>
 <body>
@@ -15,16 +16,16 @@
       
         <div class="container">
             <div class="row">
-                <nav>
+                <nav class="nav-menu">
                     <div class="navbar-logo">Data<strong>Base</strong></div>
                     <ul class="navbar-list">
-                        <li class="opciones"><a href="{% url 'dashboard' %}">Inicio</a></li>
-                        <li class="opciones"><a href="{% url 'unidades' %}">Contenido</a></li>
-                        <li class="opciones"><a href="{% url 'compilador' %}">Herramientas</a></li>
+                        <li class="opciones"><a href="{% url 'dashboard' %}" class="opcionInicio">Inicio</a></li>
+                        <li class="opciones"><a href="{% url 'unidades' %}" class="opcionContenido">Contenido</a></li>
+                        <li class="opciones"><a href="{% url 'compilador' %}" class="opcionHerramientas">Herramientas</a></li>
                     </ul>		
                     <div class="navbar-profile">
                         <div class="navbar-notification">
-                           
+                            
                             <div class="navbar-notification-count">1</div>
                         </div>
                         <div class="navbar-notification navbar-avatar">
@@ -35,6 +36,14 @@
                                 
                             </div>
                         </div>
+                                <div class="navbar-logout navbar-avatar">
+                                    <div >
+                                        <a href="{% url 'cerrarSesion' %}">
+                                            <img src="{% static 'img/logout.png' %}" alt="" class="img-logout">
+                                        </a>
+                                    </div>
+                                </div>
+                        
                     </div>
                 </nav>
                 
