@@ -134,3 +134,5 @@ Pipfile
 .vscode/
 
 Apps/Usuarios/migrations/
+
+.idea/
