@@ -13,7 +13,6 @@ class tipoEjercicio(models.Model):
     def __str__(self):
         return "{} - Intentos: {}".format(self.descripcion, self.intentos)
 
-
 class Ejercicio(models.Model):
     unidad = models.ForeignKey('Clases.Unidad', on_delete=models.CASCADE)
     tipo = models.ForeignKey('tipoEjercicio', on_delete=models.CASCADE)
@@ -62,3 +61,8 @@ class Respuesta(models.Model):
     class Meta:
         verbose_name = 'Respuesta'
         verbose_name_plural = 'Respuestas'
+
+class CalificacionEjercicio(models.Model):
+    ejercicio = models.ForeignKey('Ejercicio', on_delete=models.CASCADE)
+    alumno = models.ForeignKey('Usuarios.Alumno', on_delete=models.CASCADE)
+    calificacion = models.DecimalField(max_digits=4, decimal_places=2, default=0)

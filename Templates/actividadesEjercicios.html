@@ -81,6 +81,9 @@
 					<div id="subtitulo-contenidoEjercicios">
 						<p id="calificacion">Calificación:</p>
 						<p>0/0 pts.</p>
+						{% if intentos %}
+							<p>Intentos restantes: <span id="intentos">{{intentos}}</span></p>
+						{% endif %}
 					</div>
 				</div>
 				<div id="descripcion-contenidoEjercicios">

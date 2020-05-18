@@ -9,107 +9,110 @@
     width: 200px;
     background:yellow;
     border: solid 1px black;
-}
-#sortable1>li, #sortable2>li {
-    background: aqua;
-}
-
-li.filled {
-    background: #DDD !important;
-}
-span.delete {
-    background:red;
-    float:right;
-    width: 15px;
-    text-align:center;
-    cursor:pointer;
-}
-
-  </style>
+    }
+    #sortable1>li, #sortable2>li {
+        background: aqua;
+    }
+    li.filled {
+        background: #DDD !important;
+    }
+    span.delete {
+        background:red;
+        float:right;
+        width: 15px;
+        text-align:center;
+        cursor:pointer;
+    }
+</style>
   
-  <script>
-  </script>
+<script>
+  window.onload = function(){
+      document.getElementById("btn-ejercicio-1-6").addEventListener("click", enviarEjercicio1_1);
+  }
+</script>
 
-Los/Las <select name="" id="">
-  <option value="">sistemas</option>
-  <option value="">computadoras</option>
-  <option value="buena">datos</option>
+1. Los/Las <select name="" id="pregunta-1">
+  <option value="a">sistemas</option>
+  <option value="b">computadoras</option>
+  <option value="c">datos</option>
 </select>
 son informacion que describen propiedades de cosas, humanos, acciones, etc. <br>
 
 
-Los/Las <select name="" id="">
-  <option value="">sistemas</option>
-  <option value="buena">bases de datos</option>
-  <option value="">datos</option>
+2. Los/Las <select name="" id="pregunta-2">
+  <option value="a">sistemas</option>
+  <option value="b">bases de datos</option>
+  <option value="c">datos</option>
 </select>
-son conjuntos de informacion y datos integrados y relacionados <br>
+son conjuntos de informacion y datos integrados y relacionados.<br>
 
-Los <select name="" id="">
-  <option value="buena">datos relacionados</option>
-  <option value="">sistemas</option>
-  <option value="">usuarios</option>
+3. Los <select name="" id="pregunta-3">
+  <option value="a">datos relacionados</option>
+  <option value="b">sistemas</option>
+  <option value="c">usuarios</option>
 </select> 
-son descripciones logicas y coherentes de hechos <br>
+son descripciones logicas y coherentes de hechos.<br>
 
 
-Los objetivos de 
-<select name="" id="">
-  <option value="buena">una coleccion integrada</option>
-  <option value="">un sistema de base de datos</option>
-  <option value="">una relacion de datos</option>
+4. Los objetivos de 
+<select name="" id="pregunta-4">
+  <option value="a">una coleccion integrada</option>
+  <option value="b">un sistema de base de datos</option>
+  <option value="c">una relacion de datos</option>
 </select>
 son compartir informacion y 
-manipular uniformemente una unidad de almacenamiento secundaria <br>
+manipular uniformemente una unidad de almacenamiento secundaria.<br>
 
 
-Un sistema manejador de base de datos es 
-<select name="" id="">
-  <option value="">la programacion y lenguaje de una BD</option>
-  <option value="buena">conjunto de programas de administracion de BD</option>
-  <option value="">el proceso del sistema operativo que controla la BD</option>
+5. Un sistema manejador de base de datos es: 
+<select name="" id="pregunta-5">
+  <option value="a">la programacion y lenguaje de una BD</option>
+  <option value="b">conjunto de programas de administracion de BD</option>
+  <option value="c">el proceso del sistema operativo que controla la BD</option>
 </select>
 <br>
 
 
-Selecciona la opcion que NO es una de las partes de un sistema de BD
-<select name="" id="">
-  <option value="">Un SMDB</option>
-  <option value="">Aplicacion que maneja la BD</option>
-  <option value="buena">Un gerente de proyectos</option>
+6. Selecciona la opcion que NO es una de las partes de un sistema de BD:
+<select name="" id="pregunta-6">
+  <option value="a">Un SMDB</option>
+  <option value="b">Aplicacion que maneja la BD</option>
+  <option value="c">Un gerente de proyectos</option>
 </select>
 <br>
 
-Selecciona la opcion que NO forma parte del concepto de abstraccion de datos
-<select name="" id="">
-  <option value="">Ocultar detalles de almacenamiento</option>
-  <option value="buena">Llevar la informacion a su minima expresion</option>
-  <option value="">Modificar el modelo sin afectar el funcionamiento</option>
+7. Selecciona la opcion que NO forma parte del concepto de abstraccion de datos:
+<select name="" id="pregunta-7">
+  <option value="a">Ocultar detalles de almacenamiento</option>
+  <option value="b">Llevar la informacion a su minima expresion</option>
+  <option value="c">Modificar el modelo sin afectar el funcionamiento</option>
 </select>
 <br>
 
-Selecciona la opcion que NO forma parte de un sistema de almacenamiento de datos
-<select name="" id="">
-  <option value="buena">Procesos del sistema operativo</option>
-  <option value="">Archivos</option>
-  <option value="">DMBS</option>
+8. Selecciona la opcion que NO forma parte de un sistema de almacenamiento de datos:
+<select name="" id="pregunta-8">
+  <option value="a">Procesos del sistema operativo</option>
+  <option value="b">Archivos</option>
+  <option value="c">DMBS</option>
 </select>
 <br>
 
-A que se refiere la confiabilidad
-<select name="" id="">
-  <option value="buena">Restricciones y consistencia</option>
-  <option value="">Consistencia y abstraccion</option>
-  <option value="">Redundancia y disponibilidad</option>
+9. ¿A que se refiere la confiabilidad?
+<select name="" id="pregunta-9">
+  <option value="a">Restricciones y consistencia</option>
+  <option value="b">Consistencia y abstraccion</option>
+  <option value="c">Redundancia y disponibilidad</option>
 </select>
 <br>
 
-A que se refiere la eficiencia
-<select name="" id="">
-  <option value="">Maximizar redundancia</option>
-  <option value="buena">Minimizar redundancia</option>
-  <option value="">Evitar redundancia</option>
+10. ¿A que se refiere la eficiencia?
+<select name="" id="pregunta-10">
+  <option value="a">Maximizar redundancia</option>
+  <option value="b">Minimizar redundancia</option>
+  <option value="c">Evitar redundancia</option>
 </select>
 
-
+<div class="container">
+    <button id="btn-ejercicio-1-6">Enviar</button>
+</div>
 {% endblock %}
