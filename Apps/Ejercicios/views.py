@@ -164,7 +164,6 @@ def ejercicio21(request):
     intentos = Intentos.objects.get(ejercicio__id=3, alumno=alumno)
 
     if(intentos.numero>0):
-
         intentos.numero-=1
         intentos.save()
 
@@ -211,6 +210,120 @@ def ejercicio21(request):
             'intentos':intentos.numero
         })
 
+    else:
+        return JsonResponse({
+            'calificacion': "Has superado el limite de intentos del ejercicio (3 intentos)",
+            'intentos':0
+        })
+
+def ejercicio22(request):
+    alumno = Alumno.objects.get(usuario__id=request.user.id)
+    intentos = Intentos.objects.get(ejercicio__id=7, alumno=alumno)
+
+    if(intentos.numero>0):
+        intentos.numero-=1
+        intentos.save()
+
+        calificacion = 0
+        atributosOracle = json.loads(request.POST['atributosOracle'])
+        atributosmysql = json.loads(request.POST['atributosmysql'])
+        atributospostgres = json.loads(request.POST['atributospostgres'])
+
+        calificacion+=0.556 if 'varchar2' in atributosOracle else 0
+        calificacion+=0.556 if 'rowid' in atributosOracle else 0
+        calificacion+=0.556 if 'raw' in atributosOracle else 0
+        calificacion+=0.556 if 'nchar' in atributosOracle else 0
+        calificacion+=0.556 if 'binary_double' in atributosOracle else 0
+        calificacion+=0.556 if 'number' in atributosOracle else 0
+
+        calificacion+=0.556 if 'mediumint' in atributosmysql else 0
+        calificacion+=0.556 if 'year' in atributosmysql else 0
+        calificacion+=0.556 if 'varchar' in atributosmysql else 0
+        calificacion+=0.556 if 'text' in atributosmysql else 0
+        calificacion+=0.556 if 'time' in atributosmysql else 0
+        calificacion+=0.556 if 'bigint' in atributosmysql else 0
+
+        calificacion+=0.556 if 'serial' in atributospostgres else 0
+        calificacion+=0.556 if 'box' in atributospostgres else 0
+        calificacion+=0.556 if 'character' in atributospostgres else 0
+        calificacion+=0.556 if 'double precision' in atributospostgres else 0
+        calificacion+=0.556 if 'line' in atributospostgres else 0
+        calificacion+=0.556 if 'money' in atributospostgres else 0
+
+        calificacion=10 if calificacion>10 else round(calificacion, 2)
+
+        calificacionBD, created = CalificacionEjercicio.objects.get_or_create(
+            ejercicio_id = 7,
+            alumno = alumno
+        )
+        calificacionBD.calificacion=calificacion
+        calificacionBD.save()
+
+        return JsonResponse({
+            'calificacion': "Tu calificacion ha sido: {0}. (Intentos restantes: {1} intento(s))"
+            .format(calificacion, intentos.numero),
+            'intentos':intentos.numero
+        })
+    else:
+        return JsonResponse({
+            'calificacion': "Has superado el limite de intentos del ejercicio (3 intentos)",
+            'intentos':0
+        })
+
+
+# Ejercicio 3 de la unidad 2
+# ID DEL EJERCICIO: 8
+def ejercicio23(request):
+    alumno = Alumno.objects.get(usuario__id=request.user.id)
+    intentos = Intentos.objects.get(ejercicio__id=8, alumno=alumno)
+
+    if(intentos.numero>0):
+        intentos.numero-=1
+        intentos.save()
+
+        calificacion = 0
+        atributosCaracter = json.loads(request.POST['atributosCaracter'])
+        atributosNumericos = json.loads(request.POST['atributosNumericos'])
+        atributosFecha = json.loads(request.POST['atributosFecha'])
+        atributosObjetos = json.loads(request.POST['atributosObjetos'])
+
+        calificacion+=0.527 if 'varchar2' in atributosCaracter else 0
+        calificacion+=0.527 if 'nchar' in atributosCaracter else 0
+        calificacion+=0.527 if 'char' in atributosCaracter else 0
+        calificacion+=0.527 if 'long raw' in atributosCaracter else 0
+        calificacion+=0.527 if 'raw' in atributosCaracter else 0
+        calificacion+=0.527 if 'long' in atributosCaracter else 0
+        calificacion+=0.527 if 'nvarchar2' in atributosCaracter else 0
+
+        calificacion+=0.527 if 'binary float' in atributosNumericos else 0
+        calificacion+=0.527 if 'binary double' in atributosNumericos else 0
+        calificacion+=0.527 if 'number' in atributosNumericos else 0
+
+        calificacion+=0.527 if 'date' in atributosFecha else 0
+        calificacion+=0.527 if 'interval' in atributosFecha else 0
+        calificacion+=0.527 if 'timestamp with local zone' in atributosFecha else 0
+        calificacion+=0.527 if 'timestamp with local time zone' in atributosFecha else 0
+        calificacion+=0.527 if 'timestamp' in atributosFecha else 0
+
+        calificacion+=0.527 if 'bfile' in atributosObjetos else 0
+        calificacion+=0.527 if 'nclob' in atributosObjetos else 0
+        calificacion+=0.527 if 'clob' in atributosObjetos else 0
+        calificacion+=0.527 if 'blob' in atributosObjetos else 0
+
+        calificacion=10 if calificacion>10 else round(calificacion, 2)
+
+        calificacionBD, created = CalificacionEjercicio.objects.get_or_create(
+            ejercicio_id = 8,
+            alumno = alumno
+        )
+        calificacionBD.calificacion=calificacion
+        calificacionBD.save()
+
+        return JsonResponse({
+            'calificacion': "Tu calificacion ha sido: {0}. (Intentos restantes: {1} intento(s))"
+            .format(calificacion, intentos.numero),
+            'intentos':intentos.numero
+        })
     else:
         return JsonResponse({
             'calificacion': "Has superado el limite de intentos del ejercicio (3 intentos)",

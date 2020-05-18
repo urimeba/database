@@ -134,7 +134,7 @@ getTextLi = (elementoPadre) =>{
 }
 
 // Funcion para enviar el ejercicio al Back 
-enviarEjercicio2_3 = () =>{
+enviarEjercicio2_1 = () =>{
     let atributos = document.getElementById("sortable1");
     let videojuegos = document.getElementById("sortable2");
     let proveedores = document.getElementById("sortable3");
@@ -156,7 +156,6 @@ enviarEjercicio2_3 = () =>{
     let atributosEmpleados =  getTextLi(empleados);
     let atributosClientes =  getTextLi(clientes);
 
-
     $.ajax({
         type: 'POST',
         url: serverWeb+'ejercicios/setEjercicio21',
@@ -171,8 +170,81 @@ enviarEjercicio2_3 = () =>{
             alert(data['calificacion']);
             updateIntentos(data['intentos'])
         }
-});
+    });
+}
+
+enviarEjercicio2_2 = () =>{
+    let atributos = document.getElementById("sortable1");
+    let oracle = document.getElementById("sortable2");
+    let mysql = document.getElementById("sortable3");
+    let postgres = document.getElementById("sortable4");
+
+    let confirmacion = "";
+    if(atributos.children.length>0){
+        confirmacion = confirm("Parece que todavia tienes atributos sin colocar. ¿Deseas continuar?");
+        if(!confirmacion){
+            return;
+        }
+    }
+
+    let token = getCookie('csrftoken');
+    let atributosOracle =  getTextLi(oracle);
+    let atributosmysql =  getTextLi(mysql);
+    let atributospostgres =  getTextLi(postgres);
+
+    $.ajax({
+        type: 'POST',
+        url: serverWeb+'ejercicios/setEjercicio22',
+        data: {
+            csrfmiddlewaretoken: token,
+            atributosOracle: JSON.stringify(atributosOracle),
+            atributosmysql: JSON.stringify(atributosmysql),
+            atributospostgres: JSON.stringify(atributospostgres),
+        },
+        success: function(data){
+            alert(data['calificacion']);
+            updateIntentos(data['intentos'])
+        }
+    });
 
 
+}
+
+enviarEjercicio2_3 = () =>{
+    let atributos = document.getElementById("sortable1");
+    let caracter = document.getElementById("sortable2");
+    let numericos = document.getElementById("sortable3");
+    let fecha = document.getElementById("sortable4");
+    let objetos = document.getElementById("sortable5");
+
+    let confirmacion = "";
+    if(atributos.children.length>0){
+        confirmacion = confirm("Parece que todavia tienes atributos sin colocar. ¿Deseas continuar?");
+        if(!confirmacion){
+            return;
+        }
+    }
+
+    let token = getCookie('csrftoken');
+    let atributosCaracter =  getTextLi(caracter);
+    let atributosNumericos =  getTextLi(numericos);
+    let atributosFecha =  getTextLi(fecha);
+    let atributosObjetos =  getTextLi(objetos);
+
+    $.ajax({
+        type: 'POST',
+        url: serverWeb+'ejercicios/setEjercicio23',
+        data: {
+            csrfmiddlewaretoken: token,
+            atributosCaracter: JSON.stringify(atributosCaracter),
+            atributosNumericos: JSON.stringify(atributosNumericos),
+            atributosFecha: JSON.stringify(atributosFecha),
+            atributosObjetos: JSON.stringify(atributosObjetos),
+        },
+        success: function(data){
+            alert(data['calificacion']);
+            updateIntentos(data['intentos'])
+        }
+    });
 
 }

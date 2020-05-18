@@ -4,31 +4,46 @@
 
 {% block ejercicio %}
 <style>
-    #sortable1, #sortable2, #sortable3, #sortable4, #sortable5 { list-style-type: none; margin: 0; float: left; margin-right: 10px; background: #eee; padding: 5px; width: 143px;}
-    #sortable1 li, #sortable2 li, #sortable3 li, #sortable4 li, #sortable5 li { margin: 5px; padding: 5px; font-size: 1.2em; width: 120px; }
-  </style>
+    #sortable1, #sortable2, #sortable3, #sortable4, #sortable5{ 
+      list-style-type: none;
+      margin: 0;
+      float: left;
+      margin-right: 10px;
+      background: #eee;
+      padding: 5px;
+      width: 143px;
+      }
+    #sortable1 li, #sortable2 li, #sortable3 li, #sortable4 li, #sortable5 li{
+      margin: 5px;
+      padding: 5px;
+      font-size: 1.2em;
+      width: 120px;
+      }
+</style>
   
-  <script>
-    $( function() {
+<script>
+  $(function(){
+    $("ul.droptrue").sortable({
+      connectWith: "ul"
+    });
 
-      $( "ul.droptrue" ).sortable({
-        connectWith: "ul"
-      });
-   
-      $( "#sortable1, #sortable2, #sortable3, #sortable4, #sortable5").disableSelection();
-    } );
-  </script>
+    $("#sortable1, #sortable2, #sortable3, #sortable4, #sortable5").disableSelection();
+  });
+
+  window.onload=function(){
+    document.getElementById("btn-ejercicio-2-3").addEventListener("click", enviarEjercicio2_3);
+  }
+</script>
 
 
 
 <ul id="sortable1" class="droptrue">
-  Arrastra el tipo de dato segun el moto de base de datos
+  Tipos de dato
   <!-- ORACLE -->
   <li class="ui-state-default">varchar2</li>
   <li class="ui-state-default">char</li>
   <li class="ui-state-default">nchar</li>
   <li class="ui-state-default">nvarchar2</li>
-  <li class="ui-state-default">varchar2</li>
   <li class="ui-state-default">long</li>
   <li class="ui-state-default">raw</li>
   <li class="ui-state-default">long raw</li>
@@ -68,4 +83,9 @@
   Objetos o binarios
 </ul>
  
+<br style="clear:both">
+<div class="container">
+  <button id="btn-ejercicio-2-3">Enviar</button>
+</div>
+
 {% endblock %}
