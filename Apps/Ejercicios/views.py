@@ -31,7 +31,6 @@ def ejercicios(request):
 
     return render(request, 'actividadesEjercicios.html')
 
-
 @login_required
 def ejercicio(request, pk, id):
     alumno = Alumno.objects.get(usuario=request.user.id)
@@ -48,7 +47,7 @@ def ejercicio(request, pk, id):
     try:
         ejercicio = Ejercicio.objects.get(id=id)
         alumno = Alumno.objects.get(usuario__id=request.user.id)
-        numeroIntentos = Intentos.objects.filter(ejercicio=ejercicio, alumno=alumno).count()
+        numeroIntentos, created = Intentos.objects.get_or_create(ejercicio=ejercicio, alumno=alumno)
     except:
         ultima_unidad = Unidad.objects.all().last()
         return redirect('unidad', pk=ultima_unidad.id)
@@ -58,12 +57,8 @@ def ejercicio(request, pk, id):
         'ejercicio_seleccionado':ejercicio,
         'unidades': unidades, 
         'ejercicios':ejercicios,
-        'intentos': str(3-numeroIntentos)
+        'intentos': str(numeroIntentos.numero)
     })
-
-    
-
-    
 
 @login_required
 def setRespuestas(request):
@@ -87,21 +82,17 @@ def setRespuestas(request):
     else:
         return HttpResponse("Has alcanzado el numero de intentos maximo para este ejercicio")
 
-def pruebas(request):
-    return render(request, 'pruebas.html')
 
 # EJERCICIO 1 DE LA UNIDAD 1
 # ID DEL EJERCICIO: 6
 def ejercicio11(request):
     alumno = Alumno.objects.get(usuario__id=request.user.id)
-    numeroIntentos = Intentos.objects.filter(ejercicio__id=6, alumno=alumno).count()
+    intentos = Intentos.objects.get(ejercicio__id=6, alumno=alumno)
 
-    if(numeroIntentos<3):
+    if(intentos.numero>0):
         # Creando un nuevo intento
-        Intentos.objects.create(
-            ejercicio_id=6,
-            alumno=alumno
-        )
+        intentos.numero-=1
+        intentos.save()
 
         calificacion = 0
 
@@ -156,8 +147,68 @@ def ejercicio11(request):
         calificacionBD.save()
 
         return JsonResponse({
-            'calificacion': "Tu calificacion ha sido: {0}. (Intentos restantes: {1} intento(s))".format(calificacion, 3-(numeroIntentos+1)),
-            'intentos':3-(numeroIntentos+1)
+            'calificacion': "Tu calificacion ha sido: {0}. (Intentos restantes: {1} intento(s))"
+            .format(calificacion, intentos.numero),
+            'intentos':intentos.numero
+        })
+
+    else:
+        return JsonResponse({
+            'calificacion': "Has superado el limite de intentos del ejercicio (3 intentos)",
+            'intentos':0
+        })
+
+# ID DEL EJERCICIO: 3
+def ejercicio21(request):
+    alumno = Alumno.objects.get(usuario__id=request.user.id)
+    intentos = Intentos.objects.get(ejercicio__id=3, alumno=alumno)
+
+    if(intentos.numero>0):
+
+        intentos.numero-=1
+        intentos.save()
+
+        calificacion = 0
+        atributosVideojuegos = json.loads(request.POST['atributosVideojuegos'])
+        atributosProveedores = json.loads(request.POST['atributosProveedores'])
+        atributosEmpleados = json.loads(request.POST['atributosEmpleados'])
+        atributosClientes = json.loads(request.POST['atributosClientes'])
+
+        calificacion+=0.589 if 'Titulo' in atributosVideojuegos else 0
+        calificacion+=0.589 if 'Genero' in atributosVideojuegos else 0
+        calificacion+=0.589 if 'Consola' in atributosVideojuegos else 0
+        calificacion+=0.589 if 'Desarrollador' in atributosVideojuegos else 0
+        calificacion+=0.589 if 'Precio' in atributosVideojuegos else 0
+        calificacion+=0.589 if 'Fecha de lanzamiento' in atributosVideojuegos else 0
+
+        calificacion+=0.589 if 'Nombre' in atributosProveedores else 0
+        calificacion+=0.589 if 'Telefono' in atributosProveedores else 0
+        calificacion+=0.589 if 'Direccion' in atributosProveedores else 0
+        calificacion+=0.589 if 'Clave' in atributosProveedores else 0
+
+        calificacion+=0.589 if 'Nombre' in atributosEmpleados else 0
+        calificacion+=0.589 if 'Sucursal' in atributosEmpleados else 0
+        calificacion+=0.589 if 'Salario' in atributosEmpleados else 0
+
+        calificacion+=0.589 if 'Nombre' in atributosClientes else 0
+        calificacion+=0.589 if 'Direccion' in atributosClientes else 0
+        calificacion+=0.589 if 'Correo electronico' in atributosClientes else 0
+        calificacion+=0.589 if 'Telefono' in atributosClientes else 0
+
+
+        calificacion=10 if calificacion>10 else round(calificacion, 2)
+
+        calificacionBD, created = CalificacionEjercicio.objects.get_or_create(
+            ejercicio_id = 3,
+            alumno = alumno
+        )
+        calificacionBD.calificacion=calificacion
+        calificacionBD.save()
+
+        return JsonResponse({
+            'calificacion': "Tu calificacion ha sido: {0}. (Intentos restantes: {1} intento(s))"
+            .format(calificacion, intentos.numero),
+            'intentos':intentos.numero
         })
 
     else:

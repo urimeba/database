@@ -1,6 +1,7 @@
 var serverQuerys = 'http://148.220.52.132:3000/';
 var serverWeb = 'http://127.0.0.1:8000/'
 
+// Funcion para obtener la Cookie y mandarla al Back
 function getCookie(name) {
     var cookieValue = null;
     if (document.cookie && document.cookie != '') {
@@ -14,6 +15,7 @@ function getCookie(name) {
     return cookieValue;
 }
 
+// Funcion para compilar codigo SQL de Oracle
 compile = async () => {
     let query = code.getValue();
 
@@ -65,74 +67,22 @@ compile = async () => {
     });
 }
 
-enviarEjercicio2 = (id) =>{
-    let tabla = document.getElementById("tabla-"+id);
-    let filas = tabla.getElementsByTagName("tr");
-    let respuestas = []
-    let estado = true;
-
-    for(let x=0; x<filas.length; x++){
-
-        let res = filas[x].getElementsByTagName("td");
-
-        for(let y=0; y<res.length; y++){
-            // console.log(res[y].innerText);
-            let txt = res[y].innerText;
-            txt.trim;
-            // console.log(txt);
-            respuestas.push(txt);
-        }
-
-    }
-
-    // console.log(respuestas);
-
-    for(let x=0; x<respuestas.length; x++){
-        // console.log(respuestas[x]);
-        if(respuestas[x]==''){
-            estado=false;
-        }
-    }
-
-    let confirmacion;
-    if(!estado){
-        confirmacion = confirm("Parece que tu ejercicio no esta completo. Deseas mandarlo de todos modos");
-    }
-
-    if(estado || confirmacion){
-        let token = getCookie('csrftoken');
-        $.ajax({ 
-            type: 'POST',
-            url: 'http://127.0.0.1:8000/setRespuestas',
-            data: {respuestas: JSON.stringify(respuestas), idEjercicio:id, csrfmiddlewaretoken: token},
-            success: function(data){
-                // console.log(data);
-                alert(data)
-            }
-        });
-
-    }
-
-    
-
-
-   
-
-
-}
-
-getTextSelect = (elementId) => {
-    let select = document.getElementById(elementId);
-    let res = select.options[select.selectedIndex].value;
-    return res;
-}
-
+// Funcion para actualizar el numero de intentos en el HTML 
 updateIntentos = (numeroIntentos) => {
     let divIntentos = document.getElementById("intentos");
     divIntentos.innerHTML="";
     divIntentos.innerText=numeroIntentos;
 }
 
+// FUNCIONES DEL EJERCICIO #1 DE LA UNIDAD 1
+// Funcion para tomar el valor de un elemento SELECT
+getTextSelect = (elementId) => {
+    let select = document.getElementById(elementId);
+    let res = select.options[select.selectedIndex].value;
+    return res;
+}
+
+// Funcion para enviar el ejercicio al Back 
 enviarEjercicio1_1 = () => {
     let res1 = getTextSelect("pregunta-1");
     let res2 = getTextSelect("pregunta-2");
@@ -168,5 +118,61 @@ enviarEjercicio1_1 = () => {
                 updateIntentos(data['intentos'])
             }
     });
+
+}
+
+// FUNCIONES DEL EJERCICIO #1 DE LA UNIDAD 2
+// Funcion que retorna los elementos de una tabla (li's)
+getTextLi = (elementoPadre) =>{
+    let dic = [];
+
+    for(let x=0; x<elementoPadre.children.length; x++){
+        dic.push(elementoPadre.children[x].textContent)
+    }
+
+    return dic;
+}
+
+// Funcion para enviar el ejercicio al Back 
+enviarEjercicio2_3 = () =>{
+    let atributos = document.getElementById("sortable1");
+    let videojuegos = document.getElementById("sortable2");
+    let proveedores = document.getElementById("sortable3");
+    let empleados = document.getElementById("sortable4");
+    let clientes = document.getElementById("sortable5");
+
+    let confirmacion = "";
+    if(atributos.children.length>0){
+        confirmacion = confirm("Parece que todavia tienes atributos sin colocar. ¿Deseas continuar?");
+
+        if(!confirmacion){
+            return;
+        }
+    }
+    
+    let token = getCookie('csrftoken');
+    let atributosVideojuegos =  getTextLi(videojuegos);
+    let atributosProveedores =  getTextLi(proveedores);
+    let atributosEmpleados =  getTextLi(empleados);
+    let atributosClientes =  getTextLi(clientes);
+
+
+    $.ajax({
+        type: 'POST',
+        url: serverWeb+'ejercicios/setEjercicio21',
+        data: {
+            csrfmiddlewaretoken: token,
+            atributosVideojuegos: JSON.stringify(atributosVideojuegos),
+            atributosProveedores: JSON.stringify(atributosProveedores),
+            atributosEmpleados: JSON.stringify(atributosEmpleados),
+            atributosClientes: JSON.stringify(atributosClientes),
+        },
+        success: function(data){
+            alert(data['calificacion']);
+            updateIntentos(data['intentos'])
+        }
+});
+
+
 
 }

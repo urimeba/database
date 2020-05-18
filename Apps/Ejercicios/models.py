@@ -30,6 +30,11 @@ class Ejercicio(models.Model):
 class Intentos(models.Model):
     alumno = models.ForeignKey('Usuarios.Alumno', on_delete=models.CASCADE)
     ejercicio = models.ForeignKey('Ejercicio', on_delete=models.CASCADE)
+    numero = models.PositiveIntegerField(default=3, null=False, blank=False,
+        validators=[
+            MaxValueValidator(3),
+            MinValueValidator(0)
+        ])
 
     class Meta:
         verbose_name = 'Intento'

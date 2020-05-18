@@ -23,7 +23,7 @@ urlpatterns = [
     
     # path('getEjercicio', views_ejercicios.getEjercicio, name='getEjercicio'),
     # path('setRespuestas', views_ejercicios.setRespuestas, name='setRespuestas'),
-    path('pruebas', views_ejercicios.pruebas, name='pruebas'),
     path('setEjercicio11', views_ejercicios.ejercicio11, name='setEjercicio11'),
+    path('setEjercicio21', views_ejercicios.ejercicio21, name='setEjercicio21'),
     
 ]
