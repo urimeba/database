@@ -173,6 +173,7 @@ enviarEjercicio2_1 = () =>{
     });
 }
 
+// FUNCIONES DEL EJERCICIO #2 DE LA UNIDAD 2
 enviarEjercicio2_2 = () =>{
     let atributos = document.getElementById("sortable1");
     let oracle = document.getElementById("sortable2");
@@ -210,6 +211,7 @@ enviarEjercicio2_2 = () =>{
 
 }
 
+// FUNCIONES DEL EJERCICIO #3 DE LA UNIDAD 2
 enviarEjercicio2_3 = () =>{
     let atributos = document.getElementById("sortable1");
     let caracter = document.getElementById("sortable2");
@@ -240,6 +242,72 @@ enviarEjercicio2_3 = () =>{
             atributosNumericos: JSON.stringify(atributosNumericos),
             atributosFecha: JSON.stringify(atributosFecha),
             atributosObjetos: JSON.stringify(atributosObjetos),
+        },
+        success: function(data){
+            alert(data['calificacion']);
+            updateIntentos(data['intentos'])
+        }
+    });
+}
+
+// FUNCIONES DEL EJERCICIO #1 DE LA UNIDAD 3
+enviarEjercicio3_1 = () =>{
+    let body = document.getElementById("tabla").getElementsByTagName('tbody')[0];
+    let dic = {};
+    dic[body.rows[0].cells[0].textContent] = [];
+    dic[body.rows[0].cells[1].textContent] = [];
+    dic[body.rows[0].cells[2].textContent] = [];
+    for(let x=1; x<body.rows.length; x++){
+        dic[body.rows[0].cells[0].textContent].push(body.rows[x].cells[0].textContent);
+        dic[body.rows[0].cells[1].textContent].push(body.rows[x].cells[1].textContent);
+        dic[body.rows[0].cells[2].textContent].push(body.rows[x].cells[2].textContent);
+    }
+
+    let token = getCookie('csrftoken');
+    $.ajax({
+        type: 'POST',
+        url: serverWeb+'ejercicios/setEjercicio31',
+        data: {
+            csrfmiddlewaretoken: token,
+            tabla: JSON.stringify(dic),
+        },
+        success: function(data){
+            alert(data['calificacion']);
+            updateIntentos(data['intentos'])
+        }
+    });
+}
+
+enviarEjercicio5_1 = () =>{
+    let query = document.getElementById("query").textContent.trim()
+
+    let token = getCookie('csrftoken');
+    $.ajax({
+        type: 'POST',
+        url: serverWeb+'ejercicios/setEjercicio51',
+        data: {
+            csrfmiddlewaretoken: token,
+            query: query
+        },
+        success: function(data){
+            alert(data['calificacion']);
+            updateIntentos(data['intentos'])
+        }
+    });
+
+}
+
+
+enviarEjercicio7_1 = () =>{
+    let query = document.getElementById("query").textContent.trim()
+
+    let token = getCookie('csrftoken');
+    $.ajax({
+        type: 'POST',
+        url: serverWeb+'ejercicios/setEjercicio71',
+        data: {
+            csrfmiddlewaretoken: token,
+            query: query
         },
         success: function(data){
             alert(data['calificacion']);

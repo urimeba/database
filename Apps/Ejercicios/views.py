@@ -2,35 +2,11 @@ from django.shortcuts import render, redirect
 from django.http import JsonResponse, HttpResponse
 from Apps.Clases.models import Unidad, Parcial
 from Apps.Usuarios.models import Alumno
-from Apps.Ejercicios.models import Ejercicio, Respuesta, Pregunta, Intentos, CalificacionEjercicio
+from Apps.Ejercicios.models import Ejercicio, Respuesta, Intentos, CalificacionEjercicio
 from django.contrib.auth.decorators import login_required, user_passes_test
 import json
 
 # Create your views here.
-@login_required
-def ejercicios(request):
-    alumno = Alumno.objects.get(usuario=request.user.id)
-    parciales = Parcial.objects.filter(clase=alumno.clase)
-    unidades = Unidad.objects.filter(parcial__in=parciales, is_active=True)
-
-    if(alumno.clase.is_active):
-        if(unidades.count() > 0):
-            idUltimaUnidad = unidades.last().id
-
-            try:
-                ejercicio = Ejercicio.objects.filter(unidad__id=idUltimaUnidad).last()
-                return redirect('ejercicio', pk=idUltimaUnidad, id=ejercicio.id)
-            except:
-                return redirect('unidades')
-            
-        else:
-            return render(request, 'actividadesEjercicios.html')
-    else:
-        return redirect('dashboard')
-
-
-    return render(request, 'actividadesEjercicios.html')
-
 @login_required
 def ejercicio(request, pk, id):
     alumno = Alumno.objects.get(usuario=request.user.id)
@@ -41,16 +17,14 @@ def ejercicio(request, pk, id):
     try:
         unidad = Unidad.objects.get(pk=pk)
     except:
-        ultima_unidad = Unidad.objects.all().last()
-        return redirect('unidad', pk=ultima_unidad.id)
+        return redirect('dashboard')
 
     try:
-        ejercicio = Ejercicio.objects.get(id=id)
+        ejercicio = Ejercicio.objects.get(id=id, unidad=unidad)
         alumno = Alumno.objects.get(usuario__id=request.user.id)
         numeroIntentos, created = Intentos.objects.get_or_create(ejercicio=ejercicio, alumno=alumno)
     except:
-        ultima_unidad = Unidad.objects.all().last()
-        return redirect('unidad', pk=ultima_unidad.id)
+        return redirect('dashboard')
 
     
     return render(request, str(ejercicio.archivo),{
@@ -60,31 +34,8 @@ def ejercicio(request, pk, id):
         'intentos': str(numeroIntentos.numero)
     })
 
-@login_required
-def setRespuestas(request):
-    respuestas = request.POST.get('respuestas')
-    idEjercicio = request.POST.get('idEjercicio')
-    alumno = Alumno.objects.get(usuario__id=request.user.id)
-    ejercicio = Ejercicio.objects.get(id=idEjercicio)
-    pregunta = Pregunta.objects.get(ejercicio__id=idEjercicio)
-
-    numeroIntentos = Intentos.objects.filter(ejercicio__id=idEjercicio, alumno=alumno).count()
-    print(numeroIntentos)
-    if(numeroIntentos<=2):
-        
-        Intentos.objects.create(ejercicio=ejercicio, alumno=alumno)
-
-        respuestas = json.loads(respuestas)
-        for respuesta in respuestas:
-            Respuesta.objects.create(pregunta=pregunta, alumno=alumno, respuesta=respuesta)
-
-        return HttpResponse("Respuesta enviadas correctamente")
-    else:
-        return HttpResponse("Has alcanzado el numero de intentos maximo para este ejercicio")
-
-
-# EJERCICIO 1 DE LA UNIDAD 1
 # ID DEL EJERCICIO: 6
+@login_required
 def ejercicio11(request):
     alumno = Alumno.objects.get(usuario__id=request.user.id)
     intentos = Intentos.objects.get(ejercicio__id=6, alumno=alumno)
@@ -159,6 +110,7 @@ def ejercicio11(request):
         })
 
 # ID DEL EJERCICIO: 3
+@login_required
 def ejercicio21(request):
     alumno = Alumno.objects.get(usuario__id=request.user.id)
     intentos = Intentos.objects.get(ejercicio__id=3, alumno=alumno)
@@ -216,6 +168,8 @@ def ejercicio21(request):
             'intentos':0
         })
 
+# ID DEL EJERCICIO: 7
+@login_required
 def ejercicio22(request):
     alumno = Alumno.objects.get(usuario__id=request.user.id)
     intentos = Intentos.objects.get(ejercicio__id=7, alumno=alumno)
@@ -270,10 +224,10 @@ def ejercicio22(request):
             'intentos':0
         })
 
-
-# Ejercicio 3 de la unidad 2
 # ID DEL EJERCICIO: 8
+@login_required
 def ejercicio23(request):
+
     alumno = Alumno.objects.get(usuario__id=request.user.id)
     intentos = Intentos.objects.get(ejercicio__id=8, alumno=alumno)
 
@@ -322,6 +276,127 @@ def ejercicio23(request):
         return JsonResponse({
             'calificacion': "Tu calificacion ha sido: {0}. (Intentos restantes: {1} intento(s))"
             .format(calificacion, intentos.numero),
+            'intentos':intentos.numero
+        })
+    else:
+        return JsonResponse({
+            'calificacion': "Has superado el limite de intentos del ejercicio (3 intentos)",
+            'intentos':0
+        })
+
+# ID DEL EJERCICIO: 2
+@login_required
+def ejercicio31(request):
+
+    alumno = Alumno.objects.get(usuario__id=request.user.id)
+    intentos = Intentos.objects.get(ejercicio__id=2, alumno=alumno)
+
+    if(intentos.numero>0):
+        tabla = request.POST['tabla']
+        print(tabla)
+
+        intentos.numero-=1
+        intentos.save()
+
+        calificacionBD, created = CalificacionEjercicio.objects.get_or_create(
+            ejercicio_id = 2,
+            alumno = alumno
+        )
+        calificacionBD.calificacion=0
+        calificacionBD.save()
+
+
+        respuesta, created = Respuesta.objects.get_or_create(
+            ejercicio_id = 2,
+            alumno = alumno
+        )
+
+        respuesta.respuesta=tabla
+        respuesta.save()
+
+
+        return JsonResponse({
+            'calificacion': "Tu calificacion sera evaluada por tu profesor. (Intentos restantes: {0} intento(s))"
+            .format(intentos.numero),
+            'intentos':intentos.numero
+        })
+    else:
+        return JsonResponse({
+            'calificacion': "Has superado el limite de intentos del ejercicio (3 intentos)",
+            'intentos':0
+        })
+
+@login_required
+def ejercicio51(request):
+    alumno = Alumno.objects.get(usuario__id=request.user.id)
+    intentos = Intentos.objects.get(ejercicio__id=4, alumno=alumno)
+
+    if(intentos.numero>0):
+        query = request.POST['query']
+        print(query)
+
+        intentos.numero-=1
+        intentos.save()
+
+        # calificacionBD, created = CalificacionEjercicio.objects.get_or_create(
+        #     ejercicio_id = 4,
+        #     alumno = alumno
+        # )
+        # calificacionBD.calificacion=0
+        # calificacionBD.save()
+
+        # respuesta, created = Respuesta.objects.get_or_create(
+        #     ejercicio_id = 4,
+        #     alumno = alumno
+        # )
+
+        # respuesta.respuesta=tabla
+        # respuesta.save()
+
+
+        return JsonResponse({
+            'calificacion': "Tu calificacion sera evaluada por tu profesor. (Intentos restantes: {0} intento(s))"
+            .format(intentos.numero),
+            'intentos':intentos.numero
+        })
+    else:
+        return JsonResponse({
+            'calificacion': "Has superado el limite de intentos del ejercicio (3 intentos)",
+            'intentos':0
+        })
+
+
+@login_required
+def ejercicio71(request):
+    alumno = Alumno.objects.get(usuario__id=request.user.id)
+    intentos = Intentos.objects.get(ejercicio__id=5, alumno=alumno)
+
+    if(intentos.numero>0):
+        query = request.POST['query']
+        print(query)
+
+        intentos.numero-=1
+        intentos.save()
+
+        # calificacionBD, created = CalificacionEjercicio.objects.get_or_create(
+        #     ejercicio_id = 5,
+        #     alumno = alumno
+        # )
+        # calificacionBD.calificacion=0
+        # calificacionBD.save()
+
+        # respuesta, created = Respuesta.objects.get_or_create(
+        #     ejercicio_id = 5,
+        #     alumno = alumno
+        # )
+
+        # respuesta.respuesta=tabla
+        # respuesta.save()
+
+
+        return JsonResponse({
+            'calificacion': "Tu calificacion sera evaluada por tu profesor. (Intentos restantes: {0} intento(s))"
+            .format(intentos.numero),
             'intentos':intentos.numero
         })
     else:

@@ -20,12 +20,12 @@ from Apps.Ejercicios import views as views_ejercicios
 
 urlpatterns = [
     path('<int:pk>', views_ejercicios.ejercicio, name='ejercicio'),
-    
-    # path('getEjercicio', views_ejercicios.getEjercicio, name='getEjercicio'),
-    # path('setRespuestas', views_ejercicios.setRespuestas, name='setRespuestas'),
     path('setEjercicio11', views_ejercicios.ejercicio11, name='setEjercicio11'),
     path('setEjercicio21', views_ejercicios.ejercicio21, name='setEjercicio21'),
     path('setEjercicio22', views_ejercicios.ejercicio22, name='setEjercicio22'),
     path('setEjercicio23', views_ejercicios.ejercicio23, name='setEjercicio23'),
+    path('setEjercicio31', views_ejercicios.ejercicio31, name='setEjercicio31'),
+    path('setEjercicio51', views_ejercicios.ejercicio51, name='setEjercicio51'),
+    path('setEjercicio71', views_ejercicios.ejercicio71, name='setEjercicio71'),
     
 ]

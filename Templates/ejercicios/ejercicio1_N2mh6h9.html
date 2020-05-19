@@ -1,45 +1,58 @@
 {% extends 'actividadesEjercicios.html' %}
-
 {% block ejercicio %}
-    <table id="tabla-{{idEjercicio}}" contenteditable="true">
-        <tr>
-            <th>Nombre SMBD 1</th>
-            <th>Nombre SMBD 2</th>
-            <th>Nombre SMBD 3</th>
-        </tr>
+<style>
+    #table, th, td{ 
+        padding: 10px;
+        border: 1px solid black;
+        border-collapse: collapse;
+    }
+</style>
 
-        <tr>
-            <td contenteditable='true'>Caracteristica 1</td>
-            <td contenteditable='true'>Caracteristica 1</td>
-            <td contenteditable='true'>Caracteristica 1</td>
-        </tr>
+<script>
+    window.onload=function(){
+        document.getElementById("btn-ejercicio-3-1").addEventListener("click", enviarEjercicio3_1);
+    }
+</script>
 
-        <tr>
-            <td contenteditable='true'>Caracteristica 2</td>
-            <td contenteditable='true'>Caracteristica 2</td>
-            <td contenteditable='true'>Caracteristica 2</td>
-        </tr>
+<table id="tabla" contenteditable="true">
+    <tr>
+        <th>Nombre SMBD 1</th>
+        <th>Nombre SMBD 2</th>
+        <th>Nombre SMBD 3</th>
+    </tr>
 
-        <tr>
-            <td contenteditable='true'>Caracteristica 3</td>
-            <td contenteditable='true'>Caracteristica 3</td>
-            <td contenteditable='true'>Caracteristica 3</td>
-        </tr>
+    <tr>
+        <td contenteditable='true'>Caracteristica 11</td>
+        <td contenteditable='true'>Caracteristica 12</td>
+        <td contenteditable='true'>Caracteristica 13</td>
+    </tr>
 
-        
+    <tr>
+        <td contenteditable='true'>Caracteristica 21</td>
+        <td contenteditable='true'>Caracteristica 22</td>
+        <td contenteditable='true'>Caracteristica 23</td>
+    </tr>
 
-        <tr>
-            <td contenteditable='true'>Caracteristica 4</td>
-            <td contenteditable='true'>Caracteristica 4</td>
-            <td contenteditable='true'>Caracteristica 4</td>
-        </tr>
+    <tr>
+        <td contenteditable='true'>Caracteristica 31</td>
+        <td contenteditable='true'>Caracteristica 32</td>
+        <td contenteditable='true'>Caracteristica 33</td>
+    </tr>
 
-        <tr>
-            <td contenteditable='true'>Caracteristica 5</td>
-            <td contenteditable='true'>Caracteristica 5</td>
-            <td contenteditable='true'>Caracteristica 5</td>
-        </tr>
-    </table>
+    <tr>
+        <td contenteditable='true'>Caracteristica 41</td>
+        <td contenteditable='true'>Caracteristica 42</td>
+        <td contenteditable='true'>Caracteristica 43</td>
+    </tr>
 
-    <button onclick="enviarEjercicio2({{idEjercicio}})">Enviar</button>
+    <tr>
+        <td contenteditable='true'>Caracteristica 51</td>
+        <td contenteditable='true'>Caracteristica 52</td>
+        <td contenteditable='true'>Caracteristica 53</td>
+    </tr>
+</table>
+
+<div class="container">
+    <button id="btn-ejercicio-3-1">Enviar</button>
+  </div>
 {% endblock %}

@@ -4,7 +4,7 @@ from django.contrib.auth.views import LoginView
 from django.http import JsonResponse, HttpResponse
 from Apps.Usuarios.models import Alumno
 from Apps.Clases.models import Unidad, Parcial
-from Apps.Ejercicios.models import Ejercicio, Respuesta, Pregunta, Intentos
+from Apps.Ejercicios.models import Ejercicio, Respuesta, Intentos
 from django.contrib.auth.decorators import login_required, user_passes_test
 from django.conf import settings
 import json
@@ -47,16 +47,16 @@ def unidades(request):
     else:
         return redirect('dashboard')
 
+@login_required
 def unidad(request, pk):
     alumno = Alumno.objects.get(usuario=request.user.id)
     parciales = Parcial.objects.filter(clase=alumno.clase)
     unidades = Unidad.objects.filter(parcial__in=parciales)
-    
 
     try:
         unidad_seleccionada = unidades.get(pk=pk)
     except:
-        return redirect('unidades')
+        return redirect('dashboard')
 
     if(unidad_seleccionada.is_active):
         ejercicios = Ejercicio.objects.filter(unidad__id=unidad_seleccionada.id)
@@ -66,17 +66,9 @@ def unidad(request, pk):
             'unidad_seleccionada':unidad_seleccionada
             })
     else:
-        return redirect('unidades')
+        return redirect('dashboard')
 
 @login_required
 def cerrarSesion(request):
     logout(request)
     return redirect(settings.LOGOUT_REDIRECT_URL)
-
-
-
-
-
-
-
-    

@@ -2,7 +2,17 @@
 
 {% block ejercicio %}
 
-    <div contenteditable="true" id="code">
-        -- Escribe aqui tus consultas SQL
-    </div>
+<script>
+    window.onload=function(){
+    document.getElementById("btn-ejercicio-5-1").addEventListener("click", enviarEjercicio5_1);
+  }
+</script>
+
+<div contenteditable="true" id="query">
+    Escribe aqui tus consultas SQL
+</div>
+
+<div class="container">
+    <button id="btn-ejercicio-5-1">Enviar</button>
+</div>
 {% endblock %}
