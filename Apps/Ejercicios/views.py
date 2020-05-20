@@ -13,6 +13,7 @@ def ejercicio(request, pk, id):
     parciales = Parcial.objects.filter(clase=alumno.clase)
     unidades = Unidad.objects.filter(parcial__in=parciales)
     ejercicios = Ejercicio.objects.filter(unidad__id=pk)
+    respuesta = None
 
     try:
         unidad = Unidad.objects.get(pk=pk)
@@ -23,6 +24,10 @@ def ejercicio(request, pk, id):
         ejercicio = Ejercicio.objects.get(id=id, unidad=unidad)
         alumno = Alumno.objects.get(usuario__id=request.user.id)
         numeroIntentos, created = Intentos.objects.get_or_create(ejercicio=ejercicio, alumno=alumno)
+        respuesta = Respuesta.objects.filter(
+            ejercicio=ejercicio,
+            alumno=alumno
+        )
     except:
         return redirect('dashboard')
 
@@ -31,7 +36,8 @@ def ejercicio(request, pk, id):
         'ejercicio_seleccionado':ejercicio,
         'unidades': unidades, 
         'ejercicios':ejercicios,
-        'intentos': str(numeroIntentos.numero)
+        'intentos': str(numeroIntentos.numero),
+        'respuestas':respuesta
     })
 
 # ID DEL EJERCICIO: 6
@@ -285,6 +291,7 @@ def ejercicio23(request):
         })
 
 # ID DEL EJERCICIO: 2
+# EJERCICIO DE LA TABLA
 @login_required
 def ejercicio31(request):
 
@@ -310,7 +317,6 @@ def ejercicio31(request):
             ejercicio_id = 2,
             alumno = alumno
         )
-
         respuesta.respuesta=tabla
         respuesta.save()
 
@@ -326,6 +332,7 @@ def ejercicio31(request):
             'intentos':0
         })
 
+# NECESARIO EL SERVIDOR SQL DE ORACLE
 @login_required
 def ejercicio51(request):
     alumno = Alumno.objects.get(usuario__id=request.user.id)
@@ -345,13 +352,12 @@ def ejercicio51(request):
         # calificacionBD.calificacion=0
         # calificacionBD.save()
 
-        # respuesta, created = Respuesta.objects.get_or_create(
-        #     ejercicio_id = 4,
-        #     alumno = alumno
-        # )
-
-        # respuesta.respuesta=tabla
-        # respuesta.save()
+        respuesta, created = Respuesta.objects.get_or_create(
+            ejercicio_id = 4,
+            alumno = alumno
+        )
+        respuesta.respuesta=query
+        respuesta.save()
 
 
         return JsonResponse({
@@ -368,12 +374,12 @@ def ejercicio51(request):
 
 @login_required
 def ejercicio71(request):
+
     alumno = Alumno.objects.get(usuario__id=request.user.id)
     intentos = Intentos.objects.get(ejercicio__id=5, alumno=alumno)
 
     if(intentos.numero>0):
         query = request.POST['query']
-        print(query)
 
         intentos.numero-=1
         intentos.save()
@@ -385,13 +391,13 @@ def ejercicio71(request):
         # calificacionBD.calificacion=0
         # calificacionBD.save()
 
-        # respuesta, created = Respuesta.objects.get_or_create(
-        #     ejercicio_id = 5,
-        #     alumno = alumno
-        # )
+        respuesta, created = Respuesta.objects.get_or_create(
+            ejercicio_id = 5,
+            alumno = alumno
+        )
 
-        # respuesta.respuesta=tabla
-        # respuesta.save()
+        respuesta.respuesta=query
+        respuesta.save()
 
 
         return JsonResponse({
@@ -404,3 +410,4 @@ def ejercicio71(request):
             'calificacion': "Has superado el limite de intentos del ejercicio (3 intentos)",
             'intentos':0
         })
+

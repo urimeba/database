@@ -9,7 +9,13 @@
 </script>
 
 <div contenteditable="true" id="query">
-    Escribe aqui tus consultas SQL
+{% if respuestas %}
+    {% for respuesta in respuestas %}
+        {{respuesta.respuesta}}
+    {% endfor %}
+{% else %}
+    Escribe aqui tu consulta SQL
+{% endif %}
 </div>
 
 <div class="container">
