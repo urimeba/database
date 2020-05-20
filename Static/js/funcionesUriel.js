@@ -74,6 +74,15 @@ updateIntentos = (numeroIntentos) => {
     divIntentos.innerText=numeroIntentos;
 }
 
+updateCalificacion = (calificacion) =>{
+    calificacion = parseFloat(calificacion);
+    let spanCalificacion = document.getElementById("calificacion_calificacion");
+    spanCalificacion.textContent=calificacion.toFixed(2);;
+}
+
+
+
+
 // FUNCIONES DEL EJERCICIO #1 DE LA UNIDAD 1
 // Funcion para tomar el valor de un elemento SELECT
 getTextSelect = (elementId) => {
@@ -96,7 +105,6 @@ enviarEjercicio1_1 = () => {
     let res10 = getTextSelect("pregunta-10");
     let token = getCookie('csrftoken');
 
-
     $.ajax({
             type: 'POST',
             url: serverWeb+'ejercicios/setEjercicio11',
@@ -115,7 +123,8 @@ enviarEjercicio1_1 = () => {
             },
             success: function(data){
                 alert(data['calificacion']);
-                updateIntentos(data['intentos'])
+                updateIntentos(data['intentos']);
+                updateCalificacion(data['calificacion_calificacion']);
             }
     });
 
@@ -168,7 +177,9 @@ enviarEjercicio2_1 = () =>{
         },
         success: function(data){
             alert(data['calificacion']);
-            updateIntentos(data['intentos'])
+            updateIntentos(data['intentos']);
+            updateCalificacion(data['calificacion_calificacion']);
+
         }
     });
 }
@@ -204,7 +215,9 @@ enviarEjercicio2_2 = () =>{
         },
         success: function(data){
             alert(data['calificacion']);
-            updateIntentos(data['intentos'])
+            updateIntentos(data['intentos']);
+            updateCalificacion(data['calificacion_calificacion']);
+
         }
     });
 
@@ -245,7 +258,8 @@ enviarEjercicio2_3 = () =>{
         },
         success: function(data){
             alert(data['calificacion']);
-            updateIntentos(data['intentos'])
+            updateIntentos(data['intentos']);
+            updateCalificacion(data['calificacion_calificacion']);
         }
     });
 }
@@ -273,7 +287,8 @@ enviarEjercicio3_1 = () =>{
         },
         success: function(data){
             alert(data['calificacion']);
-            updateIntentos(data['intentos'])
+            updateIntentos(data['intentos']);
+            updateCalificacion(data['calificacion_calificacion']);
         }
     });
 }
@@ -291,7 +306,8 @@ enviarEjercicio5_1 = () =>{
         },
         success: function(data){
             alert(data['calificacion']);
-            updateIntentos(data['intentos'])
+            updateIntentos(data['intentos']);
+            updateCalificacion(data['calificacion_calificacion']);
         }
     });
 
@@ -311,7 +327,8 @@ enviarEjercicio7_1 = () =>{
         },
         success: function(data){
             alert(data['calificacion']);
-            updateIntentos(data['intentos'])
+            updateIntentos(data['intentos']);
+            updateCalificacion(data['calificacion_calificacion']);
         }
     });
 
