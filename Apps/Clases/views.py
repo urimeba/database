@@ -4,11 +4,14 @@ from django.contrib.auth.views import LoginView
 from django.http import JsonResponse, HttpResponse
 from Apps.Usuarios.models import Alumno
 from Apps.Clases.models import Unidad, Parcial
-from Apps.Ejercicios.models import Ejercicio, Respuesta, Intentos
+from Apps.Ejercicios.models import Ejercicio
 from django.contrib.auth.decorators import login_required, user_passes_test
 from django.conf import settings
 import json
 from .forms import formLogin
+from django.contrib.auth import update_session_auth_hash
+from django.contrib.auth.forms import PasswordChangeForm
+from django.contrib import messages
 
 class Loginn(LoginView):
     template_name = 'login.html'
@@ -72,3 +75,27 @@ def unidad(request, pk):
 def cerrarSesion(request):
     logout(request)
     return redirect(settings.LOGOUT_REDIRECT_URL)
+
+@login_required
+def cambiarContraseña(request):
+    form = PasswordChangeForm(user=request.user)
+
+    if request.method == 'POST':
+        form = PasswordChangeForm(user=request.user, data=request.POST, )
+        if form.is_valid():
+            form.save()
+            update_session_auth_hash(request, form.user)  # Important!
+            messages.success(request, 'Contraseña cambiada correctamente')
+            return render(request, 'cambiar_contraseña.html', {
+                'form': form
+            })
+        else:
+            return render(request, 'cambiar_contraseña.html', {
+                'form': form
+            })
+    else:
+        form = PasswordChangeForm(user=request.user)
+        return render(request, 'cambiar_contraseña.html', {
+            'form': form
+        })
+

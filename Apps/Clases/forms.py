@@ -10,3 +10,4 @@ class formLogin(forms.Form):
         password = cleaned_data.get('password')
         if not expediente and not password:
             raise forms.ValidationError('Los campos no pueden estar vacios')
+        return cleaned_data
