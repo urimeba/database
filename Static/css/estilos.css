@@ -477,7 +477,51 @@
             /* background-image: url('../img/logout6.png'); */
             cursor: pointer;
         }
-
+        /*--------Estilos Restablecer contraseña------------*/
+        *{
+            padding:0px;
+            margin: 0px;
+            font-family: 'Montserrat',sans-serif;
+            font-size: 16px;
+        }
+        
+        .PrincipalRestablecer{
+            width: 100%;
+            height: 100vh;
+            background: #333645;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        .ContenidoRestablecer{
+            width: 45%;
+            height:400px;
+            background:#FFFFFF;
+            text-align: center;
+            border-radius: 0.3rem;
+            border-style: none;
+        }
+        .InputRestablecer{
+            width: 65%;
+            height: 26px;
+            margin-top: 40px;
+            text-indent: 10px;
+        }
+        .TituloRestablecer{
+            margin-top: 61px;
+           font-size: 30px;
+        }
+        .btnRestablecer{
+            background: #00B0FF;
+            margin-top: 40px;
+            width: 65%;
+            height:26px;
+            text-align: center;
+            border-radius: 0.3rem;
+            border-style: none;
+            color: white; 
+        }
+        
         /*-----------------------------------------------*/
         @media(max-width:1122px ){
             #unidadesEjerciciosContenedor{
