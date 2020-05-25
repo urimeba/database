@@ -3,7 +3,7 @@ from django.core.validators import MaxValueValidator, MinLengthValidator, MinVal
 
 # Create your models here.
 class Clase(models.Model):
-    profesor = models.ForeignKey('Usuarios.Profesor', on_delete=models.CASCADE)
+    # profesor = models.ForeignKey('Usuarios.Profesor', on_delete=models.CASCADE)
     nombre = models.CharField(max_length=100, blank=False, null=False)
     descripcion = models.CharField(max_length=200, blank=True, null=True)
     semestre = models.IntegerField(default=3, validators=[MinValueValidator(1), MaxValueValidator(8)], blank=True, null=True)

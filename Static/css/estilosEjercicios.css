@@ -6,7 +6,20 @@
 }
 
 
-
+#sortable1, #sortable2, #sortable3, #sortable4, #sortable5{
+    font-weight: bold;
+      text-align: center;
+      display: flex;
+      align-items: center;
+      flex-direction: column;
+    width: 170px !important;
+    background: none !important;
+  
+    border: 1px solid black;
+    border-radius: 8px;
+    border-style: dashed;
+border-width: 3.1px;
+}
 #principalLogin{
     position: absolute;
     display: flex;
@@ -131,6 +144,10 @@
             flex-wrap: wrap;    
             justify-content: center;
             /*align-items: center;*/
+            -webkit-user-select: none;
+            -moz-user-select: none;
+            -ms-user-select: none;
+            user-select: none; 
         }
             #encabezado-menuEjercicios{
                 /*background-color: pink;*/
@@ -143,43 +160,51 @@
                 margin-top: 5%;
             }
             #imagenback{
-                width: 30px;
-                height: 30px;
-                /*margin-right: 10%;*/
-               /* padding-left:20%;
-                padding-right: 5%;*/
+                width: 20px;
+                height: 20px;
+                cursor: pointer;
+                transition: 0.55s;
+            }
+            #imagenback:hover{
+                transform: translateX(-.3em);
             }
             #imagenperfil{
-               width:58px;
-                height: 58px;
-                padding: 0% 10% 0% 10%;
+               width:50px;
+                height: 50px;
+                margin-left: 12%;
+                margin-right: 4%;
             }
                 .imgRedonda {
                    border-radius: 50%;
                 }
-                #tituloEjercicio1{
-                font-size: 20px;
-                }
-                #tituloEjercicio2{
-                    font-size: 25px;
-                }
+           
             .titulo-data{
                font-weight: bold;
                color: white;
+               font-size: 20px;
             }
             .titulo-base{
                 font-weight: bold;
                 color: #FF5A09;
+                font-size: 25px;
+                transition: 0.8s;
+            }
+            .titulo-base:hover{
+                font-size: 26.5px;
             }
             #unidadesEjercicios>p{
-                margin-left: 8%;
-                font-size: 20px;
+               width: 87%;
+               height: 33px;
+               align-items: center;
+               font-size: 19px;
+                font-style: italic;
                 color: white;
             }
             #temasEjercicios>p{
                 font-size: 20px;
                 margin-left: 8%;
                 color: white;
+                font-style: italic;
             }
 
 
@@ -188,43 +213,101 @@
                     /*background-color: #172464;*/
                     width: 100%;
                     /*height: 47.5%;*/
-                    height: 40.5%;
-                    margin-top: 2%;
+                    height: 46.5%;
+                    display: flex;
+                    align-items: center;
+                    flex-direction: column;
+                    
                 }
+                #intentos{
+                    color:red;
+                    font-weight: bold;
+                }
+               #intentos-contenedor{
+                   margin-left: 10px;
+                   font-weight: bold;
+font-size: 16px;
+               }
                     .unidadesEjerciciosContenedor{
                         /*background-color: yellow;*/
                         background-color: #172464;
-                        width: 80%;
-                        height: 40%;
-                        margin-top: 3%;
-                        margin-left: 10%;
-                        display: flex;
-                        justify-content: space-around;
-                        align-items: center;
-                        flex-direction: row;
-                        flex-wrap: wrap;
-                    }
-                    
-                    .unidadesEjerciciosContenedor>div {
-                        display: block;
-                        height: 30%;
-                        width: 90px;
+                        width: 100%;
+                        overflow: auto;
+                        margin-top: 15px;
                         display: flex;
                         justify-content: center;
-                        align-items: center;
-                        font-size: 18px;
-                        border-radius: 5px;
+                       
                     }
+                    .unidadesEjerciciosContenedor-overflow{
+                        width: 100%;
+                        
+                        display: flex ;
+                        align-items: center;
+                        justify-content: center;
+                        flex-wrap: wrap;
+                    }
+                   
                     .unidadesEjerciciosContenedor.active > div:last-child {
                         background-color: #FF5A09;
                     }
                     .u1{
-                          background-color: #FF5A09;
-                          color: white;
+                        background-color: #FF5A09;
+                        width: 55px;
+                        height: 55px;
+                        margin-top: 5px;
+                        margin-left: 15px;
+                        margin-right: 15px;
+                        margin-bottom: 15px;
+                        border-radius: 10px;
+                        color: white;
+                        display: flex;
+                        justify-content: center;
+                        align-items: center;
+                        text-decoration-line: none;
+                        font-size: 22px;
+                        transition: 0.75s;
                     }
                     .u2{
+                        -webkit-box-shadow: 6px 6px 5px 0px rgba(50,50,69,1);
+-moz-box-shadow: 6px 6px 5px 0px rgba(50,50,69,1);
+box-shadow: 6px 6px 5px 0px rgba(50,50,69,1);
                         background-color: white;
+                        width: 55px;
+                        height: 55px;
+                        margin-top: 5px;
+                        margin-left: 15px;
+                        margin-right: 15px;
+                        margin-bottom: 15px;
+                        border-radius: 10px;
+                        color: black;
+                        display: flex;
+                        justify-content: center;
+                        align-items: center;
+                        text-decoration-line: none;
+                        font-size: 22px;
+                        transition: 0.75s;
+                        
                        
+                    }
+                    a {
+                        text-decoration-line: none;
+                        display: flex;
+                        justify-content: center;
+                        align-content: center;
+                    }
+                    .u1:hover{
+                        background-color: rgb(202, 72, 7);
+                        color: white;
+                    }
+                    .u2:hover{
+                        background-color: #FF5A09;
+                        color: white;
+                        transform: translateX(2px);
+                        transform: translateY(2px);
+                    }
+                    iframe{
+                        width: 100%;
+                        height: 99%;
                     }
 
                     .u2:hover{
@@ -280,7 +363,29 @@
                         background-color: white;
                     }
                     .t6{
+                        transform: translateX(2px);
+                        transform: translateY(2px);
+                        transition: 0.75s;
                         background-color: white;
+                        width: 55px;
+                        height: 55px;
+                        margin-top: 5px;
+                        margin-left: 5px;
+                        margin-right: 5px;
+                        margin-bottom: 5px;
+                        border-radius: 10px;
+                        color: black;
+                        display: flex;
+                        justify-content: center;
+                        align-items: center;
+                        text-decoration-line: none;
+                        font-size: 22px;
+                        
+                    }
+                    .t6:hover{
+                        background-color: #FF5A09;
+                        color: white;
+                          
                     }
                     .t7{
                         background-color: white;
@@ -291,7 +396,7 @@
 
                 #temasEjercicios{
                     width: 100%;
-                    height: 39%;
+                    height: 22%;
                 }
 
         /*---Vista del contenido general----*/
@@ -332,13 +437,13 @@
                     display: flex;
                     /*background-color: cyan;*/
                     width: 25%;
-                    margin-left: 30%;
+                    
                     /*align-items: center;*/
                     justify-content: flex-end;
                     
                 }
                 #subtitulo-contenidoEjercicios>p{
-                    font-size: 13px;
+                    
                 }
                 #calificacion{
                     margin-right: 5%;
@@ -361,9 +466,114 @@
             margin-top: 2%;
             border-radius:10px;
             box-shadow:0px 0px 5px gray;
+            overflow: auto;
+            display: flex;
+            justify-content: center;
+            -webkit-user-select: none;
+            -moz-user-select: none;
+            -ms-user-select: none;
+            user-select: none; 
         }
-
-
+        #btn-ejercicio-1-6{
+            -webkit-box-shadow: 4px 4px 5px 0px rgba(224,224,224,0.62);
+            -moz-box-shadow: 4px 4px 5px 0px rgba(224,224,224,0.62);
+            box-shadow: 4px 4px 5px 0px rgba(224,224,224,0.62);
+            width: 150px;
+            height: 35px;
+            border: none;
+            color: white;
+            background-color: #00B0FF;
+            border-radius: 4px;
+            transition: .5s;
+            cursor: pointer;
+        }
+        #btn-ejercicio-1-6:hover{
+            width: 152px;
+            height: 38px;
+            background-color: rgb(3, 161, 235);
+        }
+        #btn-ejercicio-2-2{
+            -webkit-box-shadow: 4px 4px 5px 0px rgba(224,224,224,0.62);
+            -moz-box-shadow: 4px 4px 5px 0px rgba(224,224,224,0.62);
+            box-shadow: 4px 4px 5px 0px rgba(224,224,224,0.62);
+            width: 150px;
+            height: 35px;
+            border: none;
+            color: white;
+            background-color: #00B0FF;
+            border-radius: 4px;
+            transition: .5s;
+            cursor: pointer;
+        }
+        #btn-ejercicio-2-2:hover{
+            width: 152px;
+            height: 38px;
+            background-color: rgb(3, 161, 235);
+        }
+        #btn-ejercicio-2-3{
+            -webkit-box-shadow: 4px 4px 5px 0px rgba(224,224,224,0.62);
+            -moz-box-shadow: 4px 4px 5px 0px rgba(224,224,224,0.62);
+            box-shadow: 4px 4px 5px 0px rgba(224,224,224,0.62);
+            width: 150px;
+            height: 35px;
+            border: none;
+            color: white;
+            background-color: #00B0FF;
+            border-radius: 4px;
+            transition: .5s;
+            cursor: pointer;
+        }
+        #btn-ejercicio-2-3:hover{
+            width: 152px;
+            height: 38px;
+            background-color: rgb(3, 161, 235);
+        }
+        #contenido-contenidoEjercicios-overflow{
+            width: 90%;
+            font-size: 18px;
+        }
+        #sortable1 li, #sortable2 li, #sortable3 li, #sortable4 li, #sortable5 li{
+            font-size: 17px !important;
+            border-radius: 6px;
+            width: 120px !important;
+        }
+        .ui-state-default, .ui-widget-content .ui-state-default, .ui-widget-header .ui-state-default, .ui-button, html .ui-button.ui-state-disabled:hover, html .ui-button.ui-state-disabled:active {
+            cursor: move;
+            background: #FF5A09 !important;
+            color: white !important;
+            
+        }
+        .ui-state-default:hover{
+          
+            background: rgba(250, 89, 9, 0.808) !important;
+            
+        }
+        .container{
+            width: 100%;
+            
+            height: 51px;
+            display: flex;
+            justify-content: flex-end;
+            align-items: end;
+        }
+        #btn-ejercicio-2-1 {
+            -webkit-box-shadow: 4px 4px 5px 0px rgba(224,224,224,0.62);
+            -moz-box-shadow: 4px 4px 5px 0px rgba(224,224,224,0.62);
+            box-shadow: 4px 4px 5px 0px rgba(224,224,224,0.62);
+            width: 150px;
+            height: 35px;
+            border: none;
+            color: white;
+            background-color: #00B0FF;
+            border-radius: 4px;
+            transition: .5s;
+            cursor: pointer;
+        }
+        #btn-ejercicio-2-1:hover{
+            width: 152px;
+            height: 38px;
+            background-color: rgb(3, 161, 235);
+        }
         /*MEDIA*/
          @media (max-width: 840px) {
         #botonLogin{
