@@ -1,0 +1,107 @@
+*{
+    margin: 0px;
+    padding: 0px;
+    font-family: 'Montserrat', sans-serif;
+    
+}
+    /* Escritorio */
+@media screen and (min-width: 768px){
+    .bloqueoModal{
+        width: 100%;
+        height: 100%;
+        position: absolute;
+        background-color: rgba(0,0,0,.5);
+    }
+    #PrincipalModal{
+        width: 100%;
+        height: 100%;
+        display: flex;
+        justify-content: center;
+        align-items: center; 
+    }
+    #modal{
+        width: 400px;
+        height: 227px;
+        background-color: #fafafa;
+        border-radius: 4px;
+        padding: 20px;
+        display: flex;
+        justify-content: center;
+        align-items: center; 
+        flex-direction: column;
+        box-shadow: 5px 5px 4px 0px rgba(110,108,110,1);  
+    }
+    #imagen{
+        width: 100%;
+        display: flex;
+        justify-content: end;
+    }
+    #imagen>img{
+        width: 20px;
+        height: 20px;
+        cursor: pointer;
+    }
+    #modal>h2{
+        margin-top: 10px;
+        font-size: 1.6em;
+        margin-bottom: 10px;
+        font-family: 'Segoe UI Light';
+        width: 100%;
+       text-align: center;
+       color: rgb(112, 112, 112);
+        font-weight: 600;
+    }
+    #modal>p{
+        
+        font-size: .9em;
+        color: #666;
+        text-align: center;
+        margin-bottom: 10px;
+    }
+    #modal>img{
+        width: 80px;
+        height: 80px;
+    }
+    #confirmar{
+        font-family: 'Segoe UI Light';
+        width: 110px;
+        height: 32px;
+        margin-top: 10px;
+        color: white;
+        font-size: 15.5px; 
+        font-weight: 500;
+        border-radius: 4px;
+        background-color: rgb(40, 129, 192);
+        border-color: rgb(45, 111, 159);
+        cursor: pointer;
+    }
+
+    #confirmar:hover{
+        background-color: rgb(23, 110, 172);
+        border-color: rgb(16, 95, 151);
+        -webkit-transition: background-color 1s;
+        -o-transition: background-color 1s;
+        -ms-transition: background-color 1s
+    }
+    #enviar{
+        font-family: 'Segoe UI Light';
+        width: 110px;
+        height: 32px;
+        margin-top: 10px;
+        color: white;
+        font-size: 15.5px; 
+        font-weight: 500;
+        border-radius: 4px;
+        background-color: rgb(40, 129, 192);
+        border-color: rgb(45, 111, 159);
+        cursor: pointer;
+    }
+
+    #enviar:hover{
+        background-color: rgb(23, 110, 172);
+        border-color: rgb(16, 95, 151);
+        -webkit-transition: background-color 1s;
+        -o-transition: background-color 1s;
+        -ms-transition: background-color 1s
+    }
+}

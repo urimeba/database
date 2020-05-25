@@ -1,0 +1,45 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{% static 'css/estilos.css' %}">
+    <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700&display=swap" rel="stylesheet">    <title>Login</title>
+</head>
+<body>
+    <div id="principalLogin">
+        <div id="divimagenLogin">
+            <img src="{% static 'img/imagenlogin.png' %}" alt="">
+        </div>
+        <div id="divdatosLogin">    
+            <div id="contenidodatosLogin">
+                <form action="{% url 'Loginn' %}" method="POST">
+                    <p id="tituloLogin">Iniciar Sesión</p>
+                    {% csrf_token %}
+
+                    {{ form.non_field_errors }}
+
+                    {% for field in form %}
+                    <label class="inputsLogin" for="{{ form.field.name }}">{{field.label_tag}}</label>
+                        <br>  
+                        {{field.errors }}
+                        <br>
+                        {{field}}
+                        <br>
+                        {{ field.help_text }}
+                        <br>
+                    {% endfor %}
+                    <div id="parrafoLogin">
+                        <p>Si es la primera vez que inicias sesión,</p> 
+                        <p>tu contraseña  es tu expediente seguido </p> 
+                        <p> de un punto.</p>
+                    </div>
+                    <input type="submit" value="Iniciar sesión" id="botonLogin">
+                </form>
+ 
+            </div>
+        </div>
+    </div>
+</body>
+</html>

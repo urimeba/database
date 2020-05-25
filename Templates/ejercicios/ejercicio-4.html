@@ -1,0 +1,24 @@
+{% extends 'actividadesEjercicios.html' %}
+
+{% block ejercicio %}
+
+<script>
+    window.onload=function(){
+    document.getElementById("btn-ejercicio-5-1").addEventListener("click", enviarEjercicio5_1);
+  }
+</script>
+
+<div contenteditable="true" id="query">
+{% if respuestas %}
+    {% for respuesta in respuestas %}
+        {{respuesta.respuesta}}
+    {% endfor %}
+{% else %}
+    Escribe aqui tu consulta SQL
+{% endif %}
+</div>
+
+<div class="container">
+    <button id="btn-ejercicio-5-1">Enviar</button>
+</div>
+{% endblock %}

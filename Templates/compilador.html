@@ -1,0 +1,22 @@
+
+{% extends 'navbar.html' %}
+{% block content %}
+<div id="mid-container-ajuste">
+    <div id="container-top">
+        <div id="compilador-top">
+            <p id="titulo">Compilador <b>Oracle</b></p>
+            <div id="buttons">
+                <button id="borrar" onclick="limpiar()">Borrar</button>
+                <button id="play" onclick="compile()"> Ejecutar</button>
+            </div>
+        </div>
+        <div id="compilador-bottom">
+                <textarea name="code" id="code"></textarea>
+        </div>
+    </div>
+    <div id="container-bottom">
+        <div id="tablas-container">
+        </div>
+    </div>
+</div>
+{% endblock %}

@@ -1,0 +1,275 @@
+*{
+    margin: 0px;
+    padding: 0px;
+    font-family: 'Montserrat', sans-serif;
+    
+}
+@media screen and (min-width: 768px){
+
+#Principal{
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    background-color: red;
+}
+body, html {
+    height: 100%;
+    width: 100%;
+    margin: 0;
+    padding: 0;
+    font-family: 'Montserrat', sans-serif;
+}
+
+nav {
+    width: 100%;
+    height: 12%;
+    
+    display: flex;
+    justify-content: center;
+    align-items:center;
+    
+}
+
+li {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 0 -11%;
+    font-size: 0.9rem;
+}
+
+.container {
+    background: rgb(51,54,69);
+    width: 100%;
+    height: 100%;
+}
+
+.row {
+    display: flex;
+    padding: 1% 1.8%;
+}
+
+.navbar-logo {
+    color: white;
+    width: 10%;
+    font-size: 1.55rem;
+}
+
+.navbar-list {
+    display: flex;
+    color: white;
+    list-style: none;
+    width: 75%;
+    justify-content: space-evenly;
+}
+
+.navbar-notification {
+    display: flex;
+    justify-content: flex-end;
+    align-items: flex-end;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background-color: #eeeeee;
+    background-repeat: no-repeat;
+   background-size: 22px 22px;
+   background-position: center; 
+    background-image: url('../img/notification.png');
+    cursor: pointer;
+}
+.navbar-notification:hover {
+   
+    background-color: #ddddddbb;
+}
+
+.navbar-notification-count {
+    background: red;
+    width: 15px;
+    height: 15px;
+    border-radius: 50%;
+    font-size: 10px;
+    color: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.navbar-profile {
+    display: flex;
+    justify-content: space-around;
+    width: 10%;
+}
+
+.navbar-avatar {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.navbar-picture {
+    width: 95%;
+    height: 95%;
+    background-color: gray;
+    border-radius: 50%;
+    border: 2px solid white;
+}
+.navbar-picture:hover {
+    background-color: red;
+}
+/* AFTER OF NAVBAR */
+
+.user-information {
+    width: 100%;
+     
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+}
+
+.user-information > div:nth-child(4) > p:nth-child(2) {
+    margin: 0 auto;
+    color: white;
+}
+
+.opciones{
+    font-size: 17px;
+    cursor: pointer;
+  
+    
+    width: 120px;
+    height: 40px;
+}
+.opciones:hover{
+    background-color: rgb(66, 69, 86);
+}
+.img-profile{
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+}
+#middle{
+    width: 100%;
+    height: 89%;
+ 
+    display: flex;
+
+}
+#left{
+    width: 40%;
+    height: 100%;
+    
+    display: flex;
+    flex-direction: column;
+}
+#rigth{
+    display: flex;
+    flex-direction: column;
+    width: 60%;
+    height: 100%;
+   
+    align-items: center;
+}
+#rigth>h3{
+    width: 90%;
+    height: 8%;
+    display: flex;
+    align-items: center;
+    color: white;
+    font-weight: 500;
+   
+}
+#left-top{
+    width: 100%;
+    height: 60%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    
+}
+#grupos-contenedor{
+    width: 80%;
+    height: 70%;
+    
+    display: flex;
+    overflow: auto;
+}
+#contenedor{
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+}
+#left-top-top>h3{
+    color: white;
+    font-weight:500 ;
+    width:90%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+
+}
+#left-top-top{
+    width: 80%;
+    height: 48px;
+    display: flex;
+}
+#left-top-top>img{
+    width: 35px;
+    height: 35px;
+    cursor: pointer;
+    margin-left: 6px;
+    margin-right: 6px;
+}
+#left-top-top>img:hover{
+   background-color: #777777bb;
+  
+}
+.datos-gen{
+    height: 70px;
+    color: #FFFFFF;
+    font-size: 18px;
+}
+td{
+    text-align: center;
+}
+td>a{
+    color: #7DAEDF;
+}
+#left-bottom{
+    width: 100%;
+    height: 40%;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+   
+}
+#left-bottom>h3{
+    width: 80%;
+    height: 12%;
+    color: white;
+    font-weight: 500;
+}
+#datosGenerales-container{
+    width: 80%;
+    height: 70%;
+    background-color: #424556;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.grupo{
+    width: 130px;
+    height: 130px;
+    background-color: #424556;
+    margin: 1% 1%;
+    cursor: pointer;
+}
+.grupo:hover{
+    background-color: #4a4d5f;
+}
+#tabla-container{
+    width: 90%;
+    height: 85%;
+    background-color: aqua;
+}
+}

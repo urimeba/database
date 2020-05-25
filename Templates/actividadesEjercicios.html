@@ -1,0 +1,126 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Ejercicios</title>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<link rel="stylesheet" type="text/css" href="{% static 'css/estilosEjercicios.css' %}">
+	<link href="https://fonts.googleapis.com/css?family=Montserrat:400,700&display=swap" rel="stylesheet"> 
+	<script src="{% static 'js/funcionesUriel.js' %}"></script>
+	<script src="{% static 'js/jQuery.js' %}"></script>
+	<link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+	<script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+	<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+</head>
+<body>
+	<div id="principalEjercicios">
+		<div id="menuEjercicios">
+			<div id="encabezado-menuEjercicios">
+				
+				<a href="{% url 'dashboard' %}"><img id="imagenback" src="{% static 'img/back.png' %}"></a>
+				<img id="imagenperfil" class="imgRedonda" src="{% static 'img/imagenperfil.jpg' %}">
+				<p id="tituloEjercicio" class="titulo-data">Data</p>
+				<p id="tituloEjercicio" class="titulo-base">Bass</p>
+			</div>
+			<div id="unidadesEjercicios">
+				<p>Temas</p>
+				{% if unidades %}
+			<div class="unidadesEjerciciosContenedor">	
+				<div class="unidadesEjerciciosContenedor-overflow">
+					{% for unidad in unidades %}
+						{% if unidad.is_active %}
+						<a href="{% url 'unidad' pk=unidad.id %}">
+							{% if unidad.id == unidad_seleccionada.id %}
+								<div class="u1" id="unidad-{{ unidad.id }}">{{forloop.counter}}</div>
+							{% else %}
+								<div class="u2" id="unidad-{{ unidad.id }}">{{forloop.counter}}</div>
+							{% endif %}
+						</a>
+						{% else %}
+							<div class="u3">{{forloop.counter0}}</div>
+						{% endif %}
+					{% endfor %}
+				</div>
+			</div>
+				{% else %}
+					<p>No hay temas por el momento. Intenta mas tarde o habla con el Profesor.</p>
+				{% endif %}
+				
+			</div>
+			<div id="temasEjercicios">
+				<p>Ejercicios</p>
+				<div id="temasEjerciciosContenedor">
+					{% if ejercicios %}
+						{% if ejercicios.count > 0 %}
+							{% for ejercicio in ejercicios %}
+								{% if ejercicio.is_active %}
+									<a href="{% url 'ejercicio' pk=ejercicio.unidad.id id=ejercicio.id %}">
+										<div class="t6" id="ejercicio-{{ejercicio.id}}">{{forloop.counter}}</div>
+									</a>
+								{% endif %}
+							{% endfor %}
+						{% else %}
+						<p>No hay ejercicios por el momento. Intenta mas tarde o habla con el Profesor.</p>
+						{% endif %}
+					{% else %}
+						<p>No hay ejercicios por el momento. Intenta mas tarde o habla con el Profesor.</p>
+					{% endif %}
+				</div>
+			</div>
+		</div>
+
+		<div id="contenidoEjercicios">
+			<div id="encabezado-contenidoEjercicios">
+				<div id="titulo-contenidoEjercicos">
+					{% if unidad_seleccionada %}
+						<p id="title" >Unidad {{unidad_seleccionada.id}}. {{unidad_seleccionada.titulo}}</p>
+					{% elif ejercicio_seleccionado %}
+					<p id="title" >Ejercicio {{ejercicio_seleccionado.id}}. Unidad: {{ejercicio_seleccionado.unidad}}</p>
+					{% else %}
+						<p id="title">No hay unidades activas por el momento. Intenta mas tarde o habla con el Profesor.</p>
+					{% endif %}
+					<div id="subtitulo-contenidoEjercicios">
+						<p id="calificacion">Calificación:</p>
+						<p><span id="calificacion_calificacion">{{calificacion.calificacion}}</span>/10</p>
+						
+						{% if intentos %}
+							<p id="intentos-contenedor">Intentos: <span id="intentos" >{{intentos}}</span></p>
+						{% endif %}
+					</div>
+				</div>
+				<div id="descripcion-contenidoEjercicios">
+				
+					{% if unidad_seleccionada %}
+					<div id="titulo-descripcion-contenidoEjercicios">
+						<p>Descripción de la unidad</p>
+					</div>
+						<p id="description">{{ unidad_seleccionada.descripcion}}</p>
+					{% elif ejercicio_seleccionado %}
+					<div id="titulo-descripcion-contenidoEjercicios">
+						<p>Descripción del ejercicio</p>
+					</div>
+						<p id="description">{{ ejercicio_seleccionado.descripcion}}</p>
+					{% else %}
+						<p id="description">No hay unidades activas por el momento. Intenta mas tarde o habla con el Profesor.</p>
+					{% endif %}
+				</div>
+			</div>
+			<div id="contenido-contenidoEjercicios">
+				<div id="contenido-contenidoEjercicios-overflow">
+				{% if unidad_seleccionada %}
+					{{ unidad_seleccionada.presentacion | safe }}
+				{% elif ejercicio_seleccionado %}
+					<br>
+				{% else %}
+					<p id="description">No hay unidades/ejercicios activos por el momento. Intenta mas tarde o habla con el Profesor.</p>
+				{% endif %}
+
+				{% block ejercicio %}
+				{% endblock %}
+			</div>
+			</div>
+		</div>
+	</div>
+</body>
+</html>

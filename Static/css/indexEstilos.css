@@ -1,0 +1,256 @@
+*{
+    margin: 0px;
+    padding: 0px;
+    font-family: 'Montserrat', sans-serif;
+    
+}
+    /* Escritorio */
+@media screen and (min-width: 768px){
+
+    #Principal{
+        width: 100%;
+        height:100%;
+        position: absolute;
+        overflow: auto;
+        background-color: rgb(51, 54, 69);
+    }@import url('https://fonts.googleapis.com/css?family=Montserrat:300&display=swap');
+    body, html {
+        height: 100%;
+        width: 100%;
+        margin: 0;
+        padding: 0;
+        font-family: 'Montserrat', sans-serif;
+    }
+    
+    nav {
+        width: 100%;
+        height: 12%;
+        
+        display: flex;
+        justify-content: center;
+        align-items:center;
+        
+    }
+    
+    li {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        margin: 0 -11%;
+        font-size: 0.9rem;
+    }
+    
+    .container {
+        background: rgb(51,54,69);
+        width: 100%;
+        height: 100%;
+    }
+    
+    .row {
+        display: flex;
+        padding: 2% 5%;
+    }
+    
+    .navbar-logo {
+        color: white;
+        width: 10%;
+        font-size: 1.55rem;
+    }
+    
+    .navbar-list {
+        display: flex;
+        color: white;
+        list-style: none;
+        width: 75%;
+        justify-content: space-evenly;
+    }
+    
+    .navbar-notification {
+        display: flex;
+        justify-content: flex-end;
+        align-items: flex-end;
+        width: 50px;
+        height: 50px;
+        border-radius: 50%;
+        background-color: #eeeeee;
+        background-repeat: no-repeat;
+       background-size: 30px 30px;
+       background-position: center; 
+        background-image: url('../img/notification.png');
+        cursor: pointer;
+    }
+    .navbar-notification:hover {
+       
+        background-color: #ddddddbb;
+    }
+    
+    .navbar-notification-count {
+        background: red;
+        width: 15px;
+        height: 15px;
+        border-radius: 50%;
+        font-size: 10px;
+        color: white;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+    
+    .navbar-profile {
+        display: flex;
+        justify-content: space-around;
+        width: 15%;
+    }
+    
+    .navbar-avatar {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+    
+    .navbar-picture {
+        width: 95%;
+        height: 95%;
+        background-color: gray;
+        border-radius: 50%;
+        border: 2px solid white;
+    }
+    .navbar-picture:hover {
+        background-color: red;
+    }
+    /* AFTER OF NAVBAR */
+    
+    .user-information {
+        width: 100%;
+        background-color: red;
+        display: flex;
+        justify-content: space-around;
+        align-items: center;
+    }
+    
+    .user-information > div:nth-child(4) > p:nth-child(2) {
+        margin: 0 auto;
+        color: white;
+    }
+
+    .opciones{
+        font-size: 17px;
+        cursor: pointer;
+      
+        
+        width: 140px;
+        height: 40px;
+        
+    }
+    .opciones>a:hover{
+        color: #FF5A09;
+    }
+  
+    .img-profile{
+        width: 100%;
+        height: 100%;
+        border-radius: 50%;
+    }
+
+
+    /* END NAVBAR */
+
+    /* Starts Middle Content */
+    #mid-container{
+        width: 100%;
+        height:75%;
+      
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+    #img-dashboard-container{
+        width: 40%;
+        height: 80%;
+        
+        margin: 2%;
+    }
+    .img{
+        width: 90%;
+        height: 90%;
+
+    }
+    #right-dashboard-container{
+        width: 40%;
+        height: 60%;
+       background: rgb(66, 69, 86); 
+        margin: 2%;
+        display: flex;
+        justify-content: center;
+       align-items: center;
+        flex-direction: column;
+    }
+    #rectangulo{
+        width: 130px;
+        height: 15px;
+        background-color: #ffffff;
+    }
+    #dashboard-title{
+       margin-top: 15px;
+        font-size: 45px;
+        color: white;
+        font-weight: 600;
+        font-family: Segoe UI,Frutiger,Frutiger Linotype,Dejavu Sans,Helvetica Neue,Arial,sans-serif; 
+    }
+    #right-dashboard-container-top{
+        width: 90%;
+       
+        
+        display: flex;
+        flex-direction: column;
+    }
+    #right-dashboard-container-middle{
+        margin-top: 15px;
+        width: 90%;
+        
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        font-size: 19px;
+      
+        color: white;
+    }
+    #bottom-container{
+
+        width: 100%;
+        height: 40%;
+        background-color: rgb(51, 54, 69);
+        display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+    footer{
+    margin-top: 5%;
+    width: 100%;
+    height: 10%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: white;
+    background-color: rgb(42, 45, 58);
+    }
+    .dashboard-cuadros{
+        
+        width: 280px;
+        height: 250px;
+        background: rgb(66, 69, 86);
+    }
+    #cuadros-container{
+        width: 90%;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        flex-direction: row;
+    }
+}
+
+    /* Movil */
+@media screen and (min-width: 100px) and (max-width:768px) {
+
+
+}

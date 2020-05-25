@@ -1,0 +1,65 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{% static 'css/compilador.css' %}">
+    <link rel="stylesheet" href="{% static 'js/compilador lib/codemirror.css' %}">
+    <link href="https://fonts.googleapis.com/css?family=Montserrat&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="{% static 'css/indexEstilos.css' %}">   
+    <link rel="stylesheet" href="{% static 'css/estilos.css' %}">
+    <title>Compilador</title>
+</head>
+<body>
+    <div id="Principal">
+      
+        <div class="container">
+            <div class="row">
+                <nav class="nav-menu">
+                    <p id="tituloEjercicio1" class="titulo-data">Data</p>
+                    <p id="tituloEjercicio2" class="titulo-base">Bass</p>
+                    <ul class="navbar-list">
+                        <li class="opciones"><a href="{% url 'dashboard' %}" class="opcionInicio">Inicio</a></li>
+                        <li class="opciones"><a href="{% url 'unidades' %}" class="opcionContenido">Contenido</a></li>
+                        <li class="opciones"><a href="{% url 'compilador' %}" class="opcionHerramientas">Compilador</a></li>
+                    </ul>		
+                    <div class="navbar-profile">
+                        <div class="navbar-notification">
+                            
+                            <div class="navbar-notification-count">1</div>
+                        </div>
+                        <div class="navbar-notification navbar-avatar">
+                            <div class="navbar-picture">
+                                <a href="{% url 'perfil' %}">
+                                    <img src="{% static 'img/perfil.jpg' %}" alt="" class="img-profile">
+                                </a>
+                                
+                            </div>
+                        </div>
+                                <div class="navbar-logout navbar-avatar">
+                                    <div >
+                                        <a href="{% url 'cerrarSesion' %}">
+                                            <img src="{% static 'img/logout.png' %}" alt="" class="img-logout">
+                                        </a>
+                                    </div>
+                                </div>
+                        
+                    </div>
+                </nav>
+                
+            </div>
+
+            {% block content %}
+            {% endblock %}
+
+        </div>
+     </div>
+
+     <script src="{% static 'js/compilador lib/codemirror.js' %}"></script>
+     <script src="{% static 'js/sql.js' %}"></script>
+     <script src="{% static 'js/Compilador.js' %}"></script>
+     <script src="{% static 'js/funcionesUriel.js' %}"></script>
+     <script src="{% static 'js/jQuery.js' %}"></script>
+</body>
+</html>

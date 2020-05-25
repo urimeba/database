@@ -1,0 +1,91 @@
+
+
+{% extends 'actividadesEjercicios.html' %}
+
+{% block ejercicio %}
+<style>
+    #sortable1, #sortable2, #sortable3, #sortable4, #sortable5{ 
+      list-style-type: none;
+      margin: 0;
+      float: left;
+      margin-right: 10px;
+      background: #eee;
+      padding: 5px;
+      width: 143px;
+      }
+    #sortable1 li, #sortable2 li, #sortable3 li, #sortable4 li, #sortable5 li{
+      margin: 5px;
+      padding: 5px;
+      font-size: 1.2em;
+      width: 120px;
+      }
+</style>
+  
+<script>
+  $(function(){
+    $("ul.droptrue").sortable({
+      connectWith: "ul"
+    });
+
+    $("#sortable1, #sortable2, #sortable3, #sortable4, #sortable5").disableSelection();
+  });
+
+  window.onload=function(){
+    document.getElementById("btn-ejercicio-2-3").addEventListener("click", enviarEjercicio2_3);
+  }
+</script>
+
+
+
+<ul id="sortable1" class="droptrue">
+  Tipos de dato
+  <!-- ORACLE -->
+  <li class="ui-state-default">varchar2</li>
+  <li class="ui-state-default">char</li>
+  <li class="ui-state-default">nchar</li>
+  <li class="ui-state-default">nvarchar2</li>
+  <li class="ui-state-default">long</li>
+  <li class="ui-state-default">raw</li>
+  <li class="ui-state-default">long raw</li>
+
+  <li class="ui-state-default">number</li>
+  <li class="ui-state-default">binary float</li>
+  <li class="ui-state-default">binary double</li>
+
+  <li class="ui-state-default">date</li>
+  <li class="ui-state-default">timestamp</li>
+  <li class="ui-state-default">timestamp with local zone</li>
+  <li class="ui-state-default">timestamp with local time zone</li>
+  <li class="ui-state-default">interval</li>
+
+  <li class="ui-state-default">bfile</li>
+  <li class="ui-state-default">blob</li>
+  <li class="ui-state-default">clob</li>
+  <li class="ui-state-default">nclob</li>
+
+
+
+</ul>
+
+<ul id="sortable2" class="droptrue">
+  Caracter
+</ul>
+
+<ul id="sortable3" class="droptrue">
+  Numericos
+</ul>
+
+<ul id="sortable4" class="droptrue">
+  Fecha y hora
+</ul>
+
+<ul id="sortable5" class="droptrue">
+  Objetos o binarios
+</ul>
+ 
+<br style="clear:both">
+<div class="container">
+  <button id="btn-ejercicio-2-3">Enviar</button>
+</div>
+
+{% endblock %}

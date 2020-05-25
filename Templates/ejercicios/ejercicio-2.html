@@ -1,0 +1,78 @@
+{% extends 'actividadesEjercicios.html' %}
+{% block ejercicio %}
+<style>
+    #sortable1, #sortable2, #sortable3, #sortable4 { 
+      list-style-type: none;
+      margin: 0;
+      float: left;
+      margin-right: 10px;
+      background: #eee;
+      padding: 5px;
+      width: 143px;
+      }
+    #sortable1 li, #sortable2 li, #sortable3 li, #sortable4 li { 
+      margin: 5px;
+      padding: 5px;
+      font-size: 1.2em;
+      width: 120px;
+      }
+</style>
+  
+<script>
+  $(function(){
+    $( "ul.droptrue" ).sortable({
+      connectWith: "ul"
+    });
+  
+    $("#sortable1, #sortable2, #sortable3, #sortable4").disableSelection();
+    });
+
+    window.onload = function (){
+      document.getElementById("btn-ejercicio-2-2").addEventListener("click", enviarEjercicio2_2);
+    }
+</script>
+
+<ul id="sortable1" class="droptrue">
+  Tipo de dato
+  <!-- ORACLE -->
+  <li class="ui-state-default">varchar2</li>
+  <li class="ui-state-default">number</li>
+  <li class="ui-state-default">binary_double</li>
+  <li class="ui-state-default">nchar</li>
+  <li class="ui-state-default">raw</li>
+  <li class="ui-state-default">rowid</li>
+  <!-- MYSQL  -->
+  <li class="ui-state-default">mediumint</li>
+  <li class="ui-state-default">bigint</li>
+  <li class="ui-state-default">time</li>
+  <li class="ui-state-default">year</li>
+  <li class="ui-state-default">varchar</li>
+  <li class="ui-state-default">text</li>
+  <!-- POSTGRES -->
+  <li class="ui-state-default">serial</li>
+  <li class="ui-state-default">box</li>
+  <li class="ui-state-default">character</li>
+  <li class="ui-state-default">double precision</li>
+  <li class="ui-state-default">line</li>
+  <li class="ui-state-default">money</li>
+</ul>
+
+<ul id="sortable2" class="droptrue">
+  Oracle
+</ul>
+
+<ul id="sortable3" class="droptrue">
+  MySQL
+</ul>
+
+<ul id="sortable4" class="droptrue">
+  Postgres
+</ul>
+
+<br style="clear:both">
+
+<div class="container">
+  <button id="btn-ejercicio-2-2">Enviar</button>
+</div>
+ 
+{% endblock %}

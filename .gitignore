@@ -122,3 +122,17 @@ dmypy.json
 
 # Pyre type checker
 .pyre/
+
+Apps/Ejercicios/migrations/
+
+Apps/Clases/migrations/
+
+Pipfile
+
+*.lock
+
+.vscode/
+
+Apps/Usuarios/migrations/
+
+.idea/

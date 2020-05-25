@@ -4,11 +4,11 @@ from django.contrib.auth.views import LoginView
 from django.http import JsonResponse, HttpResponse
 from Apps.Usuarios.models import Alumno
 from Apps.Clases.models import Unidad, Parcial
-from Apps.Ejercicios.models import Ejercicio, Respuesta, Pregunta, Intentos
 from django.contrib.auth.decorators import login_required, user_passes_test
 from django.contrib.auth import get_user_model
 from django.conf import settings
 import json
+from django.contrib import messages
 
 from django.views.decorators.csrf import csrf_exempt
 # from .forms import formLogin
@@ -26,28 +26,31 @@ from django.views.decorators.csrf import csrf_exempt
 #         return super().get(request, *args, **kwargs)
 
 @csrf_exempt
-def resetPassword(request):
+def reset_password(request):
     try:
         if request.method == 'POST':
             User = get_user_model()
-            if request.POST['password'] == request.POST['confirmPassword']:
-                if request.POST['password'].strip() == '':
-                    return JsonResponse({'error': 'La contraseña no puede estar vacia'})
+            old_password = request.POST['old_password']
+            new_password = request.POST['new_password1']
+            confirm_new_password = request.POST['new_password2']
+
+            if new_password == confirm_new_password:
+                if new_password.strip() == '':
+                    return messages.success(request, 'La contraseña no puede estar vacia')
                 else:
-                    if len(request.POST['password']) < 6:
+                    if len(new_password) < 6:
                         return JsonResponse({'error': 'La contraseña debe contener mínimo 6 caracteres'})
                     else:
-                        usr = User.objects.get(id = 1)
-                        usr.set_password(request.POST['password'])
-                        usr.save()
-                        return JsonResponse({'message': 'Las contraseñas ha sido cambiada exitosamente'})
+                        usr = User.objects.get(id = request.session['_auth_user_id'])
+                        if(usr.check_password(old_password)):
+                            usr.set_password(new_password)
+                            usr.save()
+                            return JsonResponse({'message': 'Las contraseñas ha sido cambiada exitosamente'})
+
+                        return JsonResponse({'message': 'Contraseña antigua incorrecta'})
             else:
-                return JsonResponse({'error': 'Las contraseñas no coinciden'})
+                return messages(request, 'Las contraseñas no coinciden')
 
         return redirect('dashboard')
     except EOFError as identifier:
         return JsonResponse({'error': 'Ha ocurrido un error en el servidor, intentelo nuevamente.'})
-
-
-
-

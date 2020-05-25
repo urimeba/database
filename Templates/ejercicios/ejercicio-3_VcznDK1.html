@@ -1,0 +1,82 @@
+{% extends 'actividadesEjercicios.html' %}
+
+{% block ejercicio %}
+<style>
+    #sortable1, #sortable2, #sortable3, #sortable4, #sortable5{
+      list-style-type: none;
+      margin: 0;
+      float: left;
+      margin-right: 10px;
+      background: #eee;
+      padding: 5px;
+      width: 143px;
+      }
+    #sortable1 li, #sortable2 li, #sortable3 li, #sortable4 li, #sortable5 li{
+      margin: 5px;
+      padding: 5px;
+      font-size: 1.2em;
+      width: 120px;
+      }
+</style>
+  
+<script>
+  $(function(){
+
+    $( "ul.droptrue").sortable({
+      connectWith: "ul"
+    });
+    $("#sortable1, #sortable2, #sortable3, #sortable4, #sortable5").disableSelection();
+  });
+
+  window.onload=function(){
+    document.getElementById("btn-ejercicio-2-1").addEventListener("click", enviarEjercicio2_1);
+  }
+</script>
+
+<ul id="sortable1" class="droptrue">
+  Atributos
+  <li class="ui-state-default">Titulo</li>
+  <li class="ui-state-default">Genero</li>
+  <li class="ui-state-default">Consola</li>
+  <li class="ui-state-default">Desarrollador</li>
+  <li class="ui-state-default">Precio</li>
+  <li class="ui-state-default">Fecha de lanzamiento</li>
+  <li class="ui-state-default">Nombre</li>
+  <li class="ui-state-default">Telefono</li>
+  <li class="ui-state-default">Direccion</li>
+  <li class="ui-state-default">Clave</li>
+  <li class="ui-state-default">Nombre</li>
+  <li class="ui-state-default">Sucursal</li>
+  <li class="ui-state-default">Salario</li>
+  <li class="ui-state-default">Nombre</li>
+  <li class="ui-state-default">Direccion</li>
+  <li class="ui-state-default">Correo electronico</li>
+  <li class="ui-state-default">Telefono</li>
+</ul>
+
+<ul id="sortable2" class="droptrue">
+  Videojuegos
+  <li class="ui-state-default ui-state-disabled">idVideojuego</li>
+</ul>
+
+<ul id="sortable3" class="droptrue">
+  Proveedores
+  <li class="ui-state-default ui-state-disabled">idProveedor</li>
+</ul>
+
+<ul id="sortable4" class="droptrue">
+  Empleados
+  <li class="ui-state-default ui-state-disabled">idEmpleado</li>
+</ul>
+
+<ul id="sortable5" class="droptrue">
+  Clientes
+  <li class="ui-state-default ui-state-disabled">idCliente</li>
+</ul>
+ 
+<br style="clear:both">
+
+<div class="container">
+  <button id="btn-ejercicio-2-1">Enviar</button>
+</div>
+{% endblock %}
