@@ -19,7 +19,7 @@
 			<div id="encabezado-menuEjercicios">
 				
 				<a href="{% url 'dashboard' %}"><img id="imagenback" src="{% static 'img/back.png' %}"></a>
-				<img id="imagenperfil" class="imgRedonda" src="{% static 'img/imagenperfil.png' %}">
+				<img id="imagenperfil" class="imgRedonda" src="{% static 'img/imagenperfil.jpg' %}">
 				<p id="tituloEjercicio" class="titulo-data">Data</p>
 				<p id="tituloEjercicio" class="titulo-base">Bass</p>
 			</div>
@@ -32,9 +32,9 @@
 						{% if unidad.is_active %}
 						<a href="{% url 'unidad' pk=unidad.id %}">
 							{% if unidad.id == unidad_seleccionada.id %}
-								<div class="u1" id="unidad-{{ unidad.id }}">{{forloop.counter0}}</div>
+								<div class="u1" id="unidad-{{ unidad.id }}">{{forloop.counter}}</div>
 							{% else %}
-								<div class="u2" id="unidad-{{ unidad.id }}">{{forloop.counter0}}</div>
+								<div class="u2" id="unidad-{{ unidad.id }}">{{forloop.counter}}</div>
 							{% endif %}
 						</a>
 						{% else %}
@@ -85,7 +85,7 @@
 						<p><span id="calificacion_calificacion">{{calificacion.calificacion}}</span>/10</p>
 						
 						{% if intentos %}
-							<p>Intentos restantes: <span id="intentos">{{intentos}}</span></p>
+							<p id="intentos-contenedor">Intentos: <span id="intentos" >{{intentos}}</span></p>
 						{% endif %}
 					</div>
 				</div>

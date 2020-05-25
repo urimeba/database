@@ -163,21 +163,21 @@ border-width: 3.1px;
                 width: 20px;
                 height: 20px;
                 cursor: pointer;
-                /*margin-right: 10%;*/
-               /* padding-left:20%;
-                padding-right: 5%;*/
+                transition: 0.55s;
+            }
+            #imagenback:hover{
+                transform: translateX(-.3em);
             }
             #imagenperfil{
-               width:58px;
-                height: 58px;
-                padding: 0% 10% 0% 10%;
+               width:50px;
+                height: 50px;
+                margin-left: 12%;
+                margin-right: 4%;
             }
                 .imgRedonda {
                    border-radius: 50%;
                 }
-            #tituloEjercicio{
-                /*padding-left: 5%;*/
-            }
+           
             .titulo-data{
                font-weight: bold;
                color: white;
@@ -187,6 +187,10 @@ border-width: 3.1px;
                 font-weight: bold;
                 color: #FF5A09;
                 font-size: 25px;
+                transition: 0.8s;
+            }
+            .titulo-base:hover{
+                font-size: 26.5px;
             }
             #unidadesEjercicios>p{
                width: 87%;
@@ -215,6 +219,15 @@ border-width: 3.1px;
                     flex-direction: column;
                     
                 }
+                #intentos{
+                    color:red;
+                    font-weight: bold;
+                }
+               #intentos-contenedor{
+                   margin-left: 10px;
+                   font-weight: bold;
+font-size: 16px;
+               }
                     .unidadesEjerciciosContenedor{
                         /*background-color: yellow;*/
                         background-color: #172464;
@@ -252,8 +265,12 @@ border-width: 3.1px;
                         align-items: center;
                         text-decoration-line: none;
                         font-size: 22px;
+                        transition: 0.75s;
                     }
                     .u2{
+                        -webkit-box-shadow: 6px 6px 5px 0px rgba(50,50,69,1);
+-moz-box-shadow: 6px 6px 5px 0px rgba(50,50,69,1);
+box-shadow: 6px 6px 5px 0px rgba(50,50,69,1);
                         background-color: white;
                         width: 55px;
                         height: 55px;
@@ -268,6 +285,8 @@ border-width: 3.1px;
                         align-items: center;
                         text-decoration-line: none;
                         font-size: 22px;
+                        transition: 0.75s;
+                        
                        
                     }
                     a {
@@ -283,10 +302,12 @@ border-width: 3.1px;
                     .u2:hover{
                         background-color: #FF5A09;
                         color: white;
+                        transform: translateX(2px);
+                        transform: translateY(2px);
                     }
                     iframe{
                         width: 100%;
-                        height: 100%;
+                        height: 99%;
                     }
 
                     .u2:hover{
@@ -342,7 +363,9 @@ border-width: 3.1px;
                         background-color: white;
                     }
                     .t6{
-
+                        transform: translateX(2px);
+                        transform: translateY(2px);
+                        transition: 0.75s;
                         background-color: white;
                         width: 55px;
                         height: 55px;
@@ -357,11 +380,12 @@ border-width: 3.1px;
                         align-items: center;
                         text-decoration-line: none;
                         font-size: 22px;
-
+                        
                     }
                     .t6:hover{
                         background-color: #FF5A09;
-                        color: white;  
+                        color: white;
+                          
                     }
                     .t7{
                         background-color: white;
@@ -413,13 +437,13 @@ border-width: 3.1px;
                     display: flex;
                     /*background-color: cyan;*/
                     width: 25%;
-                    margin-left: 30%;
+                    
                     /*align-items: center;*/
                     justify-content: flex-end;
                     
                 }
                 #subtitulo-contenidoEjercicios>p{
-                    font-size: 13px;
+                    
                 }
                 #calificacion{
                     margin-right: 5%;
@@ -445,10 +469,32 @@ border-width: 3.1px;
             overflow: auto;
             display: flex;
             justify-content: center;
+            -webkit-user-select: none;
+            -moz-user-select: none;
+            -ms-user-select: none;
+            user-select: none; 
+        }
+        #btn-ejercicio-1-6{
+            -webkit-box-shadow: 4px 4px 5px 0px rgba(224,224,224,0.62);
+            -moz-box-shadow: 4px 4px 5px 0px rgba(224,224,224,0.62);
+            box-shadow: 4px 4px 5px 0px rgba(224,224,224,0.62);
+            width: 150px;
+            height: 35px;
+            border: none;
+            color: white;
+            background-color: #00B0FF;
+            border-radius: 4px;
+            transition: .5s;
+            cursor: pointer;
+        }
+        #btn-ejercicio-1-6:hover{
+            width: 152px;
+            height: 38px;
+            background-color: rgb(3, 161, 235);
         }
         #contenido-contenidoEjercicios-overflow{
             width: 90%;
-            
+            font-size: 18px;
         }
         #sortable1 li, #sortable2 li, #sortable3 li, #sortable4 li, #sortable5 li{
             font-size: 17px !important;
@@ -459,6 +505,12 @@ border-width: 3.1px;
             cursor: move;
             background: #FF5A09 !important;
             color: white !important;
+            
+        }
+        .ui-state-default:hover{
+          
+            background: rgba(250, 89, 9, 0.808) !important;
+            
         }
         .container{
             width: 100%;
@@ -469,16 +521,22 @@ border-width: 3.1px;
             align-items: end;
         }
         #btn-ejercicio-2-1 {
-            width: 110px;
-            height: 34px;
-            background: #5151ff;
-            color: white;
-            border-radius: 4px;
+            -webkit-box-shadow: 4px 4px 5px 0px rgba(224,224,224,0.62);
+            -moz-box-shadow: 4px 4px 5px 0px rgba(224,224,224,0.62);
+            box-shadow: 4px 4px 5px 0px rgba(224,224,224,0.62);
+            width: 150px;
+            height: 35px;
             border: none;
+            color: white;
+            background-color: #00B0FF;
+            border-radius: 4px;
+            transition: .5s;
             cursor: pointer;
         }
         #btn-ejercicio-2-1:hover{
-            background: #4d4df1;
+            width: 152px;
+            height: 38px;
+            background-color: rgb(3, 161, 235);
         }
         /*MEDIA*/
          @media (max-width: 840px) {
@@ -554,4 +612,4 @@ border-width: 3.1px;
             #unidadesEjerciciosContenedor{
                 /*background-color: red;*/
             }
-        
+        }

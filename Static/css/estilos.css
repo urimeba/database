@@ -115,7 +115,6 @@
         }
         
 /*---------ESTILOS actividadesEjercicios------------*/
-
         #principalEjercicios{
              position: absolute;
             display: flex;
@@ -158,18 +157,19 @@
                 .imgRedonda {
                    border-radius: 50%;
                 }
-            #tituloEjercicio{
-                /*padding-left: 5%;*/
-            }
+                #tituloEjercicio1{
+                font-size: 20px;
+                }
+                #tituloEjercicio2{
+                    font-size: 25px;
+                }
             .titulo-data{
                font-weight: bold;
                color: white;
-               font-size: 20px;
             }
             .titulo-base{
                 font-weight: bold;
                 color: #FF5A09;
-                font-size: 20px;
             }
             #unidadesEjercicios>p{
                 margin-left: 8%;
