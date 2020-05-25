@@ -17,7 +17,8 @@
 	<div id="principalEjercicios">
 		<div id="menuEjercicios">
 			<div id="encabezado-menuEjercicios">
-				<img id="imagenback" src="{% static 'img/imagenback.png' %}">
+				
+				<a href="{% url 'dashboard' %}"><img id="imagenback" src="{% static 'img/back.png' %}"></a>
 				<img id="imagenperfil" class="imgRedonda" src="{% static 'img/imagenperfil.png' %}">
 				<p id="tituloEjercicio" class="titulo-data">Data</p>
 				<p id="tituloEjercicio" class="titulo-base">Bass</p>
@@ -25,8 +26,8 @@
 			<div id="unidadesEjercicios">
 				<p>Temas</p>
 				{% if unidades %}
-				
-				<div class="unidadesEjerciciosContenedor">
+			<div class="unidadesEjerciciosContenedor">	
+				<div class="unidadesEjerciciosContenedor-overflow">
 					{% for unidad in unidades %}
 						{% if unidad.is_active %}
 						<a href="{% url 'unidad' pk=unidad.id %}">
@@ -41,6 +42,7 @@
 						{% endif %}
 					{% endfor %}
 				</div>
+			</div>
 				{% else %}
 					<p>No hay temas por el momento. Intenta mas tarde o habla con el Profesor.</p>
 				{% endif %}
@@ -105,6 +107,7 @@
 				</div>
 			</div>
 			<div id="contenido-contenidoEjercicios">
+				<div id="contenido-contenidoEjercicios-overflow">
 				{% if unidad_seleccionada %}
 					{{ unidad_seleccionada.presentacion | safe }}
 				{% elif ejercicio_seleccionado %}
@@ -115,7 +118,7 @@
 
 				{% block ejercicio %}
 				{% endblock %}
-				
+			</div>
 			</div>
 		</div>
 	</div>
