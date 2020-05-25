@@ -23,10 +23,6 @@ class Loginn(LoginView):
             return render(request, 'login.html', {'form':form})
         return super().get(request, *args, **kwargs)
 
-    def post(self, request, *args, **kwargs):
-        print("POOOOOSTTT")
-        return super().post(request, *args, **kwargs)
-
 @login_required
 def dashboard(request):
     if not request.user.first_login:

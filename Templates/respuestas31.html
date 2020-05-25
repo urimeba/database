@@ -1,0 +1,47 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Ejercicios</title>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<link rel="stylesheet" type="text/css" href="{% static 'css/estilos.css' %}">
+	<link href="https://fonts.googleapis.com/css?family=Montserrat:400,700&display=swap" rel="stylesheet"> 
+	<script src="{% static 'js/funcionesUriel.js' %}"></script>
+	<script src="{% static 'js/jQuery.js' %}"></script>
+	<link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+	<!-- <script src="https://code.jquery.com/jquery-1.12.4.js"></script> -->
+	<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+</head>
+<body>
+	<div style=" margin: 10px;width: 90vw; background-color: green; height: 80vh; display: flex; flex-direction: row;">
+
+		<div style="width: 20%; height: 100%; background-color: red;">
+			<p>Clases:</p>
+			{% regroup alumnos by alumno.clase as lista_clases %}
+			<ul >
+			{% for clase in lista_clases %}
+				<li>{{clase.grouper}}
+					<ul>
+					{% for respuesta in clase.list %}
+						<a href="{% url 'getRespuesta31' idAlumno=respuesta.alumno.id %}">
+							<li>{{respuesta.alumno.usuario.get_full_name}}</li>
+						</a>
+						
+					{% endfor %}
+					</ul>
+				</li>
+			{% endfor %}
+			</ul>
+		</div>
+
+		<div style="width: 80%; height: 100%; background-color: yellow;">
+			{% block content %}
+			{% endblock %}
+		</div>
+	</div>
+
+	
+	
+</body>
+</html>

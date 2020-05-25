@@ -27,5 +27,9 @@ urlpatterns = [
     path('setEjercicio31', views_ejercicios.ejercicio31, name='setEjercicio31'),
     path('setEjercicio51', views_ejercicios.ejercicio51, name='setEjercicio51'),
     path('setEjercicio71', views_ejercicios.ejercicio71, name='setEjercicio71'),
+
+
+    path('respuestas31', views_ejercicios.respuestas31, name='respuestas31'),
+    path('respuestas31/<int:idAlumno>', views_ejercicios.getRespuesta31, name='getRespuesta31'),
     
 ]

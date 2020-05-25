@@ -434,3 +434,28 @@ def ejercicio71(request):
             'calificacion_calificacion':calificacionBD.calificacion
         })
 
+@login_required
+@user_passes_test(lambda user: user.isMaestro()==True)
+def respuestas31(request):
+    alumnos_entregados = Respuesta.objects.filter(
+        ejercicio__id=2
+    )
+    return render(request, 'respuestas31.html', {
+        'alumnos':alumnos_entregados
+    })
+
+def getRespuesta31(request, idAlumno):
+    alumnos_entregados = Respuesta.objects.filter(
+        ejercicio__id=2
+    )
+
+    respuesta = Respuesta.objects.get(
+        alumno__id=idAlumno,
+        ejercicio__id=2
+    )
+
+    return render(request, 'tabla31.html',{
+        'alumnos':alumnos_entregados,
+        'alumno':respuesta.alumno.usuario.get_full_name,
+        'respuesta':json.loads(respuesta.respuesta)
+    })
