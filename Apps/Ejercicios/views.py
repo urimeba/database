@@ -3,8 +3,11 @@ from django.http import JsonResponse, HttpResponse
 from Apps.Clases.models import Unidad, Parcial
 from Apps.Usuarios.models import Alumno
 from Apps.Ejercicios.models import Ejercicio, Respuesta, Intentos, CalificacionEjercicio
+from .forms import formEjercicio31
 from django.contrib.auth.decorators import login_required, user_passes_test
 import json
+from django.contrib import messages
+
 
 # Create your views here.
 @login_required
@@ -444,18 +447,55 @@ def respuestas31(request):
         'alumnos':alumnos_entregados
     })
 
+@login_required
+@user_passes_test(lambda user: user.isMaestro())
 def getRespuesta31(request, idAlumno):
+
     alumnos_entregados = Respuesta.objects.filter(
         ejercicio__id=2
-    )
+        )
 
     respuesta = Respuesta.objects.get(
         alumno__id=idAlumno,
         ejercicio__id=2
-    )
+        )
 
-    return render(request, 'tabla31.html',{
-        'alumnos':alumnos_entregados,
-        'alumno':respuesta.alumno.usuario.get_full_name,
-        'respuesta':json.loads(respuesta.respuesta)
-    })
+    calificacionActual = CalificacionEjercicio.objects.get(
+        ejercicio__id=2,
+        alumno__id=idAlumno
+        )
+
+    if request.method == 'POST':
+        form = formEjercicio31(request.POST)
+
+        if form.is_valid():
+            calificacion = form.cleaned_data['calificacion']
+            calificacionActual.calificacion = calificacion
+            calificacionActual.save()
+
+            messages.success(request, 'Calificacion actualizada correctamente')
+
+            return render(request, 'tabla31.html', {
+            'form':form,
+            'alumnos':alumnos_entregados,
+            'alumno':respuesta.alumno,
+            'respuesta':json.loads(respuesta.respuesta),
+        })
+        else:
+            return render(request, 'tabla31.html', {
+            'form':form,
+            'alumnos':alumnos_entregados,
+            'alumno':respuesta.alumno,
+            'respuesta':json.loads(respuesta.respuesta)
+        })
+
+    else:
+        
+        form = formEjercicio31(initial={'calificacion':calificacionActual.calificacion})
+
+        return render(request, 'tabla31.html',{
+            'form':form,
+            'alumnos':alumnos_entregados,
+            'alumno':respuesta.alumno,
+            'respuesta':json.loads(respuesta.respuesta)
+        })

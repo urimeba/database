@@ -9,78 +9,49 @@
     }
 </style>
 
-Alumno: {{alumno}}
+<p id="alumno">Alumno: {{alumno.usuario.get_full_name}}</p>
 
-<!-- {{respuesta}} -->
-
-<ul>
-    {% for key, value in respuesta.items %} 
-        <li>{{key}}</li>
-        {% for val in value %}
-            <p>{{val}}</p>
-        {% endfor %}
+<div>
+    {% if messages %}
+    {% for message in messages %}
+        <p>{{message}}</p>
     {% endfor %}
-</ul>
+    {% endif %}
 
-<table id="tabla">
-    <tbody>
-            <tr>
-                {% for key, value in respuesta.items %}
-                <th>{{key}}</th>
-                {{value.0}}
-                {% endfor %}
-            </tr>
+    <form action="{% url 'getRespuesta31' idAlumno=alumno.id %}" method="POST">
+        {% csrf_token %}
+        {{form.as_p}}
+        <input type="submit" name="send" id="btn-enviar" value="Calificar">
+    </form>
+</div>
 
-            {% for key, value in respuesta.items %}
-            <tr>
-                {% for val in value %}
-                    <td>{{val}}</td>
-                {% endfor %}
-            </tr>
-            {% endfor %}
 
-    </tbody>
+<p>Primera opcion</p>
+<table>
+    {% for key, value in respuesta.items %} 
+    <tr>
+        <th>{{key}}</th>
+    </tr>
 
+    <tr>
+        {% for val in value %}
+            <td>{{val}}</td>
+        {% endfor %}
+    </tr>
+    {% endfor %}
 </table>
 
-<!-- <table id="tabla" contenteditable="true">
-    <tbody>
-        <tr>
-        <th>Nombre SMBD 1</th>
-        <th>Nombre SMBD 2</th>
-        <th>Nombre SMBD 3</th>
-        </tr>
+<p>Segunda opcion</p>
 
+<table>
+    {% for key, value in respuesta.items %} 
     <tr>
-        <td contenteditable="true">Caracteristica 11</td>
-        <td contenteditable="true">Caracteristica 12</td>
-        <td contenteditable="true">Caracteristica 13</td>
+        <th>{{key}}</th>
+        {% for val in value %}
+            <td>{{val}}</td>
+        {% endfor %}
     </tr>
-
-    <tr>
-        <td contenteditable="true">Caracteristica 21</td>
-        <td contenteditable="true">Caracteristica 22</td>
-        <td contenteditable="true">Caracteristica 23</td>
-    </tr>
-
-    <tr>
-        <td contenteditable="true">Caracteristica 31</td>
-        <td contenteditable="true">Caracteristica 32</td>
-        <td contenteditable="true">Caracteristica 33</td>
-    </tr>
-
-    <tr>
-        <td contenteditable="true">Caracteristica 41</td>
-        <td contenteditable="true">Caracteristica 42</td>
-        <td contenteditable="true">Caracteristica 43</td>
-    </tr>
-
-    <tr>
-        <td contenteditable="true">Caracteristica 51</td>
-        <td contenteditable="true">Caracteristica 52</td>
-        <td contenteditable="true">Caracteristica 53</td>
-    </tr>
-</tbody>
-</table> -->
+    {% endfor %}
+</table>
 
 {% endblock %}

@@ -42,4 +42,8 @@ class Respuesta(models.Model):
 class CalificacionEjercicio(models.Model):
     ejercicio = models.ForeignKey('Ejercicio', on_delete=models.CASCADE)
     alumno = models.ForeignKey('Usuarios.Alumno', on_delete=models.CASCADE)
-    calificacion = models.DecimalField(max_digits=4, decimal_places=2, default=0)
+    calificacion = models.DecimalField(max_digits=4, decimal_places=2, default=0,
+    validators=[
+            MaxValueValidator(10.00),
+            MinValueValidator(0.00)
+        ])
