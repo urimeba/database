@@ -1,4 +1,4 @@
-{% extends 'respuestas31.html' %}
+{% extends 'maestro/respuestas31.html' %}
 {% block content %}
 
 <style>
@@ -25,23 +25,7 @@
     </form>
 </div>
 
-
-<p>Primera opcion</p>
-<table>
-    {% for key, value in respuesta.items %} 
-    <tr>
-        <th>{{key}}</th>
-    </tr>
-
-    <tr>
-        {% for val in value %}
-            <td>{{val}}</td>
-        {% endfor %}
-    </tr>
-    {% endfor %}
-</table>
-
-<p>Segunda opcion</p>
+Ejercicio #1.1. 
 
 <table>
     {% for key, value in respuesta.items %} 

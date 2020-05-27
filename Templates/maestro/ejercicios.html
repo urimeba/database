@@ -1,0 +1,25 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ejercicios</title>
+    <script src="{% static 'js/funcionesUriel.js' %}"></script>
+    <script src="{% static 'js/jQuery.js' %}"></script>
+</head>
+<body>
+    {{ejercicios}}
+
+    <ul>
+        {% for ejercicio in ejercicios %}
+            <li>{{ejercicio}} 
+                <span><input type="checkbox" name="active" id="{{ejercicio.id}}" {%  if ejercicio.is_active %} checked {% endif %} ></span> 
+                <label for="active">Activo</label>
+                <button onclick="actualizarEjercicio(this)" data-idejercicio="{{ejercicio.id}}" >Actualizar</button>
+            </li> 
+        {% endfor %}
+    </ul>
+
+</body>
+</html>

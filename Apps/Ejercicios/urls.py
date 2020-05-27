@@ -31,5 +31,10 @@ urlpatterns = [
 
     path('respuestas31', views_ejercicios.respuestas31, name='respuestas31'),
     path('respuestas31/<int:idAlumno>', views_ejercicios.getRespuesta31, name='getRespuesta31'),
+    path('calificaciones', views_ejercicios.getCalificaciones, name='getCalificaciones'),
+    path('calificaciones/<int:idAlumno>', views_ejercicios.getCalificacionesAlumno, name='getCalificacionesAlumno'),
+    path('setCalificacionAlumno', views_ejercicios.setCalificacionAlumno, name='setCalificacionAlumno'),
+    path('ejercicios', views_ejercicios.ejercicios, name='ejercicios'),
+    path('actualizarEjercicio', views_ejercicios.actualizarEjercicio, name='actualizarEjercicio'),
     
 ]

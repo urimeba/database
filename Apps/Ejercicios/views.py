@@ -1,12 +1,17 @@
 from django.shortcuts import render, redirect
 from django.http import JsonResponse, HttpResponse
-from Apps.Clases.models import Unidad, Parcial
-from Apps.Usuarios.models import Alumno
+from Apps.Clases.models import Unidad, Parcial, Clase
+from Apps.Usuarios.models import Alumno, Profesor
 from Apps.Ejercicios.models import Ejercicio, Respuesta, Intentos, CalificacionEjercicio
 from .forms import formEjercicio31
 from django.contrib.auth.decorators import login_required, user_passes_test
 import json
 from django.contrib import messages
+from decimal import Decimal
+from datetime import datetime
+from django.utils import timezone
+from django.utils.timezone import localtime, now
+
 
 
 # Create your views here.
@@ -60,8 +65,10 @@ def ejercicio11(request):
         alumno = alumno
         )
 
+
     if(intentos.numero>0):
         # Creando un nuevo intento
+        fechaActual = datetime.now()
         intentos.numero-=1
         intentos.save()
 
@@ -108,6 +115,7 @@ def ejercicio11(request):
         if (res10 == "b"):
             calificacion += 1
 
+        calificacionBD.fecha = localtime(now())
         calificacionBD.calificacion=calificacion
         calificacionBD.save()
 
@@ -437,33 +445,41 @@ def ejercicio71(request):
             'calificacion_calificacion':calificacionBD.calificacion
         })
 
+
+# ACCIONES DEL MAESTRO--------------------------
 @login_required
 @user_passes_test(lambda user: user.isMaestro()==True)
 def respuestas31(request):
+    maestro = Profesor.objects.get(usuario=request.user)
+    clases = Clase.objects.filter(profesor=maestro)
     alumnos_entregados = Respuesta.objects.filter(
-        ejercicio__id=2
+        ejercicio__id=2,
+        alumno__clase__in=clases
     )
-    return render(request, 'respuestas31.html', {
+    return render(request, 'maestro/respuestas31.html', {
         'alumnos':alumnos_entregados
     })
 
 @login_required
 @user_passes_test(lambda user: user.isMaestro())
 def getRespuesta31(request, idAlumno):
+    maestro = Profesor.objects.get(usuario=request.user)
+    clases = Clase.objects.filter(profesor=maestro)
 
     alumnos_entregados = Respuesta.objects.filter(
-        ejercicio__id=2
-        )
+        ejercicio__id=2,
+        alumno__clase__in=clases
+    )
 
     respuesta = Respuesta.objects.get(
         alumno__id=idAlumno,
         ejercicio__id=2
-        )
+    )
 
     calificacionActual = CalificacionEjercicio.objects.get(
         ejercicio__id=2,
         alumno__id=idAlumno
-        )
+    )
 
     if request.method == 'POST':
         form = formEjercicio31(request.POST)
@@ -475,14 +491,14 @@ def getRespuesta31(request, idAlumno):
 
             messages.success(request, 'Calificacion actualizada correctamente')
 
-            return render(request, 'tabla31.html', {
+            return render(request, 'maestro/tabla31.html', {
             'form':form,
             'alumnos':alumnos_entregados,
             'alumno':respuesta.alumno,
             'respuesta':json.loads(respuesta.respuesta),
         })
         else:
-            return render(request, 'tabla31.html', {
+            return render(request, 'maestro/tabla31.html', {
             'form':form,
             'alumnos':alumnos_entregados,
             'alumno':respuesta.alumno,
@@ -493,9 +509,80 @@ def getRespuesta31(request, idAlumno):
         
         form = formEjercicio31(initial={'calificacion':calificacionActual.calificacion})
 
-        return render(request, 'tabla31.html',{
+        return render(request, 'maestro/tabla31.html',{
             'form':form,
             'alumnos':alumnos_entregados,
             'alumno':respuesta.alumno,
             'respuesta':json.loads(respuesta.respuesta)
         })
+
+@login_required
+@user_passes_test(lambda user: user.isMaestro())
+def getCalificaciones(request):
+    maestro = Profesor.objects.get(usuario=request.user)
+    clases = Clase.objects.filter(profesor=maestro)
+
+    alumnos = Alumno.objects.filter(clase__in=clases)
+    
+    print(alumnos)
+    return render(request, 'maestro/calificaciones.html', {
+        'alumnos':alumnos
+    })
+
+@login_required
+@user_passes_test(lambda user: user.isMaestro())
+def getCalificacionesAlumno(request, idAlumno):
+    maestro = Profesor.objects.get(usuario=request.user)
+    clases = Clase.objects.filter(profesor=maestro)
+    alumnos = Alumno.objects.filter(clase__in=clases)
+
+    calificaciones = CalificacionEjercicio.objects.filter(
+        alumno__id=idAlumno
+    )
+
+    return render(request, 'maestro/calificaciones.html', {
+        'alumnos':alumnos,
+        'calificaciones':calificaciones
+    })
+
+@login_required
+@user_passes_test(lambda user: user.isMaestro())
+def setCalificacionAlumno(request):
+    idCalificacion = request.POST['idCalificacion']
+    calificacionAlumno = request.POST['calificacion']
+    print(idCalificacion, calificacionAlumno)
+
+    calificacion = CalificacionEjercicio.objects.get(id=idCalificacion)
+    calificacion.calificacion = calificacionAlumno
+    calificacion.save()
+
+    return HttpResponse("Calificacion actualizada correctamente")
+
+@login_required
+@user_passes_test(lambda user: user.isMaestro())
+def ejercicios(request):
+    maestro = Profesor.objects.get(usuario=request.user)
+    clases = Clase.objects.filter(profesor=maestro)
+
+    ejercicios = Ejercicio.objects.filter(
+        unidad__parcial__clase__in=clases
+    )
+    print(ejercicios)
+    return render(request, 'maestro/ejercicios.html', {
+        'ejercicios':ejercicios
+    })
+
+@login_required
+@user_passes_test(lambda user: user.isMaestro())
+def actualizarEjercicio(request):
+    idEjercicio = request.POST['idEjercicio']
+    estado = request.POST['estado']
+    value = True if estado=="true" else False
+
+    print(idEjercicio, estado)
+    ejercicio = Ejercicio.objects.get(id=idEjercicio)
+    ejercicio.is_active=value
+    ejercicio.save()
+
+    return HttpResponse("Ejercicio actualizado correctamente")
+
