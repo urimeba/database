@@ -176,6 +176,7 @@ def ejercicio21(request):
 
 
         calificacion=10 if calificacion>10 else round(calificacion, 2)
+        calificacionBD.fecha = localtime(now())
         calificacionBD.calificacion=calificacion
         calificacionBD.save()
 
@@ -235,7 +236,7 @@ def ejercicio22(request):
 
         calificacion=10 if calificacion>10 else round(calificacion, 2)
 
-        
+        calificacionBD.fecha = localtime(now())
         calificacionBD.calificacion=calificacion
         calificacionBD.save()
 
@@ -298,7 +299,7 @@ def ejercicio23(request):
 
         calificacion=10 if calificacion>10 else round(calificacion, 2)
 
-        
+        calificacionBD.fecha = localtime(now())
         calificacionBD.calificacion=calificacion
         calificacionBD.save()
 
@@ -334,7 +335,7 @@ def ejercicio31(request):
         intentos.numero-=1
         intentos.save()
 
-        
+        calificacionBD.fecha = localtime(now())
         calificacionBD.calificacion=0
         calificacionBD.save()
 
@@ -377,7 +378,7 @@ def ejercicio51(request):
         intentos.numero-=1
         intentos.save()
 
-        
+        # calificacionBD.fecha = localtime(now())
         # calificacionBD.calificacion=0
         # calificacionBD.save()
 
@@ -420,6 +421,7 @@ def ejercicio71(request):
         intentos.numero-=1
         intentos.save()
 
+        # calificacionBD.fecha = localtime(now())
         # calificacionBD.calificacion=0
         # calificacionBD.save()
 
