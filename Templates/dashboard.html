@@ -2,6 +2,16 @@
 {% load static %}
 {% block content %}
 
+{% if messages %}
+    <ul class="messages">
+        {% for message in messages %}
+        <li>
+            {{ message }}
+        </li>
+        {% endfor %}
+    </ul>
+{% endif %}
+
 <div id="mid-container">
         <div id="img-dashboard-container">
             <img src="{% static 'img/code.png' %}" alt="" class="img">

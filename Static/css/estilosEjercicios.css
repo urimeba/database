@@ -492,6 +492,42 @@ box-shadow: 6px 6px 5px 0px rgba(50,50,69,1);
             height: 38px;
             background-color: rgb(3, 161, 235);
         }
+        #btn-ejercicio-2-2{
+            -webkit-box-shadow: 4px 4px 5px 0px rgba(224,224,224,0.62);
+            -moz-box-shadow: 4px 4px 5px 0px rgba(224,224,224,0.62);
+            box-shadow: 4px 4px 5px 0px rgba(224,224,224,0.62);
+            width: 150px;
+            height: 35px;
+            border: none;
+            color: white;
+            background-color: #00B0FF;
+            border-radius: 4px;
+            transition: .5s;
+            cursor: pointer;
+        }
+        #btn-ejercicio-2-2:hover{
+            width: 152px;
+            height: 38px;
+            background-color: rgb(3, 161, 235);
+        }
+        #btn-ejercicio-2-3{
+            -webkit-box-shadow: 4px 4px 5px 0px rgba(224,224,224,0.62);
+            -moz-box-shadow: 4px 4px 5px 0px rgba(224,224,224,0.62);
+            box-shadow: 4px 4px 5px 0px rgba(224,224,224,0.62);
+            width: 150px;
+            height: 35px;
+            border: none;
+            color: white;
+            background-color: #00B0FF;
+            border-radius: 4px;
+            transition: .5s;
+            cursor: pointer;
+        }
+        #btn-ejercicio-2-3:hover{
+            width: 152px;
+            height: 38px;
+            background-color: rgb(3, 161, 235);
+        }
         #contenido-contenidoEjercicios-overflow{
             width: 90%;
             font-size: 18px;
