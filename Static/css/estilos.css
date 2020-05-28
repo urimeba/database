@@ -157,12 +157,9 @@
                 .imgRedonda {
                    border-radius: 50%;
                 }
-                #tituloEjercicio1{
-                font-size: 20px;
-                }
-                #tituloEjercicio2{
-                    font-size: 25px;
-                }
+            #tituloEjercicio{
+                /*padding-left: 5%;*/
+            }
             .titulo-data{
                font-weight: bold;
                color: white;
@@ -438,4 +435,4 @@
             #unidadesEjerciciosContenedor{
                 /*background-color: red;*/
             }
-        }
+        
