@@ -14,7 +14,7 @@
         </div>
         <div id="divdatosLogin">    
             <div id="contenidodatosLogin">
-                <form action="#" method="POST">
+                <form action="{% url 'Loginn' %}" method="POST">
                     <p id="tituloLogin">Iniciar Sesión</p>
                     {% csrf_token %}
 
@@ -23,7 +23,7 @@
                     {% for field in form %}
                     <label class="inputsLogin" for="{{ form.field.name }}">{{field.label_tag}}</label>
                         <br>  
-                    {{field.errors }}
+                        {{field.errors }}
                         <br>
                         {{field}}
                         <br>

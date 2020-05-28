@@ -15,6 +15,7 @@ class User(AbstractUser):
     first_name = models.CharField(max_length=128, blank=False, null=False)
     last_name = models.CharField(max_length=128, blank=False, null=False)
     first_login = models.BooleanField(default=False, null=False, blank=False)
+    is_maestro = models.BooleanField(default=False, null=False, blank=False)
 
     class Meta:
         verbose_name = 'User'
@@ -22,6 +23,9 @@ class User(AbstractUser):
 
     def __str__(self):
         return "{}".format(self.username)
+
+    def isMaestro(self):
+        return self.is_maestro
 
 class Profesor(models.Model):
     usuario = models.OneToOneField('User', on_delete=models.CASCADE)

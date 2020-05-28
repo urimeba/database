@@ -23,10 +23,6 @@ class Loginn(LoginView):
             return render(request, 'login.html', {'form':form})
         return super().get(request, *args, **kwargs)
 
-    def post(self, request, *args, **kwargs):
-        print("POOOOOSTTT")
-        return super().post(request, *args, **kwargs)
-
 @login_required
 def dashboard(request):
     if not request.user.first_login:
@@ -99,9 +95,9 @@ def cambiarContraseña(request):
         form = PasswordChangeForm(user=request.user, data=request.POST, )
         if form.is_valid():
             form.save()
-            update_session_auth_hash(request, form.user)  # Important!
+            update_session_auth_hash(request, form.user)
             messages.success(request, 'Contraseña cambiada correctamente')
-            return render(request, 'cambiar_contraseña.html', {
+            return render(request, 'dashboard.html', {
                 'form': form
             })
         else:
