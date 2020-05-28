@@ -140,9 +140,11 @@
         
         width: 120px;
         height: 40px;
+        transition: 0.75s;
     }
     .opciones:hover{
         background-color: rgb(66, 69, 86);
+        border-radius: 6px;
     }
     .img-profile{
         width: 100%;
@@ -218,18 +220,26 @@
         align-items: center;
     }
     #play{
-        background-color: rgb(38, 166, 154);
+        border:3px solid rgb(60, 170, 8);
+        color: rgb(60, 170, 8) !important;
+        background-color: #fafafa;
+        
+        transition: .55s;
     }
     #play:hover{
-        background-color: rgb(44, 189, 174);
+        background-color: rgb(50, 143, 7);
+        color: white !important;
+        font-weight: bold;
     }
     #borrar{
+        border:none;
        margin-right: 35px;
-       background-color: rgb(229, 115, 115);
+       background-color: #ED5A09;
+       transition: .55s;
     }
     #borrar:hover{
        
-        background-color: rgb(243, 120, 120);
+        background-color: rgb(187, 69, 6);
      }
     #buttons>button{
         box-shadow: 6px 6px 13px 0px rgba(51,51,51,1);
@@ -237,7 +247,7 @@
         width: 100px;
         border-radius: 4px;
         color: white;
-        border:none;
+       
         height: 32px;
         font-size: 1rem;
     }
@@ -297,7 +307,7 @@
     #tablas-container{
    
         height: 100%;
-       
+      
         display: flex;
         justify-content: start;
         align-items: start;
