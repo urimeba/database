@@ -138,14 +138,12 @@
         cursor: pointer;
       
         
-        width: 140px;
+        width: 120px;
         height: 40px;
-        
     }
-    .opciones>a:hover{
-        color: #FF5A09;
+    .opciones:hover{
+        background-color: rgb(66, 69, 86);
     }
-  
     .img-profile{
         width: 100%;
         height: 100%;
