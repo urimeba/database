@@ -1,0 +1,45 @@
+{% extends 'navbar.html' %}
+{% load static %}
+{% block content %}
+<!-- <div class="container"> -->
+  {% if first_login %}
+      <p class="textoRestablecer primerTextoRestablecer">Te recomendamos cambiar tu contraseña la primera vez que inicias sesion</p>
+      <p class="textoRestablecer">Después de esto, podras encontrar esta opcion en tu perfil</p>
+  {% endif %}
+  <div class="contenidoRestablecer">
+    <div class="contenidotextoRestablecer">
+
+        <form method="POST" class="formRestablecer">
+            {% csrf_token %}
+
+            {% if messages %}
+            <ul>
+                {% for message in messages %}
+                <li>{{ message }}</li>
+                {% endfor %}
+            </ul>
+            {% endif %}
+
+            <table border="1" class="tablaRestablecer">
+                {% for field in form %}
+                  <tr>
+                    <th class="thRestablecer">{{ field.label_tag }}</th>
+                    <td class="tdRestablecer">
+                      {{ field.errors }}
+                      {{ field }}
+                    </td>
+                  </tr>
+                {% endfor %}
+              </table>
+              <div class="botonesRestablecer">
+                <a href="{% url 'perfil' %}">
+                    <button class="botonRegresarRestablecer">Regresar a mi perfil</button>
+                </a>
+                <button type="submit" class="botonCambiarRestablecer">Cambiar</button>
+              </div>
+        </form>
+    </div>
+    </div>
+  <!-- </div> -->
+
+{% endblock %}

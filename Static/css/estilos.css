@@ -414,8 +414,8 @@
             /* background-image: url('../img/logout6.png'); */
             cursor: pointer;
         }
-        /*--------Estilos Restablecer contraseña------------*/
-        *{
+        /*--------Estilos Restablecer contraseña Vista Ricardo------------*/
+        /* *{
             padding:0px;
             margin: 0px;
             font-family: 'Montserrat',sans-serif;
@@ -457,8 +457,66 @@
             border-radius: 0.3rem;
             border-style: none;
             color: white; 
+        } */
+        /*-----------------Estilos Restablecer Contraseña Uriel ------------------*/
+        .textoRestablecer{
+            color: white;
+            text-align: center;
         }
-        
+        .primerTextoRestablecer{
+            margin-top: 25px;
+        }
+        .contenidoRestablecer{
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-top: 20px;
+        }
+        .contenidotextoRestablecer{
+            width: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin-top: 30px;
+        }
+        .botonesRestablecer{
+             display: flex;
+             justify-content: space-around;
+             align-items: center;
+             margin-top: 50px;
+        }
+        .thRestablecer{
+            border-top: none !important;
+        }
+        .tdRestablecer{
+            border-top: none !important;
+        }
+        .botonCambiarRestablecer{
+            box-shadow: 6px 6px 13px 0px rgba(51,51,51,1);
+            cursor: pointer;
+            width: 168px;
+            border-radius: 4px;
+            color: white;
+            border: none;
+            height: 30px;
+            font-size: 1rem;
+            background-color: rgb(44, 189, 174);
+        }
+        .botonRegresarRestablecer{
+            box-shadow: 6px 6px 13px 0px rgba(51,51,51,1);
+            cursor: pointer;
+            width: 168px;
+            border-radius: 4px;
+            color: white;
+            border: none;
+            height: 30px;
+            font-size: 1rem;
+            background-color: rgb(243, 120, 120);
+        }
+        /* .formRestablecer{
+            margin-left: 17%;
+            margin-top: 36px;
+        } */
         /*-----------------------------------------------*/
         @media(max-width:1122px ){
             #unidadesEjerciciosContenedor{
