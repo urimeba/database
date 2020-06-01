@@ -1,14 +1,14 @@
 {% extends 'navbar.html' %}
 {% load static %}
 {% block content %}
-<div class="container">
+<div class="modalCambioContraseña" >
 
     {% if first_login %}
         <p>Te recomendamos cambiar tu contraseña la primera vez que inicias sesion</p>
         <p>Después de esto, podras encontrar esta opcion en tu perfil</p>
     {% endif %}
 
-    <form method="POST">
+    <form method="POST" id="form-cambio">
         {% csrf_token %}
 
         {% if messages %}
@@ -30,11 +30,11 @@
               </tr>
             {% endfor %}
           </table>
-        <button type="submit">Cambiar</button>
+        <button type="submit" id="boton-form">Cambiar</button>
     </form>
-    <a href="{% url 'perfil' %}">
+    <!-- <a href="{% url 'perfil' %}">
         <button>Regresar a mi perfil</button>
-    </a>
+    </a> -->
 </div>
 
 {% endblock %}

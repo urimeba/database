@@ -17,17 +17,18 @@
         <div class="container">
             <div class="row">
                 <nav class="nav-menu">
-                    <div class="navbar-logo">Data<strong>Base</strong></div>
+                    <a href="{% url 'dashboard' %}" style="text-decoration: none;"><p id="tituloEjercicio1" class="titulo-data">Data</p></a>
+                    <a href="{% url 'dashboard' %}" style="text-decoration: none;"><p id="tituloEjercicio2" class="titulo-base">Bass</p></a> 
                     <ul class="navbar-list">
                         <li class="opciones"><a href="{% url 'dashboard' %}" class="opcionInicio">Inicio</a></li>
                         <li class="opciones"><a href="{% url 'unidades' %}" class="opcionContenido">Contenido</a></li>
-                        <li class="opciones"><a href="{% url 'compilador' %}" class="opcionHerramientas">Herramientas</a></li>
+                        <li class="opciones"><a href="{% url 'compilador' %}" class="opcionHerramientas">Compilador</a></li>
                     </ul>		
                     <div class="navbar-profile">
-                        <div class="navbar-notification">
+                        <!-- <div class="navbar-notification">
                             
                             <div class="navbar-notification-count">1</div>
-                        </div>
+                        </div> -->
                         <div class="navbar-notification navbar-avatar">
                             <div class="navbar-picture">
                                 <a href="{% url 'perfil' %}">
@@ -53,6 +54,9 @@
             {% endblock %}
 
         </div>
+
+        
+        
      </div>
 
      <script src="{% static 'js/compilador lib/codemirror.js' %}"></script>
@@ -62,3 +66,4 @@
      <script src="{% static 'js/jQuery.js' %}"></script>
 </body>
 </html>
+

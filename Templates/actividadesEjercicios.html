@@ -5,7 +5,7 @@
 	<title>Ejercicios</title>
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<link rel="stylesheet" type="text/css" href="{% static 'css/estilos.css' %}">
+	<link rel="stylesheet" type="text/css" href="{% static 'css/estilosEjercicios.css' %}">
 	<link href="https://fonts.googleapis.com/css?family=Montserrat:400,700&display=swap" rel="stylesheet"> 
 	<script src="{% static 'js/funcionesUriel.js' %}"></script>
 	<script src="{% static 'js/jQuery.js' %}"></script>
@@ -17,23 +17,24 @@
 	<div id="principalEjercicios">
 		<div id="menuEjercicios">
 			<div id="encabezado-menuEjercicios">
-				<img id="imagenback" src="{% static 'img/imagenback.png' %}">
-				<img id="imagenperfil" class="imgRedonda" src="{% static 'img/imagenperfil.png' %}">
+				
+				<a href="{% url 'dashboard' %}"><img id="imagenback" src="{% static 'img/back.png' %}"></a>
+				<img id="imagenperfil" class="imgRedonda" src="{% static 'img/imagenperfil.jpg' %}">
 				<p id="tituloEjercicio" class="titulo-data">Data</p>
 				<p id="tituloEjercicio" class="titulo-base">Bass</p>
 			</div>
 			<div id="unidadesEjercicios">
 				<p>Temas</p>
 				{% if unidades %}
-				
-				<div class="unidadesEjerciciosContenedor">
+			<div class="unidadesEjerciciosContenedor">	
+				<div class="unidadesEjerciciosContenedor-overflow">
 					{% for unidad in unidades %}
 						{% if unidad.is_active %}
 						<a href="{% url 'unidad' pk=unidad.id %}">
 							{% if unidad.id == unidad_seleccionada.id %}
-								<div class="u1" id="unidad-{{ unidad.id }}">{{forloop.counter0}}</div>
+								<div class="u1" id="unidad-{{ unidad.id }}">{{forloop.counter}}</div>
 							{% else %}
-								<div class="u2" id="unidad-{{ unidad.id }}">{{forloop.counter0}}</div>
+								<div class="u2" id="unidad-{{ unidad.id }}">{{forloop.counter}}</div>
 							{% endif %}
 						</a>
 						{% else %}
@@ -41,6 +42,7 @@
 						{% endif %}
 					{% endfor %}
 				</div>
+			</div>
 				{% else %}
 					<p>No hay temas por el momento. Intenta mas tarde o habla con el Profesor.</p>
 				{% endif %}
@@ -79,14 +81,11 @@
 						<p id="title">No hay unidades activas por el momento. Intenta mas tarde o habla con el Profesor.</p>
 					{% endif %}
 					<div id="subtitulo-contenidoEjercicios">
-						{% if calificacion %}
 						<p id="calificacion">Calificación:</p>
 						<p><span id="calificacion_calificacion">{{calificacion.calificacion}}</span>/10</p>
-						{% endif %}
-						
 						
 						{% if intentos %}
-							<p>Intentos restantes: <span id="intentos">{{intentos}}</span></p>
+							<p id="intentos-contenedor">Intentos: <span id="intentos" >{{intentos}}</span></p>
 						{% endif %}
 					</div>
 				</div>
@@ -108,6 +107,7 @@
 				</div>
 			</div>
 			<div id="contenido-contenidoEjercicios">
+				<div id="contenido-contenidoEjercicios-overflow">
 				{% if unidad_seleccionada %}
 					{{ unidad_seleccionada.presentacion | safe }}
 				{% elif ejercicio_seleccionado %}
@@ -118,7 +118,7 @@
 
 				{% block ejercicio %}
 				{% endblock %}
-				
+			</div>
 			</div>
 		</div>
 	</div>

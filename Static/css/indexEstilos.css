@@ -99,7 +99,7 @@
     .navbar-profile {
         display: flex;
         justify-content: space-around;
-        width: 15%;
+        width: 10%;
     }
     
     .navbar-avatar {
@@ -114,9 +114,10 @@
         background-color: gray;
         border-radius: 50%;
         border: 2px solid white;
+        transition: .55s;
     }
     .navbar-picture:hover {
-        background-color: red;
+        border: 2px solid rgb(248, 85, 4);
     }
     /* AFTER OF NAVBAR */
     
@@ -138,12 +139,14 @@
         cursor: pointer;
       
         
-        width: 120px;
+        width: 140px;
         height: 40px;
+        
     }
-    .opciones:hover{
-        background-color: rgb(66, 69, 86);
+    .opciones>a:hover{
+        color: #FF5A09;
     }
+  
     .img-profile{
         width: 100%;
         height: 100%;
@@ -191,7 +194,7 @@
     #dashboard-title{
        margin-top: 15px;
         font-size: 45px;
-        color: white;
+        color: #FF5A09;
         font-weight: 600;
         font-family: Segoe UI,Frutiger,Frutiger Linotype,Dejavu Sans,Helvetica Neue,Arial,sans-serif; 
     }
@@ -211,6 +214,9 @@
         align-items: center;
         font-size: 19px;
       
+        color: white;
+    }
+    #right-dashboard-container-middle>p{
         color: white;
     }
     #bottom-container{
@@ -244,6 +250,39 @@
         justify-content: space-between;
         align-items: center;
         flex-direction: row;
+    }
+
+    /* Modal Cambio Contraseña */
+    .modalCambioContraseña{
+        width: 100%;
+        height: 60%;
+        display: flex;
+        align-items: center;
+        flex-direction: column;
+        justify-content: center;
+        color: white;
+    }
+    #form-cambio{
+        width: 510px;
+        height: 230px;
+       
+        display: flex;
+        align-items: center;
+        flex-direction: column;
+        
+    }
+    #boton-form{
+        width: 48%;
+        height: 36px;
+        color: white;
+        background-color: #FF5A09;
+        border: none;
+        border-radius: 4px;
+        cursor: pointer;
+        transition: .55s;
+    }
+    #boton-form:hover{
+        background-color: rgb(228, 81, 8);
     }
 }
 
