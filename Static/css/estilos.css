@@ -513,6 +513,12 @@
             font-size: 1rem;
             background-color: rgb(243, 120, 120);
         }
+        .messages>li{
+            color: white;
+        }
+        .errorlist>li{
+            color: white;
+        }
         /* .formRestablecer{
             margin-left: 17%;
             margin-top: 36px;
