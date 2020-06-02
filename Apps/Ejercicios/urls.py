@@ -14,6 +14,7 @@ urlpatterns = [
     path('setEjercicio71', views_ejercicios.ejercicio71, name='setEjercicio71'),
 
 
+    path('dashboard', views_ejercicios.dashboard_profesor, name='dashboard_profesor'),
     path('respuestas31', views_ejercicios.respuestas31, name='respuestas31'),
     path('respuestas31/<int:idAlumno>', views_ejercicios.getRespuesta31, name='getRespuesta31'),
     path('calificaciones', views_ejercicios.getCalificaciones, name='getCalificaciones'),

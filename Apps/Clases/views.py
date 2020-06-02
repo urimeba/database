@@ -17,7 +17,10 @@ class Loginn(LoginView):
     template_name = 'login.html'
     def get(self, request, *args, **kwargs):
         if request.user.is_authenticated:
-            return redirect(settings.LOGIN_REDIRECT_URL)
+            if request.user.is_maestro:
+                return redirect('dashboard_profesor')
+            else:
+                return redirect(settings.LOGIN_REDIRECT_URL)
         else:
             form = formLogin()
             return render(request, 'login.html', {'form':form})
@@ -28,7 +31,10 @@ def dashboard(request):
     if not request.user.first_login:
         return redirect('cambiarContraseña')
 
-    return render(request, 'dashboard.html')
+    if request.user.is_maestro:
+        return redirect('dashboard_profesor')
+    else:
+        return render(request, 'dashboard.html')
 
 @login_required
 def compilador(request):

@@ -450,6 +450,13 @@ def ejercicio71(request):
         })
 
 
+@login_required
+@user_passes_test(lambda user: user.isMaestro()==True)
+def dashboard_profesor(request):
+    print("Six2")
+    return render(request, 'maestro/dashboard.html')
+
+
 # ACCIONES DEL MAESTRO--------------------------
 @login_required
 @user_passes_test(lambda user: user.isMaestro()==True)
