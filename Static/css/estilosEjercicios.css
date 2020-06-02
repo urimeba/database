@@ -183,12 +183,14 @@ border-width: 3.1px;
                font-weight: bold;
                color: white;
                font-size: 20px;
+               margin-left: 8%;
             }
             .titulo-base{
                 font-weight: bold;
                 color: #FF5A09;
                 font-size: 25px;
                 transition: 0.8s;
+                margin-right: 30%;
             }
             .titulo-base:hover{
                 font-size: 26.5px;
