@@ -37,14 +37,34 @@
 	</div>
 </div>
 
-<div class="row">
-	<section class="user-score">
-		<div class="score blue-dark-2"></div>
-		<div class="score blue-dark-2"></div>
-		<div class="score blue-dark-2"></div>
-		<div class="score blue-dark-2"></div>
-	</section>
-</div>
+
+{% if calificaciones %}
+	{% regroup calificaciones by ejercicio.unidad as unidad_lista %}
+
+	{% for unidad in unidad_lista %}
+	<p>{{unidad.grouper}}</p>
+
+	<div class="row">
+		<section class="user-score">
+		{% for calificacion in unidad.list %}
+			<div class="score blue-dark-2">
+				<p>{{calificacion.ejercicio}}</p>
+				<p>Calificacion: {{calificacion.calificacion}}</p>
+			</div>
+		{% endfor %}
+		</section>
+	</div>
+
+	{% endfor %}
+
+	
+		
+{% else %}
+	<div>
+		Aqui se mostrarán tus calificaciones de los ejercicios que hayas realizado.
+	</div>
+{% endif %}
+
 </div>
 
 

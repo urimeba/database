@@ -4,7 +4,7 @@ from django.contrib.auth.views import LoginView
 from django.http import JsonResponse, HttpResponse
 from Apps.Usuarios.models import Alumno
 from Apps.Clases.models import Unidad, Parcial
-from Apps.Ejercicios.models import Ejercicio
+from Apps.Ejercicios.models import Ejercicio, CalificacionEjercicio
 from django.contrib.auth.decorators import login_required, user_passes_test
 from django.conf import settings
 import json
@@ -36,7 +36,13 @@ def compilador(request):
 
 @login_required
 def perfil(request):
-    return render(request, 'profile.html')
+    alumno = Alumno.objects.get(usuario=request.user)
+    calificaciones = CalificacionEjercicio.objects.filter(
+        alumno = alumno
+    ).order_by('ejercicio__unidad')
+    return render(request, 'profile.html', {
+        'calificaciones':calificaciones
+    })
 
 @login_required
 def unidades(request):
