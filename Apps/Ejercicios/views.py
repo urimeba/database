@@ -542,7 +542,7 @@ def getCalificacionesAlumno(request, idAlumno):
 
     calificaciones = CalificacionEjercicio.objects.filter(
         alumno__id=idAlumno
-    )
+    ).order_by('ejercicio__unidad')
 
     return render(request, 'maestro/calificaciones.html', {
         'alumnos':alumnos,

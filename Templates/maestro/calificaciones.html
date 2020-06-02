@@ -21,7 +21,6 @@
 						<a href="{% url 'getCalificacionesAlumno' idAlumno=alumno.id %}">
 							<li>{{alumno.usuario.get_full_name}}</li>
 						</a>
-						
 					{% endfor %}
 					</ul>
 				</li>
@@ -30,24 +29,30 @@
     </div>
 
     {% if calificaciones %}
+    {% regroup calificaciones by ejercicio.unidad as unidades_lista %}
         <div>
 
             <p>Alumno: {{calificaciones.0.alumno.usuario.get_full_name}}</p>
             <p>Expediente: {{calificaciones.0.alumno}}</p>
 
             <ul>
-            {% for calificacion in calificaciones%}
+            {% for unidad in unidades_lista  %}
+            <li>{{unidad.grouper}}</li>
+
+            <ul>
+                {% for calificacion in unidad.list %}
                 <li>
                     {{calificacion.ejercicio}}:</span>
                     <input id="{{calificacion.id}}" type="number" step=".01" value="{{calificacion.calificacion}}">
                     (fecha: {{calificacion.fecha}})
                     <button id="btn-actualizar" data-idcalificacion="{{calificacion.id}}" onclick="actualizarCalificacion(this)" >Actualizar</button>
                 </li>
-            
+                {% endfor %}
+            </ul>
+
             {% endfor %}
-            </ul>   
+            </ul>
         </div>
     {% endif %}
-
 </body>
 </html>

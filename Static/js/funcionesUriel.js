@@ -422,7 +422,6 @@ actualizarEjercicio = (elementoHTML) =>{
     let estado = document.getElementById(idEjercicio).checked;
 
     let token = getCookie('csrftoken');
-    console.log(token);
     $.ajax({
         type: 'POST',
         url: serverWeb+'ejercicios/actualizarEjercicio',
