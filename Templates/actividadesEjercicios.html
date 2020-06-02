@@ -19,7 +19,7 @@
 			<div id="encabezado-menuEjercicios">
 				
 				<a href="{% url 'dashboard' %}"><img id="imagenback" src="{% static 'img/back.png' %}"></a>
-				<img id="imagenperfil" class="imgRedonda" src="{% static 'img/imagenperfil.jpg' %}">
+				<!-- <img id="imagenperfil" class="imgRedonda" src="{% static 'img/imagenperfil.jpg' %}"> -->
 				<p id="tituloEjercicio" class="titulo-data">Data</p>
 				<p id="tituloEjercicio" class="titulo-base">Bass</p>
 			</div>
@@ -81,11 +81,8 @@
 						<p id="title">No hay unidades activas por el momento. Intenta mas tarde o habla con el Profesor.</p>
 					{% endif %}
 					<div id="subtitulo-contenidoEjercicios">
-						{% if calificacion %}
 						<p id="calificacion">Calificación:</p>
 						<p><span id="calificacion_calificacion">{{calificacion.calificacion}}</span>/10</p>
-						{% endif %}
-						
 						
 						{% if intentos %}
 							<p id="intentos-contenedor">Intentos: <span id="intentos" >{{intentos}}</span></p>

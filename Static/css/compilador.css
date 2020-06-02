@@ -220,15 +220,16 @@
         align-items: center;
     }
     #play{
-        border:3px solid rgb(60, 170, 8);
-        color: rgb(60, 170, 8) !important;
-        background-color: #fafafa;
-        
-        transition: .55s;
-    }
-    #play:hover{
         background-color: rgb(50, 143, 7);
         color: white !important;
+        
+        border: none;
+        transition: .85s;
+    }
+    #play:hover{
+        background-color: #fafafa;
+        border:3px solid rgb(60, 170, 8);
+        color: rgb(60, 170, 8) !important;
         font-weight: bold;
     }
     #borrar{

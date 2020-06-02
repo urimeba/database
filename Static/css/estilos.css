@@ -413,6 +413,7 @@
             background-position: center; 
             /* background-image: url('../img/logout6.png'); */
             cursor: pointer;
+            transition: .5s;
         }
         /*--------Estilos Restablecer contraseña Vista Ricardo------------*/
         /* *{
@@ -420,7 +421,10 @@
             margin: 0px;
             font-family: 'Montserrat',sans-serif;
             font-size: 16px;
+        .navbar-logout:hover {
+            background-color: rgba(248, 86, 4, 0.849);
         }
+
         
         .PrincipalRestablecer{
             width: 100%;
@@ -523,6 +527,106 @@
             margin-left: 17%;
             margin-top: 36px;
         } */
+.user-avatar {
+	width: 5rem;
+	height: 5rem;
+}
+
+.article-text {
+	width: 35%;
+    height: 12.5rem;
+    display: flex;
+flex-direction: column;
+justify-content: center;
+}
+#perfil-cambioContra{
+    height: 31px;
+border: none;
+width: 155px;
+font-size: 13px;
+border-radius: 4px;
+color: white;
+cursor: pointer;
+background-color: #FF5A09;
+transition: .55s;
+}
+#perfil-cambioContra:hover{
+    background-color: rgb(228, 81, 7);
+}
+
+.article-information {
+	position: relative;
+	width: 	55%;
+	left: 10%;
+	height: 12.5rem;
+}
+
+
+/* ASSETS */
+
+.fs-30 {
+    font-size: 30px;
+    color:#FF5A09;
+}
+
+.fs-25 {
+	font-size: 25px;
+}
+
+.fs-20 {
+	font-size: 20px;
+}
+
+.fs-18 {
+	font-size: 18px;
+}
+
+.fs-15 {
+	font-size: 15px;
+}
+
+.blue-dark-1 {
+	background-color: rgb(51, 54, 69);
+}
+
+.blue-dark-2 {
+	background-color: rgb(66, 69, 86);
+}
+
+.user-score {
+	width: 100%;
+	display: flex;
+	justify-content: space-between;
+}
+
+.score {
+	height: 13rem;
+	width: 13rem;
+}
+
+.center {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+
+.center-x {
+	display: flex;
+	justify-content: center;
+}
+
+.center-y {
+	display: flex;
+	align-items: center;
+}
+
+.txt-gray {
+	color: #dadada;
+}
+
+.txt-white {
+	color: #eeeeee;
+}
         /*-----------------------------------------------*/
         @media(max-width:1122px ){
             #unidadesEjerciciosContenedor{
