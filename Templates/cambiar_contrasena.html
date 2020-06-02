@@ -22,10 +22,10 @@
 
             <table border="1" class="tablaRestablecer">
                 {% for field in form %}
+                {{ field.errors }}
                   <tr>
                     <th class="thRestablecer">{{ field.label_tag }}</th>
                     <td class="tdRestablecer">
-                      {{ field.errors }}
                       {{ field }}
                       {{ field.help_text }}
                     </td>
