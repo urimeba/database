@@ -309,6 +309,39 @@ enviarEjercicio3_1 = () =>{
     });
 }
 
+enviarEjercicio3_2 = () =>{
+
+    if(!getConfirmacion()){
+        return;
+    }
+
+    // let body = document.getElementById("tabla").getElementsByTagName('tbody')[0];
+    // let dic = {};
+    // dic[body.rows[0].cells[0].textContent] = [];
+    // dic[body.rows[0].cells[1].textContent] = [];
+    // dic[body.rows[0].cells[2].textContent] = [];
+    // for(let x=1; x<body.rows.length; x++){
+    //     dic[body.rows[0].cells[0].textContent].push(body.rows[x].cells[0].textContent);
+    //     dic[body.rows[0].cells[1].textContent].push(body.rows[x].cells[1].textContent);
+    //     dic[body.rows[0].cells[2].textContent].push(body.rows[x].cells[2].textContent);
+    // }
+
+    // let token = getCookie('csrftoken');
+    // $.ajax({
+    //     type: 'POST',
+    //     url: serverWeb+'ejercicios/setEjercicio31',
+    //     data: {
+    //         csrfmiddlewaretoken: token,
+    //         tabla: JSON.stringify(dic),
+    //     },
+    //     success: function(data){
+    //         alert(data['calificacion']);
+    //         updateIntentos(data['intentos']);
+    //         updateCalificacion(data['calificacion_calificacion']);
+    //     }
+    // });
+}
+
 enviarEjercicio5_1 = () =>{
 
     if(!getConfirmacion()){
@@ -389,6 +422,7 @@ actualizarEjercicio = (elementoHTML) =>{
     let estado = document.getElementById(idEjercicio).checked;
 
     let token = getCookie('csrftoken');
+    console.log(token);
     $.ajax({
         type: 'POST',
         url: serverWeb+'ejercicios/actualizarEjercicio',

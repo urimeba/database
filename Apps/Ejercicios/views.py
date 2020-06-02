@@ -12,8 +12,6 @@ from datetime import datetime
 from django.utils import timezone
 from django.utils.timezone import localtime, now
 
-
-
 # Create your views here.
 @login_required
 def ejercicio(request, pk, id):
@@ -25,7 +23,8 @@ def ejercicio(request, pk, id):
 
     try:
         unidad = Unidad.objects.get(pk=pk)
-    except:
+    except Exception as error:
+        print(error)
         return redirect('dashboard')
 
     try:
@@ -34,15 +33,18 @@ def ejercicio(request, pk, id):
         numeroIntentos, createdIntentos = Intentos.objects.get_or_create(
             ejercicio=ejercicio, 
             alumno=alumno)
+
         calificacion, createdCalificacion = CalificacionEjercicio.objects.get_or_create(
             ejercicio = ejercicio, 
-            alumno = alumno)
+            alumno = alumno
+            )
 
         respuesta = Respuesta.objects.filter(
             ejercicio=ejercicio,
             alumno=alumno
         )
-    except:
+    except Exception as error:
+        print(error)
         return redirect('dashboard')
 
     
