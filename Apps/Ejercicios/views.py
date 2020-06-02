@@ -570,8 +570,8 @@ def ejercicios(request):
 
     ejercicios = Ejercicio.objects.filter(
         unidad__parcial__clase__in=clases
-    )
-    print(ejercicios)
+    ).order_by('unidad')
+    # print(ejercicios)
     return render(request, 'maestro/ejercicios.html', {
         'ejercicios':ejercicios
     })

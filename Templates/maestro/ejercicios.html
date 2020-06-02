@@ -9,15 +9,21 @@
     <script src="{% static 'js/jQuery.js' %}"></script>
 </head>
 <body>
-    {{ejercicios}}
 
+    {% regroup ejercicios by unidad as unidades_lista %}
     <ul>
-        {% for ejercicio in ejercicios %}
-            <li>{{ejercicio}} 
-                <span><input type="checkbox" name="active" id="{{ejercicio.id}}" {%  if ejercicio.is_active %} checked {% endif %} ></span> 
-                <label for="active">Activo</label>
-                <button onclick="actualizarEjercicio(this)" data-idejercicio="{{ejercicio.id}}" >Actualizar</button>
-            </li> 
+        {% for unidad in unidades_lista %}
+            <li>{{ unidad.grouper }}</li>
+            <ul>
+                {% for ejercicio in unidad.list %}
+                <li>{{ejercicio}} 
+                    <span><input type="checkbox" name="active" id="{{ejercicio.id}}" {%  if ejercicio.is_active %} checked {% endif %} ></span> 
+                    <label for="active">Activo</label>
+                    <button onclick="actualizarEjercicio(this)" data-idejercicio="{{ejercicio.id}}" >Actualizar</button>
+                </li> 
+                {% endfor %}
+            </ul>
+            
         {% endfor %}
     </ul>
 
