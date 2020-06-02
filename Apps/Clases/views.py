@@ -89,7 +89,6 @@ def cambiarContraseña(request):
         user.first_login=True
         user.save()        
         first_login=True
-        print("primera vez")
 
     if request.method == 'POST':
         form = PasswordChangeForm(user=request.user, data=request.POST, )

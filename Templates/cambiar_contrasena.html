@@ -7,12 +7,26 @@
       <p class="textoRestablecer">Después de esto, podras encontrar esta opcion en tu perfil</p>
   {% endif %}
   <div class="contenidoRestablecer">
+    
     <div class="contenidotextoRestablecer">
+
+      
 
         <form method="POST" class="formRestablecer">
             {% csrf_token %}
 
+            <div>
+              Consejos para tu contraseña:
+              <ul>
+                <li>No deberá ser parecida a tu información personal</li>
+                <li>Debe contener minimo 8 caracteres</li>
+                <li>No deberá ser una contraseña demasiado comun (Ej: 12345678, ABCDEFG)</li>
+                <li>Debe contener letras y números</li>
+              </ul>
+
+            </div>
             {% if messages %}
+            
             <ul>
                 {% for message in messages %}
                 <li>{{ message }}</li>
@@ -27,7 +41,6 @@
                     <th class="thRestablecer">{{ field.label_tag }}</th>
                     <td class="tdRestablecer">
                       {{ field }}
-                      {{ field.help_text }}
                     </td>
                   </tr>
                 {% endfor %}
