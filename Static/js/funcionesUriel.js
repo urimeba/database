@@ -74,6 +74,7 @@ updateIntentos = (numeroIntentos) => {
     divIntentos.innerText=numeroIntentos;
 }
 
+// Funcion para actualizar al calificacion
 updateCalificacion = (calificacion) =>{
     calificacion = parseFloat(calificacion);
     let spanCalificacion = document.getElementById("calificacion_calificacion");
@@ -295,35 +296,45 @@ enviarEjercicio3_1 = () =>{
 
 enviarEjercicio3_2 = () =>{
 
-    if(!getConfirmacion()){
+    let confirmacion = confirm("¿Deseas enviar tu ejercicio?");
+    if(!confirmacion){
         return;
     }
 
-    // let body = document.getElementById("tabla").getElementsByTagName('tbody')[0];
-    // let dic = {};
-    // dic[body.rows[0].cells[0].textContent] = [];
-    // dic[body.rows[0].cells[1].textContent] = [];
-    // dic[body.rows[0].cells[2].textContent] = [];
-    // for(let x=1; x<body.rows.length; x++){
-    //     dic[body.rows[0].cells[0].textContent].push(body.rows[x].cells[0].textContent);
-    //     dic[body.rows[0].cells[1].textContent].push(body.rows[x].cells[1].textContent);
-    //     dic[body.rows[0].cells[2].textContent].push(body.rows[x].cells[2].textContent);
-    // }
+    let res1 = getTextSelect("pregunta-1");
+    let res2 = getTextSelect("pregunta-2");
+    let res3 = getTextSelect("pregunta-3");
+    let res4 = getTextSelect("pregunta-4");
+    let res5 = getTextSelect("pregunta-5");
+    let res6 = getTextSelect("pregunta-6");
+    let res7 = getTextSelect("pregunta-7");
+    let res8 = getTextSelect("pregunta-8");
+    let res9 = getTextSelect("pregunta-9");
+    let res10 = getTextSelect("pregunta-10");
+    let token = getCookie('csrftoken');
 
-    // let token = getCookie('csrftoken');
-    // $.ajax({
-    //     type: 'POST',
-    //     url: serverWeb+'ejercicios/setEjercicio31',
-    //     data: {
-    //         csrfmiddlewaretoken: token,
-    //         tabla: JSON.stringify(dic),
-    //     },
-    //     success: function(data){
-    //         alert(data['calificacion']);
-    //         updateIntentos(data['intentos']);
-    //         updateCalificacion(data['calificacion_calificacion']);
-    //     }
-    // });
+    $.ajax({
+            type: 'POST',
+            url: serverWeb+'ejercicios/setEjercicio32',
+            data: {
+                csrfmiddlewaretoken: token,
+                res1: res1,
+                res2: res2,
+                res3: res3,
+                res4: res4,
+                res5: res5,
+                res6: res6,
+                res7: res7,
+                res8: res8,
+                res9: res9,
+                res10: res10,
+            },
+            success: function(data){
+                alert(data['calificacion']);
+                updateIntentos(data['intentos']);
+                updateCalificacion(data['calificacion_calificacion']);
+            }
+    });
 }
 
 enviarEjercicio5_1 = () =>{

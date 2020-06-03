@@ -363,6 +363,84 @@ def ejercicio31(request):
             'calificacion_calificacion':calificacionBD.calificacion
         })
 
+@login_required
+def ejercicio32(request):
+    alumno = Alumno.objects.get(usuario__id=request.user.id)
+    intentos = Intentos.objects.get(ejercicio__id=9, alumno=alumno)
+    calificacionBD = CalificacionEjercicio.objects.get(
+        ejercicio_id = 9,
+        alumno = alumno
+        )
+
+
+    if(intentos.numero>0):
+        # Creando un nuevo intento
+        fechaActual = datetime.now()
+        intentos.numero-=1
+        intentos.save()
+
+        calificacion = 0
+
+        res1 = request.POST['res1']
+        res2 = request.POST['res2']
+        res3 = request.POST['res3']
+        res4 = request.POST['res4']
+        res5 = request.POST['res5']
+        res6 = request.POST['res6']
+        res7 = request.POST['res7']
+        res8 = request.POST['res8']
+        res9 = request.POST['res9']
+        res10 = request.POST['res10']
+
+        if (res1 == "a"):
+            calificacion+=1
+
+        if (res2 == "b"):
+            calificacion += 1
+
+        if (res3 == "a"):
+            calificacion += 1
+
+        if (res4 == "b"):
+            calificacion += 1
+
+        if (res5 == "c"):
+            calificacion += 1
+
+        if (res6 == "b"):
+            calificacion += 1
+
+        if (res7 == "b"):
+            calificacion += 1
+
+        if (res8 == "a"):
+            calificacion += 1
+
+        if (res9 == "d"):
+            calificacion += 1
+
+        if (res10 == "d"):
+            calificacion += 1
+
+        calificacionBD.fecha = localtime(now())
+        calificacionBD.calificacion=calificacion
+        calificacionBD.save()
+
+        return JsonResponse({
+            'calificacion': "Tu calificacion ha sido: {0}. (Intentos restantes: {1} intento(s))"
+            .format(calificacion, intentos.numero),
+            'intentos':intentos.numero,
+            'calificacion_calificacion':calificacion
+        })
+
+    else:
+        return JsonResponse({
+            'calificacion': "Has superado el limite de intentos del ejercicio (3 intentos)",
+            'intentos':0,
+            'calificacion_calificacion':calificacionBD.calificacion
+        })
+
+
 # NECESARIO EL SERVIDOR SQL DE ORACLE
 @login_required
 def ejercicio51(request):
@@ -450,14 +528,15 @@ def ejercicio71(request):
         })
 
 
+# ACCIONES DEL MAESTRO--------------------------
 @login_required
 @user_passes_test(lambda user: user.isMaestro()==True)
 def dashboard_profesor(request):
-    print("Six2")
+    # print("Six2")
     return render(request, 'maestro/dashboard.html')
 
 
-# ACCIONES DEL MAESTRO--------------------------
+
 @login_required
 @user_passes_test(lambda user: user.isMaestro()==True)
 def respuestas31(request):
