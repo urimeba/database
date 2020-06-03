@@ -1,0 +1,140 @@
+
+
+{% extends 'actividadesEjercicios.html' %}
+
+{% block ejercicio %}
+<style>
+    li {
+    list-style-type: none;
+    width: 200px;
+    background:yellow;
+    border: solid 1px black;
+    }
+    #sortable1>li, #sortable2>li {
+        background: aqua;
+    }
+    li.filled {
+        background: #DDD !important;
+    }
+    span.delete {
+        background:red;
+        float:right;
+        width: 15px;
+        text-align:center;
+        cursor:pointer;
+    }
+</style>
+  
+<script>
+  window.onload = function(){
+      document.getElementById("btn-ejercicio-4-1").addEventListener("click", enviarEjercicio4_1);
+  }
+</script>
+
+
+1. ¿Para que se usan las llaves en BD?
+<select name="" id="pregunta-1">
+  <option value="a">Definir un atributo de la BD</option>
+  <!-- buena -->
+  <option value="b">Reconocer filas iguales</option>
+  <option value="c">Definir una contraseña a la BD</option>
+</select>
+<br>
+
+
+2. ¿Que es una llave primaria en BD?
+<select name="" id="pregunta-2">
+  <option value="a">Posibilidad de aumentar las columnas en una tabla</option>
+  <option value="b">Atributo del SMBD que determina los usuarios con permisos</option>
+  <!-- buena -->
+  <option value="c">Dato unico e irrepetible para buscar y comparar registros</option>
+</select>
+<br>
+
+
+3. ¿Que es una base de datos RELACIONAL? 
+<select name="" id="pregunta-3">
+  <!-- BUENA -->
+  <option value="a">Varias tablas que necesitan reglas de integridad</option>
+  <option value="b">Reglas de acceso y control en una base de datos</option>
+  <option value="c">Conjunto de tablas con datos similares</option>
+</select> 
+<br>
+
+
+4. Menciona las categorias de las reglas de integridad:
+<select name="" id="pregunta-4">
+  <!-- BUENA -->
+  <option value="a">Estructurales y Semánticas</option>
+  <option value="b">Semánticas y Seguridad</option>
+  <option value="c">Codificación, estructurales y semánticas</option>
+</select>
+<br>
+
+
+5. ¿Cual de las siguientes es parte de las restricciones estructurales?
+<select name="" id="pregunta-5">
+  <option value="a">Cada columna solo puede tener un valor</option>
+  <option value="b">Las llaves deben ser unicas</option>
+  <option value="c">Las llaves primarias NO pueden ser nulas</option>
+  <option value="d">No referencias desencadenadas entre tablas</option>
+  <!-- BUENA -->
+  <option value="e">Todas las anteriores</option>
+  <option value="f">Ninguna de las anteriores</option>
+</select>
+<br>
+
+
+6. ¿En que se basa la integridad referencial?
+<select name="" id="pregunta-6">
+  <!-- BUENA -->
+  <option value="a">Relaciones entre las filas de una tabla con las filas de otra tabla</option>
+  <option value="b">Relaciones entre las bases de datos de nuestro SMBD</option>
+  <option value="c">Relaciones entre los nombres de nuestras bases de datos</option>
+</select>
+<br>
+
+7. ¿Que atributos deben tener dos tablas para poder tener integridad referencial?
+<select name="" id="pregunta-7">
+  <option value="a">Llave primaria y no debe ser nula</option>
+  <!-- BUENA -->
+  <option value="b">Llave foranea y llave primaria</option>
+  <option value="c">Llave foranea y puede ser nula</option>
+</select>
+<br>
+
+8. Selecciona alguna regla de integridad referencial
+<select name="" id="pregunta-8">
+  
+  <option value="a">Las llaves primarias y foraneas deben ser del mismo tipo de dato</option>
+  <option value="b">Los valores en llaves foraneas ya deben existir como llaves primarias en la otra tabla</option>
+  <option value="c">Un atributo de llave foranea SI puede ser nulo</option>
+  <option value="d">La columnas de llaves primarias y foraneas NO necesitan tener el mismo nombre</option>
+  <!-- BUENA -->
+  <option value="e">Todas las anteriores</option>
+  <option value="f">Ninguna de las anteriores</option>
+</select>
+<br>
+
+9. ¿A que nivel se incorporan las reglas de integridad semanticas?
+<select name="" id="pregunta-9">
+  <option value="a">Navegador</option>
+  <option value="b">Modelo</option>
+  <!-- BUENA -->
+  <option value="c">Aplicación</option>
+</select>
+<br>
+
+10. ¿A que nivel se incorporan las reglas de integridad estructurales?
+<select name="" id="pregunta-10">
+  <option value="a">Navegador</option>
+  <!-- BUENA -->
+  <option value="b">Modelo</option>
+  <option value="c">Aplicación</option>
+</select>
+<br>
+
+<div class="container">
+    <button id="btn-ejercicio-4-1">Enviar</button>
+</div>
+{% endblock %}

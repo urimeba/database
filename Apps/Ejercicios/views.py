@@ -440,6 +440,127 @@ def ejercicio32(request):
             'calificacion_calificacion':calificacionBD.calificacion
         })
 
+@login_required
+def ejercicio41(request):
+    alumno = Alumno.objects.get(usuario__id=request.user.id)
+    intentos = Intentos.objects.get(ejercicio__id=10, alumno=alumno)
+    calificacionBD = CalificacionEjercicio.objects.get(
+        ejercicio_id = 10,
+        alumno = alumno
+        )
+
+    if(intentos.numero>0):
+        # Creando un nuevo intento
+        fechaActual = datetime.now()
+        intentos.numero-=1
+        intentos.save()
+
+        calificacion = 0
+
+        res1 = request.POST['res1']
+        res2 = request.POST['res2']
+        res3 = request.POST['res3']
+        res4 = request.POST['res4']
+        res5 = request.POST['res5']
+        res6 = request.POST['res6']
+        res7 = request.POST['res7']
+        res8 = request.POST['res8']
+        res9 = request.POST['res9']
+        res10 = request.POST['res10']
+
+        if (res1 == "b"):
+            calificacion+=1
+
+        if (res2 == "c"):
+            calificacion += 1
+
+        if (res3 == "a"):
+            calificacion += 1
+
+        if (res4 == "a"):
+            calificacion += 1
+
+        if (res5 == "e"):
+            calificacion += 1
+
+        if (res6 == "a"):
+            calificacion += 1
+
+        if (res7 == "b"):
+            calificacion += 1
+
+        if (res8 == "e"):
+            calificacion += 1
+
+        if (res9 == "c"):
+            calificacion += 1
+
+        if (res10 == "b"):
+            calificacion += 1
+
+        calificacionBD.fecha = localtime(now())
+        calificacionBD.calificacion=calificacion
+        calificacionBD.save()
+
+        return JsonResponse({
+            'calificacion': "Tu calificacion ha sido: {0}. (Intentos restantes: {1} intento(s))"
+            .format(calificacion, intentos.numero),
+            'intentos':intentos.numero,
+            'calificacion_calificacion':calificacion
+        })
+
+    else:
+        return JsonResponse({
+            'calificacion': "Has superado el limite de intentos del ejercicio (3 intentos)",
+            'intentos':0,
+            'calificacion_calificacion':calificacionBD.calificacion
+        })
+
+
+@login_required
+def ejercicio42(request):
+    alumno = Alumno.objects.get(usuario__id=request.user.id)
+    intentos = Intentos.objects.get(ejercicio__id=11, alumno=alumno)
+    calificacionBD = CalificacionEjercicio.objects.get(
+        ejercicio_id = 11,
+        alumno = alumno
+        )
+
+    if(intentos.numero>0):
+        intentos.numero-=1
+        intentos.save()
+
+        calificacion = 0
+        atributosPrestamo = json.loads(request.POST['atributosPrestamo'])
+        tamañoAtributos = len(atributosPrestamo)
+        calificacionNegativa=(6-tamañoAtributos)*(0.5) if tamañoAtributos>6 else 0
+
+        calificacion+=1.67 if 'PK - ID(number)' in atributosPrestamo else 0
+        calificacion+=1.67 if 'FK - expedienteAlumno(number)' in atributosPrestamo else 0
+        calificacion+=1.67 if 'FK - isbn(varchar2)' in atributosPrestamo else 0
+        calificacion+=1.67 if 'FK - claveEmpleado(number)' in atributosPrestamo else 0
+        calificacion+=1.67 if 'fechaPrestamo(date)' in atributosPrestamo else 0
+        calificacion+=1.67 if 'fechaEntrega(date)' in atributosPrestamo else 0
+
+        calificacion = calificacion - calificacionNegativa
+        calificacion=10 if calificacion>10 else round(calificacion, 2)
+
+        calificacionBD.fecha = localtime(now())
+        calificacionBD.calificacion=calificacion
+        calificacionBD.save()
+
+        return JsonResponse({
+            'calificacion': "Tu calificacion ha sido: {0}. (Intentos restantes: {1} intento(s))"
+            .format(calificacion, intentos.numero),
+            'intentos':intentos.numero,
+            'calificacion_calificacion':calificacion
+        })
+    else:
+        return JsonResponse({
+            'calificacion': "Has superado el limite de intentos del ejercicio (3 intentos)",
+            'intentos':0,
+            'calificacion_calificacion':calificacionBD.calificacion
+        })
 
 # NECESARIO EL SERVIDOR SQL DE ORACLE
 @login_required
@@ -484,6 +605,67 @@ def ejercicio51(request):
             'calificacion_calificacion':calificacionBD.calificacion
         })
 
+
+@login_required
+def ejercicio52(request):
+    alumno = Alumno.objects.get(usuario__id=request.user.id)
+    intentos = Intentos.objects.get(ejercicio__id=12, alumno=alumno)
+    calificacionBD = CalificacionEjercicio.objects.get(
+        ejercicio_id = 12,
+        alumno = alumno
+        )
+
+    if(intentos.numero>0):
+        intentos.numero-=1
+        intentos.save()
+
+        calificacion = 0
+        atributosNotNull = json.loads(request.POST['atributosNotNull'])
+        atributosUnique = json.loads(request.POST['atributosUnique'])
+        atributosPrimaryKey = json.loads(request.POST['atributosPrimaryKey'])
+        atributosForeignKey = json.loads(request.POST['atributosForeignKey'])
+        atributosCheck = json.loads(request.POST['atributosCheck'])
+        atributosDefault = json.loads(request.POST['atributosDefault'])
+
+        calificacion+=0.77 if 'Habilita la posibilidad de ingresar valores nulos' in atributosNotNull else 0
+
+        calificacion+=0.77 if 'Habilita la imposibilidad de ingresar dos valores iguales en la misma columna' in atributosUnique else 0
+        calificacion+=0.77 if 'Es posible ingresar valores nulos' in atributosUnique else 0
+
+        calificacion+=0.77 if 'Solo puede existir una por tabla' in atributosPrimaryKey else 0
+        calificacion+=0.77 if 'NO puede contener valores nulos' in atributosPrimaryKey else 0
+        calificacion+=0.77 if 'NO pueden existir dos valores en esta columna' in atributosPrimaryKey else 0
+
+        calificacion+=0.77 if 'Restingue los valores de una columna con base en los valores de otra tabla' in atributosForeignKey else 0
+        calificacion+=0.77 if 'SI puede contener valores nulos' in atributosForeignKey else 0
+        calificacion+=0.77 if 'Es posible que sea autoreferencial' in atributosForeignKey else 0
+
+        calificacion+=0.77 if 'Habilita la posibilidad de realizar validacion a los datos antes de ingresarlos a la BD' in atributosCheck else 0
+        calificacion+=0.77 if 'Usada para definir valores predeterminados o revisar que esten dentro de un rango de numeros' in atributosCheck else 0
+
+        calificacion+=0.77 if 'Establece un valor predeterminado si no se especifica uno' in atributosDefault else 0
+        calificacion+=0.77 if 'Reduce la carga de trabajo para la persona que llena formularios' in atributosDefault else 0
+
+        calificacion=10 if calificacion>10 else round(calificacion, 2)
+
+        calificacionBD.fecha = localtime(now())
+        calificacionBD.calificacion=calificacion
+        calificacionBD.save()
+
+        return JsonResponse({
+            'calificacion': "Tu calificacion ha sido: {0}. (Intentos restantes: {1} intento(s))"
+            .format(calificacion, intentos.numero),
+            'intentos':intentos.numero,
+            'calificacion_calificacion':calificacion
+        })
+    else:
+        return JsonResponse({
+            'calificacion': "Has superado el limite de intentos del ejercicio (3 intentos)",
+            'intentos':0,
+            'calificacion_calificacion':calificacionBD.calificacion
+        })
+
+
 # NECESARIO EL SERVIDOR SQL DE ORACLE
 @login_required
 def ejercicio71(request):
@@ -526,6 +708,9 @@ def ejercicio71(request):
             'intentos':0,
             'calificacion_calificacion':calificacionBD.calificacion
         })
+
+
+
 
 
 # ACCIONES DEL MAESTRO--------------------------
