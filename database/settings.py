@@ -13,7 +13,7 @@ SECRET_KEY = '$j%4gtvt-_6e@nwuw*eejm2-15^c_firai7i^r(abf%&4v0u^f'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False
 
-ALLOWED_HOSTS = ['uaqdatabass.herokuapp.com/']
+ALLOWED_HOSTS = ['*']
 
 
 # Application definition
