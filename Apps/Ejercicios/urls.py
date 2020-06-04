@@ -5,6 +5,7 @@ from Apps.Ejercicios import views as views_ejercicios
 
 urlpatterns = [
     path('<int:pk>', views_ejercicios.ejercicio, name='ejercicio'),
+    path('setEjercicio01', views_ejercicios.ejercicio01, name='setEjercicio01'),
     path('setEjercicio11', views_ejercicios.ejercicio11, name='setEjercicio11'),
     path('setEjercicio21', views_ejercicios.ejercicio21, name='setEjercicio21'),
     path('setEjercicio22', views_ejercicios.ejercicio22, name='setEjercicio22'),

@@ -57,6 +57,83 @@ def ejercicio(request, pk, id):
         'calificacion':calificacion
     })
 
+@login_required
+def ejercicio01(request):
+    alumno = Alumno.objects.get(usuario__id=request.user.id)
+    intentos = Intentos.objects.get(ejercicio__id=13, alumno=alumno)
+    calificacionBD = CalificacionEjercicio.objects.get(
+        ejercicio_id = 13,
+        alumno = alumno
+        )
+
+    if(intentos.numero>0):
+        # Creando un nuevo intento
+        fechaActual = datetime.now()
+        intentos.numero-=1
+        intentos.save()
+
+        calificacion = 0
+
+        res1 = request.POST['res1']
+        res2 = request.POST['res2']
+        res3 = request.POST['res3']
+        res4 = request.POST['res4']
+        res5 = request.POST['res5']
+        res6 = request.POST['res6']
+        res7 = request.POST['res7']
+        res8 = request.POST['res8']
+        res9 = request.POST['res9']
+        res10 = request.POST['res10']
+
+        if (res1 == "c"):
+            calificacion+=1
+
+        if (res2 == "a"):
+            calificacion += 1
+
+        if (res3 == "b"):
+            calificacion += 1
+
+        if (res4 == "c"):
+            calificacion += 1
+
+        if (res5 == "b"):
+            calificacion += 1
+
+        if (res6 == "a"):
+            calificacion += 1
+
+        if (res7 == "b"):
+            calificacion += 1
+
+        if (res8 == "a"):
+            calificacion += 1
+
+        if (res9 == "a"):
+            calificacion += 1
+
+        if (res10 == "c"):
+            calificacion += 1
+
+        calificacionBD.fecha = localtime(now())
+        calificacionBD.calificacion=calificacion
+        calificacionBD.save()
+
+        return JsonResponse({
+            'calificacion': "Tu calificacion ha sido: {0}. (Intentos restantes: {1} intento(s))"
+            .format(calificacion, intentos.numero),
+            'intentos':intentos.numero,
+            'calificacion_calificacion':calificacion
+        })
+
+    else:
+        return JsonResponse({
+            'calificacion': "Has superado el limite de intentos del ejercicio (3 intentos)",
+            'intentos':0,
+            'calificacion_calificacion':calificacionBD.calificacion
+        })
+
+
 # ID DEL EJERCICIO: 6
 @login_required
 def ejercicio11(request):

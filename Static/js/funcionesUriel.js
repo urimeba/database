@@ -92,6 +92,50 @@ getTextSelect = (elementId) => {
     return res;
 }
 
+
+enviarEjercicio0_1 = () =>{
+    let confirmacion = confirm("¿Deseas enviar tu ejercicio?");
+    if(!confirmacion){
+        return;
+    }
+
+    let res1 = getTextSelect("pregunta-1");
+    let res2 = getTextSelect("pregunta-2");
+    let res3 = getTextSelect("pregunta-3");
+    let res4 = getTextSelect("pregunta-4");
+    let res5 = getTextSelect("pregunta-5");
+    let res6 = getTextSelect("pregunta-6");
+    let res7 = getTextSelect("pregunta-7");
+    let res8 = getTextSelect("pregunta-8");
+    let res9 = getTextSelect("pregunta-9");
+    let res10 = getTextSelect("pregunta-10");
+    let token = getCookie('csrftoken');
+
+    $.ajax({
+            type: 'POST',
+            url: serverWeb+'ejercicios/setEjercicio01',
+            data: {
+                csrfmiddlewaretoken: token,
+                res1: res1,
+                res2: res2,
+                res3: res3,
+                res4: res4,
+                res5: res5,
+                res6: res6,
+                res7: res7,
+                res8: res8,
+                res9: res9,
+                res10: res10,
+            },
+            success: function(data){
+                alert(data['calificacion']);
+                updateIntentos(data['intentos']);
+                updateCalificacion(data['calificacion_calificacion']);
+            }
+    });
+}
+
+
 // Funcion para enviar el ejercicio al Back 
 enviarEjercicio1_1 = () => {
     let res1 = getTextSelect("pregunta-1");
