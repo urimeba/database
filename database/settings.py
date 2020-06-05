@@ -120,7 +120,10 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 STATICFILES_DIRS=[os.path.join(BASE_DIR, 'Static'),]
-STATIC_ROOT= os.path.join(BASE_DIR,'static_media/')
+STATIC_ROOT= os.path.join(BASE_DIR,'staticfiles/')
+
+MEDIA_URL = '/Templates/'
+MEDIA_ROOT = os.path.join(BASE_DIR, 'Templates')
 
 AUTH_USER_MODEL = 'Usuarios.User'
 
@@ -128,5 +131,3 @@ LOGIN_URL="Loginn"
 LOGIN_REDIRECT_URL="dashboard"
 LOGOUT_REDIRECT_URL="Loginn"
 
-MEDIA_URL = '/Templates/'
-MEDIA_ROOT = os.path.join(BASE_DIR, 'Templates')
