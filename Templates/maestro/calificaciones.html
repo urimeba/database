@@ -1,58 +1,69 @@
 {% load static %}
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Calificaciones</title>
+    <link rel="stylesheet" type="text/css" href="{% static 'css/estilos.css' %}">
     <script src="{% static 'js/funcionesUriel.js' %}"></script>
     <script src="{% static 'js/jQuery.js' %}"></script>
 </head>
+
 <body>
-    <div>
-        {{alumnos}}
-        <p>Clases:</p>
-			{% regroup alumnos by clase as lista_clases %}
-			<ul>
-			{% for clase in lista_clases %}
-				<li>{{clase.grouper}}
-					<ul>
-					{% for alumno in clase.list %}
-						<a href="{% url 'getCalificacionesAlumno' idAlumno=alumno.id %}">
-							<li>{{alumno.usuario.get_full_name}}</li>
-						</a>
-					{% endfor %}
-					</ul>
-				</li>
-			{% endfor %}
-			</ul>
-    </div>
+    <div class="principalCalificaciones">
+        <div class="contenedorCalificaciones">
+            <div class="contenidoCalificaciones">
+                <!-- {{alumnos}} -->
+                <p>Clases:</p>
+                {% regroup alumnos by clase as lista_clases %}
+                <ul>
+                    {% for clase in lista_clases %}
+                    <li>{{clase.grouper}}
+                        <ul>
+                            {% for alumno in clase.list %}
+                            <a href="{% url 'getCalificacionesAlumno' idAlumno=alumno.id %}">
+                                <li>{{alumno.usuario.get_full_name}}</li>
+                            </a>
+                            {% endfor %}
+                        </ul>
+                    </li>
+                    {% endfor %}
+                </ul>
+            </div>
 
-    {% if calificaciones %}
-    {% regroup calificaciones by ejercicio.unidad as unidades_lista %}
-        <div>
+            {% if calificaciones %}
+            {% regroup calificaciones by ejercicio.unidad as unidades_lista %}
+            <div class="descripcionCalificaciones">
 
-            <p>Alumno: {{calificaciones.0.alumno.usuario.get_full_name}}</p>
-            <p>Expediente: {{calificaciones.0.alumno}}</p>
+                <p class="p-descripcionCalificaciones">Alumno: {{calificaciones.0.alumno.usuario.get_full_name}}</p>
+                <p>Expediente: {{calificaciones.0.alumno}}</p>
+                <br>
+                <ul>
+                    {% for unidad in unidades_lista  %}
+                    <li>{{unidad.grouper}}</li>
 
-            <ul>
-            {% for unidad in unidades_lista  %}
-            <li>{{unidad.grouper}}</li>
+                    <ul>
+                        {% for calificacion in unidad.list %}
+                        <li>
+                            {{calificacion.ejercicio}}:</span>
+                            <input id="{{calificacion.id}}" type="number" step=".01"
+                                value="{{calificacion.calificacion}}">
+                            (fecha: {{calificacion.fecha}})
+                            <button id="btn-actualizar" class="btn-actualiza-calificaciones"
+                                data-idcalificacion="{{calificacion.id}}"
+                                onclick="actualizarCalificacion(this)">Actualizar</button>
+                        </li>
+                        {% endfor %}
+                    </ul>
 
-            <ul>
-                {% for calificacion in unidad.list %}
-                <li>
-                    {{calificacion.ejercicio}}:</span>
-                    <input id="{{calificacion.id}}" type="number" step=".01" value="{{calificacion.calificacion}}">
-                    (fecha: {{calificacion.fecha}})
-                    <button id="btn-actualizar" data-idcalificacion="{{calificacion.id}}" onclick="actualizarCalificacion(this)" >Actualizar</button>
-                </li>
-                {% endfor %}
-            </ul>
-
-            {% endfor %}
-            </ul>
+                    {% endfor %}
+                </ul>
+            </div>
         </div>
+    </div>
     {% endif %}
 </body>
+
 </html>

@@ -1,31 +1,42 @@
 {% load static %}
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Ejercicios</title>
+    <link rel="stylesheet" type="text/css" href="{% static 'css/estilos.css' %}">
     <script src="{% static 'js/funcionesUriel.js' %}"></script>
     <script src="{% static 'js/jQuery.js' %}"></script>
 </head>
-<body>
 
-    {% regroup ejercicios by unidad as unidades_lista %}
-    <ul>
-        {% for unidad in unidades_lista %}
-            <li>{{ unidad.grouper }}</li>
-            <ul>
-                {% for ejercicio in unidad.list %}
-                <li>{{ejercicio}} 
-                    <span><input type="checkbox" name="active" id="{{ejercicio.id}}" {%  if ejercicio.is_active %} checked {% endif %} ></span> 
-                    <label for="active">Activo</label>
-                    <button onclick="actualizarEjercicio(this)" data-idejercicio="{{ejercicio.id}}" >Actualizar</button>
-                </li> 
-                {% endfor %}
-            </ul>
-            
-        {% endfor %}
-    </ul>
+<body>
+    <div class="principalEjercicios">
+        <div class="contenedorEjercicios">
+            <div class="contenidoEjercicios">
+                {% regroup ejercicios by unidad as unidades_lista %}
+                <ul>
+                    {% for unidad in unidades_lista %}
+                    <li>{{ unidad.grouper }}</li>
+                    <ul>
+                        {% for ejercicio in unidad.list %}
+                        <li>{{ejercicio}}
+                            <span><input type="checkbox" name="active" id="{{ejercicio.id}}"
+                                    {%  if ejercicio.is_active %} checked {% endif %}></span>
+                            <label for="active">Activo</label>
+                            <button class="btn-actualiza-ejercicios" onclick="actualizarEjercicio(this)"
+                                data-idejercicio="{{ejercicio.id}}">Actualizar</button>
+                        </li>
+                        {% endfor %}
+                    </ul>
+
+                    {% endfor %}
+                </ul>
+            </div>
+        </div>
+    </div>
 
 </body>
+
 </html>
