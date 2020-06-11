@@ -538,3 +538,49 @@ enviarEjercicio7_1 = () =>{
     });
 
 }
+
+
+
+actualizarCalificacion = (elementoHTML) =>{
+    let idCalificacion = elementoHTML.dataset.idcalificacion;
+    let calificacion = document.getElementById(idCalificacion).value;
+
+    if(calificacion<0 || calificacion>10){
+        alert("La calificacion debe ser mayor a 0 y menor a 10");
+    }
+    
+    let token = getCookie('csrftoken');
+    $.ajax({
+        type: 'POST',
+        url: serverWeb+'ejercicios/setCalificacionAlumno',
+        data: {
+            csrfmiddlewaretoken: token,
+            idCalificacion:idCalificacion,
+            calificacion: calificacion
+        },
+        success: function(data){
+            alert(data);
+        }
+    });
+}
+
+actualizarEjercicio = (elementoHTML) =>{
+    let idEjercicio = elementoHTML.dataset.idejercicio;
+    let estado = document.getElementById(idEjercicio).checked;
+
+    let token = getCookie('csrftoken');
+    $.ajax({
+        type: 'POST',
+        url: serverWeb+'ejercicios/actualizarEjercicio',
+        data: {
+            csrfmiddlewaretoken: token,
+            idEjercicio:idEjercicio,
+            estado: estado
+        },
+        success: function(data){
+            alert(data);
+        }
+    });
+    
+
+}
