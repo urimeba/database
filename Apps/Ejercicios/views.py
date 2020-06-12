@@ -459,3 +459,4 @@ def getRespuesta31(request, idAlumno):
         'alumno':respuesta.alumno.usuario.get_full_name,
         'respuesta':json.loads(respuesta.respuesta)
     })
+    

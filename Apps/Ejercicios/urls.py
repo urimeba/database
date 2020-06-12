@@ -31,5 +31,4 @@ urlpatterns = [
 
     path('respuestas31', views_ejercicios.respuestas31, name='respuestas31'),
     path('respuestas31/<int:idAlumno>', views_ejercicios.getRespuesta31, name='getRespuesta31'),
-    
 ]

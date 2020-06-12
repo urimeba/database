@@ -127,6 +127,10 @@ Apps/Ejercicios/migrations/
 
 Apps/Clases/migrations/
 
+Apps/Usuarios/migrations/
+
+/migrations/
+
 Pipfile
 
 *.lock

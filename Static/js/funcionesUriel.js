@@ -1,5 +1,5 @@
 var serverQuerys = 'http://148.220.52.132:3000/';
-var serverWeb = 'http://127.0.0.1:8000/'
+var serverWeb = 'http://127.0.0.1:8000/compilador'
 
 // Funcion para obtener la Cookie y mandarla al Back
 function getCookie(name) {
@@ -18,13 +18,14 @@ function getCookie(name) {
 // Funcion para compilar codigo SQL de Oracle
 compile = async () => {
     let query = code.getValue();
-
     $.ajax({ 
         type: 'POST',
-        url: server,
-        data: {query:query},
+        url: serverWeb,
+        data: {query},
         success: function(data){
-
+            console.log(data)
+            data = data.data[0]
+            data = JSON.parse(data)
             let divResults = document.getElementById("tablas-container");
             divResults.innerHTML="";
 
