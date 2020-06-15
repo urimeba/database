@@ -26,6 +26,7 @@ Sortable.create(lista1, {
         setCoordinates(parseInt(fromPosition), parseInt(toPosition))
         shapePositions.push({coordX, coordY})
         createShape(`${coordX - 5}px`, `${coordY - 5}px`)
+        addFK(e)
 	},
 });
 
@@ -44,6 +45,7 @@ Sortable.create(lista2, {
         setCoordinates(parseInt(fromPosition), parseInt(toPosition))
         shapePositions.push({coordX, coordY})
         createShape(`${coordX - 5}px`, `${coordY - 5}px`)
+        addFK(e)
     }
 });
 
@@ -62,6 +64,7 @@ Sortable.create(lista3, {
         setCoordinates(parseInt(fromPosition), parseInt(toPosition))
         shapePositions.push({coordX, coordY})
         createShape(`${coordX - 5}px`, `${coordY - 5}px`)
+        addFK(e)
     }
 });
 
@@ -80,6 +83,7 @@ Sortable.create(lista4, {
         setCoordinates(parseInt(fromPosition), parseInt(toPosition))
         shapePositions.push({coordX, coordY})
         createShape(`${coordX - 5}px`, `${coordY - 5}px`)
+        addFK(e)
     }
 });
 
@@ -136,4 +140,27 @@ function createShape(x, y) {
     div.style.left = x
     div.style.top = y
     document.body.appendChild(div)
+}
+function addFK(e){
+   
+        //Insertar abajo del drag
+        var tabla= e.target.parentElement.parentElement;
+        var drag=e.target.parentElement;
+
+        var fk=document.createElement("b");
+        fk.classList.add("bold-fk");
+        fk.innerText="(FK)";
+        
+        var div=e.item.firstElementChild;
+        // var padre=event.item;
+         div.appendChild(fk);
+
+         insertAfter(drag,e.item);
+}
+function insertAfter(e,i){ 
+    if(e.nextSibling){ 
+        e.parentNode.insertBefore(i,e.nextSibling); 
+    } else { 
+        e.parentNode.appendChild(i); 
+    }
 }
