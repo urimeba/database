@@ -144,7 +144,6 @@ function createShape(x, y) {
 function addFK(e){
    
         //Insertar abajo del drag
-        var tabla= e.target.parentElement.parentElement;
         var drag=e.target.parentElement;
 
         var fk=document.createElement("b");
@@ -156,6 +155,7 @@ function addFK(e){
          div.appendChild(fk);
 
          insertAfter(drag,e.item);
+         e.item.classList.add("llaveForanea");
 }
 function insertAfter(e,i){ 
     if(e.nextSibling){ 
@@ -163,4 +163,14 @@ function insertAfter(e,i){
     } else { 
         e.parentNode.appendChild(i); 
     }
+}
+
+
+
+function reset(){
+    var foraneas=document.getElementsByClassName("llaveForanea");
+    
+  for (const iterator of foraneas) {
+      iterator.remove();
+  }
 }
