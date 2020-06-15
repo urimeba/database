@@ -3,11 +3,9 @@ const lista2 = document.getElementById("table-maestro");
 const lista3 = document.getElementById("table-clase");
 const lista4 = document.getElementById("table-xD");
 
-const paths = []
-const currentSVGPaths = []
-const shapePositions = []
-
-let coordX = coordY = 0
+let paths = []
+let currentSVGPaths = []
+let currentColor
 
 Sortable.create(lista1, {
     chosenClass: "seleccionado",
@@ -20,12 +18,9 @@ Sortable.create(lista1, {
         elemRect = e.to.parentElement.parentElement.getBoundingClientRect()
         console.log(elemRect)
 
-        const fromPosition = e.from.parentElement.parentElement.dataset.position,
-            toPosition = e.to.parentElement.parentElement.dataset.position;
+
+            
         addPaths({ start: '#'+e.from.id, end: '#'+e.to.id, strokeWidth: 1 })
-        setCoordinates(parseInt(fromPosition), parseInt(toPosition))
-        shapePositions.push({coordX, coordY})
-        createShape(`${coordX - 5}px`, `${coordY - 5}px`)
         addFK(e)
 	},
 });
@@ -39,12 +34,8 @@ Sortable.create(lista2, {
     animation: 150,
     onAdd: function(e) {
         console.log(e.to.parentElement.parentElement.getBoundingClientRect())
-        const fromPosition = e.from.parentElement.parentElement.dataset.position,
-            toPosition = e.to.parentElement.parentElement.dataset.position;
+
         addPaths({ start: '#'+e.from.id, end: '#'+e.to.id, strokeWidth: 1 })
-        setCoordinates(parseInt(fromPosition), parseInt(toPosition))
-        shapePositions.push({coordX, coordY})
-        createShape(`${coordX - 5}px`, `${coordY - 5}px`)
         addFK(e)
     }
 });
@@ -58,12 +49,8 @@ Sortable.create(lista3, {
     animation: 150,
     onAdd: function(e) {
         console.log(e.to.parentElement.parentElement.getBoundingClientRect())
-        const fromPosition = e.from.parentElement.parentElement.dataset.position,
-            toPosition = e.to.parentElement.parentElement.dataset.position;
+
         addPaths({ start: '#'+e.from.id, end: '#'+e.to.id, strokeWidth: 1 })
-        setCoordinates(parseInt(fromPosition), parseInt(toPosition))
-        shapePositions.push({coordX, coordY})
-        createShape(`${coordX - 5}px`, `${coordY - 5}px`)
         addFK(e)
     }
 });
@@ -77,12 +64,8 @@ Sortable.create(lista4, {
     animation: 150,
     onAdd: function(e) {
         console.log(e.to.parentElement.parentElement.getBoundingClientRect())
-        const fromPosition = e.from.parentElement.parentElement.dataset.position,
-            toPosition = e.to.parentElement.parentElement.dataset.position;
+
         addPaths({ start: '#'+e.from.id, end: '#'+e.to.id, strokeWidth: 1 })
-        setCoordinates(parseInt(fromPosition), parseInt(toPosition))
-        shapePositions.push({coordX, coordY})
-        createShape(`${coordX - 5}px`, `${coordY - 5}px`)
         addFK(e)
     }
 });
@@ -97,7 +80,7 @@ function addPaths(relation) {
         document.querySelector('#svgContainer').remove()
         document.querySelector('div.main').innerHTML = '<div id="svgContainer"></div>'
         $("#svgContainer").HTMLSVGconnect({
-            stroke: '#'+(Math.random()*0xFFFFFF<<0).toString(16),
+            stroke: '#' + generateRandomColor(),
             strokeWidth: 5,
             orientation: "auto",
             paths: [relation]
@@ -109,16 +92,9 @@ function addPaths(relation) {
     }
 }
 
-function setCoordinates(fromPos, toPos) {
-    if(fromPos < toPos) {
-        coordX = endX
-        coordY = endY
-    } else {
-        coordX = startX
-        coordY = startY
-    }
-
-    console.log(startX, startY, coordX, coordY)
+function generateRandomColor() {
+    currentColor = (Math.random()*0xFFFFFF<<0).toString(16)
+    return currentColor
 }
 
 function addHTMLPaths() {
@@ -133,14 +109,6 @@ function existRelation(relation) {
     return paths.findIndex(el => el.start === relation.start && el.end === relation.end) >= 0
 }
 
-function createShape(x, y) {
-    console.log(x, y)
-    const div = document.createElement('div')
-    div.classList.add('shape')
-    div.style.left = x
-    div.style.top = y
-    document.body.appendChild(div)
-}
 function addFK(e){
    
         //Insertar abajo del drag
@@ -149,7 +117,7 @@ function addFK(e){
         var fk=document.createElement("b");
         fk.classList.add("bold-fk");
         fk.innerText="(FK)";
-        
+        fk.style.color = '#'+currentColor
         var div=e.item.firstElementChild;
         // var padre=event.item;
          div.appendChild(fk);
@@ -169,7 +137,9 @@ function insertAfter(e,i){
 
 function reset(){
     var foraneas=document.getElementsByClassName("llaveForanea");
-    
+    paths = []
+    currentSVGPaths = []
+    document.querySelector('#svgContainer > svg').remove()
   for (const iterator of foraneas) {
       iterator.remove();
   }
