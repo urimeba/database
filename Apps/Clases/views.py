@@ -4,7 +4,7 @@ from django.contrib.auth.views import LoginView
 from django.http import JsonResponse, HttpResponse
 from Apps.Usuarios.models import Alumno
 from Apps.Clases.models import Unidad, Parcial
-from Apps.Ejercicios.models import Ejercicio, CalificacionEjercicio
+from Apps.Ejercicios.models import Ejercicio
 from django.contrib.auth.decorators import login_required, user_passes_test
 from django.conf import settings
 import json
@@ -17,10 +17,7 @@ class Loginn(LoginView):
     template_name = 'login.html'
     def get(self, request, *args, **kwargs):
         if request.user.is_authenticated:
-            if request.user.is_maestro:
-                return redirect('dashboard_profesor')
-            else:
-                return redirect(settings.LOGIN_REDIRECT_URL)
+            return redirect(settings.LOGIN_REDIRECT_URL)
         else:
             form = formLogin()
             return render(request, 'login.html', {'form':form})
@@ -31,10 +28,7 @@ def dashboard(request):
     if not request.user.first_login:
         return redirect('cambiarContraseña')
 
-    if request.user.is_maestro:
-        return redirect('dashboard_profesor')
-    else:
-        return render(request, 'dashboard.html')
+    return render(request, 'dashboard.html')
 
 @login_required
 def compilador(request):
@@ -42,13 +36,7 @@ def compilador(request):
 
 @login_required
 def perfil(request):
-    alumno = Alumno.objects.get(usuario=request.user)
-    calificaciones = CalificacionEjercicio.objects.filter(
-        alumno = alumno
-    ).order_by('ejercicio__unidad')
-    return render(request, 'profile.html', {
-        'calificaciones':calificaciones
-    })
+    return render(request, 'profile.html')
 
 @login_required
 def unidades(request):
@@ -101,6 +89,7 @@ def cambiarContraseña(request):
         user.first_login=True
         user.save()        
         first_login=True
+        print("primera vez")
 
     if request.method == 'POST':
         form = PasswordChangeForm(user=request.user, data=request.POST, )
@@ -112,12 +101,12 @@ def cambiarContraseña(request):
                 'form': form
             })
         else:
-            return render(request, 'cambiar_contrasena.html', {
+            return render(request, 'cambiar_contraseña.html', {
                 'form': form
             })
     else:
         form = PasswordChangeForm(user=request.user)
-        return render(request, 'cambiar_contrasena.html', {
+        return render(request, 'cambiar_contraseña.html', {
             'form': form,
             'first_login': first_login
         })

@@ -135,7 +135,7 @@
 
     .opciones{
         font-size: 17px;
-        cursor: pointer;
+     
       
         
         width: 120px;
@@ -227,10 +227,8 @@
         transition: .85s;
     }
     #play:hover{
-        background-color: #fafafa;
-        border:3px solid rgb(60, 170, 8);
-        color: rgb(60, 170, 8) !important;
-        font-weight: bold;
+        background-color: rgb(41, 117, 6);
+    
     }
     #borrar{
         border:none;
