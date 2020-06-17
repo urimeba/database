@@ -3,12 +3,17 @@
 
 <!-- drag -->
 <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
-<script src="js/libs/jquery.html-svg-connect.js"></script>
+<script src="{% static 'js/libs/jquery.html-svg-connect.js'%}"></script>
 <link rel="stylesheet" href="{% static 'css/drag.css'%}">
 <!-- drag -->
 
 
-<!-- INSERTAR EN EL DIV LLAMADO contenido-contenidoEjercicios-overflow -->
+<!-- INSERTAR EN EL DIV LLAMADO contenido-contenidoEjercicios-overflow   DEL HMTL ACTIVIDADES EJERCICIO-->
+<div style=" top: 268px; left: 522.96875px; background-color: green;"></div>
+				<div class="main">
+					<div id="svgContainer"></div>
+				   
+</div>
 <button id="reset" onclick="reset()">Deshacer</button>
 				<div class="contenedor-entidad">
 					<div class="table" id="t1" data-position="1">

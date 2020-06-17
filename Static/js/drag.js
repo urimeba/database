@@ -1,7 +1,7 @@
 const lista1 = document.getElementById("table-alumno");
 const lista2 = document.getElementById("table-maestro");
 const lista3 = document.getElementById("table-clase");
-const lista4 = document.getElementById("table-xD");
+
 
 let paths = []
 let currentSVGPaths = []
@@ -19,9 +19,9 @@ Sortable.create(lista1, {
         console.log(elemRect)
 
 
-            
+        addFK(e)  
         addPaths({ start: '#'+e.from.id, end: '#'+e.to.id, strokeWidth: 1 })
-        addFK(e)
+        
 	},
 });
 
@@ -34,9 +34,9 @@ Sortable.create(lista2, {
     animation: 150,
     onAdd: function(e) {
         console.log(e.to.parentElement.parentElement.getBoundingClientRect())
-
-        addPaths({ start: '#'+e.from.id, end: '#'+e.to.id, strokeWidth: 1 })
         addFK(e)
+        addPaths({ start: '#'+e.from.id, end: '#'+e.to.id, strokeWidth: 1 })
+        
     }
 });
 
@@ -49,26 +49,12 @@ Sortable.create(lista3, {
     animation: 150,
     onAdd: function(e) {
         console.log(e.to.parentElement.parentElement.getBoundingClientRect())
-
-        addPaths({ start: '#'+e.from.id, end: '#'+e.to.id, strokeWidth: 1 })
         addFK(e)
+        addPaths({ start: '#'+e.from.id, end: '#'+e.to.id, strokeWidth: 1 })
+        
     }
 });
 
-Sortable.create(lista4, {
-    chosenClass: "seleccionado",
-    group: {
-        name: 'shared',
-        pull: 'clone'
-    },
-    animation: 150,
-    onAdd: function(e) {
-        console.log(e.to.parentElement.parentElement.getBoundingClientRect())
-
-        addPaths({ start: '#'+e.from.id, end: '#'+e.to.id, strokeWidth: 1 })
-        addFK(e)
-    }
-});
 
 function addPaths(relation) {
     if(!existRelation(relation)) {
