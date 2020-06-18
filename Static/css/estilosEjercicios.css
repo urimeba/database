@@ -503,6 +503,12 @@ box-shadow: 6px 6px 5px 0px rgba(50,50,69,1);
             width: 90%;
             font-size: 18px;
         }
+        #contenido-contenidoEjercicios-overflow-drag{
+            width: 100%;
+            font-size: 18px;
+            z-index: 1;
+            position: relative;
+        }
         #sortable1 li, #sortable2 li, #sortable3 li, #sortable4 li, #sortable5 li{
             font-size: 17px !important;
             border-radius: 6px;

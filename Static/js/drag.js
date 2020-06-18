@@ -125,7 +125,11 @@ function reset(){
     var foraneas=document.getElementsByClassName("llaveForanea");
     paths = []
     currentSVGPaths = []
-    document.querySelector('#svgContainer > svg').remove()
+    const svgContainer = document.querySelector('#svgContainer > svg')
+    if(svgContainer) {
+        svgContainer.remove()
+
+    }
   for (const iterator of foraneas) {
       iterator.remove();
   }
