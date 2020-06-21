@@ -1,115 +1,102 @@
 {% load static %}
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="{% static 'css/compilador.css' %}">
     <link rel="stylesheet" href="{% static 'js/compilador lib/codemirror.css' %}">
     <link href="https://fonts.googleapis.com/css?family=Montserrat&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="{% static 'css/indexEstilos.css' %}">   
+    <link rel="stylesheet" href="{% static 'css/indexEstilos.css' %}">
     <link rel="stylesheet" href="{% static 'css/estilos.css' %}">
     <link rel="icon" type="image/png" href="{% static 'img/favicon-96x96.png'%}">
     <title>Compilador</title>
 </head>
+
 <body>
     <div id="Principal">
-      
         <div class="container">
             <div class="row">
                 <nav class="nav-menu">
-                    <a href="{% url 'dashboard' %}" style="text-decoration: none;"><p id="tituloEjercicio1" class="titulo-data">Data</p></a>
-                    <a href="{% url 'dashboard' %}" style="text-decoration: none;"><p id="tituloEjercicio2" class="titulo-base">Bass</p></a> 
+                    <a href="{% url 'dashboard' %}" style="text-decoration: none;">
+                        <p id="tituloEjercicio1" class="titulo-data">Data</p>
+                    </a>
+                    <a href="{% url 'dashboard' %}" style="text-decoration: none;">
+                        <p id="tituloEjercicio2" class="titulo-base">Bass</p>
+                    </a>
                     <ul class="navbar-list">
                         <li class="opciones"><a href="{% url 'dashboard' %}" class="opcionInicio">Inicio</a></li>
-                        <!-- <li class="opciones"><a href="{% url 'unidades' %}" class="opcionContenido">Contenido</a></li>
-                        <li class="opciones"><a href="{% url 'compilador' %}" class="opcionHerramientas">Compilador</a></li> -->
-                    </ul>		
+                    </ul>
                     <div class="navbar-profile">
-                        <!-- <div class="navbar-notification">
-                            
-                            <div class="navbar-notification-count">1</div>
-                        </div> -->
                         <div class="navbar-notification navbar-avatar">
                             <div class="navbar-picture">
                                 <a href="{% url 'perfil' %}">
                                     <img src="{% static 'img/perfil.jpg' %}" alt="" class="img-profile">
                                 </a>
-                                
+
                             </div>
                         </div>
-                                <div class="navbar-logout navbar-avatar">
-                                    <div >
-                                        <a href="{% url 'cerrarSesion' %}">
-                                            <img src="{% static 'img/logout.png' %}" alt="" class="img-logout">
-                                        </a>
-                                    </div>
-                                </div>
-                        
+                        <div class="navbar-logout navbar-avatar">
+                            <div>
+                                <a href="{% url 'cerrarSesion' %}">
+                                    <img src="{% static 'img/logout.png' %}" alt="" class="img-logout">
+                                </a>
+                            </div>
+                        </div>
                     </div>
                 </nav>
-                
+
             </div>
-
-
-<div id="mid-container">
-    <div id="img-dashboard-container">
-        <img src="{% static 'img/code.png' %}" alt="" class="img">
-    </div>
-    <div id="right-dashboard-container">
-    <div id="right-dashboard-container-top">
-        <div id="rectangulo"> </div>
-        <h1 id="dashboard-title">Inicio</h1>
-    </div>
-        <div id="right-dashboard-container-middle">
-            <P>Sin análisis de grandes volúmenes de datos, las empresas son ciegos y sordos, vagando hacia fuera sobre la web como ciervos en una autopista.
-                </P>
-                <b id="autor">– Geoffrey Moore</b>
+            <div id="mid-container">
+                <div id="img-dashboard-container">
+                    <img src="{% static 'img/code.png' %}" alt="" class="img">
+                </div>
+                <div id="right-dashboard-container">
+                    <div id="right-dashboard-container-top">
+                        <div id="rectangulo"> </div>
+                        <h1 id="dashboard-title">Inicio</h1>
+                    </div>
+                    <div id="right-dashboard-container-middle">
+                        <P>Sin análisis de grandes volúmenes de datos, las empresas son ciegos y sordos, vagando hacia
+                            fuera sobre la web como ciervos en una autopista.
+                        </P>
+                        <b id="autor">– Geoffrey Moore</b>
+                    </div>
+                </div>
+            </div>
+            <div id="bottom-container">
+                <div id="cuadros-container">
+                    <a href="{% url 'respuestas31' %}">
+                        <div class="dashboard-cuadros">
+                            <img src="{% static 'img/bd.png' %}" alt="">
+                            <text id="text1">Respuestas</text><b style="color: #FF5A09;">31</b>
+                        </div>
+                    </a>
+                    <a href="{% url 'getCalificaciones' %}">
+                        <div class="dashboard-cuadros">
+                            <img src="{% static 'img/bd.png' %}" alt="">
+                            <text id="text1">Calificaciones de</text><b style="color: #FF5A09;">ejercicios</b>
+                        </div>
+                    </a>
+                    <a href="{% url 'ejercicios' %}">
+                        <div class="dashboard-cuadros">
+                            <img src="{% static 'img/bd.png' %}" alt="">
+                            <text id="text1">Estado de</text><b style="color: #FF5A09;">ejercicios</b>
+                        </div>
+                    </a>
+                </div>
+            </div>
+            <footer>
+                <b>Centro de Desarrollo- </b><b style="color: #FF5A09;">2020 &copy.</b>
+            </footer>
         </div>
     </div>
-</div>
-<div id="bottom-container">
-<div id="cuadros-container">
-    <a href="{% url 'respuestas31' %}">
-        <div class="dashboard-cuadros">
-            <img src="{% static 'img/bd.png' %}" alt="">
-            <text id="text1">Respuestas</text><b style="color: #FF5A09;">31</b>
-        </div>
-    </a>
-
-    <a href="{% url 'getCalificaciones' %}">
-        <div class="dashboard-cuadros">
-            <img src="{% static 'img/bd.png' %}" alt="">
-            <text id="text1">Calificaciones de</text><b style="color: #FF5A09;">ejercicios</b>
-        </div>
-    </a>
-
-    <a href="{% url 'ejercicios' %}">
-        <div class="dashboard-cuadros">
-            <img src="{% static 'img/bd.png' %}" alt="">
-            <text id="text1">Estado de</text><b style="color: #FF5A09;">ejercicios</b>
-        </div>
-    </a>
-    
-    
-    
-</div>
-</div>
-<footer>
-
-<b>Centro de Desarrollo- </b><b style="color: #FF5A09;">2020 &copy.</b>
-</footer>
-
-        </div>
-
-        
-        
-     </div>
-
-     <script src="{% static 'js/compilador lib/codemirror.js' %}"></script>
-     <script src="{% static 'js/sql.js' %}"></script>
-     <script src="{% static 'js/Compilador.js' %}"></script>
-     <script src="{% static 'js/funcionesUriel.js' %}"></script>
-     <script src="{% static 'js/jQuery.js' %}"></script>
+    <script src="{% static 'js/compilador lib/codemirror.js' %}"></script>
+    <script src="{% static 'js/sql.js' %}"></script>
+    <script src="{% static 'js/Compilador.js' %}"></script>
+    <script src="{% static 'js/funcionesUriel.js' %}"></script>
+    <script src="{% static 'js/jQuery.js' %}"></script>
 </body>
+
 </html>
