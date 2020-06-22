@@ -15,11 +15,6 @@ Sortable.create(lista1, {
     },
     animation: 150,
     onAdd: function (e) {
-        elemRect = e.to.parentElement.parentElement.getBoundingClientRect()
-        console.log(elemRect)
-
-
-            
         addPaths({ start: '#'+e.from.id, end: '#'+e.to.id, strokeWidth: 1 })
         addFK(e)
 	},
@@ -33,8 +28,6 @@ Sortable.create(lista2, {
     },
     animation: 150,
     onAdd: function(e) {
-        console.log(e.to.parentElement.parentElement.getBoundingClientRect())
-
         addPaths({ start: '#'+e.from.id, end: '#'+e.to.id, strokeWidth: 1 })
         addFK(e)
     }
@@ -48,8 +41,6 @@ Sortable.create(lista3, {
     },
     animation: 150,
     onAdd: function(e) {
-        console.log(e.to.parentElement.parentElement.getBoundingClientRect())
-
         addPaths({ start: '#'+e.from.id, end: '#'+e.to.id, strokeWidth: 1 })
         addFK(e)
     }
@@ -63,33 +54,35 @@ Sortable.create(lista4, {
     },
     animation: 150,
     onAdd: function(e) {
-        console.log(e.to.parentElement.parentElement.getBoundingClientRect())
-
+        sizePaths.push(0)
         addPaths({ start: '#'+e.from.id, end: '#'+e.to.id, strokeWidth: 1 })
         addFK(e)
     }
 });
 
 function addPaths(relation) {
-    if(!existRelation(relation)) {
-        paths.push(relation)
-        addArrow(jQuery, window, document) // This file is in libs/jquer.html-svg-connect.js
-        if(document.querySelectorAll('#svgContainer > svg > path').length > 0) {
-            currentSVGPaths.push(document.querySelectorAll('#svgContainer > svg > path'))
-        }
-        document.querySelector('#svgContainer').remove()
-        document.querySelector('div.main').innerHTML = '<div id="svgContainer"></div>'
-        $("#svgContainer").HTMLSVGconnect({
-            stroke: '#' + generateRandomColor(),
-            strokeWidth: 5,
-            orientation: "auto",
-            paths: [relation]
-        });
+    paths.push(relation)
+    addArrow(jQuery, window, document) // This file is in libs/jquer.html-svg-connect.js
 
-        if(document.querySelectorAll('#svgContainer > svg > path').length > 0) {
-            addHTMLPaths()
-        }
+    currentSVGPaths.push(document.querySelectorAll('#svgContainer > svg > path'))
+
+    resetSVGContainer()
+
+    $("#svgContainer").HTMLSVGconnect({
+        stroke: '#' + generateRandomColor(),
+        strokeWidth: 5,
+        orientation: "auto",
+        paths: [relation]
+    });
+
+    if(document.querySelectorAll('#svgContainer > svg > path').length > 0) {
+        addHTMLPaths()
     }
+}
+
+function resetSVGContainer() {
+    document.querySelector('#svgContainer').remove()
+    document.querySelector('div.main').innerHTML = '<div id="svgContainer"></div>'
 }
 
 function generateRandomColor() {
@@ -125,6 +118,7 @@ function addFK(e){
          insertAfter(drag,e.item);
          e.item.classList.add("llaveForanea");
 }
+
 function insertAfter(e,i){ 
     if(e.nextSibling){ 
         e.parentNode.insertBefore(i,e.nextSibling); 
@@ -133,13 +127,19 @@ function insertAfter(e,i){
     }
 }
 
-
+function removeLastPathElement() {
+    const paths = Array.from(document.querySelectorAll('path')).slice(-1)
+    if(paths.length > 0) {
+        paths.pop().remove()
+        paths.pop()
+        currentSVGPaths.pop()
+    }
+}
 
 function reset(){
     var foraneas=document.getElementsByClassName("llaveForanea");
-    paths = []
-    currentSVGPaths = []
-    document.querySelector('#svgContainer > svg').remove()
+
+    removeLastPathElement()
   for (const iterator of foraneas) {
       iterator.remove();
   }
