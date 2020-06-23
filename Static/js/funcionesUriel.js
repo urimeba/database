@@ -1,5 +1,5 @@
 var serverQuerys = 'http://148.220.52.132:3000/';
-var serverWeb = 'http://127.0.0.1:8000/'
+var serverWeb = 'https://uaqdatabass.herokuapp.com/'
 
 // Funcion para obtener la Cookie y mandarla al Back
 function getCookie(name) {
