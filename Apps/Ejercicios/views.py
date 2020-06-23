@@ -60,9 +60,9 @@ def ejercicio(request, pk, id):
 @login_required
 def ejercicio01(request):
     alumno = Alumno.objects.get(usuario__id=request.user.id)
-    intentos = Intentos.objects.get(ejercicio__id=13, alumno=alumno)
+    intentos = Intentos.objects.get(ejercicio__id=1, alumno=alumno)
     calificacionBD = CalificacionEjercicio.objects.get(
-        ejercicio_id = 13,
+        ejercicio_id = 1,
         alumno = alumno
         )
 
@@ -137,9 +137,9 @@ def ejercicio01(request):
 @login_required
 def ejercicio11(request):
     alumno = Alumno.objects.get(usuario__id=request.user.id)
-    intentos = Intentos.objects.get(ejercicio__id=6, alumno=alumno)
+    intentos = Intentos.objects.get(ejercicio__id=2, alumno=alumno)
     calificacionBD = CalificacionEjercicio.objects.get(
-        ejercicio_id = 6,
+        ejercicio_id = 2,
         alumno = alumno
         )
 
@@ -276,9 +276,9 @@ def ejercicio21(request):
 @login_required
 def ejercicio22(request):
     alumno = Alumno.objects.get(usuario__id=request.user.id)
-    intentos = Intentos.objects.get(ejercicio__id=7, alumno=alumno)
+    intentos = Intentos.objects.get(ejercicio__id=4, alumno=alumno)
     calificacionBD = CalificacionEjercicio.objects.get(
-            ejercicio_id = 7,
+            ejercicio_id = 4,
             alumno = alumno
         )
 
@@ -336,9 +336,9 @@ def ejercicio22(request):
 def ejercicio23(request):
 
     alumno = Alumno.objects.get(usuario__id=request.user.id)
-    intentos = Intentos.objects.get(ejercicio__id=8, alumno=alumno)
+    intentos = Intentos.objects.get(ejercicio__id=5, alumno=alumno)
     calificacionBD = CalificacionEjercicio.objects.get(
-        ejercicio_id = 8,
+        ejercicio_id = 5,
         alumno = alumno
         )
 
@@ -400,9 +400,9 @@ def ejercicio23(request):
 def ejercicio31(request):
 
     alumno = Alumno.objects.get(usuario__id=request.user.id)
-    intentos = Intentos.objects.get(ejercicio__id=2, alumno=alumno)
+    intentos = Intentos.objects.get(ejercicio__id=6, alumno=alumno)
     calificacionBD = CalificacionEjercicio.objects.get(
-        ejercicio_id = 2,
+        ejercicio_id = 6,
         alumno = alumno
         )
 
@@ -442,9 +442,9 @@ def ejercicio31(request):
 @login_required
 def ejercicio32(request):
     alumno = Alumno.objects.get(usuario__id=request.user.id)
-    intentos = Intentos.objects.get(ejercicio__id=9, alumno=alumno)
+    intentos = Intentos.objects.get(ejercicio__id=7, alumno=alumno)
     calificacionBD = CalificacionEjercicio.objects.get(
-        ejercicio_id = 9,
+        ejercicio_id = 7,
         alumno = alumno
         )
 
@@ -519,9 +519,9 @@ def ejercicio32(request):
 @login_required
 def ejercicio41(request):
     alumno = Alumno.objects.get(usuario__id=request.user.id)
-    intentos = Intentos.objects.get(ejercicio__id=10, alumno=alumno)
+    intentos = Intentos.objects.get(ejercicio__id=8, alumno=alumno)
     calificacionBD = CalificacionEjercicio.objects.get(
-        ejercicio_id = 10,
+        ejercicio_id = 8,
         alumno = alumno
         )
 
@@ -595,9 +595,9 @@ def ejercicio41(request):
 @login_required
 def ejercicio42(request):
     alumno = Alumno.objects.get(usuario__id=request.user.id)
-    intentos = Intentos.objects.get(ejercicio__id=11, alumno=alumno)
+    intentos = Intentos.objects.get(ejercicio__id=9, alumno=alumno)
     calificacionBD = CalificacionEjercicio.objects.get(
-        ejercicio_id = 11,
+        ejercicio_id = 9,
         alumno = alumno
         )
 
@@ -641,9 +641,9 @@ def ejercicio42(request):
 @login_required
 def ejercicio51(request):
     alumno = Alumno.objects.get(usuario__id=request.user.id)
-    intentos = Intentos.objects.get(ejercicio__id=4, alumno=alumno)
+    intentos = Intentos.objects.get(ejercicio__id=10, alumno=alumno)
     calificacionBD = CalificacionEjercicio.objects.get(
-        ejercicio_id = 4,
+        ejercicio_id = 10,
         alumno = alumno
         )
 
@@ -659,7 +659,7 @@ def ejercicio51(request):
         # calificacionBD.save()
 
         respuesta, created = Respuesta.objects.get_or_create(
-            ejercicio_id = 4,
+            ejercicio_id = 10,
             alumno = alumno
         )
         respuesta.respuesta=query
@@ -683,9 +683,9 @@ def ejercicio51(request):
 @login_required
 def ejercicio52(request):
     alumno = Alumno.objects.get(usuario__id=request.user.id)
-    intentos = Intentos.objects.get(ejercicio__id=12, alumno=alumno)
+    intentos = Intentos.objects.get(ejercicio__id=11, alumno=alumno)
     calificacionBD = CalificacionEjercicio.objects.get(
-        ejercicio_id = 12,
+        ejercicio_id = 11,
         alumno = alumno
         )
 
@@ -742,9 +742,9 @@ def ejercicio52(request):
 @login_required
 def ejercicio61(request):
     alumno = Alumno.objects.get(usuario__id=request.user.id)
-    intentos = Intentos.objects.get(ejercicio__id=14, alumno=alumno)
+    intentos = Intentos.objects.get(ejercicio__id=12, alumno=alumno)
     calificacionBD = CalificacionEjercicio.objects.get(
-        ejercicio_id = 14,
+        ejercicio_id = 12,
         alumno = alumno
         )
 
@@ -819,9 +819,9 @@ def ejercicio61(request):
 def ejercicio62(request):
 
     alumno = Alumno.objects.get(usuario__id=request.user.id)
-    intentos = Intentos.objects.get(ejercicio__id=19, alumno=alumno)
+    intentos = Intentos.objects.get(ejercicio__id=13, alumno=alumno)
     calificacionBD = CalificacionEjercicio.objects.get(
-        ejercicio_id = 19,
+        ejercicio_id = 13,
         alumno = alumno
         )
 
@@ -837,7 +837,7 @@ def ejercicio62(request):
         # calificacionBD.save()
 
         respuesta, created = Respuesta.objects.get_or_create(
-            ejercicio_id = 19,
+            ejercicio_id = 13,
             alumno = alumno
         )
 
@@ -863,9 +863,9 @@ def ejercicio62(request):
 def ejercicio71(request):
 
     alumno = Alumno.objects.get(usuario__id=request.user.id)
-    intentos = Intentos.objects.get(ejercicio__id=5, alumno=alumno)
+    intentos = Intentos.objects.get(ejercicio__id=15, alumno=alumno)
     calificacionBD = CalificacionEjercicio.objects.get(
-        ejercicio_id = 5,
+        ejercicio_id = 15,
         alumno = alumno
         )
 
@@ -880,7 +880,7 @@ def ejercicio71(request):
         # calificacionBD.save()
 
         respuesta, created = Respuesta.objects.get_or_create(
-            ejercicio_id = 5,
+            ejercicio_id = 15,
             alumno = alumno
         )
 
@@ -904,9 +904,9 @@ def ejercicio71(request):
 @login_required
 def ejercicio72(request):
     alumno = Alumno.objects.get(usuario__id=request.user.id)
-    intentos = Intentos.objects.get(ejercicio__id=15, alumno=alumno)
+    intentos = Intentos.objects.get(ejercicio__id=14, alumno=alumno)
     calificacionBD = CalificacionEjercicio.objects.get(
-        ejercicio_id = 15,
+        ejercicio_id = 14,
         alumno = alumno
         )
 
@@ -1048,9 +1048,9 @@ def ejercicio81(request):
 @login_required
 def ejercicio82(request):
     alumno = Alumno.objects.get(usuario__id=request.user.id)
-    intentos = Intentos.objects.get(ejercicio__id=20, alumno=alumno)
+    intentos = Intentos.objects.get(ejercicio__id=17, alumno=alumno)
     calificacionBD = CalificacionEjercicio.objects.get(
-        ejercicio_id = 20,
+        ejercicio_id = 17,
         alumno = alumno
         )
 
@@ -1103,9 +1103,9 @@ def ejercicio82(request):
 @login_required
 def ejercicio91(request):
     alumno = Alumno.objects.get(usuario__id=request.user.id)
-    intentos = Intentos.objects.get(ejercicio__id=17, alumno=alumno)
+    intentos = Intentos.objects.get(ejercicio__id=18, alumno=alumno)
     calificacionBD = CalificacionEjercicio.objects.get(
-        ejercicio_id = 17,
+        ejercicio_id = 18,
         alumno = alumno
         )
 
@@ -1276,7 +1276,7 @@ def getCalificacionesAlumno(request, idAlumno):
 
     calificaciones = CalificacionEjercicio.objects.filter(
         alumno__id=idAlumno
-    ).order_by('ejercicio__unidad').order_by('id')
+    ).order_by('ejercicio__unidad__id')
 
     return render(request, 'maestro/calificaciones.html', {
         'alumnos':alumnos,
