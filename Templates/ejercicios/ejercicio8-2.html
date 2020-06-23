@@ -1,0 +1,131 @@
+
+
+{% extends 'actividadesEjercicios.html' %}
+
+{% block ejercicio %}
+<style>
+    li {
+    list-style-type: none;
+    width: 200px;
+    background:yellow;
+    border: solid 1px black;
+    }
+    #sortable1>li, #sortable2>li {
+        background: aqua;
+    }
+    li.filled {
+        background: #DDD !important;
+    }
+    span.delete {
+        background:red;
+        float:right;
+        width: 15px;
+        text-align:center;
+        cursor:pointer;
+    }
+</style>
+  
+<script>
+  window.onload = function(){
+      document.getElementById("btn-ejercicio-2-8").addEventListener("click", enviarEjercicio7_2);
+  }
+</script>
+
+1. Menciona con que tipos de dato es posible usar expresiones numericas
+<select name="" id="pregunta-1">
+  <option value="a">Numeros y cadenas de texto</option>
+  <!-- buena -->
+  <option value="b">Fechas y numero</option>
+  <option value="c">Fechas y cadenas de texto</option>
+</select>
+<br>
+
+
+2. Menciona una regla de la prioridad de opereaciones en bases de datos Oracle
+<select name="" id="pregunta-2">
+  <option value="a">Mltiplicacion y division tienen prioridad</option>
+  <option value="b">Si exiten operadores con la misma prioridad se evaluan de izquierda a derecha</option>
+  <option value="c">Los parentesis pueden modificar la prioridad de operadores</option>
+  <!-- Buena -->
+  <option value="d">Todos los anteriores</option>
+</select>
+<br>
+
+
+3. Selecciona la sentencia verdadera acerca de valores nulos
+<select name="" id="pregunta-3">
+  <option value="a">Es posible asignar un 0 como nulo</option>
+  <!-- Buena -->
+  <option value="b">Un valor nulo es un valor no asignado</option>
+  <option value="c">Es posible asignar un espacio en blanco como nulo</option>
+</select>
+<br>
+
+
+4. ¿Que valor arroja una operacion aritmetica que incluye valores nulos?
+<select name="" id="pregunta-4">
+   <!-- buena -->
+   <option value="a">Resultado nulo</option>
+   <option value="b">Resultado de cero</option>
+   <option value="c">Resultado normal, pues se omite el nulo/option>
+ </select> 
+ <br>
+
+5. ¿Que valor arroja una operacion aritmetica que incluye valores nulos?
+<select name="" id="pregunta-5">
+  <!-- buena -->
+  <option value="a">Resultado nulo</option>
+  <option value="b">Resultado de cero</option>
+  <option value="c">Resultado normal, pues se omite el nulo/option>
+</select> 
+<br>
+
+
+6. ¿Para que sirve el operador ALIAS?
+<select name="" id="pregunta-6">
+  <!-- buena -->
+  <option value="a">Modifica el nombre de la columna por el deseado</option>
+  <option value="b">Modifica el nombre de la tabla por el deseado</option>
+  <option value="c">Modifica el nombre de la base de datos por el deseado</option>
+</select>
+<br>
+
+7. ¿Para que sirve el operador de concatenación?
+<select name="" id="pregunta-7">
+  <option value="a">Une tablas de diferentes bases de datos</option>
+  <!-- buena -->
+  <option value="b">Une cadenas de caracteres de diferentes columnas</option>
+  <option value="c">Une restricciones de diferentes tablas</option>
+</select>
+<br>
+
+8. ¿Que es una literal en bases de datos Oracle?
+<select name="" id="pregunta-8">
+  <option value="a">Caracteres default en operaciones INSERT</option>
+  <!-- buena -->
+  <option value="b">Caracteres extra mostrado en operaciones SELECT</option>
+  <option value="c">Caracteres extra en operaciones INSERT</option>
+</select>
+<br>
+
+9. ¿Cual es el comando para eliminar filas duplicadas en clausulas SELECT?
+<select name="" id="pregunta-9">
+  <!-- Buena -->
+  <option value="a">DISTINCT</option>
+  <option value="b">NOT LIKE</option>
+  <option value="c">UNIQUE</option>
+</select>
+<br>
+
+10. ¿Que acción realiza el comando DESCRIBE?
+<select name="" id="pregunta-10">
+  <!-- buena -->
+  <option value="a">Permite visualizar la estructura de una tabla determinada</option>
+  <option value="b">Permite visualizar la estructura de una base de datos</option>
+  <option value="c">Permite visualizar la estructura de un campo especifico</option>
+</select>
+
+<div class="container">
+    <button id="btn-ejercicio-2-8">Enviar</button>
+</div>
+{% endblock %}
