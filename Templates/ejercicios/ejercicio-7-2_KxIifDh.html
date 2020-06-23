@@ -1,0 +1,32 @@
+{% extends 'actividadesEjercicios.html' %}
+
+{% block ejercicio %}
+
+<script>
+    window.onload=function(){
+    document.getElementById("btn-ejercicio-6-2").addEventListener("click", enviarEjercicio6_2);
+  }
+</script>
+<ol>
+    <li>El departamento de Recursos Humanos requiere una lista de todos los códigos de departamento (sin que se repitan) que están asignados a los empleados.</li>
+    <li>Se requiere saber cuál es la fecha de contratación (hire_date) de aquellos empleados que tienen por primer nombre “David”.</li>
+    <li>Se requiere saber el nombre, salario y comisión de aquellos empleados que tienen una comisión asignada.</li>
+    <li>Liste el nombre, apellido, fecha de contratación y salario de los empleados que se encuentren en los departamentos: 20, 70, 80 ó 100.</li>
+    <li>Liste el nombre, apellido, fecha de contratación y salario de aquellos empleados que no tienen comisión, y ordene la lista por nombre y apellido (utilice la cláusula ORDER BY).</li>
+    <li>Liste el nombre y apellido concatenado por una coma (,) de todos los empleados que tengan como cargo SH_CLERK ó FI_ACCOUNT, y que además no tengan comisión. Ordene el resultado por apellido descendente.</li>
+</ol>
+<br>
+<div id="query" contenteditable="true">
+    {% if respuestas %}
+        {% for respuesta in respuestas %}
+            {{respuesta.respuesta|linebreaksbr}}
+        {% endfor %}
+    {% else %}
+        Escribe aqui tu consultas SQL
+    {% endif %}
+</div>
+
+<div class="container">
+    <button id="btn-ejercicio-6-2">Enviar</button>
+</div>
+{% endblock %}

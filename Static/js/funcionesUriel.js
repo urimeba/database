@@ -559,6 +559,30 @@ enviarEjercicio6_1 = () =>{
                 updateCalificacion(data['calificacion_calificacion']);
             }
     });
+}
+
+
+enviarEjercicio6_2 = () =>{
+    let confirmacion = confirm("¿Deseas enviar tus SQL's?");
+    if(!confirmacion){
+        return;
+    }
+
+    let query = document.getElementById("query").innerText.trim();
+    let token = getCookie('csrftoken');
+    $.ajax({
+        type: 'POST',
+        url: serverWeb+'ejercicios/setEjercicio62',
+        data: {
+            csrfmiddlewaretoken: token,
+            query: query
+        },
+        success: function(data){
+            alert(data['calificacion']);
+            updateIntentos(data['intentos']);
+            updateCalificacion(data['calificacion_calificacion']);
+        }
+    });
 
 }
 
@@ -624,6 +648,7 @@ enviarEjercicio7_2 = () =>{
     });
 }
 
+
 enviarEjercicio8_1 = () =>{
     
     let confirmacion = confirm("¿Deseas enviar tu ejercicio?");
@@ -661,6 +686,46 @@ enviarEjercicio8_1 = () =>{
                 updateCalificacion(data['calificacion_calificacion']);
             }
     });
+}
+
+enviarEjercicio8_2 = () =>{
+    
+    let confirmacion = confirm("¿Deseas enviar tu ejercicio?");
+    if(!confirmacion){
+        return;
+    }
+
+    let llaves = [];
+
+    try {
+        let childDivs = document.getElementById("t4").querySelectorAll(".llaveForanea");
+        for(i=0; i< childDivs.length; i++ )
+        {
+            let childDiv = childDivs[i];
+            let attribute = childDiv.getElementsByTagName('p')[0].textContent;
+            llaves.push(attribute);
+        }
+
+        let token = getCookie('csrftoken');
+        $.ajax({
+                type: 'POST',
+                url: serverWeb+'ejercicios/setEjercicio82',
+                data: {
+                    csrfmiddlewaretoken: token,
+                    llaves: JSON.stringify(llaves)
+                },
+                success: function(data){
+                    alert(data['calificacion']);
+                    updateIntentos(data['intentos']);
+                    updateCalificacion(data['calificacion_calificacion']);
+                }
+        });
+        
+    } catch (error) {
+        alert('No tienes ninguna llave foranea. Arrastra los atributos entre tablas para relacionarlas');
+        console.log(error);
+    }
+    
 }
 
 enviarEjercicio10_1 = () =>{
@@ -746,6 +811,4 @@ actualizarEjercicio = (elementoHTML) =>{
             alert(data);
         }
     });
-    
-
 }

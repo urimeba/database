@@ -17,9 +17,11 @@ urlpatterns = [
     path('setEjercicio51', views_ejercicios.ejercicio51, name='setEjercicio51'),
     path('setEjercicio52', views_ejercicios.ejercicio52, name='setEjercicio52'),
     path('setEjercicio61', views_ejercicios.ejercicio61, name='setEjercicio61'),
+    path('setEjercicio62', views_ejercicios.ejercicio62, name='setEjercicio62'),
     path('setEjercicio71', views_ejercicios.ejercicio71, name='setEjercicio71'),
     path('setEjercicio72', views_ejercicios.ejercicio72, name='setEjercicio72'),
     path('setEjercicio81', views_ejercicios.ejercicio81, name='setEjercicio81'),
+    path('setEjercicio82', views_ejercicios.ejercicio82, name='setEjercicio82'),
     path('setEjercicio91', views_ejercicios.ejercicio91, name='setEjercicio91'),
 
 
