@@ -81,9 +81,6 @@ updateCalificacion = (calificacion) =>{
     spanCalificacion.textContent=calificacion.toFixed(2);;
 }
 
-
-
-
 // FUNCIONES DEL EJERCICIO #1 DE LA UNIDAD 1
 // Funcion para tomar el valor de un elemento SELECT
 getTextSelect = (elementId) => {
@@ -203,6 +200,11 @@ enviarEjercicio2_1 = () =>{
             return;
         }
     }
+
+    let confirmacion2 = confirm("¿Deseas enviar tu ejercicio?");
+    if(!confirmacion2){
+        return;
+    }
     
     let token = getCookie('csrftoken');
     let atributosVideojuegos =  getTextLi(videojuegos);
@@ -242,6 +244,11 @@ enviarEjercicio2_2 = () =>{
         if(!confirmacion){
             return;
         }
+    }
+
+    let confirmacion2 = confirm("¿Deseas enviar tu ejercicio?");
+    if(!confirmacion2){
+        return;
     }
 
     let token = getCookie('csrftoken');
@@ -285,6 +292,11 @@ enviarEjercicio2_3 = () =>{
         }
     }
 
+    let confirmacion2 = confirm("¿Deseas enviar tu ejercicio?");
+    if(!confirmacion2){
+        return;
+    }
+
     let token = getCookie('csrftoken');
     let atributosCaracter =  getTextLi(caracter);
     let atributosNumericos =  getTextLi(numericos);
@@ -311,6 +323,11 @@ enviarEjercicio2_3 = () =>{
 
 // FUNCIONES DEL EJERCICIO #1 DE LA UNIDAD 3
 enviarEjercicio3_1 = () =>{
+    let confirmacion = confirm("¿Deseas enviar tu ejercicio?");
+    if(!confirmacion){
+        return;
+    }
+
     let body = document.getElementById("tabla").getElementsByTagName('tbody')[0];
     let dic = {};
     dic[body.rows[0].cells[0].textContent] = [];
@@ -435,6 +452,11 @@ enviarEjercicio4_2 = () =>{
         }
     }
 
+    let confirmacion2 = confirm("¿Deseas enviar tu ejercicio?");
+    if(!confirmacion2){
+        return;
+    }
+
     let token = getCookie('csrftoken');
     let atributosPrestamo =  getTextLi(prestamo);
 
@@ -454,6 +476,12 @@ enviarEjercicio4_2 = () =>{
 }
 
 enviarEjercicio5_1 = () =>{
+
+    let confirmacion = confirm("¿Deseas enviar tu ejercicio?");
+    if(!confirmacion){
+        return;
+    }
+
     let query = document.getElementById("query").textContent.trim()
 
     let token = getCookie('csrftoken');
@@ -488,6 +516,11 @@ enviarEjercicio5_2 = () =>{
         if(!confirmacion){
             return;
         }
+    }
+
+    let confirmacion2 = confirm("¿Deseas enviar tu ejercicio?");
+    if(!confirmacion2){
+        return;
     }
 
     let token = getCookie('csrftoken');
@@ -563,7 +596,7 @@ enviarEjercicio6_1 = () =>{
 
 
 enviarEjercicio6_2 = () =>{
-    let confirmacion = confirm("¿Deseas enviar tus SQL's?");
+    let confirmacion = confirm("¿Deseas enviar tu ejercicio?");
     if(!confirmacion){
         return;
     }
@@ -587,6 +620,11 @@ enviarEjercicio6_2 = () =>{
 }
 
 enviarEjercicio7_1 = () =>{
+    let confirmacion = confirm("¿Deseas enviar tu ejercicio?");
+    if(!confirmacion){
+        return;
+    }
+
     let query = document.getElementById("query").textContent.trim()
 
     let token = getCookie('csrftoken');
