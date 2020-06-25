@@ -875,9 +875,9 @@ def ejercicio71(request):
         intentos.numero-=1
         intentos.save()
 
-        # calificacionBD.fecha = localtime(now())
-        # calificacionBD.calificacion=0
-        # calificacionBD.save()
+        calificacionBD.fecha = localtime(now())
+        calificacionBD.calificacion=0
+        calificacionBD.save()
 
         respuesta, created = Respuesta.objects.get_or_create(
             ejercicio_id = 15,
@@ -887,12 +887,45 @@ def ejercicio71(request):
         respuesta.respuesta=query
         respuesta.save()
 
+        calificacion = 0
+        query = query.lower()
+        query_fixed = query.splitlines()
+        for query in query_fixed:
+            query = query.strip()
+            query = query.replace(" ", "")
+
+            if('select*fromcountries;' in query):
+                calificacion +=1.43
+
+            if('select*fromregions;' in query):
+                calificacion +=1.43
+        
+            if('select*fromdepartments;' in query):
+                calificacion +=1.43
+
+            if('select*fromemployees;' in query):
+                calificacion +=1.43
+
+            if('select*fromjob_history;' in query):
+                calificacion +=1.43
+
+            if('select*fromjobs;' in query):
+                calificacion +=1.43
+            
+            if('select*fromlocations;' in query):
+                calificacion +=1.43
+
+        calificacion=10 if calificacion>10 else round(calificacion, 2)
+
+        calificacionBD.fecha = localtime(now())
+        calificacionBD.calificacion=calificacion
+        calificacionBD.save()
 
         return JsonResponse({
-            'calificacion': "TU CALIFICACION SERA ARREGLADA CUANDO EL SERVIDOR ESTE EN LINEA. (Intentos restantes: {0} intento(s))"
-            .format(intentos.numero),
+            'calificacion': "Tu calificacion ha sido: {0}. (Intentos restantes: {1} intento(s))"
+            .format(calificacion, intentos.numero),
             'intentos':intentos.numero,
-            'calificacion_calificacion':1234
+            'calificacion_calificacion':calificacion
         })
     else:
         return JsonResponse({

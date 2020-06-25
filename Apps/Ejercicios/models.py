@@ -28,6 +28,9 @@ class Intentos(models.Model):
         verbose_name = 'Intento'
         verbose_name_plural = 'Intentos'
 
+    def __str__(self):
+        return "{0} - Ejercicio: #{1}".format(self.alumno, self.ejercicio.id)
+
 class Respuesta(models.Model):
     ejercicio = models.ForeignKey('Ejercicio', on_delete=models.CASCADE)
     alumno = models.ForeignKey('Usuarios.Alumno', on_delete=models.CASCADE)
