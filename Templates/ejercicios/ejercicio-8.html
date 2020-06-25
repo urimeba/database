@@ -9,7 +9,7 @@
 <div contenteditable="true" id="query">
     {% if respuestas %}
         {% for respuesta in respuestas %}
-            {{respuesta.respuesta}}
+            {{respuesta.respuesta|linebreaksbr}}
         {% endfor %}
     {% else %}
         Escribe aqui tu consulta SQL
