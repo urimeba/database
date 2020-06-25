@@ -609,6 +609,7 @@ def ejercicio42(request):
         atributosPrestamo = json.loads(request.POST['atributosPrestamo'])
         tamañoAtributos = len(atributosPrestamo)
         calificacionNegativa=(6-tamañoAtributos)*(0.5) if tamañoAtributos>6 else 0
+        print(calificacionNegativa)
 
         calificacion+=1.67 if 'PK - ID(number)' in atributosPrestamo else 0
         calificacion+=1.67 if 'FK - expedienteAlumno(number)' in atributosPrestamo else 0
@@ -617,7 +618,7 @@ def ejercicio42(request):
         calificacion+=1.67 if 'fechaPrestamo(date)' in atributosPrestamo else 0
         calificacion+=1.67 if 'fechaEntrega(date)' in atributosPrestamo else 0
 
-        calificacion = calificacion - calificacionNegativa
+        calificacion = calificacion + calificacionNegativa
         calificacion=10 if calificacion>10 else round(calificacion, 2)
 
         calificacionBD.fecha = localtime(now())
