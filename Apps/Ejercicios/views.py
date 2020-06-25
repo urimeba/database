@@ -655,9 +655,9 @@ def ejercicio51(request):
         intentos.numero-=1
         intentos.save()
 
-        # calificacionBD.fecha = localtime(now())
-        # calificacionBD.calificacion=0
-        # calificacionBD.save()
+        calificacionBD.fecha = localtime(now())
+        calificacionBD.calificacion=0
+        calificacionBD.save()
 
         respuesta, created = Respuesta.objects.get_or_create(
             ejercicio_id = 10,
@@ -833,9 +833,9 @@ def ejercicio62(request):
         intentos.numero-=1
         intentos.save()
 
-        # calificacionBD.fecha = localtime(now())
-        # calificacionBD.calificacion=0
-        # calificacionBD.save()
+        calificacionBD.fecha = localtime(now())
+        calificacionBD.calificacion=0
+        calificacionBD.save()
 
         respuesta, created = Respuesta.objects.get_or_create(
             ejercicio_id = 13,
