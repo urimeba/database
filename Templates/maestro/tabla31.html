@@ -1,0 +1,44 @@
+{% extends 'maestro/respuestas31.html' %}
+{% block content %}
+
+<style>
+    #table,
+    th,
+    td {
+        padding: 10px;
+        border: 1px solid black;
+        border-collapse: collapse;
+    }
+</style>
+
+<p id="alumno">Alumno: {{alumno.usuario.get_full_name}}</p>
+
+<div>
+    {% if messages %}
+    {% for message in messages %}
+    <p class="textoResultadoRespuestas">{{message}}</p>
+    {% endfor %}
+    {% endif %}
+
+    <form class="formResultados" action="{% url 'getRespuesta31' idAlumno=alumno.id %}" method="POST">
+        {% csrf_token %}
+        {{form.as_p}}
+        <input type="submit" name="send" id="btn-enviar" value="Calificar" class="submitRespuestas">
+    </form>
+</div>
+
+<p class="tituloejercicioRespuestas">Ejercicio #1.1.</p>
+<div class="contenidoTablaRespuestas">
+    <table class="tablaRespuestas">
+        {% for key, value in respuesta.items %}
+        <tr>
+            <th>{{key}}</th>
+            {% for val in value %}
+            <td>{{val}}</td>
+            {% endfor %}
+        </tr>
+        {% endfor %}
+    </table>
+</div>
+
+{% endblock %}

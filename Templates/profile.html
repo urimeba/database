@@ -19,33 +19,54 @@
 		</div>
 		<div>
 			<p class="txt-white"><strong>Promedio</strong></p>
-			<p class="center-x txt-gray">0.0</p>
+			<p class="center-x txt-gray" style="color: #FF5A09; font-weight: bold;">0.0</p>
 		</div>
+		<a href="{% url 'cambiarContraseña' %}">
+			<button id="perfil-cambioContra">Cambiar contraseña</button>
+		</a>
 	</section>
 </div>
 
 <div class="row">
 	<div class="article-text txt-white">
 		<h2 class="fs-30 font-bold">Progreso del alumno</h2>
-		<p class="fs-18">Gráfica de estadísticas de cada unidad del alumno se muestran los aciertos por cada intento de los ejercicios de la unidad.</p>
+		<p class="fs-16">Gráfica de estadísticas de cada unidad del alumno, se muestran los aciertos por cada intento de los ejercicios en la unidad.</p>
 	</div>
 	<div class="article-information blue-dark-2">
 
 	</div>
 </div>
 
-<div class="row">
-	<section class="user-score">
-		<div class="score blue-dark-2"></div>
-		<div class="score blue-dark-2"></div>
-		<div class="score blue-dark-2"></div>
-		<div class="score blue-dark-2"></div>
-	</section>
-</div>
+
+{% if calificaciones %}
+	{% regroup calificaciones by ejercicio.unidad as unidad_lista %}
+
+	{% for unidad in unidad_lista %}
+	<p>{{unidad.grouper}}</p>
+
+	<div class="row">
+		<section class="user-score">
+		{% for calificacion in unidad.list %}
+			<div class="score blue-dark-2">
+				<p>{{calificacion.ejercicio}}</p>
+				<p>Calificacion: {{calificacion.calificacion}}</p>
+			</div>
+		{% endfor %}
+		</section>
+	</div>
+
+	{% endfor %}
+
+	
+		
+{% else %}
+	<div>
+		Aqui se mostrarán tus calificaciones de los ejercicios que hayas realizado.
+	</div>
+{% endif %}
+
 </div>
 
-<a href="{% url 'cambiarContraseña' %}">
-	<button>Cambiar contraseña</button>
-</a>
+
 
 {% endblock %}

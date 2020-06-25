@@ -28,8 +28,6 @@ class Intentos(models.Model):
         verbose_name = 'Intento'
         verbose_name_plural = 'Intentos'
 
-
-
 class Respuesta(models.Model):
     ejercicio = models.ForeignKey('Ejercicio', on_delete=models.CASCADE)
     alumno = models.ForeignKey('Usuarios.Alumno', on_delete=models.CASCADE)
@@ -40,6 +38,11 @@ class Respuesta(models.Model):
         verbose_name_plural = 'Respuestas'
 
 class CalificacionEjercicio(models.Model):
-    ejercicio = models.ForeignKey('Ejercicio', on_delete=models.CASCADE)
     alumno = models.ForeignKey('Usuarios.Alumno', on_delete=models.CASCADE)
-    calificacion = models.DecimalField(max_digits=4, decimal_places=2, default=0)
+    ejercicio = models.ForeignKey('Ejercicio', on_delete=models.CASCADE)
+    fecha = models.DateTimeField(auto_now=False, auto_now_add=False, null=True)
+    calificacion = models.DecimalField(max_digits=4, decimal_places=2, default=0,
+    validators=[
+            MaxValueValidator(10.00),
+            MinValueValidator(0.00)
+        ])

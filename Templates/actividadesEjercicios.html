@@ -12,6 +12,9 @@
 	<link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
 	<script src="https://code.jquery.com/jquery-1.12.4.js"></script>
 	<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+	<!-- <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script> -->
+	<!-- <script src="{% static 'libs/jquery.html-svg-connect.js'%}"></script> -->
+	<!-- <link rel="stylesheet" href="{% static 'css/drag.css'%}"> -->
 </head>
 <body>
 	<div id="principalEjercicios">
@@ -19,7 +22,7 @@
 			<div id="encabezado-menuEjercicios">
 				
 				<a href="{% url 'dashboard' %}"><img id="imagenback" src="{% static 'img/back.png' %}"></a>
-				<img id="imagenperfil" class="imgRedonda" src="{% static 'img/imagenperfil.jpg' %}">
+				<!-- <img id="imagenperfil" class="imgRedonda" src="{% static 'img/imagenperfil.jpg' %}"> -->
 				<p id="tituloEjercicio" class="titulo-data">Data</p>
 				<p id="tituloEjercicio" class="titulo-base">Bass</p>
 			</div>
@@ -32,6 +35,8 @@
 						{% if unidad.is_active %}
 						<a href="{% url 'unidad' pk=unidad.id %}">
 							{% if unidad.id == unidad_seleccionada.id %}
+								<div class="u1" id="unidad-{{ unidad.id }}">{{forloop.counter}}</div>
+							{% elif unidad.id == ejercicio_seleccionado.unidad.id %}
 								<div class="u1" id="unidad-{{ unidad.id }}">{{forloop.counter}}</div>
 							{% else %}
 								<div class="u2" id="unidad-{{ unidad.id }}">{{forloop.counter}}</div>
@@ -55,9 +60,18 @@
 						{% if ejercicios.count > 0 %}
 							{% for ejercicio in ejercicios %}
 								{% if ejercicio.is_active %}
+									<!-- <a href="{% url 'ejercicio' pk=ejercicio.unidad.id id=ejercicio.id %}">
+										<div class="t6" id="ejercicio-{{ejercicio.id}}">{{ejercicio.id}}</div>
+									</a> -->
+									{% if ejercicio.id == ejercicio_seleccionado.id %}
 									<a href="{% url 'ejercicio' pk=ejercicio.unidad.id id=ejercicio.id %}">
-										<div class="t6" id="ejercicio-{{ejercicio.id}}">{{forloop.counter}}</div>
+										<div class="u1" id="ejercicio-{{ejercicio.id}}">{{ejercicio.id}}</div>
 									</a>
+									{% else %}
+										<a href="{% url 'ejercicio' pk=ejercicio.unidad.id id=ejercicio.id %}">
+											<div class="t6" id="ejercicio-{{ejercicio.id}}">{{ejercicio.id}}</div>
+										</a>
+									{% endif %}
 								{% endif %}
 							{% endfor %}
 						{% else %}
@@ -81,11 +95,14 @@
 						<p id="title">No hay unidades activas por el momento. Intenta mas tarde o habla con el Profesor.</p>
 					{% endif %}
 					<div id="subtitulo-contenidoEjercicios">
+
+						{% if calificacion %}
 						<p id="calificacion">Calificación:</p>
 						<p><span id="calificacion_calificacion">{{calificacion.calificacion}}</span>/10</p>
-						
+						{% endif %}
+
 						{% if intentos %}
-							<p id="intentos-contenedor">Intentos: <span id="intentos" >{{intentos}}</span></p>
+							<p id="intentos-contenedor">Intentos restantes: <span id="intentos" >{{intentos}}</span></p>
 						{% endif %}
 					</div>
 				</div>
