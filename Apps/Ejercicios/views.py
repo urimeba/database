@@ -419,7 +419,7 @@ def ejercicio31(request):
 
 
         respuesta, created = Respuesta.objects.get_or_create(
-            ejercicio_id = 2,
+            ejercicio_id = 6,
             alumno = alumno
         )
         respuesta.respuesta=tabla
@@ -1096,6 +1096,9 @@ def ejercicio82(request):
         calificacion = 0
 
         llaves = json.loads(request.POST['llaves'])
+        tamañoLlaves = len(llaves)
+        # print(tamañoLlaves)
+        calificacionNegativa=(3-tamañoLlaves)*(2) if tamañoLlaves>3 else 0
 
         print(llaves)
         if('idProveedor' in llaves):
@@ -1110,9 +1113,9 @@ def ejercicio82(request):
             # print("SI HAY ID PROVEEDOR")
             calificacion += 3.4
 
+        calificacion = calificacion + calificacionNegativa
         calificacion=10 if calificacion>10 else round(calificacion, 2)
-        print(calificacion)
-
+        calificacion=0 if calificacion<0 else round(calificacion, 2)
         
 
         calificacionBD.fecha = localtime(now())
@@ -1238,17 +1241,17 @@ def getRespuesta31(request, idAlumno):
     clases = Clase.objects.filter(profesor=maestro)
 
     alumnos_entregados = Respuesta.objects.filter(
-        ejercicio__id=2,
+        ejercicio__id=6,
         alumno__clase__in=clases
     )
 
     respuesta = Respuesta.objects.get(
         alumno__id=idAlumno,
-        ejercicio__id=2
+        ejercicio__id=6
     )
 
     calificacionActual = CalificacionEjercicio.objects.get(
-        ejercicio__id=2,
+        ejercicio__id=6,
         alumno__id=idAlumno
     )
 
