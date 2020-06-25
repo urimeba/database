@@ -482,8 +482,7 @@ enviarEjercicio5_1 = () =>{
         return;
     }
 
-    let query = document.getElementById("query").textContent.trim()
-
+    let query = document.getElementById("query").innerText.trim();
     let token = getCookie('csrftoken');
     $.ajax({
         type: 'POST',
@@ -625,8 +624,7 @@ enviarEjercicio7_1 = () =>{
         return;
     }
 
-    let query = document.getElementById("query").textContent.trim()
-
+    let query = document.getElementById("query").innerText.trim();
     let token = getCookie('csrftoken');
     $.ajax({
         type: 'POST',
