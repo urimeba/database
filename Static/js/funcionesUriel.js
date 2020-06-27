@@ -30,7 +30,7 @@ compile = async () => {
             divResults.innerHTML="";
 
             if(Object.keys(data).length == 3){
-                divResults.appendChild(document.createTextNode(data['english']));
+                divResults.appendChild(document.createTextNode(data['spanish']));
                 return
             }
 
