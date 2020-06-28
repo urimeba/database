@@ -614,6 +614,10 @@
 .txt-white {
   color: #eeeeee;
 }
+/*--------Estilos maestro dashboard complemento -----*/
+#cuadros-container>a{
+  text-decoration: none;
+}
 /*--------Estilos NAVBAR Maestro ---------------*/
 .opciones {
   display: flex;
@@ -915,7 +919,8 @@
   background-color: #333645;
   display: flex;
   justify-content: center;
-  align-items: center;
+  align-items: center;    
+  overflow-y: auto;
 }
 .contenidoEjercicios {
   width: 90%;
