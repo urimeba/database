@@ -1,0 +1,176 @@
+
+{% extends 'actividadesEjercicios.html' %}
+{% block ejercicio %}
+<!-- INSTRUCCIONES DE JS  -->
+<!-- {% load static %} -->
+<!-- Insertar hasta arriba  -->
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+<script src="{% static 'libs/jquery.html-svg-connect.js'%}"></script>
+<link rel="stylesheet" href="{% static 'css/drag.css'%}">
+
+<script>
+    window.onload=function(){
+    document.getElementById("btn-ejercicio-8-2").addEventListener("click", enviarEjercicio8_2);
+  }
+</script>
+<!-- drag -->
+<div>
+	Reglas del modelo de negocio:
+	<ul>
+		<li>
+			Un proveedor tiene
+		</li>
+			<ol>
+				<li>Nombre</li>
+				<li>Numero de telefono</li>
+			</ol>
+
+		<li>
+			Una sucursal tiene:
+			<ol>
+				<li>Nombre</li>
+				<li>Dirección</li>
+				<li>Estado</li>
+				<li>Código postal</li>
+			</ol>
+		</li>
+
+		<li>
+			Una categoria de productos tiene:
+			<ol>
+				<li>Nombre</li>
+			</ol>
+		</li>
+
+		<li>
+			Un producto tiene:
+
+			<ol>
+				<li>Nombre</li>
+				<li>Precio</li>
+				<li>Sucursal (para saber donde se encuentra el producto)</li>
+				<li>Proveedor (para saber a quien acudir cuando se agote)</li>
+				<li>Categoria (para saber en que departamento se encuentra)</li>
+			</ol>
+
+		</li>
+	</ul>
+
+</div>
+
+<!-- INSERTAR EN EL DIV LLAMADO contenido-contenidoEjercicios-overflow   DEL HMTL ACTIVIDADES EJERCICIO-->
+<div id="contenido-contenidoEjercicios-overflow-drag">
+	<div style=" top: 268px; left: 522.96875px; background-color: green;"></div>
+	<div class="main">
+		<div id="svgContainer">
+			<svg></svg>
+		</div>
+	   
+	</div>
+	<button id="reset" onclick="reset()">Deshacer</button>
+
+		<div class="contenedor-entidad">
+			<div class="table" id="t1" data-position="1">
+				<div class="table-header">
+					<h2>Proveedor</h2>
+				</div>
+				<div class="table-body">
+					<div class="row-container" id="table-alumno">
+						<div class="row">
+							<div class="fk-container"></div>
+							<p>idProveedor</p>
+						</div>
+						<div class="row">
+							<div class="fk-container"></div>
+							<p>nombreProveedor</p>
+						</div>
+						<div class="row">
+							<div class="fk-container"></div>
+							<p>telefono</p>
+						</div>
+					</div>
+				</div>
+			</div>
+		
+			<div class="table" id="t2" data-position="2">
+				<div class="table-header">
+					<h2>Sucursal</h2>
+				</div>
+				<div class="table-body">
+					<div class="row-container" id="table-maestro">
+						<div class="row">
+							<div class="fk-container"></div>
+							<p>idSucursal</p>
+						</div>
+						<div class="row">
+							<div class="fk-container"></div>
+							<p>nombreSucursal</p>
+						</div>
+						<div class="row">
+							<div class="fk-container"></div>
+							<p>direccion</p>
+						</div>
+						<div class="row">
+							<div class="fk-container"></div>
+							<p>estado</p>
+						</div>
+						<div class="row">
+							<div class="fk-container"></div>
+							<p>codigoPostal</p>
+						</div>
+					</div>
+				</div>
+			</div>
+		
+			<div class="table" id="t3" data-position="3">
+				<div class="table-header">
+					<h2>Categoría</h2>
+				</div>
+				<div class="table-body">
+					<div class="row-container" id="table-clase">
+						<div class="row">
+							<div class="fk-container"></div>
+							<p>idCategoria</p>
+						</div>
+						<div class="row">
+							<div class="fk-container"></div>
+							<p>nombreCategoria</p>
+						</div>
+					</div>
+				</div>
+			</div>
+
+			<div class="table" id="t4" data-position="4">
+				<div class="table-header">
+					<h2>Producto</h2>
+				</div>
+				<div class="table-body">
+					<div class="row-container" id="table-resultado">
+						<div class="row">
+							<div class="fk-container"></div>
+							<p>idProducto</p>
+						</div>
+						<div class="row">
+							<div class="fk-container"></div>
+							<p>nombreProducto</p>
+						</div>
+						<div class="row">
+							<div class="fk-container"></div>
+							<p>precio</p>
+						</div>
+						
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<div class="container">
+		<button id="btn-ejercicio-8-2">Enviar</button>
+	</div>
+                
+
+<!-- Insertar Al final del html  -->
+<script src="https://cdn.jsdelivr.net/npm/sortablejs@latest/Sortable.min.js"></script>
+<script src="{% static 'js/drag.js'%}"></script>
+{% endblock %}

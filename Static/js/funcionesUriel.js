@@ -81,9 +81,6 @@ updateCalificacion = (calificacion) =>{
     spanCalificacion.textContent=calificacion.toFixed(2);;
 }
 
-
-
-
 // FUNCIONES DEL EJERCICIO #1 DE LA UNIDAD 1
 // Funcion para tomar el valor de un elemento SELECT
 getTextSelect = (elementId) => {
@@ -203,6 +200,11 @@ enviarEjercicio2_1 = () =>{
             return;
         }
     }
+
+    let confirmacion2 = confirm("¿Deseas enviar tu ejercicio?");
+    if(!confirmacion2){
+        return;
+    }
     
     let token = getCookie('csrftoken');
     let atributosVideojuegos =  getTextLi(videojuegos);
@@ -242,6 +244,11 @@ enviarEjercicio2_2 = () =>{
         if(!confirmacion){
             return;
         }
+    }
+
+    let confirmacion2 = confirm("¿Deseas enviar tu ejercicio?");
+    if(!confirmacion2){
+        return;
     }
 
     let token = getCookie('csrftoken');
@@ -285,6 +292,11 @@ enviarEjercicio2_3 = () =>{
         }
     }
 
+    let confirmacion2 = confirm("¿Deseas enviar tu ejercicio?");
+    if(!confirmacion2){
+        return;
+    }
+
     let token = getCookie('csrftoken');
     let atributosCaracter =  getTextLi(caracter);
     let atributosNumericos =  getTextLi(numericos);
@@ -311,6 +323,11 @@ enviarEjercicio2_3 = () =>{
 
 // FUNCIONES DEL EJERCICIO #1 DE LA UNIDAD 3
 enviarEjercicio3_1 = () =>{
+    let confirmacion = confirm("¿Deseas enviar tu ejercicio?");
+    if(!confirmacion){
+        return;
+    }
+
     let body = document.getElementById("tabla").getElementsByTagName('tbody')[0];
     let dic = {};
     dic[body.rows[0].cells[0].textContent] = [];
@@ -435,6 +452,11 @@ enviarEjercicio4_2 = () =>{
         }
     }
 
+    let confirmacion2 = confirm("¿Deseas enviar tu ejercicio?");
+    if(!confirmacion2){
+        return;
+    }
+
     let token = getCookie('csrftoken');
     let atributosPrestamo =  getTextLi(prestamo);
 
@@ -454,8 +476,13 @@ enviarEjercicio4_2 = () =>{
 }
 
 enviarEjercicio5_1 = () =>{
-    let query = document.getElementById("query").textContent.trim()
 
+    let confirmacion = confirm("¿Deseas enviar tu ejercicio?");
+    if(!confirmacion){
+        return;
+    }
+
+    let query = document.getElementById("query").innerText.trim();
     let token = getCookie('csrftoken');
     $.ajax({
         type: 'POST',
@@ -490,6 +517,11 @@ enviarEjercicio5_2 = () =>{
         }
     }
 
+    let confirmacion2 = confirm("¿Deseas enviar tu ejercicio?");
+    if(!confirmacion2){
+        return;
+    }
+
     let token = getCookie('csrftoken');
     let atributosNotNull =  getTextLi(notNull);
     let atributosUnique =  getTextLi(unique);
@@ -519,9 +551,80 @@ enviarEjercicio5_2 = () =>{
 
 }
 
-enviarEjercicio7_1 = () =>{
-    let query = document.getElementById("query").textContent.trim()
+enviarEjercicio6_1 = () =>{
+    let confirmacion = confirm("¿Deseas enviar tu ejercicio?");
+    if(!confirmacion){
+        return;
+    }
 
+    let res1 = getTextSelect("pregunta-1");
+    let res2 = getTextSelect("pregunta-2");
+    let res3 = getTextSelect("pregunta-3");
+    let res4 = getTextSelect("pregunta-4");
+    let res5 = getTextSelect("pregunta-5");
+    let res6 = getTextSelect("pregunta-6");
+    let res7 = getTextSelect("pregunta-7");
+    let res8 = getTextSelect("pregunta-8");
+    let res9 = getTextSelect("pregunta-9");
+    let res10 = getTextSelect("pregunta-10");
+    let token = getCookie('csrftoken');
+
+    $.ajax({
+            type: 'POST',
+            url: serverWeb+'ejercicios/setEjercicio61',
+            data: {
+                csrfmiddlewaretoken: token,
+                res1: res1,
+                res2: res2,
+                res3: res3,
+                res4: res4,
+                res5: res5,
+                res6: res6,
+                res7: res7,
+                res8: res8,
+                res9: res9,
+                res10: res10,
+            },
+            success: function(data){
+                alert(data['calificacion']);
+                updateIntentos(data['intentos']);
+                updateCalificacion(data['calificacion_calificacion']);
+            }
+    });
+}
+
+
+enviarEjercicio6_2 = () =>{
+    let confirmacion = confirm("¿Deseas enviar tu ejercicio?");
+    if(!confirmacion){
+        return;
+    }
+
+    let query = document.getElementById("query").innerText.trim();
+    let token = getCookie('csrftoken');
+    $.ajax({
+        type: 'POST',
+        url: serverWeb+'ejercicios/setEjercicio62',
+        data: {
+            csrfmiddlewaretoken: token,
+            query: query
+        },
+        success: function(data){
+            alert(data['calificacion']);
+            updateIntentos(data['intentos']);
+            updateCalificacion(data['calificacion_calificacion']);
+        }
+    });
+
+}
+
+enviarEjercicio7_1 = () =>{
+    let confirmacion = confirm("¿Deseas enviar tu ejercicio?");
+    if(!confirmacion){
+        return;
+    }
+
+    let query = document.getElementById("query").innerText.trim();
     let token = getCookie('csrftoken');
     $.ajax({
         type: 'POST',
@@ -539,7 +642,170 @@ enviarEjercicio7_1 = () =>{
 
 }
 
+enviarEjercicio7_2 = () =>{
+    let confirmacion = confirm("¿Deseas enviar tu ejercicio?");
+    if(!confirmacion){
+        return;
+    }
 
+    let res1 = getTextSelect("pregunta-1");
+    let res2 = getTextSelect("pregunta-2");
+    let res3 = getTextSelect("pregunta-3");
+    let res4 = getTextSelect("pregunta-4");
+    let res5 = getTextSelect("pregunta-5");
+    let res6 = getTextSelect("pregunta-6");
+    let res7 = getTextSelect("pregunta-7");
+    let res8 = getTextSelect("pregunta-8");
+    let res9 = getTextSelect("pregunta-9");
+    let res10 = getTextSelect("pregunta-10");
+    let token = getCookie('csrftoken');
+
+    $.ajax({
+            type: 'POST',
+            url: serverWeb+'ejercicios/setEjercicio72',
+            data: {
+                csrfmiddlewaretoken: token,
+                res1: res1,
+                res2: res2,
+                res3: res3,
+                res4: res4,
+                res5: res5,
+                res6: res6,
+                res7: res7,
+                res8: res8,
+                res9: res9,
+                res10: res10,
+            },
+            success: function(data){
+                alert(data['calificacion']);
+                updateIntentos(data['intentos']);
+                updateCalificacion(data['calificacion_calificacion']);
+            }
+    });
+}
+
+
+enviarEjercicio8_1 = () =>{
+    
+    let confirmacion = confirm("¿Deseas enviar tu ejercicio?");
+    if(!confirmacion){
+        return;
+    }
+
+    let res1 = getTextSelect("pregunta-1");
+    let res2 = getTextSelect("pregunta-2");
+    let res3 = getTextSelect("pregunta-3");
+    let res4 = getTextSelect("pregunta-4");
+    let res5 = getTextSelect("pregunta-5");
+    let res6 = getTextSelect("pregunta-6");
+    let res7 = getTextSelect("pregunta-7");
+    let res8 = getTextSelect("pregunta-8");
+    let token = getCookie('csrftoken');
+
+    $.ajax({
+            type: 'POST',
+            url: serverWeb+'ejercicios/setEjercicio81',
+            data: {
+                csrfmiddlewaretoken: token,
+                res1: res1,
+                res2: res2,
+                res3: res3,
+                res4: res4,
+                res5: res5,
+                res6: res6,
+                res7: res7,
+                res8: res8,
+            },
+            success: function(data){
+                alert(data['calificacion']);
+                updateIntentos(data['intentos']);
+                updateCalificacion(data['calificacion_calificacion']);
+            }
+    });
+}
+
+enviarEjercicio8_2 = () =>{
+    
+    let confirmacion = confirm("¿Deseas enviar tu ejercicio?");
+    if(!confirmacion){
+        return;
+    }
+
+    let llaves = [];
+
+    try {
+        let childDivs = document.getElementById("t4").querySelectorAll(".llaveForanea");
+        for(i=0; i< childDivs.length; i++ )
+        {
+            let childDiv = childDivs[i];
+            let attribute = childDiv.getElementsByTagName('p')[0].textContent;
+            llaves.push(attribute);
+        }
+
+        let token = getCookie('csrftoken');
+        $.ajax({
+                type: 'POST',
+                url: serverWeb+'ejercicios/setEjercicio82',
+                data: {
+                    csrfmiddlewaretoken: token,
+                    llaves: JSON.stringify(llaves)
+                },
+                success: function(data){
+                    alert(data['calificacion']);
+                    updateIntentos(data['intentos']);
+                    updateCalificacion(data['calificacion_calificacion']);
+                }
+        });
+        
+    } catch (error) {
+        alert('No tienes ninguna llave foranea. Arrastra los atributos entre tablas para relacionarlas');
+        console.log(error);
+    }
+    
+}
+
+enviarEjercicio10_1 = () =>{
+    
+    let confirmacion = confirm("¿Deseas enviar tu ejercicio?");
+    if(!confirmacion){
+        return;
+    }
+
+    let res1 = getTextSelect("pregunta-1");
+    let res2 = getTextSelect("pregunta-2");
+    let res3 = getTextSelect("pregunta-3");
+    let res4 = getTextSelect("pregunta-4");
+    let res5 = getTextSelect("pregunta-5");
+    let res6 = getTextSelect("pregunta-6");
+    let res7 = getTextSelect("pregunta-7");
+    let res8 = getTextSelect("pregunta-8");
+    let res9 = getTextSelect("pregunta-9");
+    let res10 = getTextSelect("pregunta-10");
+    let token = getCookie('csrftoken');
+
+    $.ajax({
+            type: 'POST',
+            url: serverWeb+'ejercicios/setEjercicio91',
+            data: {
+                csrfmiddlewaretoken: token,
+                res1: res1,
+                res2: res2,
+                res3: res3,
+                res4: res4,
+                res5: res5,
+                res6: res6,
+                res7: res7,
+                res8: res8,
+                res9: res9,
+                res10: res10,
+            },
+            success: function(data){
+                alert(data['calificacion']);
+                updateIntentos(data['intentos']);
+                updateCalificacion(data['calificacion_calificacion']);
+            }
+    });
+}
 
 actualizarCalificacion = (elementoHTML) =>{
     let idCalificacion = elementoHTML.dataset.idcalificacion;
@@ -581,6 +847,4 @@ actualizarEjercicio = (elementoHTML) =>{
             alert(data);
         }
     });
-    
-
 }

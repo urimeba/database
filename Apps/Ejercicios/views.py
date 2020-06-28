@@ -133,7 +133,6 @@ def ejercicio01(request):
             'calificacion_calificacion':calificacionBD.calificacion
         })
 
-
 # ID DEL EJERCICIO: 6
 @login_required
 def ejercicio11(request):
@@ -593,7 +592,6 @@ def ejercicio41(request):
             'calificacion_calificacion':calificacionBD.calificacion
         })
 
-
 @login_required
 def ejercicio42(request):
     alumno = Alumno.objects.get(usuario__id=request.user.id)
@@ -682,7 +680,6 @@ def ejercicio51(request):
             'calificacion_calificacion':calificacionBD.calificacion
         })
 
-
 @login_required
 def ejercicio52(request):
     alumno = Alumno.objects.get(usuario__id=request.user.id)
@@ -742,6 +739,124 @@ def ejercicio52(request):
             'calificacion_calificacion':calificacionBD.calificacion
         })
 
+@login_required
+def ejercicio61(request):
+    alumno = Alumno.objects.get(usuario__id=request.user.id)
+    intentos = Intentos.objects.get(ejercicio__id=14, alumno=alumno)
+    calificacionBD = CalificacionEjercicio.objects.get(
+        ejercicio_id = 14,
+        alumno = alumno
+        )
+
+    if(intentos.numero>0):
+        # Creando un nuevo intento
+        fechaActual = datetime.now()
+        intentos.numero-=1
+        intentos.save()
+
+        calificacion = 0
+
+        res1 = request.POST['res1']
+        res2 = request.POST['res2']
+        res3 = request.POST['res3']
+        res4 = request.POST['res4']
+        res5 = request.POST['res5']
+        res6 = request.POST['res6']
+        res7 = request.POST['res7']
+        res8 = request.POST['res8']
+        res9 = request.POST['res9']
+        res10 = request.POST['res10']
+
+        if (res1 == "b"):
+            calificacion+=1
+
+        if (res2 == "c"):
+            calificacion += 1
+
+        if (res3 == "a"):
+            calificacion += 1
+
+        if (res4 == "c"):
+            calificacion += 1
+
+        if (res5 == "a"):
+            calificacion += 1
+
+        if (res6 == "a"):
+            calificacion += 1
+
+        if (res7 == "b"):
+            calificacion += 1
+
+        if (res8 == "b"):
+            calificacion += 1
+
+        if (res9 == "a"):
+            calificacion += 1
+
+        if (res10 == "a"):
+            calificacion += 1
+
+        calificacionBD.fecha = localtime(now())
+        calificacionBD.calificacion=calificacion
+        calificacionBD.save()
+
+        return JsonResponse({
+            'calificacion': "Tu calificacion ha sido: {0}. (Intentos restantes: {1} intento(s))"
+            .format(calificacion, intentos.numero),
+            'intentos':intentos.numero,
+            'calificacion_calificacion':calificacion
+        })
+
+    else:
+        return JsonResponse({
+            'calificacion': "Has superado el limite de intentos del ejercicio (3 intentos)",
+            'intentos':0,
+            'calificacion_calificacion':calificacionBD.calificacion
+        })
+
+@login_required
+def ejercicio62(request):
+
+    alumno = Alumno.objects.get(usuario__id=request.user.id)
+    intentos = Intentos.objects.get(ejercicio__id=19, alumno=alumno)
+    calificacionBD = CalificacionEjercicio.objects.get(
+        ejercicio_id = 19,
+        alumno = alumno
+        )
+
+    if(intentos.numero>0):
+        query = request.POST['query']
+        print(query)
+
+        intentos.numero-=1
+        intentos.save()
+
+        # calificacionBD.fecha = localtime(now())
+        # calificacionBD.calificacion=0
+        # calificacionBD.save()
+
+        respuesta, created = Respuesta.objects.get_or_create(
+            ejercicio_id = 19,
+            alumno = alumno
+        )
+
+        respuesta.respuesta=query
+        respuesta.save()
+
+
+        return JsonResponse({
+            'calificacion': "TU CALIFICACION SERA ARREGLADA CUANDO EL SERVIDOR ESTE EN LINEA. (Intentos restantes: {0} intento(s))"
+            .format(intentos.numero),
+            'intentos':intentos.numero,
+            'calificacion_calificacion':1234
+        })
+    else:
+        return JsonResponse({
+            'calificacion': "Has superado el limite de intentos del ejercicio (3 intentos)",
+            'intentos':0,
+            'calificacion_calificacion':calificacionBD.calificacion
+        })
 
 # NECESARIO EL SERVIDOR SQL DE ORACLE
 @login_required
@@ -786,9 +901,280 @@ def ejercicio71(request):
             'calificacion_calificacion':calificacionBD.calificacion
         })
 
+@login_required
+def ejercicio72(request):
+    alumno = Alumno.objects.get(usuario__id=request.user.id)
+    intentos = Intentos.objects.get(ejercicio__id=15, alumno=alumno)
+    calificacionBD = CalificacionEjercicio.objects.get(
+        ejercicio_id = 15,
+        alumno = alumno
+        )
 
+    if(intentos.numero>0):
+        # Creando un nuevo intento
+        fechaActual = datetime.now()
+        intentos.numero-=1
+        intentos.save()
 
+        calificacion = 0
 
+        res1 = request.POST['res1']
+        res2 = request.POST['res2']
+        res3 = request.POST['res3']
+        res4 = request.POST['res4']
+        res5 = request.POST['res5']
+        res6 = request.POST['res6']
+        res7 = request.POST['res7']
+        res8 = request.POST['res8']
+        res9 = request.POST['res9']
+        res10 = request.POST['res10']
+
+        if (res1 == "b"):
+            calificacion+=1
+
+        if (res2 == "d"):
+            calificacion += 1
+
+        if (res3 == "b"):
+            calificacion += 1
+
+        if (res4 == "a"):
+            calificacion += 1
+
+        if (res5 == "a"):
+            calificacion += 1
+
+        if (res6 == "a"):
+            calificacion += 1
+
+        if (res7 == "b"):
+            calificacion += 1
+
+        if (res8 == "b"):
+            calificacion += 1
+
+        if (res9 == "a"):
+            calificacion += 1
+
+        if (res10 == "a"):
+            calificacion += 1
+
+        calificacionBD.fecha = localtime(now())
+        calificacionBD.calificacion=calificacion
+        calificacionBD.save()
+
+        return JsonResponse({
+            'calificacion': "Tu calificacion ha sido: {0}. (Intentos restantes: {1} intento(s))"
+            .format(calificacion, intentos.numero),
+            'intentos':intentos.numero,
+            'calificacion_calificacion':calificacion
+        })
+
+    else:
+        return JsonResponse({
+            'calificacion': "Has superado el limite de intentos del ejercicio (3 intentos)",
+            'intentos':0,
+            'calificacion_calificacion':calificacionBD.calificacion
+        })
+
+@login_required
+def ejercicio81(request):
+    alumno = Alumno.objects.get(usuario__id=request.user.id)
+    intentos = Intentos.objects.get(ejercicio__id=16, alumno=alumno)
+    calificacionBD = CalificacionEjercicio.objects.get(
+        ejercicio_id = 16,
+        alumno = alumno
+        )
+
+    if(intentos.numero>0):
+        # Creando un nuevo intento
+        fechaActual = datetime.now()
+        intentos.numero-=1
+        intentos.save()
+
+        calificacion = 0
+
+        res1 = request.POST['res1']
+        res2 = request.POST['res2']
+        res3 = request.POST['res3']
+        res4 = request.POST['res4']
+        res5 = request.POST['res5']
+        res6 = request.POST['res6']
+        res7 = request.POST['res7']
+        res8 = request.POST['res8']
+
+        if (res1 == "c"):
+            calificacion+=1.25
+
+        if (res2 == "c"):
+            calificacion += 1.25
+
+        if (res3 == "b"):
+            calificacion += 1.25
+
+        if (res4 == "a"):
+            calificacion += 1.25
+
+        if (res5 == "c"):
+            calificacion += 1.25
+
+        if (res6 == "b"):
+            calificacion += 1.25
+
+        if (res7 == "a"):
+            calificacion += 1.25
+
+        if (res8 == "c"):
+            calificacion += 1.25
+
+        calificacionBD.fecha = localtime(now())
+        calificacionBD.calificacion=calificacion
+        calificacionBD.save()
+
+        return JsonResponse({
+            'calificacion': "Tu calificacion ha sido: {0}. (Intentos restantes: {1} intento(s))"
+            .format(calificacion, intentos.numero),
+            'intentos':intentos.numero,
+            'calificacion_calificacion':calificacion
+        })
+
+    else:
+        return JsonResponse({
+            'calificacion': "Has superado el limite de intentos del ejercicio (3 intentos)",
+            'intentos':0,
+            'calificacion_calificacion':calificacionBD.calificacion
+        })
+
+@login_required
+def ejercicio82(request):
+    alumno = Alumno.objects.get(usuario__id=request.user.id)
+    intentos = Intentos.objects.get(ejercicio__id=20, alumno=alumno)
+    calificacionBD = CalificacionEjercicio.objects.get(
+        ejercicio_id = 20,
+        alumno = alumno
+        )
+
+    if(intentos.numero>0):
+        # Creando un nuevo intento
+        fechaActual = datetime.now()
+        intentos.numero-=1
+        intentos.save()
+
+        calificacion = 0
+
+        llaves = json.loads(request.POST['llaves'])
+
+        print(llaves)
+        if('idProveedor' in llaves):
+            # print("SI HAY ID PROVEEDOR")
+            calificacion += 3.4
+
+        if('idSucursal' in llaves):
+            # print("SI HAY ID PROVEEDOR")
+            calificacion += 3.4
+
+        if('idCategoria' in llaves):
+            # print("SI HAY ID PROVEEDOR")
+            calificacion += 3.4
+
+        calificacion=10 if calificacion>10 else round(calificacion, 2)
+        print(calificacion)
+
+        
+
+        calificacionBD.fecha = localtime(now())
+        calificacionBD.calificacion=calificacion
+        calificacionBD.save()
+
+        return JsonResponse({
+            'calificacion': "Tu calificacion ha sido: {0}. (Intentos restantes: {1} intento(s))"
+            .format(calificacion, intentos.numero),
+            'intentos':intentos.numero,
+            'calificacion_calificacion':calificacion
+        })
+
+    else:
+        return JsonResponse({
+            'calificacion': "Has superado el limite de intentos del ejercicio (3 intentos)",
+            'intentos':0,
+            'calificacion_calificacion':calificacionBD.calificacion
+        })
+
+@login_required
+def ejercicio91(request):
+    alumno = Alumno.objects.get(usuario__id=request.user.id)
+    intentos = Intentos.objects.get(ejercicio__id=17, alumno=alumno)
+    calificacionBD = CalificacionEjercicio.objects.get(
+        ejercicio_id = 17,
+        alumno = alumno
+        )
+
+    if(intentos.numero>0):
+        # Creando un nuevo intento
+        fechaActual = datetime.now()
+        intentos.numero-=1
+        intentos.save()
+
+        calificacion = 0
+
+        res1 = request.POST['res1']
+        res2 = request.POST['res2']
+        res3 = request.POST['res3']
+        res4 = request.POST['res4']
+        res5 = request.POST['res5']
+        res6 = request.POST['res6']
+        res7 = request.POST['res7']
+        res8 = request.POST['res8']
+        res9 = request.POST['res9']
+        res10 = request.POST['res10']
+
+        if (res1 == "c"):
+            calificacion+=1
+
+        if (res2 == "b"):
+            calificacion += 1
+
+        if (res3 == "c"):
+            calificacion += 1
+
+        if (res4 == "b"):
+            calificacion += 1
+
+        if (res5 == "a"):
+            calificacion += 1
+
+        if (res6 == "b"):
+            calificacion += 1
+
+        if (res7 == "c"):
+            calificacion += 1
+
+        if (res8 == "a"):
+            calificacion += 1
+
+        if (res9 == "b"):
+            calificacion += 1
+
+        if (res10 == "a"):
+            calificacion += 1
+
+        calificacionBD.fecha = localtime(now())
+        calificacionBD.calificacion=calificacion
+        calificacionBD.save()
+
+        return JsonResponse({
+            'calificacion': "Tu calificacion ha sido: {0}. (Intentos restantes: {1} intento(s))"
+            .format(calificacion, intentos.numero),
+            'intentos':intentos.numero,
+            'calificacion_calificacion':calificacion
+        })
+
+    else:
+        return JsonResponse({
+            'calificacion': "Has superado el limite de intentos del ejercicio (3 intentos)",
+            'intentos':0,
+            'calificacion_calificacion':calificacionBD.calificacion
+        })
 
 # ACCIONES DEL MAESTRO--------------------------
 @login_required
@@ -890,7 +1276,7 @@ def getCalificacionesAlumno(request, idAlumno):
 
     calificaciones = CalificacionEjercicio.objects.filter(
         alumno__id=idAlumno
-    ).order_by('ejercicio__unidad')
+    ).order_by('ejercicio__unidad').order_by('id')
 
     return render(request, 'maestro/calificaciones.html', {
         'alumnos':alumnos,
