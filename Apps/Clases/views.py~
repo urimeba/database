@@ -44,6 +44,7 @@ def dashboard(request):
 @csrf_exempt
 def compilador(request):
     if(request.POST):
+        print(request.POST['query'])
         ssh, stdout, stderr = ssh_send_query(request.session['_auth_user_id'], request.POST['query'])
         data = stdout.readlines()
         ssh_close(ssh)
