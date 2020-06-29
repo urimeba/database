@@ -420,6 +420,7 @@ box-shadow: 6px 6px 5px 0px rgba(50,50,69,1);
         }
 
             #encabezado-contenidoEjercicios{
+                z-index: 9999999999;
                 width: 90%;
                 height:auto;
                 /*margin-left: 10%;*/
