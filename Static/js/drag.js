@@ -4,9 +4,16 @@ const lista3 = document.getElementById("table-clase");
 const lista4 = document.getElementById("table-resultado");
 
 
-let paths = []
-let currentSVGPaths = []
-let currentColor
+let paths = [],
+    currentSVGPaths = [],
+    currentColor,
+    currentScroll = 0,
+    initialScroll = 0,
+    dif = 0,
+    svgBool = false,
+    lastScrollPx = 0,
+    key = 1;
+    pathsPx = {}
 
 Sortable.create(lista1, {
     chosenClass: "seleccionado",
@@ -17,12 +24,9 @@ Sortable.create(lista1, {
     animation: 150,
     onAdd: function (e) {
         elemRect = e.to.parentElement.parentElement.getBoundingClientRect()
-        console.log(elemRect)
-
-
-        addFK(e)  
         addPaths({ start: '#'+e.from.id, end: '#'+e.to.id, strokeWidth: 1 })
-        
+        addFK(e)  
+
 	},
 });
 
@@ -34,10 +38,9 @@ Sortable.create(lista2, {
     },
     animation: 150,
     onAdd: function(e) {
-        console.log(e.to.parentElement.parentElement.getBoundingClientRect())
-        addFK(e)
         addPaths({ start: '#'+e.from.id, end: '#'+e.to.id, strokeWidth: 1 })
-        
+        addFK(e)
+
     }
 });
 
@@ -49,10 +52,8 @@ Sortable.create(lista3, {
     },
     animation: 150,
     onAdd: function(e) {
-        console.log(e.to.parentElement.parentElement.getBoundingClientRect())
-        addFK(e)
         addPaths({ start: '#'+e.from.id, end: '#'+e.to.id, strokeWidth: 1 })
-        
+        addFK(e)
     }
 });
 
@@ -64,34 +65,32 @@ Sortable.create(lista4, {
     },
     animation: 150,
     onAdd: function(e) {
-        console.log(e.to.parentElement.parentElement.getBoundingClientRect())
-        addFK(e)
         addPaths({ start: '#'+e.from.id, end: '#'+e.to.id, strokeWidth: 1 })
-        
+        addFK(e)
+
     }
 });
 
 
 function addPaths(relation) {
-    if(!existRelation(relation)) {
-        paths.push(relation)
-        addArrow(jQuery, window, document) // This file is in libs/jquer.html-svg-connect.js
-        if(document.querySelectorAll('#svgContainer > svg > path').length > 0) {
-            currentSVGPaths.push(document.querySelectorAll('#svgContainer > svg > path'))
-        }
-        document.querySelector('#svgContainer').remove()
-        document.querySelector('div.main').innerHTML = '<div id="svgContainer"></div>'
-        $("#svgContainer").HTMLSVGconnect({
-            stroke: '#' + generateRandomColor(),
-            strokeWidth: 5,
-            orientation: "auto",
-            paths: [relation]
-        });
-
-        if(document.querySelectorAll('#svgContainer > svg > path').length > 0) {
-            addHTMLPaths()
-        }
-    }
+    currentColor = generateRandomColor()
+    svgBool = true
+    lastScrollPx = initialScroll
+    initialScroll = document.querySelector('#contenido-contenidoEjercicios').scrollTop
+    addArrow(jQuery, window, document) // This file is in libs/jquer.html-svg-connect.js
+    document.querySelector('#svgContainer').remove()
+    document.querySelector('div.main').innerHTML = '<div id="svgContainer"></div>'
+    $("#svgContainer").HTMLSVGconnect({
+        stroke: '#' + currentColor,
+        strokeWidth: 5,
+        orientation: "auto",
+        paths: [relation]
+    })
+    pathsPx[key] = initialScroll
+    key++
+    const path = document.querySelector('#svgContainer > svg > path')
+    paths.push(path)
+    adjustDifferentBottomPath()
 }
 
 function generateRandomColor() {
@@ -99,16 +98,21 @@ function generateRandomColor() {
     return currentColor
 }
 
-function addHTMLPaths() {
-    for(let ArrPath of currentSVGPaths) {
-        for(let path of ArrPath) {
-            document.querySelector('#svgContainer > svg').appendChild(path)
-        }
+function adjustDifferentBottomPath() {
+    // console.log('MY PATHS', currentSVGPaths)
+    // currentSVGPaths.pop()
+    console.log('ENTER HEREEE', paths.length)
+    for(let i = 0; i < paths.length - 1; i++) {
+        document.querySelector('#svgContainer > svg').appendChild(paths[i])
     }
-}
 
-function existRelation(relation) {
-    return paths.findIndex(el => el.start === relation.start && el.end === relation.end) >= 0
+
+    const pa = document.querySelectorAll('path')
+    for(let i = 1; i < paths.length && paths.length > 1; i++) {
+        let currentTraY = pathsPx[i] - initialScroll
+        console.log(currentTraY)
+        pa[i].style.transform = `translate(0, ${currentTraY}px)`
+    }
 }
 
 function addFK(e){
@@ -144,9 +148,17 @@ function reset(){
     const svgContainer = document.querySelector('#svgContainer > svg')
     if(svgContainer) {
         svgContainer.remove()
-
     }
   for (const iterator of foraneas) {
       iterator.remove();
   }
 }
+
+document.querySelector('#contenido-contenidoEjercicios').addEventListener('scroll', (e) => {
+    if(svgBool) {
+        currentScroll = document.querySelector('#contenido-contenidoEjercicios').scrollTop
+        console.log(currentScroll, dif)
+        dif = currentScroll - initialScroll
+        document.querySelector('svg').style.bottom = `${dif}px`
+    }
+})

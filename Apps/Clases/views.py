@@ -12,6 +12,10 @@ from .forms import formLogin
 from django.contrib.auth import update_session_auth_hash
 from django.contrib.auth.forms import PasswordChangeForm
 from django.contrib import messages
+from django.contrib.auth import get_user_model
+from django.views.decorators.csrf import csrf_exempt
+import paramiko
+
 
 class Loginn(LoginView):
     template_name = 'login.html'
@@ -37,8 +41,41 @@ def dashboard(request):
         return render(request, 'dashboard.html')
 
 @login_required
+@csrf_exempt
 def compilador(request):
-    return render(request, 'compilador.html')
+    if(request.POST):
+        ssh, stdout, stderr = ssh_send_query(request.session['_auth_user_id'], request.POST['query'])
+        data = stdout.readlines()
+        ssh_close(ssh)
+        return JsonResponse({'data': data})
+    else:
+        return render(request, 'compilador.html')
+
+def ssh_connect():
+    try:
+        ssh = paramiko.SSHClient()
+        ssh.set_missing_host_key_policy(paramiko.AutoAddPolicy())
+        ssh.connect('132.145.55.249', username='opc', key_filename='./id_rsa.pub')
+        return ssh
+    except NameError:
+        print("Ha ocurrido un error al conectar con el servidor SSH", NameError)
+
+
+def ssh_close(ssh):
+    try:
+        ssh.close()
+    except NameError:
+        print("Ha ocurrido un error al cerrar conexión con el servidor SSH", NameError)
+
+def ssh_send_query(user, query):
+    try:
+        ssh = ssh_connect()
+        stdin, stdout, stderr = ssh.exec_command(
+            'export TNS_ADMIN=/etc/ORACLE/WALLETS/ATP1 \n cd oracle-server \n node server {} "{}"'.format(user, query))
+        return ssh, stdout, stderr
+    except NameError:
+        print("Ha ocurrido un error al enviar la petición al servidor SSH", NameError)
+
 
 @login_required
 def perfil(request):
@@ -108,6 +145,7 @@ def cambiarContraseña(request):
             form.save()
             update_session_auth_hash(request, form.user)
             messages.success(request, 'Contraseña cambiada correctamente')
+            ssh_send_query(request.session['_auth_user_id'], 'pwrird7qWf')
             return render(request, 'dashboard.html', {
                 'form': form
             })

@@ -18,6 +18,5 @@ from django.urls import path
 from Apps.Usuarios import views as views_usuarios
 
 urlpatterns = [
-    # path('', views_usuarios.Loginn, name='login'),
-    
+    path('reset/password/', views_usuarios.reset_password, name='reset_password'),
 ]

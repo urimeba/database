@@ -1,5 +1,5 @@
 var serverQuerys = 'http://148.220.52.132:3000/';
-var serverWeb = 'https://uaqdatabass.herokuapp.com/'
+var serverWeb = 'http://127.0.0.1:8000/compilador'
 
 // Funcion para obtener la Cookie y mandarla al Back
 function getCookie(name) {
@@ -17,54 +17,60 @@ function getCookie(name) {
 
 // Funcion para compilar codigo SQL de Oracle
 compile = async () => {
-    let query = code.getValue();
+    try {
+        let query = code.getValue();
+        $.ajax({
+            type: 'POST',
+            url: serverWeb,
+            data: {query},
+            success: function(data){
+                console.log(data)
+                data = data.data[0]
+                data = JSON.parse(data)
+                let divResults = document.getElementById("tablas-container");
+                divResults.innerHTML="";
 
-    $.ajax({ 
-        type: 'POST',
-        url: server,
-        data: {query:query},
-        success: function(data){
+                if(Object.keys(data).length == 3){
+                    divResults.appendChild(document.createTextNode(data['spanish']));
+                    return
+                }
 
-            let divResults = document.getElementById("tablas-container");
-            divResults.innerHTML="";
+                let columnas = data['metaData'];
+                let filas = data['rows'];
 
-            if(Object.keys(data).length == 3){
-                divResults.appendChild(document.createTextNode(data['english']));
-                return
-            }
+                let tabla = document.createElement("table");
+                let headers = document.createElement("tr");
+                tabla.appendChild(headers);
 
-            let columnas = data['metaData'];
-            let filas = data['rows'];
-
-            let tabla = document.createElement("table");
-            let headers = document.createElement("tr");
-            tabla.appendChild(headers);
-
-            columnas.forEach(element => {
-                let aux = document.createElement("th");
-                aux.appendChild(document.createTextNode(element['name']));
-                headers.appendChild(aux);
-            });
-
-            filas.forEach(element => {
-                let result = document.createElement("tr");
-                tabla.appendChild(result);
-
-                element.forEach(properties => {
-                    let aux = document.createElement("td");
-                    aux.appendChild(document.createTextNode(properties))
-                    result.appendChild(aux);
+                columnas.forEach(element => {
+                    let aux = document.createElement("th");
+                    aux.appendChild(document.createTextNode(element['name']));
+                    headers.appendChild(aux);
                 });
-            });
 
-            divResults.appendChild(tabla);
-           
-        },
-        error: function(error){ 
-            alert("Error de conectividad. Verifica tu conexion a Internet");
-        },
-        timeout: 5000
-    });
+                filas.forEach(element => {
+                    let result = document.createElement("tr");
+                    tabla.appendChild(result);
+
+                    element.forEach(properties => {
+                        let aux = document.createElement("td");
+                        aux.appendChild(document.createTextNode(properties))
+                        result.appendChild(aux);
+                    });
+                });
+
+                divResults.appendChild(tabla);
+
+            },
+            error: function(error){
+                alert("Ha ocurrido un error al procesar la petición");
+            },
+            timeout: 5000
+        });
+    } catch(error) {
+
+    }
+
 }
 
 // Funcion para actualizar el numero de intentos en el HTML 
