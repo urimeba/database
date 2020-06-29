@@ -16,51 +16,21 @@ function getCookie(name) {
 }
 
 // Funcion para compilar codigo SQL de Oracle
-compile = async () => {
+
+function compile() {
     try {
         let query = code.getValue();
         $.ajax({
             type: 'POST',
             url: serverWeb,
             data: {query},
-            success: function(data){
+            success: function(response){
+                console.log(response)
+                let { data } = response
                 console.log(data)
-                data = data.data[0]
                 data = JSON.parse(data)
-                let divResults = document.getElementById("tablas-container");
-                divResults.innerHTML="";
-
-                if(Object.keys(data).length == 3){
-                    divResults.appendChild(document.createTextNode(data['spanish']));
-                    return
-                }
-
-                let columnas = data['metaData'];
-                let filas = data['rows'];
-
-                let tabla = document.createElement("table");
-                let headers = document.createElement("tr");
-                tabla.appendChild(headers);
-
-                columnas.forEach(element => {
-                    let aux = document.createElement("th");
-                    aux.appendChild(document.createTextNode(element['name']));
-                    headers.appendChild(aux);
-                });
-
-                filas.forEach(element => {
-                    let result = document.createElement("tr");
-                    tabla.appendChild(result);
-
-                    element.forEach(properties => {
-                        let aux = document.createElement("td");
-                        aux.appendChild(document.createTextNode(properties))
-                        result.appendChild(aux);
-                    });
-                });
-
-                divResults.appendChild(tabla);
-
+                modifyDivResultHTML('clean')
+                processResponseCompiler(data)
             },
             error: function(error){
                 alert("Ha ocurrido un error al procesar la petición");
@@ -68,9 +38,59 @@ compile = async () => {
             timeout: 5000
         });
     } catch(error) {
+        return false
+    }
+}
+
+function processResponseCompiler(data) {
+    for(const response of data) {
+        if(response.hasOwnProperty('code') && response.hasOwnProperty('english') && response.hasOwnProperty('spanish')) {
+            modifyDivResultHTML('append', document.createTextNode(response['spanish']));
+        } else {
+            const columns = response['metaData'],
+            rows = response['rows'],
+            table = createHTMLElement('table'),
+            headers = createHTMLElement('tr')
+
+            table.appendChild(headers, table)
+            fillColumnsData(columns, headers)
+            fillTableData(rows, table)
+        }
 
     }
 
+}
+
+function fillColumnsData(columns, headers) {
+    columns.forEach(element => {
+        let aux = createHTMLElement('th');
+        aux.appendChild(document.createTextNode(element['name']));
+        headers.appendChild(aux);
+    });
+}
+
+function fillTableData(rows, table) {
+    rows.forEach(element => {
+        let result = createHTMLElement('tr');
+        table.appendChild(result);
+
+        element.forEach(properties => {
+            let aux = createHTMLElement("td");
+            aux.appendChild(document.createTextNode(properties))
+            result.appendChild(aux);
+        });
+    });
+
+    modifyDivResultHTML('append', table)
+}
+
+function createHTMLElement(element) {
+    return document.createElement(element)
+}
+
+function modifyDivResultHTML(action, child) {
+    const divResults = document.getElementById('tablas-container')
+    return (action === 'clean' && !child) ? divResults.innerHTML = '' : divResults.appendChild(child)
 }
 
 // Funcion para actualizar el numero de intentos en el HTML 
