@@ -443,7 +443,7 @@ box-shadow: 6px 6px 5px 0px rgba(50,50,69,1);
                 #subtitulo-contenidoEjercicios{
                     display: flex;
                     /*background-color: cyan;*/
-                    width: 25%;
+                    width: 35%;
                     
                     /*align-items: center;*/
                     justify-content: flex-end;
@@ -503,10 +503,39 @@ box-shadow: 6px 6px 5px 0px rgba(50,50,69,1);
             width: 90%;
             font-size: 18px;
         }
-        #sortable1 li, #sortable2 li, #sortable3 li, #sortable4 li, #sortable5 li{
-            font-size: 17px !important;
+        #contenido-contenidoEjercicios-overflow-drag{
+            width: 100%;
+            font-size: 18px;
+            z-index: 1;
+            position: relative;
+        }
+        #sortable1 li, #sortable2 li, #sortable3 li, #sortable4 li, #sortable5 li,#sortable6 li,#sortable7 li{
+            font-size: 13px !important;
             border-radius: 6px;
-            width: 120px !important;
+            width: 135px !important;
+            overflow: auto;
+        }
+        #query{
+            height: 399px;
+            background-color: #f2f5f9;
+            border-radius: 8px;
+        }
+        .openCompiladorB{
+            -webkit-box-shadow: 4px 4px 5px 0px rgba(224,224,224,0.62);
+            -moz-box-shadow: 4px 4px 5px 0px rgba(224,224,224,0.62);
+            box-shadow: 4px 4px 5px 0px rgba(224,224,224,0.62);
+            width: 105px;
+            height: 30px;
+            border: none;
+            color: white;
+            background-color: #FF5A09;
+            border-radius: 4px;
+            transition: .5s;
+            cursor: pointer;
+            font-size: 15px;
+        }
+        .openCompiladorB:hover{
+            background-color: #e4530a;
         }
         .ui-state-default, .ui-widget-content .ui-state-default, .ui-widget-header .ui-state-default, .ui-button, html .ui-button.ui-state-disabled:hover, html .ui-button.ui-state-disabled:active {
             cursor: move;
@@ -526,6 +555,23 @@ box-shadow: 6px 6px 5px 0px rgba(50,50,69,1);
             display: flex;
             justify-content: flex-end;
             align-items: end;
+        }
+        .container>button{
+            -webkit-box-shadow: 4px 4px 5px 0px rgba(224,224,224,0.62);
+            -moz-box-shadow: 4px 4px 5px 0px rgba(224,224,224,0.62);
+            box-shadow: 4px 4px 5px 0px rgba(224,224,224,0.62);
+            width: 150px;
+            height: 35px;
+            border: none;
+            color: white;
+            background-color: #00B0FF;
+            border-radius: 4px;
+            transition: .5s;
+            cursor: pointer;
+        }
+        .container>button:hover{
+            background-color: #01a1eb;
+           
         }
         #btn-ejercicio-2-1 {
             -webkit-box-shadow: 4px 4px 5px 0px rgba(224,224,224,0.62);

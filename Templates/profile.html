@@ -2,6 +2,11 @@
 {% load static %}
 
 {% block content %}
+<title>Perfil</title>
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.0/jquery.min.js"></script>
+<link rel="stylesheet" href="{% static 'css/morris.css' %}">
+<script src="http://cdnjs.cloudflare.com/ajax/libs/raphael/2.1.0/raphael-min.js"></script>
+
 <div class="row">
 	<section class="user-information blue-dark-2 fs-15">
 		<div>
@@ -27,44 +32,81 @@
 	</section>
 </div>
 
-<div class="row">
+<div class="row progresoClass">
 	<div class="article-text txt-white">
 		<h2 class="fs-30 font-bold">Progreso del alumno</h2>
-		<p class="fs-16">Gráfica de estadísticas de cada unidad del alumno, se muestran los aciertos por cada intento de los ejercicios en la unidad.</p>
+		<p class="fs-16">Gráfica de estadísticas del progreso del alumno, se muestran las calificaciones por cada intento de los ejercicios en la unidad.</p>
 	</div>
-	<div class="article-information blue-dark-2">
-
+	<div class="article-information blue-dark-2" id="myfirstchart">
+		
 	</div>
 </div>
 
-
-{% if calificaciones %}
-	{% regroup calificaciones by ejercicio.unidad as unidad_lista %}
-
-	{% for unidad in unidad_lista %}
-	<p>{{unidad.grouper}}</p>
-
-	<div class="row">
-		<section class="user-score">
-		{% for calificacion in unidad.list %}
-			<div class="score blue-dark-2">
-				<p>{{calificacion.ejercicio}}</p>
-				<p>Calificacion: {{calificacion.calificacion}}</p>
-			</div>
-		{% endfor %}
-		</section>
-	</div>
-
-	{% endfor %}
-
+<div class="row">
 	
-		
-{% else %}
-	<div>
-		Aqui se mostrarán tus calificaciones de los ejercicios que hayas realizado.
-	</div>
-{% endif %}
+	<section class="user-score">
+	<div id="crecienteUnidad">
+		<div class="score blue-dark-2 alumno-calificacion">
+			<h3>U1</h3>
+			<div id="calificacionesA">
+				<p>Calificacion: </p><b>10</b>
+			</div>
+			
+		</div>
+		<div class="score blue-dark-2 alumno-calificacion">
+			<h3>U2</h3>
+			<div id="calificacionesA">
+				<p>Calificacion: </p><b>10</b>
+			</div>
+			
+		</div>
+		<div class="score blue-dark-2 alumno-calificacion">
+			<h3>U3</h3>
+			<div id="calificacionesA">
+				<p>Calificacion: </p><b>10</b>
+			</div>
+			
+		</div>
+		<div class="score blue-dark-2 alumno-calificacion">
+			<h3>U4</h3>
+			<div id="calificacionesA">
+				<p>Calificacion: </p><b>10</b>
+			</div>
+			
+		</div>
+		<div class="score blue-dark-2 alumno-calificacion">
+			<h3>U5</h3>
+			<div id="calificacionesA">
+				<p>Calificacion: </p><b>10</b>
+			</div>
+			
+		</div>
+		<div class="score blue-dark-2 alumno-calificacion">
+			<h3>U6</h3>
+			<div id="calificacionesA">
+				<p>Calificacion: </p><b>10</b>
+			</div>
+			
+		</div>
+		<div class="score blue-dark-2 alumno-calificacion">
+			<h3>U7</h3>
+			<div id="calificacionesA">
+				<p>Calificacion: </p><b>10</b>
+			</div>
+			
+		</div>
+		<div class="score blue-dark-2 alumno-calificacion">
+			<h3>U8</h3>
+			<div id="calificacionesA">
+				<p>Calificacion: </p><b>10</b>
+			</div>
+			
+		</div>
 
+	</div>
+	</section>
+
+</div>
 </div>
 
 

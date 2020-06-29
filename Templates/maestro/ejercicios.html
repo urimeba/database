@@ -1,78 +1,25 @@
 {% load static %}
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Ejercicios</title>
-    <link rel="stylesheet" type="text/css" href="{% static 'css/estilos.css' %}">
     <script src="{% static 'js/funcionesUriel.js' %}"></script>
     <script src="{% static 'js/jQuery.js' %}"></script>
 </head>
-
 <body>
-    <div class="container">
-        <div class="row">
-            <nav class="nav-menu">
-                <a href="{% url 'dashboard' %}" style="text-decoration: none;"><p id="tituloEjercicio1" class="titulo-data">Data</p></a>
-                <a href="{% url 'dashboard' %}" style="text-decoration: none;"><p id="tituloEjercicio2" class="titulo-base">Bass</p></a> 
-                <ul class="navbar-list">
-                    <li class="opciones"><a href="{% url 'dashboard' %}" class="opcionInicio">Inicio</a></li>
-                    <!-- <li class="opciones"><a href="{% url 'unidades' %}" class="opcionContenido">Contenido</a></li>
-                    <li class="opciones"><a href="{% url 'compilador' %}" class="opcionHerramientas">Compilador</a></li> -->
-                </ul>		
-                <div class="navbar-profile">
-                    <!-- <div class="navbar-notification">
-                        
-                        <div class="navbar-notification-count">1</div>
-                    </div> -->
-                    <div class="navbar-notification navbar-avatar">
-                        <div class="navbar-picture">
-                            <a href="{% url 'perfil' %}">
-                                <img src="{% static 'img/perfil.jpg' %}" alt="" class="img-profile">
-                            </a>
-                            
-                        </div>
-                    </div>
-                            <div class="navbar-logout navbar-avatar">
-                                <div >
-                                    <a href="{% url 'cerrarSesion' %}">
-                                        <img src="{% static 'img/logout.png' %}" alt="" class="img-logout">
-                                    </a>
-                                </div>
-                            </div>
-                    
-                </div>
-            </nav>
-            
-        </div>
-        <div class="principalEjercicios">
-            <div class="contenedorEjercicios">
-                <div class="contenidoEjercicios">
-                    {% regroup ejercicios by unidad as unidades_lista %}
-                    <ul>
-                        {% for unidad in unidades_lista %}
-                        <li>{{ unidad.grouper }}</li>
-                        <ul>
-                            {% for ejercicio in unidad.list %}
-                            <li>{{ejercicio}}
-                                <span><input type="checkbox" name="active" id="{{ejercicio.id}}"
-                                        {%  if ejercicio.is_active %} checked {% endif %}></span>
-                                <label for="active">Activo</label>
-                                <button class="btn-actualiza-ejercicios" onclick="actualizarEjercicio(this)"
-                                    data-idejercicio="{{ejercicio.id}}">Actualizar</button>
-                            </li>
-                            {% endfor %}
-                        </ul>
-    
-                        {% endfor %}
-                    </ul>
-                </div>
-            </div>
-        </div>
-    </div>
+    {{ejercicios}}
+
+    <ul>
+        {% for ejercicio in ejercicios %}
+            <li>{{ejercicio}} 
+                <span><input type="checkbox" name="active" id="{{ejercicio.id}}" {%  if ejercicio.is_active %} checked {% endif %} ></span> 
+                <label for="active">Activo</label>
+                <button onclick="actualizarEjercicio(this)" data-idejercicio="{{ejercicio.id}}" >Actualizar</button>
+            </li> 
+        {% endfor %}
+    </ul>
 
 </body>
-
 </html>
