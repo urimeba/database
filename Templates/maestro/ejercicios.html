@@ -7,6 +7,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Ejercicios</title>
     <link rel="stylesheet" type="text/css" href="{% static 'css/estilos.css' %}">
+    <link href="https://fonts.googleapis.com/css?family=Montserrat&display=swap" rel="stylesheet">
     <script src="{% static 'js/funcionesUriel.js' %}"></script>
     <script src="{% static 'js/jQuery.js' %}"></script>
 </head>
@@ -19,14 +20,11 @@
                 <a href="{% url 'dashboard' %}" style="text-decoration: none;"><p id="tituloEjercicio2" class="titulo-base">Bass</p></a> 
                 <ul class="navbar-list">
                     <li class="opciones"><a href="{% url 'dashboard' %}" class="opcionInicio">Inicio</a></li>
-                    <!-- <li class="opciones"><a href="{% url 'unidades' %}" class="opcionContenido">Contenido</a></li>
-                    <li class="opciones"><a href="{% url 'compilador' %}" class="opcionHerramientas">Compilador</a></li> -->
+                    <li class="opciones"><a href="{% url 'respuestas31' %}" class="opcionContenido">Respuestas</a></li>
+                    <li class="opciones"><a href="{% url 'getCalificaciones' %}" class="opcionHerramientas">Calificaciones</a></li>
+                    <li class="opciones"><a href="{% url 'ejercicios' %}" class="opcionHerramientas">Estado</a></li>
                 </ul>		
                 <div class="navbar-profile">
-                    <!-- <div class="navbar-notification">
-                        
-                        <div class="navbar-notification-count">1</div>
-                    </div> -->
                     <div class="navbar-notification navbar-avatar">
                         <div class="navbar-picture">
                             <a href="{% url 'perfil' %}">
@@ -42,14 +40,13 @@
                                     </a>
                                 </div>
                             </div>
-                    
                 </div>
-            </nav>
-            
+            </nav>   
         </div>
         <div class="principalEjercicios">
             <div class="contenedorEjercicios">
                 <div class="contenidoEjercicios">
+                    <p class="tituloContenidoEjercicios">Activar ejercicios</p>
                     {% regroup ejercicios by unidad as unidades_lista %}
                     <ul>
                         {% for unidad in unidades_lista %}
@@ -65,7 +62,6 @@
                             </li>
                             {% endfor %}
                         </ul>
-    
                         {% endfor %}
                     </ul>
                 </div>
