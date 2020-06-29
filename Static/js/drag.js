@@ -90,30 +90,49 @@ function addPaths(relation) {
     key++
     const path = document.querySelector('#svgContainer > svg > path')
     paths.push(path)
-    adjustDifferentBottomPath()
+    addHtmlPaths()
 }
 
 function generateRandomColor() {
-    currentColor = (Math.random()*0xFFFFFF<<0).toString(16)
-    return currentColor
+    var letters = '012345'.split('');
+    var color = '';
+    color += letters[Math.round(Math.random() * 5)];
+    letters = '0123456789ABCDEF'.split('');
+    for (var i = 0; i < 5; i++) {
+        color += letters[Math.round(Math.random() * 15)];
+    }
+
+    currentColor = color
+    return color
 }
 
-function adjustDifferentBottomPath() {
-    // console.log('MY PATHS', currentSVGPaths)
-    // currentSVGPaths.pop()
-    console.log('ENTER HEREEE', paths.length)
+function adjustFirstBottomPath(dif) {
+    const path = document.querySelector('path')
+    path.style.transform = `translate(0, ${-dif}px)`
+}
+
+function addHtmlPaths() {
     for(let i = 0; i < paths.length - 1; i++) {
         document.querySelector('#svgContainer > svg').appendChild(paths[i])
     }
 
-
     const pa = document.querySelectorAll('path')
     for(let i = 1; i < paths.length && paths.length > 1; i++) {
         let currentTraY = pathsPx[i] - initialScroll
-        console.log(currentTraY)
         pa[i].style.transform = `translate(0, ${currentTraY}px)`
     }
 }
+
+function adjustDifferentBottomPath() {
+    const pa = document.querySelectorAll('path')
+
+    for(let i = 1; i < paths.length && paths.length > 1; i++) {
+        let currentTraY = pathsPx[i] - initialScroll
+        console.log('REAL DIF', dif)
+        pa[i].style.transform = `translate(0, ${currentTraY - dif}px)`
+    }
+}
+
 
 function addFK(e){
    
@@ -139,8 +158,6 @@ function insertAfter(e,i){
     }
 }
 
-
-
 function reset(){
     var foraneas=document.getElementsByClassName("llaveForanea");
     paths = []
@@ -157,8 +174,10 @@ function reset(){
 document.querySelector('#contenido-contenidoEjercicios').addEventListener('scroll', (e) => {
     if(svgBool) {
         currentScroll = document.querySelector('#contenido-contenidoEjercicios').scrollTop
-        console.log(currentScroll, dif)
         dif = currentScroll - initialScroll
-        document.querySelector('svg').style.bottom = `${dif}px`
+        currentBottomSvgTag = dif
+        console.log(initialScroll)
+        adjustFirstBottomPath(dif)
+        adjustDifferentBottomPath()
     }
 })
