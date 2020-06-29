@@ -40,7 +40,7 @@ class Respuesta(models.Model):
 class CalificacionEjercicio(models.Model):
     alumno = models.ForeignKey('Usuarios.Alumno', on_delete=models.CASCADE)
     ejercicio = models.ForeignKey('Ejercicio', on_delete=models.CASCADE)
-    fecha = models.DateTimeField(auto_now=False, auto_now_add=False)
+    fecha = models.DateTimeField(auto_now=False, auto_now_add=False, null=True)
     calificacion = models.DecimalField(max_digits=4, decimal_places=2, default=0,
     validators=[
             MaxValueValidator(10.00),

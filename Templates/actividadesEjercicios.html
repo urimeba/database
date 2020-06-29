@@ -95,11 +95,14 @@
 						<p id="title">No hay unidades activas por el momento. Intenta mas tarde o habla con el Profesor.</p>
 					{% endif %}
 					<div id="subtitulo-contenidoEjercicios">
+
+						{% if calificacion %}
 						<p id="calificacion">Calificación:</p>
 						<p><span id="calificacion_calificacion">{{calificacion.calificacion}}</span>/10</p>
-						
+						{% endif %}
+
 						{% if intentos %}
-							<p id="intentos-contenedor">Intentos Restantes: <span id="intentos" >{{intentos}}</span></p>
+							<p id="intentos-contenedor">Intentos restantes: <span id="intentos" >{{intentos}}</span></p>
 						{% endif %}
 					</div>
 				</div>

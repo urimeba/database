@@ -1,53 +1,105 @@
 {% load static %}
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Calificaciones</title>
+    <link rel="stylesheet" type="text/css" href="{% static 'css/estilos.css' %}">
     <script src="{% static 'js/funcionesUriel.js' %}"></script>
     <script src="{% static 'js/jQuery.js' %}"></script>
 </head>
+
 <body>
-    <div>
-        {{alumnos}}
-        <p>Clases:</p>
-			{% regroup alumnos by clase as lista_clases %}
-			<ul>
-			{% for clase in lista_clases %}
-				<li>{{clase.grouper}}
-					<ul>
-					{% for alumno in clase.list %}
-						<a href="{% url 'getCalificacionesAlumno' idAlumno=alumno.id %}">
-							<li>{{alumno.usuario.get_full_name}}</li>
-						</a>
-						
-					{% endfor %}
-					</ul>
-				</li>
-			{% endfor %}
-			</ul>
-    </div>
-
-    {% if calificaciones %}
-        <div>
-
-            <p>Alumno: {{calificaciones.0.alumno.usuario.get_full_name}}</p>
-            <p>Expediente: {{calificaciones.0.alumno}}</p>
-
-            <ul>
-            {% for calificacion in calificaciones%}
-                <li>
-                    {{calificacion.ejercicio}}:</span>
-                    <input id="{{calificacion.id}}" type="number" step=".01" value="{{calificacion.calificacion}}">
-                    (fecha: {{calificacion.fecha}})
-                    <button id="btn-actualizar" data-idcalificacion="{{calificacion.id}}" onclick="actualizarCalificacion(this)" >Actualizar</button>
-                </li>
+    <div class="container">
+        <div class="row">
+            <nav class="nav-menu">
+                <a href="{% url 'dashboard' %}" style="text-decoration: none;"><p id="tituloEjercicio1" class="titulo-data">Data</p></a>
+                <a href="{% url 'dashboard' %}" style="text-decoration: none;"><p id="tituloEjercicio2" class="titulo-base">Bass</p></a> 
+                <ul class="navbar-list">
+                    <li class="opciones"><a href="{% url 'dashboard' %}" class="opcionInicio">Inicio</a></li>
+                    <!-- <li class="opciones"><a href="{% url 'unidades' %}" class="opcionContenido">Contenido</a></li>
+                    <li class="opciones"><a href="{% url 'compilador' %}" class="opcionHerramientas">Compilador</a></li> -->
+                </ul>		
+                <div class="navbar-profile">
+                    <!-- <div class="navbar-notification">
+                        
+                        <div class="navbar-notification-count">1</div>
+                    </div> -->
+                    <div class="navbar-notification navbar-avatar">
+                        <div class="navbar-picture">
+                            <a href="{% url 'perfil' %}">
+                                <img src="{% static 'img/perfil.jpg' %}" alt="" class="img-profile">
+                            </a>
+                            
+                        </div>
+                    </div>
+                            <div class="navbar-logout navbar-avatar">
+                                <div >
+                                    <a href="{% url 'cerrarSesion' %}">
+                                        <img src="{% static 'img/logout.png' %}" alt="" class="img-logout">
+                                    </a>
+                                </div>
+                            </div>
+                    
+                </div>
+            </nav>
             
-            {% endfor %}
-            </ul>   
         </div>
-    {% endif %}
-
+        <div class="principalCalificaciones">
+            <div class="contenedorCalificaciones">
+                <div class="contenidoCalificaciones">
+                    <!-- {{alumnos}} -->
+                    <p>Clases:</p>
+                    {% regroup alumnos by clase as lista_clases %}
+                    <ul>
+                        {% for clase in lista_clases %}
+                        <li>{{clase.grouper}}
+                            <ul>
+                                {% for alumno in clase.list %}
+                                <a href="{% url 'getCalificacionesAlumno' idAlumno=alumno.id %}">
+                                    <li>{{alumno.usuario.get_full_name}}</li>
+                                </a>
+                                {% endfor %}
+                            </ul>
+                        </li>
+                        {% endfor %}
+                    </ul>
+                </div>
+    
+                {% if calificaciones %}
+                {% regroup calificaciones by ejercicio.unidad as unidades_lista %}
+                <div class="descripcionCalificaciones">
+    
+                    <p class="p-descripcionCalificaciones">Alumno: {{calificaciones.0.alumno.usuario.get_full_name}}</p>
+                    <p>Expediente: {{calificaciones.0.alumno}}</p>
+                    <br>
+                    <ul>
+                        {% for unidad in unidades_lista  %}
+                        <li>{{unidad.grouper}}</li>
+    
+                        <ul>
+                            {% for calificacion in unidad.list %}
+                            <li>
+                                {{calificacion.ejercicio}}:</span>
+                                <input id="{{calificacion.id}}" type="number" step=".01"
+                                    value="{{calificacion.calificacion}}">
+                                (fecha: {{calificacion.fecha}})
+                                <button id="btn-actualizar" class="btn-actualiza-calificaciones"
+                                    data-idcalificacion="{{calificacion.id}}"
+                                    onclick="actualizarCalificacion(this)">Actualizar</button>
+                            </li>
+                            {% endfor %}
+                        </ul>
+    
+                        {% endfor %}
+                    </ul>
+                </div>
+            </div>
+        </div>
+        {% endif %}
+    </div>
 </body>
+
 </html>

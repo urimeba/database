@@ -135,7 +135,7 @@
 
     .opciones{
         font-size: 17px;
-     
+        cursor: pointer;
       
         
         width: 120px;
@@ -195,7 +195,6 @@
         height: 15%;
        
         display: flex;
-        justify-content: flex-end;
     }
     #compilador-bottom{
         width: 100%;
@@ -208,9 +207,9 @@
     #titulo{
         display: flex;
         align-items: center;
-        width: 70%;
+        width: 60%;
         color: white;
-        
+        padding-left: 20px;
     }
     #buttons{
         width: 35%;
@@ -228,8 +227,10 @@
         transition: .85s;
     }
     #play:hover{
-        background-color: rgb(41, 117, 6);
-    
+        background-color: #fafafa;
+        border:3px solid rgb(60, 170, 8);
+        color: rgb(60, 170, 8) !important;
+        font-weight: bold;
     }
     #borrar{
         border:none;

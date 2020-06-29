@@ -1,6 +1,7 @@
 const lista1 = document.getElementById("table-alumno");
 const lista2 = document.getElementById("table-maestro");
 const lista3 = document.getElementById("table-clase");
+const lista4 = document.getElementById("table-resultado");
 
 
 let paths = []
@@ -41,6 +42,21 @@ Sortable.create(lista2, {
 });
 
 Sortable.create(lista3, {
+    chosenClass: "seleccionado",
+    group: {
+        name: 'shared',
+        pull: 'clone'
+    },
+    animation: 150,
+    onAdd: function(e) {
+        console.log(e.to.parentElement.parentElement.getBoundingClientRect())
+        addFK(e)
+        addPaths({ start: '#'+e.from.id, end: '#'+e.to.id, strokeWidth: 1 })
+        
+    }
+});
+
+Sortable.create(lista4, {
     chosenClass: "seleccionado",
     group: {
         name: 'shared',
