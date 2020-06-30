@@ -894,13 +894,50 @@ def ejercicio62(request):
 
     if(intentos.numero>0):
         query = request.POST['query']
-        print(query)
+        # print(query)
 
+        calificacion = 0
+
+        q = query.lower()
+
+        queries = q.split(";")
+
+        for queri in queries:
+            queri = queri.replace(" ", "")
+            queri = queri.replace('\n', "")
+            # print(queri)
+            if "selectdistinct(department_id)fromdepartments" in queri:
+                calificacion += 1.67
+                print(1)
+
+            if "selecthire_datefromemployeeswherefirst_name='david'" in queri:
+                calificacion += 1.67
+                print(2)
+            
+            if "selectfirst_name,salary,commission_pctfromemployeeswherecommission_pctisnotnull" in queri:
+                calificacion += 1.67
+                print(3)
+
+            if "selectfirst_name,last_name,hire_date,salaryfromemployeesinnerjoindepartmentsonemployees.department_id=departments.department_idwheredepartments.department_id=20ordepartments.department_id=70ordepartments.department_id=80ordepartments.department_id=100" in queri:
+                calificacion += 1.67
+                print(4)
+
+            if "selectfirst_name,last_name,hire_date,salaryfromemployeeswherecommission_pctisnullorderbyfirst_name,last_name" in queri:
+                calificacion += 1.67
+                print(5)
+
+            if "selectfirst_name||','||last_namefromemployeeswherejob_id='sh_clerk'orjob_id='fi_account'andcommission_pctisnullorderbylast_nameasc" in queri:
+                calificacion+=1.67
+                print(6)
+
+
+
+        calificacion=10 if calificacion>10 else round(calificacion, 2)
         intentos.numero-=1
         intentos.save()
 
         calificacionBD.fecha = localtime(now())
-        calificacionBD.calificacion=0
+        calificacionBD.calificacion=calificacion
         calificacionBD.save()
 
         respuesta, created = Respuesta.objects.get_or_create(
@@ -913,10 +950,10 @@ def ejercicio62(request):
 
 
         return JsonResponse({
-            'calificacion': "TU CALIFICACION SERA ARREGLADA CUANDO EL SERVIDOR ESTE EN LINEA. (Intentos restantes: {0} intento(s))"
-            .format(intentos.numero),
+            'calificacion': "Tu calificacion ha sido: {0}. (Intentos restantes: {1} intento(s))"
+            .format(calificacion, intentos.numero),
             'intentos':intentos.numero,
-            'calificacion_calificacion':1234
+            'calificacion_calificacion':calificacion
         })
     else:
         return JsonResponse({
