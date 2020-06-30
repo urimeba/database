@@ -7,45 +7,46 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Calificaciones</title>
     <link rel="stylesheet" type="text/css" href="{% static 'css/estilos.css' %}">
+    <link href="https://fonts.googleapis.com/css?family=Montserrat&display=swap" rel="stylesheet">
     <script src="{% static 'js/funcionesUriel.js' %}"></script>
     <script src="{% static 'js/jQuery.js' %}"></script>
 </head>
 
 <body>
-    <div class="container">
+    <div class="container" style="background-color: #333645; ">
         <div class="row">
             <nav class="nav-menu">
-                <a href="{% url 'dashboard' %}" style="text-decoration: none;"><p id="tituloEjercicio1" class="titulo-data">Data</p></a>
-                <a href="{% url 'dashboard' %}" style="text-decoration: none;"><p id="tituloEjercicio2" class="titulo-base">Bass</p></a> 
+                <a href="{% url 'dashboard' %}" style="text-decoration: none;">
+                    <p id="tituloEjercicio1" class="titulo-data">Data</p>
+                </a>
+                <a href="{% url 'dashboard' %}" style="text-decoration: none;">
+                    <p id="tituloEjercicio2" class="titulo-base">Bass</p>
+                </a>
                 <ul class="navbar-list">
                     <li class="opciones"><a href="{% url 'dashboard' %}" class="opcionInicio">Inicio</a></li>
-                    <!-- <li class="opciones"><a href="{% url 'unidades' %}" class="opcionContenido">Contenido</a></li>
-                    <li class="opciones"><a href="{% url 'compilador' %}" class="opcionHerramientas">Compilador</a></li> -->
-                </ul>		
+                    <li class="opciones"><a href="{% url 'respuestas31' %}" class="opcionContenido">Respuestas</a></li>
+                    <li class="opciones"><a href="{% url 'getCalificaciones' %}"
+                            class="opcionHerramientas">Calificaciones</a></li>
+                    <li class="opciones"><a href="{% url 'ejercicios' %}" class="opcionHerramientas">Estado</a></li>
+                </ul>
                 <div class="navbar-profile">
-                    <!-- <div class="navbar-notification">
-                        
-                        <div class="navbar-notification-count">1</div>
-                    </div> -->
                     <div class="navbar-notification navbar-avatar">
                         <div class="navbar-picture">
                             <a href="{% url 'perfil' %}">
                                 <img src="{% static 'img/perfil.jpg' %}" alt="" class="img-profile">
                             </a>
-                            
                         </div>
                     </div>
-                            <div class="navbar-logout navbar-avatar">
-                                <div >
-                                    <a href="{% url 'cerrarSesion' %}">
-                                        <img src="{% static 'img/logout.png' %}" alt="" class="img-logout">
-                                    </a>
-                                </div>
-                            </div>
-                    
+                    <div class="navbar-logout navbar-avatar">
+                        <div>
+                            <a href="{% url 'cerrarSesion' %}">
+                                <img src="{% static 'img/logout.png' %}" alt="" class="img-logout">
+                            </a>
+                        </div>
+                    </div>
                 </div>
             </nav>
-            
+
         </div>
         <div class="principalCalificaciones">
             <div class="contenedorCalificaciones">
@@ -67,18 +68,16 @@
                         {% endfor %}
                     </ul>
                 </div>
-    
                 {% if calificaciones %}
                 {% regroup calificaciones by ejercicio.unidad as unidades_lista %}
                 <div class="descripcionCalificaciones">
-    
+
                     <p class="p-descripcionCalificaciones">Alumno: {{calificaciones.0.alumno.usuario.get_full_name}}</p>
-                    <p>Expediente: {{calificaciones.0.alumno}}</p>
+                    <p class="p-descripcionCalificaciones">Expediente: {{calificaciones.0.alumno}}</p>
                     <br>
                     <ul>
                         {% for unidad in unidades_lista  %}
                         <li>{{unidad.grouper}}</li>
-    
                         <ul>
                             {% for calificacion in unidad.list %}
                             <li>
@@ -92,7 +91,6 @@
                             </li>
                             {% endfor %}
                         </ul>
-    
                         {% endfor %}
                     </ul>
                 </div>

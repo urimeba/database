@@ -597,27 +597,364 @@ transition: .55s;
 .txt-white {
 	color: #eeeeee;
 }
-        /*-----------------------------------------------*/
-        @media(max-width:1122px ){
-            #unidadesEjerciciosContenedor{
-                overflow-y: scroll;
-            }
-            #unidadesEjerciciosContenedor>div{
-                margin-top: 30px;
-            }
-        }
-        @media(max-width: 1235px){
-            #temasEjerciciosContenedor{
-                /*background-color: green;*/
-                align-items: center;
-            }
-            #temasEjerciciosContenedor>div{
-                /*margin-top: 10px;*/
-            }
-        }
+/*--------Estilos maestro dashboard complemento -----*/
+#cuadros-container>a{
+  text-decoration: none;
+}
+/*--------Estilos NAVBAR Maestro ---------------*/
+.opciones {
+  display: flex;
+  font-size: 17px;
+  cursor: pointer;
+  width: 120px;
+  height: 40px;
+  transition: 0.75s;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 0 -11%;
+  font-size: 0.9rem;
+}
+.opciones > a {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  /* color:red; */
+  text-align: center;
+}
+.opciones:hover {
+  background-color: rgb(66, 69, 86);
+  border-radius: 6px;
+}
 
-        @media(max-width: 1685px){
-            #unidadesEjerciciosContenedor{
-                /*background-color: red;*/
-            }
-        }
+.opciones > a:hover {
+  color: #ff5a09;
+}
+.row {
+  display: flex;
+  padding: 2% 5%;
+  background: rgb(51, 54, 69);
+}
+.nav-menu {
+  width: 100%;
+  height: 12%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.navbar-list {
+  display: flex;
+  color: white;
+  list-style: none;
+  width: 75%;
+  justify-content: space-evenly;
+}
+.navbar-profile {
+  display: flex;
+  justify-content: space-around;
+  width: 10%;
+}
+
+.navbar-avatar {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.navbar-picture {
+  width: 95%;
+  height: 95%;
+  background-color: gray;
+  border-radius: 50%;
+  border: 2px solid white;
+  transition: 0.55s;
+}
+.navbar-logout {
+  display: flex;
+  justify-content: flex-end;
+  align-items: flex-end;
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  background-color: #eeeeee;
+  background-repeat: no-repeat;
+  background-size: 30px 30px;
+  background-position: center;
+  /* background-image: url(../img/logout6.png); */
+  cursor: pointer;
+  transition: 0.5s;
+}
+.img-profile {
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+}
+.img-logout {
+  width: 75%;
+  height: 75%;
+  margin-left: 20%;
+}
+.navbar-notification {
+  display: flex;
+  justify-content: flex-end;
+  align-items: flex-end;
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  background-color: #eeeeee;
+  background-repeat: no-repeat;
+  background-size: 30px 30px;
+  background-position: center;
+  background-image: url(../img/notification.png);
+  cursor: pointer;
+}
+/*--------Estilos Respuestas Maestro------------*/
+.container {
+  height: 100vh;
+}
+.principalRespuestas {
+  height: 85%;
+  width: 100%;
+  background-color: #333645;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.contenidoRespuestas {
+  width: 90vw;
+  /* background-color: green; */
+  height: 80vh;
+  display: flex;
+  flex-direction: row;
+}
+.clasesRespuestas {
+  width: 20%;
+  height: 100%;
+  background-color: #e4e4e4;
+  border-radius: 10px;
+}
+.clasesRespuestas > p {
+  margin-top: 20px;
+  margin-left: 5px;
+  font-weight: bold;
+}
+.clasesRespuestas > ul {
+  margin-top: 25px;
+}
+.nombreGrupo {
+  font-weight: bold;
+}
+.clasesRespuestas > ul > li {
+  margin-left: 25px;
+}
+.clasesRespuestas > ul > li > ul > a {
+  text-decoration: none;
+  color: #333645;
+}
+.clasesRespuestas > ul > li > ul > a > li {
+  margin-top: 10px;
+}
+
+.entreRespuestas {
+  width: 15px;
+  height: 100%;
+}
+.clasesResultadoRespuestas {
+  width: 80%;
+  height: 100%;
+  /* background-color: #333645; */
+  background-color: #e4e4e4;
+  border-radius: 10px;
+  box-shadow: 0px 0px 5px grey;
+}
+.tituloclasesResultadoRespuestas {
+  text-align: center;
+  margin-top: 10px;
+  font-size: 20px;
+  font-weight: bold;
+}
+.formResultados {
+  margin-top: 30px;
+  margin-bottom: 10px;
+  margin-left: 10px;
+}
+.submitRespuestas {
+  margin-top: 20px;
+  margin-left: 220px;
+  width: 90px;
+  height: 22px;
+  border: none;
+  color: white;
+  background-color: #00b0ff;
+  border-radius: 4px;
+  transition: 0.5s;
+  cursor: pointer;
+}
+#alumno {
+  margin-top: 20px;
+  font-weight: bold;
+  margin-left: 10px;
+}
+.tituloejercicioRespuestas {
+  margin-top: 50px;
+  margin-bottom: 10px;
+  text-align: center;
+}
+.tablaRespuestas {
+  text-align: center;
+}
+.contenidoTablaRespuestas {
+  margin-top: 30px;
+  width: 100%;
+  height: auto;
+  display: flex;
+  justify-content: center;
+}
+.tablaRespuestas > tbody > tr {
+  background-color: #c1c9e9;
+}
+.tablaRespuestas > tbody > tr > th {
+  font-size: 13px;
+  font-weight: normal;
+  padding: 8px;
+  background: #b9c9fe;
+  border-top: #039;
+  border-bottom: 1px solid #fff;
+  color: #039;
+  border-left: none;
+  border-right: none;
+}
+.tablaRespuestas > tbody > tr > td {
+  padding: 8px;
+  border-bottom: 1px solid #fff;
+  color: #669;
+  border-top: 1px solid transparent;
+  border-left: none;
+  border-right: none;
+}
+/*--------Estilos Calificaciones Maestro------------*/
+.p-descripcionCalificaciones {
+  font-weight: bold;
+  /* text-align: center; */
+  margin-left: 25px;
+}
+.principalCalificaciones {
+  background-color: #333645;
+  width: 100%;
+  height: auto;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.contenidoCalificaciones {
+  width: 20%;
+  margin-left: 40%;
+  height: auto;
+  background-color: #e4e4e4;
+  border-radius: 10px;
+  margin-bottom: 100px;
+  padding-top: 20px;
+  padding-bottom: 20px;
+}
+.contenidoCalificaciones > ul > li > ul > a {
+  text-decoration: none;
+  color: #333645;
+}
+.descripcionCalificaciones {
+  width: 100%;
+  height: auto;
+  background-color: #e4e4e4;
+  border-radius: 10px;
+  padding-top: 20px;
+  padding-bottom: 20px;
+  margin-bottom: 20px;
+}
+.contenidoCalificaciones > p {
+  font-weight: bold;
+  padding-bottom: 10px;
+  margin-left: 5px;
+}
+.contenidoCalificaciones > ul > li {
+  margin-left: 25px;
+}
+.descripcionCalificaciones > ul > li {
+  margin-left: 25px;
+  font-weight: bold;
+}
+.descripcionCalificaciones > ul > ul > li {
+  margin-left: 25px;
+}
+.contenedorCalificaciones {
+  width: 90%;
+}
+.btn-actualiza-calificaciones {
+  width: 90px;
+  height: 22px;
+  border: none;
+  color: white;
+  background-color: #00b0ff;
+  border-radius: 4px;
+  transition: 0.5s;
+  cursor: pointer;
+}
+/*--------Estilos Ejercicios Maestro------------*/
+.principalEjercicios {
+  height: auto;
+  width: 100%;
+  background-color: #333645;
+  display: flex;
+  justify-content: center;
+  align-items: center;    
+  overflow-y: auto;
+}
+.contenidoEjercicios {
+  width: 90%;
+  margin-left: 5%;
+  height: auto;
+  background-color: #e4e4e4;
+  border-radius: 10px;
+  padding-top: 20px;
+  padding-bottom: 20px;
+  margin-bottom: 20px;
+}
+.contenidoEjercicios > ul > li {
+  margin-left: 25px;
+  font-weight: bold;
+  margin-bottom: 10px;
+}
+.contenidoEjercicios > ul > ul > li {
+  margin-left: 25px;
+}
+.contenedorEjercicios {
+  width: 90%;
+}
+.btn-actualiza-ejercicios {
+  width: 90px;
+  height: 22px;
+  border: none;
+  color: white;
+  background-color: #00b0ff;
+  border-radius: 4px;
+  transition: 0.5s;
+  cursor: pointer;
+}
+.tituloContenidoEjercicios {
+  font-size: 20px;
+  margin-bottom: 25px;
+  text-align: center;
+  font-weight: bold;
+}
+/*-----------------------------------------------*/
+@media (max-width: 1122px) {
+  #unidadesEjerciciosContenedor {
+    overflow-y: scroll;
+  }
+  #unidadesEjerciciosContenedor > div {
+    margin-top: 30px;
+  }
+}
+@media (max-width: 1235px) {
+  #temasEjerciciosContenedor {
+    /*background-color: green;*/
+    align-items: center;
+  }
+}
