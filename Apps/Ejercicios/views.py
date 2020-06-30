@@ -613,7 +613,7 @@ def ejercicio42(request):
 
         calificacion+=1.67 if 'PK - ID(number)' in atributosPrestamo else 0
         calificacion+=1.67 if 'FK - expedienteAlumno(number)' in atributosPrestamo else 0
-        calificacion+=1.67 if 'FK - isbn(varchar2)' in atributosPrestamo else 0
+        calificacion+=1.67 if 'FK - isbn(number)' in atributosPrestamo else 0
         calificacion+=1.67 if 'FK - claveEmpleado(number)' in atributosPrestamo else 0
         calificacion+=1.67 if 'fechaPrestamo(date)' in atributosPrestamo else 0
         calificacion+=1.67 if 'fechaEntrega(date)' in atributosPrestamo else 0
@@ -650,13 +650,80 @@ def ejercicio51(request):
 
     if(intentos.numero>0):
         query = request.POST['query']
-        print(query)
+        calificacion = 0
+        querys = query.lower().split(';')
+        
+        for queri in querys:
+            queri = queri.replace(" ", "")
+            attrs = queri.split(",")
+            print(attrs)
+
+            if("createtablelibros" in attrs[0]):
+                for attr in attrs:
+                    if("isbnnumber(13)primarykey" in attr):
+                        calificacion+=0.44
+                    if("titulovarchar2(100)notnull" in attr):
+                        calificacion+=0.44
+                    if("ubicacionvarchar2(100)notnull" in attr):
+                        calificacion+=0.44
+                    if("autorvarchar2(100)notnull" in attr):
+                        calificacion+=0.44
+                    if("editorialvarchar2(100)notnull" in attr):
+                        calificacion+=0.44
+            
+            if("createtableempleados" in attrs[0]):
+                for attr in attrs:
+                    if("clavenumber(7)primarykey" in attr):
+                        calificacion+=0.44
+                    if("nombreempleadovarchar2(100)notnull" in attr):
+                        calificacion+=0.44
+                    if("puestovarchar2(100)notnull" in attr):
+                        calificacion+=0.44
+                    if("fechacontrataciondatenotnull" in attr):
+                        calificacion+=0.44
+                    if("constraintempleados_uniqueunique(puesto)" in attr):
+                        calificacion+=0.44
+
+            if("createtablealumnos" in attrs[0]):
+                for attr in attrs:
+                    if("expedientenumber(6)primarykey" in attr):
+                        calificacion+=0.44
+                    if("nombrealumnovarchar2(100)notnull" in attr):
+                        calificacion+=0.44
+                    if("planvarchar2(100)notnull" in attr):
+                        calificacion+=0.44
+                    if("fechaingresodatenotnull" in attr):
+                        calificacion+=0.44
+
+            if("createtableprestamo" in attrs[0]):
+                for attr in attrs:
+                    if("idnumber(7)primarykey" in attr):
+                        calificacion+=0.44
+                    if("isbnnumber(13)notnull" in attr):
+                        calificacion+=0.44
+                    if("claveempleadonumber(7)notnull" in attr):
+                        calificacion+=0.44
+                    if("expedientealumnonumber(6)notnull" in attr):
+                        calificacion+=0.44
+                    if("fechaprestamodatenotnull" in attr):
+                        calificacion+=0.44
+                    if("fechaentregadatenotnull" in attr):
+                        calificacion+=0.44
+                    if("constraintfk_isbnforeignkey(isbn)referenceslibros(isbn)" in attr):
+                        calificacion+=0.44
+                    if("constraintfk_claveempleadoforeignkey(claveempleado)referencesempleados(clave)" in attr):
+                        calificacion+=0.44
+                    if("constraintfk_expedientealumnoforeignkey(expedientealumno)referencesalumnos(expediente)" in attr):
+                        calificacion+=0.44
+
 
         intentos.numero-=1
         intentos.save()
+        
+        calificacion=10 if calificacion>10 else round(calificacion, 2)
 
         calificacionBD.fecha = localtime(now())
-        calificacionBD.calificacion=0
+        calificacionBD.calificacion=calificacion
         calificacionBD.save()
 
         respuesta, created = Respuesta.objects.get_or_create(
@@ -668,11 +735,10 @@ def ejercicio51(request):
 
 
         return JsonResponse({
-            # 'calificacion': "Tu calificacion sera evaluada por tu profesor. (Intentos restantes: {0} intento(s))"
-            'calificacion': "TU CALIFICACION SERA ARREGLADA CUANDO EL SERVIDOR ESTE EN LINEA (Intentos restantes: {0} intento(s))"
-            .format(intentos.numero),
+            'calificacion': "Tu calificacion ha sido: {0}. (Intentos restantes: {1} intento(s))"
+            .format(calificacion, intentos.numero),
             'intentos':intentos.numero,
-            'calificacion_calificacion':1234
+            'calificacion_calificacion':calificacion
         })
     else:
         return JsonResponse({
