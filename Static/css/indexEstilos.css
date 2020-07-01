@@ -39,7 +39,14 @@
         margin: 0 -11%;
         font-size: 0.9rem;
     }
-    
+    .textPerfilInfo{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        color: white;
+        width: 100%;
+        height: 15%;
+    }
     .container {
         background: rgb(51,54,69);
         width: 100%;
@@ -127,6 +134,7 @@
         display: flex;
         justify-content: space-around;
         align-items: center;
+        border-radius: 8px;
     }
     
     .user-information > div:nth-child(4) > p:nth-child(2) {
@@ -136,7 +144,7 @@
 
     .opciones{
         font-size: 17px;
-        cursor: pointer;
+      
       
         
         width: 140px;
@@ -195,7 +203,7 @@
     #dashboard-title{
        margin-top: 15px;
         font-size: 45px;
-        color: #FF5A09;
+        color: #ffffff;
         font-weight: 600;
         font-family: Segoe UI,Frutiger,Frutiger Linotype,Dejavu Sans,Helvetica Neue,Arial,sans-serif; 
     }
