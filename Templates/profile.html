@@ -20,7 +20,13 @@
 		</div>
 		<div>
 			<p class="txt-white"><strong>Correo</strong></p>
-			<p class="txt-gray">{{request.user.email}}</p>
+			<p class="txt-gray">
+				{% if request.user.email %}
+				{{request.user.email}}
+				{% else %}
+				Sin correo registrado
+				{% endif %}
+			</p>
 		</div>
 		<div>
 			<p class="txt-white"><strong>Promedio</strong></p>
@@ -53,7 +59,7 @@
 		<div id="crecienteUnidad">
 			{% for calificacion in unidad.list %}
 				<div class="score blue-dark-2 alumno-calificacion">
-					<p>{{calificacion.ejercicio}}</p>
+					<p>Ejercicio #{{calificacion.ejercicio.id}}</p>
 					<p>Calificacion: {{calificacion.calificacion}}</p>
 				</div>
 			{% endfor %}
