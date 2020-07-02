@@ -128,7 +128,6 @@ function adjustDifferentBottomPath() {
 
     for(let i = 1; i < paths.length && paths.length > 1; i++) {
         let currentTraY = pathsPx[i] - initialScroll
-        console.log('REAL DIF', dif)
         pa[i].style.transform = `translate(0, ${currentTraY - dif}px)`
     }
 }
@@ -176,7 +175,6 @@ document.querySelector('#contenido-contenidoEjercicios').addEventListener('scrol
         currentScroll = document.querySelector('#contenido-contenidoEjercicios').scrollTop
         dif = currentScroll - initialScroll
         currentBottomSvgTag = dif
-        console.log(initialScroll)
         adjustFirstBottomPath(dif)
         adjustDifferentBottomPath()
     }

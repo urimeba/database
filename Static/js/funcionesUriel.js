@@ -19,20 +19,31 @@ function getCookie(name) {
 function compile() {
     try {
         let query = code.getValue();
+        if(query.trim('') === '') {
+            addToast('No has escrito nada todavía', 'warning')
+            return
+        }
+        addLoaderAnimation()
         $.ajax({
             type: 'POST',
             url: serverWeb+"compilador",
             data: {query},
             success: function(response){
-                console.log(response)
-                let { data } = response
-                console.log(data)
-                data = JSON.parse(data)
-                modifyDivResultHTML('clean')
-                processResponseCompiler(data)
+                try {
+                    let { data } = response
+                    data = JSON.parse(data)
+                    modifyDivResultHTML('clean')
+                    processResponseCompiler(data)
+                    removeHelperAttributes()
+                } catch (error) {
+                    addToast('Ha ocurrido un error al procesar la petición', 'error')
+                    removeHelperAttributes()
+                    removeLoaderAnimation()
+                }
             },
             error: function(error){
-                alert("Ha ocurrido un error al procesar la petición");
+                alert('Ha ocurrido un error al procesar la petición');
+                addToast('Ha ocurrido un error al procesar la petición', 'error')
             },
             timeout: 5000
         });
@@ -42,6 +53,7 @@ function compile() {
 }
 
 function processResponseCompiler(data) {
+    if(data.length === 0) addToast('Tú consulta ha sido procesada con exito.', 'successfully')
     for(const response of data) {
         if(response.hasOwnProperty('code') && response.hasOwnProperty('english') && response.hasOwnProperty('spanish')) {
             modifyDivResultHTML('append', document.createTextNode(response['spanish']));
@@ -873,3 +885,31 @@ actualizarEjercicio = (elementoHTML) =>{
         }
     });
 }
+
+function checkProtocol() {
+    if (location.hostname === "localhost" || location.hostname === "127.0.0.1") {
+        return false
+    }
+    if (location.protocol !== 'https:') {
+        location.replace(`https:${location.href.substring(location.protocol.length)}`);
+    }
+}
+
+function addToast(message, status) {
+  const toast = document.getElementById("snackbar");
+
+  if(status === 'successfully') {
+    toast.classList.add('successfully')
+  } else if(status === 'warning') {
+    toast.classList.add('warning')
+  } else if(status === 'error'){
+    toast.classList.add('error')
+  }
+
+  toast.classList.add('show');
+  toast.innerText = message
+
+  setTimeout(function(){ toast.className = toast.classList.remove('show'); }, 3000);
+}
+
+checkProtocol()
