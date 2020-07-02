@@ -29,8 +29,8 @@
 			</p>
 		</div>
 		<div>
-			<p class="txt-white"><strong>Promedio</strong></p>
-			<p class="center-x txt-gray" style="color: #FF5A09; font-weight: bold;">0.0</p>
+			<p class="txt-white"><strong>Promedio de ejercicios contestados</strong></p>
+			<p class="center-x txt-gray" style="color: #FF5A09; font-weight: bold;">{{promedio.calificacion__avg|floatformat:2}}</p>
 		</div>
 		<a href="{% url 'cambiarContraseña' %}">
 			<button id="perfil-cambioContra">Cambiar contraseña</button>
@@ -78,6 +78,15 @@
 {% endif %}
 
 </div>
+
+<script>
+	window.onload = function(){
+		let data = "{{datos|safe}}";
+		data = data.replace(/'/g,'"');
+		data = JSON.parse(data);
+		graf.setData(data);
+	}
+</script>
 
 
 

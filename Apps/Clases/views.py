@@ -15,7 +15,7 @@ from django.contrib import messages
 from django.contrib.auth import get_user_model
 from django.views.decorators.csrf import csrf_exempt
 import paramiko
-
+from django.db.models import Avg
 
 class Loginn(LoginView):
     template_name = 'login.html'
@@ -83,8 +83,46 @@ def perfil(request):
     calificaciones = CalificacionEjercicio.objects.filter(
         alumno = alumno
     ).order_by('ejercicio__unidad')
+
+    validas = calificaciones.filter(calificacion__gt=0)
+    promedio = validas.aggregate(Avg('calificacion'))
+
+        
+    datos = []
+    for calificacion in validas:
+        idUnidad = "Unidad " + str(calificacion.ejercicio.unidad.id)
+        
+        lenDatos = len(datos)
+        cont = 0
+        for obj in datos:
+            if(obj["mapname"]!=idUnidad):
+                cont+=1
+        
+        if(lenDatos==cont):
+            datos.append({"mapname":idUnidad})
+
+        
+        for obj in datos:
+            ind = datos.index(obj)
+            idUni = obj["mapname"]
+            if(idUni==idUnidad):
+                index = ind
+
+        jsonData = datos[index]
+        lent = len(jsonData)
+        if(lent==1):
+            jsonData["value"] = str(calificacion.calificacion)
+        else:
+            strValue = "value" + str(lent)
+            jsonData[strValue] = str(calificacion.calificacion)
+            
+
+
+
     return render(request, 'profile.html', {
-        'calificaciones':calificaciones
+        'calificaciones':calificaciones,
+        'promedio':promedio,
+        'datos':datos
     })
 
 @login_required
