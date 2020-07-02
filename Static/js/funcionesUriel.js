@@ -25,12 +25,11 @@ function compile() {
             url: serverWeb,
             data: {query},
             success: function(response){
-                console.log(response)
                 let { data } = response
-                console.log(data)
                 data = JSON.parse(data)
                 modifyDivResultHTML('clean')
                 processResponseCompiler(data)
+                removeHelperAttributes()
             },
             error: function(error){
                 alert("Ha ocurrido un error al procesar la petición");
