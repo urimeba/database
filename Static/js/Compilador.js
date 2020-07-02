@@ -68,7 +68,5 @@ function addToast(message, status) {
   toast.classList.add('show');
   toast.innerText = message
 
-
-
   setTimeout(function(){ toast.className = toast.classList.remove('show'); }, 3000);
 }
