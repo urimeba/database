@@ -20,19 +20,31 @@ function getCookie(name) {
 function compile() {
     try {
         let query = code.getValue();
+        if(query.trim('') === '') {
+            addToast('No has escrito nada todavía', 'warning')
+            return
+        }
+        addLoaderAnimation()
         $.ajax({
             type: 'POST',
             url: serverWeb,
             data: {query},
             success: function(response){
-                let { data } = response
-                data = JSON.parse(data)
-                modifyDivResultHTML('clean')
-                processResponseCompiler(data)
-                removeHelperAttributes()
+                try {
+                    let { data } = response
+                    data = JSON.parse(data)
+                    modifyDivResultHTML('clean')
+                    processResponseCompiler(data)
+                    removeHelperAttributes()
+                } catch (error) {
+                    addToast('Ha ocurrido un error al procesar la petición', 'error')
+                    removeHelperAttributes()
+                    removeLoaderAnimation()
+                }
             },
             error: function(error){
-                alert("Ha ocurrido un error al procesar la petición");
+                alert('Ha ocurrido un error al procesar la petición');
+                addToast('Ha ocurrido un error al procesar la petición', 'error')
             },
             timeout: 5000
         });
@@ -42,6 +54,7 @@ function compile() {
 }
 
 function processResponseCompiler(data) {
+    if(data.length === 0) addToast('Tú consulta ha sido procesada con exito.', 'successfully')
     for(const response of data) {
         if(response.hasOwnProperty('code') && response.hasOwnProperty('english') && response.hasOwnProperty('spanish')) {
             modifyDivResultHTML('append', document.createTextNode(response['spanish']));

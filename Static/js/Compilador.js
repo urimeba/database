@@ -50,4 +50,25 @@ function removeHelperAttributes() {
   PLAY_BUTTON.removeAttribute('disabled')
 }
 
-PLAY_BUTTON.addEventListener('click', addLoaderAnimation)
+function removeLoaderAnimation() {
+  TABLES_CONTAINER.innerHTML = ''
+}
+
+function addToast(message, status) {
+  const toast = document.getElementById("snackbar");
+
+  if(status === 'successfully') {
+    toast.classList.add('successfully')
+  } else if(status === 'warning') {
+    toast.classList.add('warning')
+  } else if(status === 'error'){
+    toast.classList.add('error')
+  }
+
+  toast.classList.add('show');
+  toast.innerText = message
+
+
+
+  setTimeout(function(){ toast.className = toast.classList.remove('show'); }, 3000);
+}
