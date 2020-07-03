@@ -84,7 +84,13 @@
                                 {{calificacion.ejercicio}}:</span>
                                 <input id="{{calificacion.id}}" type="number" step=".01"
                                     value="{{calificacion.calificacion}}">
-                                (fecha: {{calificacion.fecha}})
+                                (fecha: 
+                                {% if calificacion.fecha %}
+                                    {{calificacion.fecha}}
+                                {% else %}
+                                    Sin entregar
+                                {% endif %}
+                                )
                                 <button id="btn-actualizar" class="btn-actualiza-calificaciones"
                                     data-idcalificacion="{{calificacion.id}}"
                                     onclick="actualizarCalificacion(this)">Actualizar</button>
