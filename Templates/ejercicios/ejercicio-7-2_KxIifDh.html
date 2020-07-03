@@ -5,6 +5,11 @@
 <script>
     window.onload=function(){
     document.getElementById("btn-ejercicio-6-2").addEventListener("click", enviarEjercicio6_2);
+    var element=document.getElementById("query");
+    element.addEventListener('click',  function borrarTexto(ev){
+        ev.target.innerHTML="";
+        ev.target.style.color="black";
+    });
   }
 </script>
 <ol>

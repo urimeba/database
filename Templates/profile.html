@@ -52,7 +52,7 @@
 	{% regroup calificaciones by ejercicio.unidad as unidad_lista %}
 
 	{% for unidad in unidad_lista %}
-	<p>{{unidad.grouper}}</p>
+	<p class="tituloCalificacion">{{unidad.grouper}}</p>
 
 	<div class="row">
 		<section class="user-score">

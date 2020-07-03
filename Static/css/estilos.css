@@ -154,6 +154,11 @@
       .progresoClass{
           align-items: center;
       }
+      .tituloCalificacion{
+       padding: 1%;
+       padding-left: 5%;
+       color: #FF5A09;
+    }
       .fs-16{
         height: 36%;
       
