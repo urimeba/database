@@ -1,7 +1,9 @@
 {% extends 'actividadesEjercicios.html' %}
 
 {% block ejercicio %}
-
+<form action="{% url 'compilador' %}" target="_blank">
+    <input id="app-submit" type="submit" value="Compilador" class="openCompiladorB"/>
+  </form>
 <script>
     window.onload=function(){
     document.getElementById("btn-ejercicio-6-2").addEventListener("click", enviarEjercicio6_2);
