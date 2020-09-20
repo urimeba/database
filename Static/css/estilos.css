@@ -475,6 +475,19 @@
             text-decoration: none;
             color: white;
         }
+        .opcionInicio.active{
+          text-decoration: underline;
+          color: #fe5a09;
+        }
+        .opcionContenido.active{
+          text-decoration: underline;
+          color: #fe5a09;
+        }
+        .opcionHerramientas.active{
+          text-decoration: underline;
+          color: #fe5a09;
+        }
+        
         .img-logout{
             width: 75%;
             height: 75%;
