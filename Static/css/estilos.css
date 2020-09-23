@@ -475,6 +475,30 @@
             text-decoration: none;
             color: white;
         }
+        .opcionRespuestas{
+          text-decoration: none;
+          color: white;
+        }
+        .opcionCalificaciones{
+            text-decoration: none;
+            color: white;
+        }
+        .opcionEstado{
+            text-decoration: none;
+            color: white;
+        }
+        .opcionRespuestas.active{
+          text-decoration: underline;
+          color: #fe5a09;
+        }
+        .opcionCalificaciones.active{
+          text-decoration: underline;
+          color: #fe5a09;
+        }
+        .opcionEstado.active{
+          text-decoration: underline;
+          color: #fe5a09;
+        }
         .opcionInicio.active{
           text-decoration: underline;
           color: #fe5a09;
