@@ -774,13 +774,17 @@ transition: .55s;
 .clasesRespuestas {
   width: 20%;
   height: 100%;
-  background-color: #e4e4e4;
+  background-color: #FAFAFF;
   border-radius: 10px;
+  box-shadow: 4px 4px 15px 0px rgba(0,0,0,0.75);
+  padding: 15px;
+  box-sizing: border-box;
 }
 .clasesRespuestas > p {
   margin-top: 20px;
   margin-left: 5px;
   font-weight: bold;
+  font-size: 22px;
 }
 .clasesRespuestas > ul {
   margin-top: 25px;
@@ -807,14 +811,16 @@ transition: .55s;
   width: 80%;
   height: 100%;
   /* background-color: #333645; */
-  background-color: #e4e4e4;
+  background-color: #FAFAFF;
   border-radius: 10px;
-  box-shadow: 0px 0px 5px grey;
+  box-shadow: 4px 4px 15px 6px rgba(0,0,0,0.75);
+  padding: 15px;
+  box-sizing: border-box;
 }
 .tituloclasesResultadoRespuestas {
   text-align: center;
   margin-top: 10px;
-  font-size: 20px;
+  font-size: 22px;
   font-weight: bold;
 }
 .formResultados {
@@ -824,15 +830,34 @@ transition: .55s;
 }
 .submitRespuestas {
   margin-top: 20px;
-  margin-left: 220px;
-  width: 90px;
-  height: 22px;
+  margin-left: 232px;
+  width: 100px;
+  height: 40px;
   border: none;
   color: white;
-  background-color: #00b0ff;
+  background-color:#FF5A09;
   border-radius: 4px;
   transition: 0.5s;
   cursor: pointer;
+  font-weight: bold;
+}
+.submitRespuestas:hover {
+  background-color: #ff8b52;
+}
+.textoResultadoRespuestas {
+  margin-left: 20px;
+  margin-top: 10px;
+  opacity: 45%;
+  font-weight: bold;
+  color: #FF5A09;
+}
+#id_calificacion{
+  height: 40px;
+  outline: none;
+  padding-left:10px ;
+  border: 1px solid gray;
+  border-radius: 4px;
+  margin-left: 15px;
 }
 #alumno {
   margin-top: 20px;
@@ -950,40 +975,84 @@ transition: .55s;
   justify-content: center;
   align-items: center;    
   overflow-y: auto;
+  
 }
 .contenidoEjercicios {
   width: 90%;
   margin-left: 5%;
   height: auto;
-  background-color: #e4e4e4;
+  background-color: #fbfaff;
   border-radius: 10px;
   padding-top: 20px;
+  padding-left: 20px;
   padding-bottom: 20px;
   margin-bottom: 20px;
+  box-shadow: 4px 4px 15px 6px rgba(0,0,0,0.75);
 }
 .contenidoEjercicios > ul > li {
   margin-left: 25px;
   font-weight: bold;
   margin-bottom: 10px;
+  margin-top: 10px;
+  list-style: none;
+  font-size: 19px;
 }
 .contenidoEjercicios > ul > ul > li {
-  margin-left: 25px;
+  margin-left: 35px;
+  list-style: none;
 }
 .contenedorEjercicios {
   width: 90%;
 }
 .btn-actualiza-ejercicios {
+  
   width: 90px;
   height: 22px;
   border: none;
   color: white;
-  background-color: #00b0ff;
+  background-color: #0075ff;
+  /* #FF5A09
+    #226CE0
+    #00b0ff
+
+  */
   border-radius: 4px;
-  transition: 0.5s;
+  transition: .7s;
   cursor: pointer;
+  
+}
+.btn-actualiza-ejercicios:hover{
+  background-color: #3390ff;
+  border: 2px solid #0075ff;
+}
+.contenidoEjerciciosContentlabel{
+  margin-right: 4px;
+}
+.contenidoEjerciciosContent{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+.contenidoEjerciciosContentB{
+  align-items: center;
+  display: flex;
+  width: 170px;
+  height: 30px;
+  margin-right: 25px;
+}
+.contenidoEjerciciosContentA{
+  margin-right: 15px;
+  margin-left: 35px;
+  margin-bottom: 10px;
+  
+  width: 80%;
+  list-style: none;
+}
+.contenidoEjerciciosContentinput{
+  margin-right: 4px;
 }
 .tituloContenidoEjercicios {
-  font-size: 20px;
+  font-size: 22px;
   margin-bottom: 25px;
   text-align: center;
   font-weight: bold;
