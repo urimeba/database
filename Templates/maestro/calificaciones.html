@@ -81,19 +81,24 @@
                         <ul>
                             {% for calificacion in unidad.list %}
                             <li>
-                                {{calificacion.ejercicio}}:</span>
-                                <input id="{{calificacion.id}}" type="number" step=".01"
-                                    value="{{calificacion.calificacion}}">
-                                (fecha: 
-                                {% if calificacion.fecha %}
-                                    {{calificacion.fecha}}
-                                {% else %}
-                                    Sin entregar
-                                {% endif %}
-                                )
-                                <button id="btn-actualizar" class="btn-actualiza-calificaciones"
+                                <div class="EjerciciosT">
+                                    {{calificacion.ejercicio}}:</span>
+                                    <input id="{{calificacion.id}}" type="number" step=".01"
+                                        value="{{calificacion.calificacion}}">
+                                    (fecha: 
+                                    {% if calificacion.fecha %}
+                                        {{calificacion.fecha}}
+                                    {% else %}
+                                        Sin entregar
+                                    {% endif %}
+                                    )
+                                </div>
+                                <div class="EjerciciosB">
+                                    <button id="btn-actualizar" class="btn-actualiza-calificaciones"
                                     data-idcalificacion="{{calificacion.id}}"
                                     onclick="actualizarCalificacion(this)">Actualizar</button>
+                                </div>
+                                
                             </li>
                             {% endfor %}
                         </ul>
