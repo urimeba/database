@@ -1,4 +1,4 @@
-var serverWeb = 'https://uaqdatabass.herokuapp.com/';
+var serverWeb = 'http://127.0.0.1:8000/';
 
 // Funcion para obtener la Cookie y mandarla al Back
 function getCookie(name) {
@@ -132,6 +132,7 @@ enviarEjercicio0_1 = () =>{
     if(!confirmacion){
         return;
     }
+
 
     let res1 = getTextSelect("pregunta-1");
     let res2 = getTextSelect("pregunta-2");

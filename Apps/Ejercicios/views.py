@@ -115,23 +115,31 @@ def ejercicio01(request):
         if (res10 == "c"):
             calificacion += 1
 
+    if(calificacion>calificacionBD.calificacion):
         calificacionBD.fecha = localtime(now())
         calificacionBD.calificacion=calificacion
         calificacionBD.save()
 
-        return JsonResponse({
-            'calificacion': "Tu calificacion ha sido: {0}. (Intentos restantes: {1} intento(s))"
-            .format(calificacion, intentos.numero),
-            'intentos':intentos.numero,
-            'calificacion_calificacion':calificacion
+        if(intentos.numero > 0):
+            return JsonResponse({
+                'calificacion': "Tu calificacion ha sido: {0}. (Intentos restantes: {1} intento(s))"
+                .format(calificacion, intentos.numero),
+                'intentos':intentos.numero,
+                'calificacion_calificacion':calificacion
         })
-
+        else:
+            return JsonResponse({
+                'calificacion': "Has superado el limite de intentos del ejercicio (2 intentos) \n las respuestas correctas son:\n 1.-Repositorio de información digital \n 2.-Modelo de organización de bases de datos \n 3.-Comandos para la busqueda de información especifica \n 4.-Representación de un registro \n 5.-Representacion de un atributo \n 6.-Representación minima de un atributo \n 7.-Sistema de manipulación y mantenimiento de datos \n 8.-Definición de propiedades a cumplir por la información a ingresar \n 9.-Manera en la cual se relacionan las tablas \n 10.-Representación grafica de una base de datos",
+                'intentos':0,
+                'calificacion_calificacion':calificacionBD.calificacion
+        })
     else:
         return JsonResponse({
-            'calificacion': "Has superado el limite de intentos del ejercicio (3 intentos)",
+            'calificacion': "Has superado el limite de intentos del ejercicio (2 intentos) \n las respuestas correctas son:\n 1.-Repositorio de información digital \n 2.-Modelo de organización de bases de datos \n 3.-Comandos para la busqueda de información especifica \n 4.-Representación de un registro \n 5.-Representacion de un atributo \n 6.-Representación minima de un atributo \n 7.-Sistema de manipulación y mantenimiento de datos \n 8.-Definición de propiedades a cumplir por la información a ingresar \n 9.-Manera en la cual se relacionan las tablas \n 10.-Representación grafica de una base de datos",
             'intentos':0,
             'calificacion_calificacion':calificacionBD.calificacion
         })
+        
 
 # ID DEL EJERCICIO: 6
 @login_required
@@ -193,24 +201,30 @@ def ejercicio11(request):
         if (res10 == "b"):
             calificacion += 1
 
+    if(calificacion>calificacionBD.calificacion):
         calificacionBD.fecha = localtime(now())
         calificacionBD.calificacion=calificacion
         calificacionBD.save()
 
-        return JsonResponse({
-            'calificacion': "Tu calificacion ha sido: {0}. (Intentos restantes: {1} intento(s))"
-            .format(calificacion, intentos.numero),
-            'intentos':intentos.numero,
-            'calificacion_calificacion':calificacion
+        if(intentos.numero > 0):
+            return JsonResponse({
+                'calificacion': "Tu calificacion ha sido: {0}. (Intentos restantes: {1} intento(s))"
+                .format(calificacion, intentos.numero),
+                'intentos':intentos.numero,
+                'calificacion_calificacion':calificacion
         })
-
+        else:
+            return JsonResponse({
+                'calificacion': "Has superado el limite de intentos del ejercicio (2 intentos) \n las respuestas correctas son:\n 1.-Datos \n 2.-Bases de datos \n 3.-datos relacionados \n 4.-Colección integrada \n 5.-Conjuntos de programas de administración de BD \n 6.-Un gerente de proyectos \n 7.-Llevar la información a su minima expresión \n 8.-Procesos del sistema operativo \n 9.-Restricciones y consistencia \n 10.-Minimizar redundancia",
+                'intentos':0,
+                'calificacion_calificacion':calificacionBD.calificacion
+        })
     else:
         return JsonResponse({
-            'calificacion': "Has superado el limite de intentos del ejercicio (3 intentos)",
+            'calificacion': "Has superado el limite de intentos del ejercicio (2 intentos) \n las respuestas correctas son:\n 1.-Datos \n 2.-Bases de datos \n 3.-datos relacionados \n 4.-Colección integrada \n 5.-Conjuntos de programas de administración de BD \n 6.-Un gerente de proyectos \n 7.-Llevar la información a su minima expresión \n 8.-Procesos del sistema operativo \n 9.-Restricciones y consistencia \n 10.-Minimizar redundancia",
             'intentos':0,
             'calificacion_calificacion':calificacionBD.calificacion
         })
-
 # ID DEL EJERCICIO: 3
 @login_required
 def ejercicio21(request):
@@ -254,24 +268,38 @@ def ejercicio21(request):
 
 
         calificacion=10 if calificacion>10 else round(calificacion, 2)
+    if(calificacion>calificacionBD.calificacion):
         calificacionBD.fecha = localtime(now())
         calificacionBD.calificacion=calificacion
         calificacionBD.save()
 
-        return JsonResponse({
+        if(intentos.numero > 0):
+            return JsonResponse({
+                'calificacion': "Tu calificacion ha sido: {0}. (Intentos restantes: {1} intento(s))"
+                .format(calificacion, intentos.numero),
+                'intentos':intentos.numero,
+                'calificacion_calificacion':calificacion
+        })
+        else:
+            return JsonResponse({
+                'calificacion': "Has superado el limite de intentos del ejercicio (2 intentos) \n las respuestas correctas son:\n \n Videojuegos: \n -Titulo \n -Genero \n -Consola \n -Desarrollador \n -Precio \n -Fecha de lanzamiento \n \n Proveedores: \n -Nombre \n -Telefono \n -Dirrección \n -Clave \n \n Empleados \n -Nombre \n -Sucursal \n -Salario \n \n Clientes: \n -Nombre \n -Dirección \n -Correo Electronico \n -Telefono",
+                'intentos':0,
+                'calificacion_calificacion':calificacionBD.calificacion
+        })
+    else:
+        if(intentos.numero == 0):
+            return JsonResponse({
+                'calificacion': "Has superado el limite de intentos del ejercicio (2 intentos) \n las respuestas correctas son:\n \n Videojuegos: \n -Titulo \n -Genero \n -Consola \n -Desarrollador \n -Precio \n -Fecha de lanzamiento \n \n Proveedores: \n -Nombre \n -Telefono \n -Dirrección \n -Clave \n \n Empleados \n -Nombre \n -Sucursal \n -Salario \n \n Clientes: \n -Nombre \n -Dirección \n -Correo Electronico \n -Telefono",
+                'intentos':0,
+                'calificacion_calificacion':calificacionBD.calificacion
+                })
+        else:
+            return JsonResponse({
             'calificacion': "Tu calificacion ha sido: {0}. (Intentos restantes: {1} intento(s))"
             .format(calificacion, intentos.numero),
             'intentos':intentos.numero,
-            'calificacion_calificacion':calificacion
-        })
-
-    else:
-        return JsonResponse({
-            'calificacion': "Has superado el limite de intentos del ejercicio (3 intentos)",
-            'intentos':0,
-            'calificacion_calificacion':calificacionBD.calificacion
-        })
-
+            'calificacion_calificacion':calificacion       
+            })
 # ID DEL EJERCICIO: 7
 @login_required
 def ejercicio22(request):
@@ -313,24 +341,39 @@ def ejercicio22(request):
         calificacion+=0.556 if 'money' in atributospostgres else 0
 
         calificacion=10 if calificacion>10 else round(calificacion, 2)
-
+        
+    if(calificacion>calificacionBD.calificacion):
         calificacionBD.fecha = localtime(now())
         calificacionBD.calificacion=calificacion
         calificacionBD.save()
 
-        return JsonResponse({
+        if(intentos.numero > 0):
+            return JsonResponse({
+                'calificacion': "Tu calificacion ha sido: {0}. (Intentos restantes: {1} intento(s))"
+                .format(calificacion, intentos.numero),
+                'intentos':intentos.numero,
+                'calificacion_calificacion':calificacion
+        })
+        else:
+            return JsonResponse({
+                'calificacion': "Has superado el limite de intentos del ejercicio (2 intentos) \n las respuestas correctas son:\n \n Oracle: \n -varchar2 \n -rowid \n -raw \n -nchar \n -binary_double \n -number \n \n MySQL: \n -mediumint \n -year \n -varchar \n -text \n -time \n -bigint \n \n Postgres: \n -serial \n -box \n -character \n -double precision \n -line \n -money",
+                'intentos':0,
+                'calificacion_calificacion':calificacionBD.calificacion
+        })
+    else:
+        if(intentos.numero == 0):
+            return JsonResponse({
+                'calificacion': "Has superado el limite de intentos del ejercicio (2 intentos) \n las respuestas correctas son:\n \n Oracle: \n -varchar2 \n -rowid \n -raw \n -nchar \n -binary_double \n -number \n \n MySQL: \n -mediumint \n -year \n -varchar \n -text \n -time \n -bigint \n \n Postgres: \n -serial \n -box \n -character \n -double precision \n -line \n -money",
+                'intentos':0,
+                'calificacion_calificacion':calificacionBD.calificacion
+                })
+        else:
+            return JsonResponse({
             'calificacion': "Tu calificacion ha sido: {0}. (Intentos restantes: {1} intento(s))"
             .format(calificacion, intentos.numero),
             'intentos':intentos.numero,
-            'calificacion_calificacion':calificacion
-        })
-    else:
-        return JsonResponse({
-            'calificacion': "Has superado el limite de intentos del ejercicio (3 intentos)",
-            'intentos':0,
-            'calificacion_calificacion':calificacionBD.calificacion
-        })
-
+            'calificacion_calificacion':calificacion       
+            })
 # ID DEL EJERCICIO: 8
 @login_required
 def ejercicio23(request):
@@ -376,24 +419,38 @@ def ejercicio23(request):
         calificacion+=0.527 if 'blob' in atributosObjetos else 0
 
         calificacion=10 if calificacion>10 else round(calificacion, 2)
-
+    if(calificacion>calificacionBD.calificacion):
         calificacionBD.fecha = localtime(now())
         calificacionBD.calificacion=calificacion
         calificacionBD.save()
 
-        return JsonResponse({
+        if(intentos.numero > 0):
+            return JsonResponse({
+                'calificacion': "Tu calificacion ha sido: {0}. (Intentos restantes: {1} intento(s))"
+                .format(calificacion, intentos.numero),
+                'intentos':intentos.numero,
+                'calificacion_calificacion':calificacion
+        })
+        else:
+            return JsonResponse({
+                'calificacion': "Has superado el limite de intentos del ejercicio (2 intentos) \n las respuestas correctas son:\n \n Caracter: \n -varchar2 \n -nchar \n -char \n -long raw \n -raw \n -long \n -nvarchar 2 \n \n Numericos: \n -binary float \n -binary double \n -number \n \n Fecha: \n -date \n -interval \n -timestamp with local zone \n -timestamp with local time zone \n -timestamp \n \n Objetos \n -bfile \n -nclob \n -clob \n -blob",
+                'intentos':0,
+                'calificacion_calificacion':calificacionBD.calificacion
+        })
+    else:
+        if(intentos.numero == 0):
+            return JsonResponse({
+                'calificacion': "Has superado el limite de intentos del ejercicio (2 intentos) \n las respuestas correctas son:\n \n Caracter: \n -varchar2 \n -nchar \n -char \n -long raw \n -raw \n -long \n -nvarchar 2 \n \n Numericos: \n -binary float \n -binary double \n -number \n \n Fecha: \n -date \n -interval \n -timestamp with local zone \n -timestamp with local time zone \n -timestamp \n \n Objetos: \n -bfile \n -nclob \n -clob \n -blob",
+                'intentos':0,
+                'calificacion_calificacion':calificacionBD.calificacion
+                })
+        else:
+            return JsonResponse({
             'calificacion': "Tu calificacion ha sido: {0}. (Intentos restantes: {1} intento(s))"
             .format(calificacion, intentos.numero),
             'intentos':intentos.numero,
-            'calificacion_calificacion':calificacion
-        })
-    else:
-        return JsonResponse({
-            'calificacion': "Has superado el limite de intentos del ejercicio (3 intentos)",
-            'intentos':0,
-            'calificacion_calificacion':calificacionBD.calificacion
-        })
-
+            'calificacion_calificacion':calificacion       
+            })
 # ID DEL EJERCICIO: 2
 # EJERCICIO DE LA TABLA
 @login_required
@@ -412,9 +469,9 @@ def ejercicio31(request):
 
         intentos.numero-=1
         intentos.save()
-
+        
         calificacionBD.fecha = localtime(now())
-        calificacionBD.calificacion=0
+        calificacionBD.calificacion=calificacion
         calificacionBD.save()
 
 
@@ -434,7 +491,7 @@ def ejercicio31(request):
         })
     else:
         return JsonResponse({
-            'calificacion': "Has superado el limite de intentos del ejercicio (3 intentos)",
+            'calificacion': "Has superado el limite de intentos del ejercicio (2 intentos)",
             'intentos':0,
             'calificacion_calificacion':calificacionBD.calificacion
         })
@@ -497,25 +554,30 @@ def ejercicio32(request):
 
         if (res10 == "d"):
             calificacion += 1
-
+    if(calificacion>calificacionBD.calificacion):
         calificacionBD.fecha = localtime(now())
         calificacionBD.calificacion=calificacion
         calificacionBD.save()
 
-        return JsonResponse({
-            'calificacion': "Tu calificacion ha sido: {0}. (Intentos restantes: {1} intento(s))"
-            .format(calificacion, intentos.numero),
-            'intentos':intentos.numero,
-            'calificacion_calificacion':calificacion
+        if(intentos.numero > 0):
+            return JsonResponse({
+                'calificacion': "Tu calificacion ha sido: {0}. (Intentos restantes: {1} intento(s))"
+                .format(calificacion, intentos.numero),
+                'intentos':intentos.numero,
+                'calificacion_calificacion':calificacion
         })
-
+        else:
+            return JsonResponse({
+                'calificacion': "Has superado el limite de intentos del ejercicio (2 intentos) \n las respuestas correctas son:\n 1.-Sistema manejador de bases de datos \n 2.-cuando no es necesario el acceso concurrente \n 3.-Data definition language \n 4.-Data manipulation language \n 5.-Delete \n 6.-Drop \n 7.-Representación simple de las tablas y las relaciónes \n 8.-Estructura donde se almacena la información \n 9.-Todas las anteriores \n 10.-Todas las anteriores",
+                'intentos':0,
+                'calificacion_calificacion':calificacionBD.calificacion
+        })
     else:
         return JsonResponse({
-            'calificacion': "Has superado el limite de intentos del ejercicio (3 intentos)",
+            'calificacion': "Has superado el limite de intentos del ejercicio (2 intentos) \n las respuestas correctas son:\n 1.-Sistema manejador de bases de datos \n 2.-cuando no es necesario el acceso concurrente \n 3.-Data definition language \n 4.-Data manipulation language \n 5.-Delete \n 6.-Drop \n 7.-Representación simple de las tablas y las relaciónes \n 8.-Estructura donde se almacena la información \n 9.-Todas las anteriores \n 10.-Todas las anteriores",
             'intentos':0,
             'calificacion_calificacion':calificacionBD.calificacion
         })
-
 @login_required
 def ejercicio41(request):
     alumno = Alumno.objects.get(usuario__id=request.user.id)
@@ -573,25 +635,30 @@ def ejercicio41(request):
 
         if (res10 == "b"):
             calificacion += 1
-
+    if(calificacion>calificacionBD.calificacion):
         calificacionBD.fecha = localtime(now())
         calificacionBD.calificacion=calificacion
         calificacionBD.save()
 
-        return JsonResponse({
-            'calificacion': "Tu calificacion ha sido: {0}. (Intentos restantes: {1} intento(s))"
-            .format(calificacion, intentos.numero),
-            'intentos':intentos.numero,
-            'calificacion_calificacion':calificacion
+        if(intentos.numero > 0):
+            return JsonResponse({
+                'calificacion': "Tu calificacion ha sido: {0}. (Intentos restantes: {1} intento(s))"
+                .format(calificacion, intentos.numero),
+                'intentos':intentos.numero,
+                'calificacion_calificacion':calificacion
         })
-
+        else:
+            return JsonResponse({
+                'calificacion': "Has superado el limite de intentos del ejercicio (2 intentos) \n las respuestas correctas son:\n 1.-Reconocer filas iguales \n 2.-Dato unico e irrepetible para buscar y comparar registros \n 3.-Varias tablas que necesitan reglas de integridad \n 4.-Estructurales y semanticas \n 5.-Todas las anteriores \n 6.-Relaciones entre filas de una tabla con las filas de otra tabla \n 7.-Llave foranea y llave primaria \n 8.-Todas las anteriores \n 9.-Aplicación \n 10.-Modelo",
+                'intentos':0,
+                'calificacion_calificacion':calificacionBD.calificacion
+        })
     else:
         return JsonResponse({
-            'calificacion': "Has superado el limite de intentos del ejercicio (3 intentos)",
+            'calificacion': "Has superado el limite de intentos del ejercicio (2 intentos) \n las respuestas correctas son:\n 1.-Reconocer filas iguales \n 2.-Dato unico e irrepetible para buscar y comparar registros \n 3.-Varias tablas que necesitan reglas de integridad \n 4.-Estructurales y semanticas \n 5.-Todas las anteriores \n 6.-Relaciones entre filas de una tabla con las filas de otra tabla \n 7.-Llave foranea y llave primaria \n 8.-Todas las anteriores \n 9.-Aplicación \n 10.-Modelo",
             'intentos':0,
             'calificacion_calificacion':calificacionBD.calificacion
         })
-
 @login_required
 def ejercicio42(request):
     alumno = Alumno.objects.get(usuario__id=request.user.id)
@@ -620,24 +687,38 @@ def ejercicio42(request):
 
         calificacion = calificacion + calificacionNegativa
         calificacion=10 if calificacion>10 else round(calificacion, 2)
-
+    if(calificacion>calificacionBD.calificacion):
         calificacionBD.fecha = localtime(now())
         calificacionBD.calificacion=calificacion
         calificacionBD.save()
 
-        return JsonResponse({
+        if(intentos.numero > 0):
+            return JsonResponse({
+                'calificacion': "Tu calificacion ha sido: {0}. (Intentos restantes: {1} intento(s))"
+                .format(calificacion, intentos.numero),
+                'intentos':intentos.numero,
+                'calificacion_calificacion':calificacion
+        })
+        else:
+            return JsonResponse({
+                'calificacion': "Has superado el limite de intentos del ejercicio (2 intentos)",
+                'intentos':0,
+                'calificacion_calificacion':calificacionBD.calificacion
+        })
+    else:
+        if(intentos.numero == 0):
+            return JsonResponse({
+                'calificacion': "Has superado el limite de intentos del ejercicio (2 intentos)",
+                'intentos':0,
+                'calificacion_calificacion':calificacionBD.calificacion
+                })
+        else:
+            return JsonResponse({
             'calificacion': "Tu calificacion ha sido: {0}. (Intentos restantes: {1} intento(s))"
             .format(calificacion, intentos.numero),
             'intentos':intentos.numero,
-            'calificacion_calificacion':calificacion
-        })
-    else:
-        return JsonResponse({
-            'calificacion': "Has superado el limite de intentos del ejercicio (3 intentos)",
-            'intentos':0,
-            'calificacion_calificacion':calificacionBD.calificacion
-        })
-
+            'calificacion_calificacion':calificacion       
+            })
 # NECESARIO EL SERVIDOR SQL DE ORACLE
 @login_required
 def ejercicio51(request):
@@ -721,7 +802,7 @@ def ejercicio51(request):
         intentos.save()
         
         calificacion=10 if calificacion>10 else round(calificacion, 2)
-
+    if(calificacion>calificacionBD.calificacion):
         calificacionBD.fecha = localtime(now())
         calificacionBD.calificacion=calificacion
         calificacionBD.save()
@@ -740,9 +821,9 @@ def ejercicio51(request):
             'intentos':intentos.numero,
             'calificacion_calificacion':calificacion
         })
-    else:
+    if(intentos.numero == 0):
         return JsonResponse({
-            'calificacion': "Has superado el limite de intentos del ejercicio (3 intentos)",
+            'calificacion': "Has superado el limite de intentos del ejercicio (2 intentos)",
             'intentos':0,
             'calificacion_calificacion':calificacionBD.calificacion
         })
@@ -788,24 +869,38 @@ def ejercicio52(request):
         calificacion+=0.77 if 'Reduce la carga de trabajo para la persona que llena formularios' in atributosDefault else 0
 
         calificacion=10 if calificacion>10 else round(calificacion, 2)
-
+    if(calificacion>calificacionBD.calificacion):
         calificacionBD.fecha = localtime(now())
         calificacionBD.calificacion=calificacion
         calificacionBD.save()
 
-        return JsonResponse({
+        if(intentos.numero > 0):
+            return JsonResponse({
+                'calificacion': "Tu calificacion ha sido: {0}. (Intentos restantes: {1} intento(s))"
+                .format(calificacion, intentos.numero),
+                'intentos':intentos.numero,
+                'calificacion_calificacion':calificacion
+        })
+        else:
+            return JsonResponse({
+                'calificacion': "Has superado el limite de intentos del ejercicio (2 intentos) \n las respuestas correctas son:\n \n NULL/NOT NULL: \n -Habilita la posibilidad de ingresar valores nulos \n \n UNIQUE \n -Habilita la imposibilidad de ingresar dos valores iguales en la misma columna \n -Es posible ingresar valores nulos \n \n PRIMARY KEY: \n -Solo puede existir una por tabla \n -NO puede contener valores nulos \n -NO pueden existir dos valores en esta columna \n \n FOREGIN KEY: \n -Restringe los valores de una columna con base en los valores de otra tabla \n -SI puede contener valores nulos \n -Es posible que sea autoreferencial \n \n CHECK: \n -Usada para definir valores predeterminados o revisar que esten dentro de un rango de numeros \n -Habilita la posibilidad de realizar validacion a los datos antes de ingresarlos a al BD \n \n DEFAULT \n -Establece un valor predeterminado si no se especifica uno \n -Reduce la carga de trabajo para la persona que llena formularios",
+                'intentos':0,
+                'calificacion_calificacion':calificacionBD.calificacion
+        })
+    else:
+        if(intentos.numero == 0):
+            return JsonResponse({
+                'calificacion': "Has superado el limite de intentos del ejercicio (2 intentos) \n las respuestas correctas son:\n \n NULL/NOT NULL: \n -Habilita la posibilidad de ingresar valores nulos \n \n UNIQUE \n -Habilita la imposibilidad de ingresar dos valores iguales en la misma columna \n -Es posible ingresar valores nulos \n \n PRIMARY KEY: \n -Solo puede existir una por tabla \n -NO puede contener valores nulos \n -NO pueden existir dos valores en esta columna \n \n FOREGIN KEY: \n -Restringe los valores de una columna con base en los valores de otra tabla \n -SI puede contener valores nulos \n -Es posible que sea autoreferencial \n \n CHECK: \n -Usada para definir valores predeterminados o revisar que esten dentro de un rango de numeros \n -Habilita la posibilidad de realizar validacion a los datos antes de ingresarlos a al BD \n \n DEFAULT \n -Establece un valor predeterminado si no se especifica uno \n -Reduce la carga de trabajo para la persona que llena formularios",
+                'intentos':0,
+                'calificacion_calificacion':calificacionBD.calificacion
+                })
+        else:
+            return JsonResponse({
             'calificacion': "Tu calificacion ha sido: {0}. (Intentos restantes: {1} intento(s))"
             .format(calificacion, intentos.numero),
             'intentos':intentos.numero,
-            'calificacion_calificacion':calificacion
-        })
-    else:
-        return JsonResponse({
-            'calificacion': "Has superado el limite de intentos del ejercicio (3 intentos)",
-            'intentos':0,
-            'calificacion_calificacion':calificacionBD.calificacion
-        })
-
+            'calificacion_calificacion':calificacion       
+            })
 @login_required
 def ejercicio61(request):
     alumno = Alumno.objects.get(usuario__id=request.user.id)
@@ -863,25 +958,30 @@ def ejercicio61(request):
 
         if (res10 == "a"):
             calificacion += 1
-
+    if(calificacion>calificacionBD.calificacion):
         calificacionBD.fecha = localtime(now())
         calificacionBD.calificacion=calificacion
         calificacionBD.save()
 
-        return JsonResponse({
-            'calificacion': "Tu calificacion ha sido: {0}. (Intentos restantes: {1} intento(s))"
-            .format(calificacion, intentos.numero),
-            'intentos':intentos.numero,
-            'calificacion_calificacion':calificacion
+        if(intentos.numero > 0):
+            return JsonResponse({
+                'calificacion': "Tu calificacion ha sido: {0}. (Intentos restantes: {1} intento(s))"
+                .format(calificacion, intentos.numero),
+                'intentos':intentos.numero,
+                'calificacion_calificacion':calificacion
         })
-
+        else:
+            return JsonResponse({
+                'calificacion': "Has superado el limite de intentos del ejercicio (2 intentos) \n las respuestas correctas son:\n 1.-Visualizar los datos de columnas especificas \n 2.-Proyección \n 3.-Toma los registros con condiciones especificas \n 4.-Es la expresión logica usada para realizar comparaciones \n 5.- ==, <>,<,<=,>,>=,AND,OR,NOT \n 6.-Es un caracter comodín que permite buscar patrones \n 7.-Unión \n 8.-Clausula WHERE \n 9.-Llave primaria y llave foranea \n 10.-Deben existir N-1 condiciones de unión",
+                'intentos':0,
+                'calificacion_calificacion':calificacionBD.calificacion
+        })
     else:
         return JsonResponse({
-            'calificacion': "Has superado el limite de intentos del ejercicio (3 intentos)",
+            'calificacion': "Has superado el limite de intentos del ejercicio (2 intentos) \n las respuestas correctas son:\n 1.-Visualizar los datos de columnas especificas \n 2.-Proyección \n 3.-Toma los registros con condiciones especificas \n 4.-Es la expresión logica usada para realizar comparaciones \n 5.- ==, <>,<,<=,>,>=,AND,OR,NOT \n 6.-Es un caracter comodín que permite buscar patrones \n 7.-Unión \n 8.-Clausula WHERE \n 9.-Llave primaria y llave foranea \n 10.-Deben existir N-1 condiciones de unión",
             'intentos':0,
             'calificacion_calificacion':calificacionBD.calificacion
         })
-
 @login_required
 def ejercicio62(request):
 
@@ -935,7 +1035,7 @@ def ejercicio62(request):
         calificacion=10 if calificacion>10 else round(calificacion, 2)
         intentos.numero-=1
         intentos.save()
-
+    if(calificacion>calificacionBD.calificacion):
         calificacionBD.fecha = localtime(now())
         calificacionBD.calificacion=calificacion
         calificacionBD.save()
@@ -955,9 +1055,9 @@ def ejercicio62(request):
             'intentos':intentos.numero,
             'calificacion_calificacion':calificacion
         })
-    else:
+    if(intentos.numero == 0):
         return JsonResponse({
-            'calificacion': "Has superado el limite de intentos del ejercicio (3 intentos)",
+            'calificacion': "Has superado el limite de intentos del ejercicio (2 intentos)",
             'intentos':0,
             'calificacion_calificacion':calificacionBD.calificacion
         })
@@ -1020,24 +1120,38 @@ def ejercicio71(request):
                 calificacion +=1.43
 
         calificacion=10 if calificacion>10 else round(calificacion, 2)
-
+    if(calificacion>calificacionBD.calificacion):
         calificacionBD.fecha = localtime(now())
         calificacionBD.calificacion=calificacion
         calificacionBD.save()
 
-        return JsonResponse({
+        if(intentos.numero > 0):
+            return JsonResponse({
+                'calificacion': "Tu calificacion ha sido: {0}. (Intentos restantes: {1} intento(s))"
+                .format(calificacion, intentos.numero),
+                'intentos':intentos.numero,
+                'calificacion_calificacion':calificacion
+        })
+        else:
+            return JsonResponse({
+                'calificacion': "Has superado el limite de intentos del ejercicio (2 intentos)",
+                'intentos':0,
+                'calificacion_calificacion':calificacionBD.calificacion
+        })
+    else:
+        if(intentos.numero == 0):
+            return JsonResponse({
+                'calificacion': "Has superado el limite de intentos del ejercicio (2 intentos)",
+                'intentos':0,
+                'calificacion_calificacion':calificacionBD.calificacion
+                })
+        else:
+            return JsonResponse({
             'calificacion': "Tu calificacion ha sido: {0}. (Intentos restantes: {1} intento(s))"
             .format(calificacion, intentos.numero),
             'intentos':intentos.numero,
-            'calificacion_calificacion':calificacion
-        })
-    else:
-        return JsonResponse({
-            'calificacion': "Has superado el limite de intentos del ejercicio (3 intentos)",
-            'intentos':0,
-            'calificacion_calificacion':calificacionBD.calificacion
-        })
-
+            'calificacion_calificacion':calificacion       
+            })
 @login_required
 def ejercicio72(request):
     alumno = Alumno.objects.get(usuario__id=request.user.id)
@@ -1095,25 +1209,30 @@ def ejercicio72(request):
 
         if (res10 == "a"):
             calificacion += 1
-
+    if(calificacion>calificacionBD.calificacion):
         calificacionBD.fecha = localtime(now())
         calificacionBD.calificacion=calificacion
         calificacionBD.save()
 
-        return JsonResponse({
-            'calificacion': "Tu calificacion ha sido: {0}. (Intentos restantes: {1} intento(s))"
-            .format(calificacion, intentos.numero),
-            'intentos':intentos.numero,
-            'calificacion_calificacion':calificacion
+        if(intentos.numero > 0):
+            return JsonResponse({
+                'calificacion': "Tu calificacion ha sido: {0}. (Intentos restantes: {1} intento(s))"
+                .format(calificacion, intentos.numero),
+                'intentos':intentos.numero,
+                'calificacion_calificacion':calificacion
         })
-
+        else:
+            return JsonResponse({
+                'calificacion': "Has superado el limite de intentos del ejercicio (2 intentos) \n las respuestas correctas son:\n 1.-Fechas y numero \n 2.-Todos los anteriores \n 3.-Un valor nulo es un valor no asignado \n 4.-Resultado Nulo \n 5.-Resultado nulo \n 6.-Modifica el nombre de la columna por el deseado \n 7.-Une cadenas de caracteres de diferentes columnas \n 8.-Caracteres extra mostrado en operaciones SELECT \n 9.-DISTINCT \n 10.-Permite visualizar la estructura de una tabla determinada",
+                'intentos':0,
+                'calificacion_calificacion':calificacionBD.calificacion
+        })
     else:
         return JsonResponse({
-            'calificacion': "Has superado el limite de intentos del ejercicio (3 intentos)",
+            'calificacion': "Has superado el limite de intentos del ejercicio (2 intentos) \n las respuestas correctas son:\n 1.-Fechas y numero \n 2.-Todos los anteriores \n 3.-Un valor nulo es un valor no asignado \n 4.-Resultado Nulo \n 5.-Resultado nulo \n 6.-Modifica el nombre de la columna por el deseado \n 7.-Une cadenas de caracteres de diferentes columnas \n 8.-Caracteres extra mostrado en operaciones SELECT \n 9.-DISTINCT \n 10.-Permite visualizar la estructura de una tabla determinada",
             'intentos':0,
             'calificacion_calificacion':calificacionBD.calificacion
         })
-
 @login_required
 def ejercicio81(request):
     alumno = Alumno.objects.get(usuario__id=request.user.id)
@@ -1163,25 +1282,30 @@ def ejercicio81(request):
 
         if (res8 == "c"):
             calificacion += 1.25
-
+    if(calificacion>calificacionBD.calificacion):
         calificacionBD.fecha = localtime(now())
         calificacionBD.calificacion=calificacion
         calificacionBD.save()
 
-        return JsonResponse({
-            'calificacion': "Tu calificacion ha sido: {0}. (Intentos restantes: {1} intento(s))"
-            .format(calificacion, intentos.numero),
-            'intentos':intentos.numero,
-            'calificacion_calificacion':calificacion
+        if(intentos.numero > 0):
+            return JsonResponse({
+                'calificacion': "Tu calificacion ha sido: {0}. (Intentos restantes: {1} intento(s))"
+                .format(calificacion, intentos.numero),
+                'intentos':intentos.numero,
+                'calificacion_calificacion':calificacion
         })
-
+        else:
+            return JsonResponse({
+                'calificacion': "Has superado el limite de intentos del ejercicio (2 intentos) \n las respuestas correctas son:\n 1.-Describe de manera grafica el esquema de una base de datos \n 2.-Tablas: algo del mundo real, como objetos o acciones \n 3.-Columnas: propiedades que contiene una acción u objeto \n 4.-Conexiones: como se conectan los objetos principales \n 5.-Cuantas entidades se relacionan con otras entidades \n 6.-Cuando un campo clave aparece solo una vez en cada tabla \n 7.-CUando un campo clave aparece varias veces en una tabla \n 8.-Cuando varios campos clave aparecen varias veces en una tabla",
+                'intentos':0,
+                'calificacion_calificacion':calificacionBD.calificacion
+        })
     else:
         return JsonResponse({
-            'calificacion': "Has superado el limite de intentos del ejercicio (3 intentos)",
+            'calificacion': "Has superado el limite de intentos del ejercicio (2 intentos) \n las respuestas correctas son:\n 1.-Describe de manera grafica el esquema de una base de datos \n 2.-Tablas: algo del mundo real, como objetos o acciones \n 3.-Columnas: propiedades que contiene una acción u objeto \n 4.-Conexiones: como se conectan los objetos principales \n 5.-Cuantas entidades se relacionan con otras entidades \n 6.-Cuando un campo clave aparece solo una vez en cada tabla \n 7.-CUando un campo clave aparece varias veces en una tabla \n 8.-Cuando varios campos clave aparecen varias veces en una tabla",
             'intentos':0,
             'calificacion_calificacion':calificacionBD.calificacion
         })
-
 @login_required
 def ejercicio82(request):
     alumno = Alumno.objects.get(usuario__id=request.user.id)
@@ -1221,25 +1345,38 @@ def ejercicio82(request):
         calificacion=10 if calificacion>10 else round(calificacion, 2)
         calificacion=0 if calificacion<0 else round(calificacion, 2)
         
-
+    if(calificacion>calificacionBD.calificacion):
         calificacionBD.fecha = localtime(now())
         calificacionBD.calificacion=calificacion
         calificacionBD.save()
 
-        return JsonResponse({
+        if(intentos.numero > 0):
+            return JsonResponse({
+                'calificacion': "Tu calificacion ha sido: {0}. (Intentos restantes: {1} intento(s))"
+                .format(calificacion, intentos.numero),
+                'intentos':intentos.numero,
+                'calificacion_calificacion':calificacion
+        })
+        else:
+            return JsonResponse({
+                'calificacion': "Has superado el limite de intentos del ejercicio (2 intentos) \n las respuestas correctas son:\n 1.-c \n 2.-a \n 3.-b \n 4.-c \n 5.-b \n 6.-a \n 7.-b \n 8.-a \n 9.-a \n 10.-c",
+                'intentos':0,
+                'calificacion_calificacion':calificacionBD.calificacion
+        })
+    else:
+        if(intentos.numero == 0):
+            return JsonResponse({
+                'calificacion': "Has superado el limite de intentos del ejercicio (2 intentos) \n las respuestas correctas son:\n 1.-c \n 2.-a \n 3.-b \n 4.-c \n 5.-b \n 6.-a \n 7.-b \n 8.-a \n 9.-a \n 10.-c",
+                'intentos':0,
+                'calificacion_calificacion':calificacionBD.calificacion
+                })
+        else:
+            return JsonResponse({
             'calificacion': "Tu calificacion ha sido: {0}. (Intentos restantes: {1} intento(s))"
             .format(calificacion, intentos.numero),
             'intentos':intentos.numero,
-            'calificacion_calificacion':calificacion
-        })
-
-    else:
-        return JsonResponse({
-            'calificacion': "Has superado el limite de intentos del ejercicio (3 intentos)",
-            'intentos':0,
-            'calificacion_calificacion':calificacionBD.calificacion
-        })
-
+            'calificacion_calificacion':calificacion       
+            })
 @login_required
 def ejercicio91(request):
     alumno = Alumno.objects.get(usuario__id=request.user.id)
@@ -1297,25 +1434,30 @@ def ejercicio91(request):
 
         if (res10 == "a"):
             calificacion += 1
-
+    if(calificacion>calificacionBD.calificacion):
         calificacionBD.fecha = localtime(now())
         calificacionBD.calificacion=calificacion
         calificacionBD.save()
 
-        return JsonResponse({
-            'calificacion': "Tu calificacion ha sido: {0}. (Intentos restantes: {1} intento(s))"
-            .format(calificacion, intentos.numero),
-            'intentos':intentos.numero,
-            'calificacion_calificacion':calificacion
+        if(intentos.numero > 0):
+            return JsonResponse({
+                'calificacion': "Tu calificacion ha sido: {0}. (Intentos restantes: {1} intento(s))"
+                .format(calificacion, intentos.numero),
+                'intentos':intentos.numero,
+                'calificacion_calificacion':calificacion
         })
-
+        else:
+            return JsonResponse({
+                'calificacion': "Has superado el limite de intentos del ejercicio (2 intentos) \n las respuestas correctas son:\n 1.-Funciones que operan sobre un conjunto de registros \n 2.-Datos numericos \n 3.-Cualquier tipo de dato \n 4.-Devuelve el numero de registros con valores no nulos dada una comparación \n 5.-Devuelve el numero de valores diferentes que también no sean nulos \n 6.-Si, con la función NVL \n 7.-Divide las filas en grupos mas pequeños \n 8.-Cuando en un SELECT hay un campo que no pertenece a una función de grupo \n 9.-Se combina con GROUP BY para restringir los grupos regresados mediante una condicional \n 10.-HAVING solo condiciona los grupos de la clausula GROUP BY",
+                'intentos':0,
+                'calificacion_calificacion':calificacionBD.calificacion
+        })
     else:
         return JsonResponse({
-            'calificacion': "Has superado el limite de intentos del ejercicio (3 intentos)",
+            'calificacion': "Has superado el limite de intentos del ejercicio (2 intentos) \n las respuestas correctas son:\n 1.-Funciones que operan sobre un conjunto de registros \n 2.-Datos numericos \n 3.-Cualquier tipo de dato \n 4.-Devuelve el numero de registros con valores no nulos dada una comparación \n 5.-Devuelve el numero de valores diferentes que también no sean nulos \n 6.-Si, con la función NVL \n 7.-Divide las filas en grupos mas pequeños \n 8.-Cuando en un SELECT hay un campo que no pertenece a una función de grupo \n 9.-Se combina con GROUP BY para restringir los grupos regresados mediante una condicional \n 10.-HAVING solo condiciona los grupos de la clausula GROUP BY",
             'intentos':0,
             'calificacion_calificacion':calificacionBD.calificacion
         })
-
 # ACCIONES DEL MAESTRO--------------------------
 @login_required
 @user_passes_test(lambda user: user.isMaestro()==True)

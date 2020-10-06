@@ -26,10 +26,10 @@
                         <p id="tituloEjercicio2" class="titulo-base">Bass</p>
                     </a>
                     <ul class="navbar-list">
-                        <li class="opciones"><a href="{% url 'dashboard' %}" class="opcionInicio">Inicio</a></li>
-                    <li class="opciones"><a href="{% url 'respuestas31' %}" class="opcionContenido">Respuestas</a></li>
-                    <li class="opciones"><a href="{% url 'getCalificaciones' %}" class="opcionHerramientas">Calificaciones</a></li>
-                    <li class="opciones"><a href="{% url 'ejercicios' %}" class="opcionHerramientas">Estado</a></li>
+                        <li class="opciones"><a href="{% url 'dashboard' %}" class="opcionInicio {% if request.path == '/ejercicios/dashboard' %} active {%endif%}">Inicio</a></li>
+                    <li class="opciones"><a href="{% url 'respuestas31' %}" class="opcionRespuestas {% if request.path == '/ejercicios/respuestas31' %} active {%endif%}">Respuestas</a></li>
+                    <li class="opciones"><a href="{% url 'getCalificaciones' %}" class="opcionCalificaciones {% if request.path == '/ejercicios/calificaciones' %} active {%endif%}">Calificaciones</a></li>
+                    <li class="opciones"><a href="{% url 'ejercicios' %}" class="opcionEstado {% if request.path == '/ejercicios/ejercicios' %} active {%endif%}">Estado</a></li>
                     </ul>
                     <div class="navbar-profile">
                         <!-- <div class="navbar-notification navbar-avatar">

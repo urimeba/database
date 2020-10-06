@@ -22,7 +22,7 @@
                     <li class="opciones"><a href="{% url 'dashboard' %}" class="opcionInicio">Inicio</a></li>
                     <li class="opciones"><a href="{% url 'respuestas31' %}" class="opcionContenido">Respuestas</a></li>
                     <li class="opciones"><a href="{% url 'getCalificaciones' %}" class="opcionHerramientas">Calificaciones</a></li>
-                    <li class="opciones"><a href="{% url 'ejercicios' %}" class="opcionHerramientas">Estado</a></li>
+                    <li class="opciones"><a href="{% url 'ejercicios' %}" class="opcionEstado {% if request.path == '/ejercicios/ejercicios' %} active {%endif%}">Estado</a></li>
                 </ul>		
                 <div class="navbar-profile">
                     <!-- <div class="navbar-notification navbar-avatar">
@@ -48,18 +48,24 @@
                 <div class="contenidoEjercicios">
                     <p class="tituloContenidoEjercicios">Activar ejercicios</p>
                     {% regroup ejercicios by unidad as unidades_lista %}
-                    <ul>
+                    <ul class="contenidoEjerciciosMain">
                         {% for unidad in unidades_lista %}
-                        <li>{{ unidad.grouper }}</li>
+                        <li class="contenidoEjerciciosTitle">{{ unidad.grouper }}</li>
                         <ul>
                             {% for ejercicio in unidad.list %}
-                            <li>{{ejercicio}}
-                                <span><input type="checkbox" name="active" id="{{ejercicio.id}}"
+                            <div class="contenidoEjerciciosContent">
+                                <li class="contenidoEjerciciosContentA">{{ejercicio}}
+                                </li>
+                                <div class="contenidoEjerciciosContentB">
+                                    <span><input type="checkbox" name="active" class="contenidoEjerciciosContentinput" id="{{ejercicio.id}}"
                                         {%  if ejercicio.is_active %} checked {% endif %}></span>
-                                <label for="active">Activo</label>
-                                <button class="btn-actualiza-ejercicios" onclick="actualizarEjercicio(this)"
-                                    data-idejercicio="{{ejercicio.id}}">Actualizar</button>
-                            </li>
+                                    <label class="contenidoEjerciciosContentlabel" for="active">Activo</label>
+                                    <button class="btn-actualiza-ejercicios" onclick="actualizarEjercicio(this)"
+                                        data-idejercicio="{{ejercicio.id}}">Actualizar</button>
+                                </div>
+                            </div>
+                            
+                            
                             {% endfor %}
                         </ul>
                         {% endfor %}

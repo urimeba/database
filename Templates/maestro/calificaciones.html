@@ -26,7 +26,7 @@
                     <li class="opciones"><a href="{% url 'dashboard' %}" class="opcionInicio">Inicio</a></li>
                     <li class="opciones"><a href="{% url 'respuestas31' %}" class="opcionContenido">Respuestas</a></li>
                     <li class="opciones"><a href="{% url 'getCalificaciones' %}"
-                            class="opcionHerramientas">Calificaciones</a></li>
+                            class="opcionCalificaciones {% if request.path == '/ejercicios/calificaciones' %} active {%endif%}">Calificaciones</a></li>
                     <li class="opciones"><a href="{% url 'ejercicios' %}" class="opcionHerramientas">Estado</a></li>
                 </ul>
                 <div class="navbar-profile">
