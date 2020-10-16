@@ -989,9 +989,9 @@ transition: .55s;
   
 }
 .EjerciciosB{
-  margin-top: 10px;
+  margin-top: 15px;
   display: flex;
-  justify-content: flex-end;
+  margin-bottom: 10px;
   margin-right: 60px;
  
 }
@@ -1141,17 +1141,20 @@ transition: .55s;
 
 .botonCerrar{
   margin-top: 15px;
-  background-color: #00B0FF;
+  background-color:  #0075ff;
   border-radius: 15px;
   width: 30%;
   height: 1.5rem;
   margin-left: 35%;
   padding-top:7px ;
+  color: white;
 }
 .botonCerrar:hover{
   cursor: pointer;
 }
-
+.botonCerrar:active{
+  background-color: #005dcc;
+}
 
 
 /*-----------------------------------------------*/

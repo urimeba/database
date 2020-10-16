@@ -191,7 +191,7 @@
         width: 100%;
         height: 15%;
         display: flex;
-        justify-content: center;
+        justify-content: space-between;
     }
     #compilador-bottom{
         width: 100%;
@@ -202,19 +202,132 @@
         box-shadow: 2px 2px 8px 0px rgb(43, 42, 45);
     }
     #titulo{
-        display: flex;
-        align-items: center;
-        width: 70%;
+        
         color: white;
+        padding-top: 27px;
+        
+    }
+    #tituloDB{
+        
+        color: white;
+        padding-top: 12px;
         
     }
     #buttons{
-        width: 30%;
         height: 100%;
         display: flex;
         justify-content: flex-end;
         align-items: center;
         
+    }
+
+    .modal-container {
+        position: fixed;
+        display: flex;
+        align-items: center;
+        background-color: rgba(0,0,0,0.3);
+        top: 0;
+        left: 0;
+        height: 100vh;
+        width: 100vw;
+        justify-content: center;
+        opacity: 0;
+        pointer-events: none;
+      }
+      .modal-container.show {
+        
+        opacity: 1;
+        pointer-events: auto;
+      }
+      .modal-container2 {
+        position: fixed;
+        display: flex;
+        align-items: center;
+        background-color: rgba(0,0,0,0.3);
+        top: 0;
+        left: 0;
+        height: 100vh;
+        width: 100vw;
+        justify-content: center;
+        opacity: 0;
+        pointer-events: none;
+      }
+      .modal-container2.show {
+        
+        opacity: 1;
+        pointer-events: auto;
+      }
+      .modal_imagen{
+          width: 70px;
+          height: 40px;
+      }
+      .modal_imagen img{
+        width: 700px;
+        height: 530px;
+    }
+      .modalC{
+        background-color: #fff;
+        width: auto;
+        max-height: 100%;
+        max-width: 100%;
+        border-radius: 5px;
+        padding: 30px 50px;
+        text-align: center;
+      }
+      
+      .botonCerrar{
+        margin-top: 15px;
+        background-color: #0075ff;
+        border-radius: 15px;
+        width: 30%;
+        height: 1.5rem;
+        margin-left: 35%;
+        padding-top:7px ;
+        color: white;
+      }
+      .botonCerrar:hover{
+        cursor: pointer;
+        background-color: #3390ff;
+      }
+      .botonCerrar:active{
+          background-color: #005dcc;
+      }
+
+    #tituloDB{
+        text-align: center;
+        font-weight: 500;
+    }
+    #openDB1{
+        background-color:  #0075ff;
+        border: 0;
+        width: 125px;
+        height: 25px;
+        color: white;
+        border-radius: 5px;
+        margin-right: 5px;
+    }
+    #openDB1:hover{
+        cursor: pointer;
+        background-color:  #3390ff;
+    }
+    #openDB1:active{
+        background-color: #005dcc;
+    }
+    #openDB2{
+        background-color:  #0075ff;
+        border: 0;
+        width: 125px;
+        height: 25px;
+        color: white;
+        border-radius: 5px;
+        margin-left: 5px;
+    }
+    #openDB2:hover{
+        cursor: pointer;
+        background-color:  #3390ff;
+    }
+    #openDB2:active{
+        background-color: #005dcc;
     }
     #play{
         background-color: rgb(50, 143, 7);
@@ -223,6 +336,7 @@
         border: none;
         transition: .85s;
     }
+    
     #play:hover{
         background-color: rgb(41, 117, 6) !important;
         
@@ -248,6 +362,7 @@
         height: 32px;
         font-size: 1rem;
     }
+
 
     .number{
         width: 35px;
