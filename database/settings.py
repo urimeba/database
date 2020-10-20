@@ -27,7 +27,8 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'Apps.Clases',
     'Apps.Ejercicios',
-    'Apps.Usuarios'
+    'Apps.Usuarios',
+    'import_export'
 ]
 
 MIDDLEWARE = [
