@@ -1,4 +1,7 @@
 {% load static %}
+{% url 'dashboard' as inicio %}
+{% url 'unidades' as unidades %}
+{% url 'compilador' as compilador %}
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -11,7 +14,9 @@
     <link rel="stylesheet" href="{% static 'css/estilos.css' %}">
     <link rel="icon" type="image/png" href="{% static 'img/favicon-96x96.png'%}">
     <title>Compilador</title>
+
 </head>
+
 <body>
     <div id="Principal">
       
@@ -21,9 +26,9 @@
                     <a href="{% url 'dashboard' %}" style="text-decoration: none;"><p id="tituloEjercicio1" class="titulo-data">Data</p></a>
                     <a href="{% url 'dashboard' %}" style="text-decoration: none;"><p id="tituloEjercicio2" class="titulo-base">Bass</p></a> 
                     <ul class="navbar-list">
-                        <li class="opciones"><a href="{% url 'dashboard' %}" class="opcionInicio">Inicio</a></li>
-                        <li class="opciones"><a href="{% url 'unidades' %}" class="opcionContenido">Contenido</a></li>
-                        <li class="opciones"><a href="{% url 'compilador' %}" class="opcionHerramientas">Compilador</a></li>
+                        <li class="opciones"><a href="{% url 'dashboard' %}" class="opcionInicio {% if request.path == inicio %} active {%endif%} ">Inicio</a></li>
+                        <li class="opciones"><a href="{% url 'unidades' %}" class="opcionContenido {% if request.path == unidades %} active {%endif%} ">Contenido</a></li>
+                        <li class="opciones"><a href="{% url 'compilador' %}" class="opcionHerramientas {% if request.path == compilador %} active {%endif%} ">Compilador</a></li>
                     </ul>		
                     <div class="navbar-profile">
                         <!-- <div class="navbar-notification">

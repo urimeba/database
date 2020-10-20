@@ -18,9 +18,9 @@ class Ejercicio(models.Model):
 class Intentos(models.Model):
     alumno = models.ForeignKey('Usuarios.Alumno', on_delete=models.CASCADE)
     ejercicio = models.ForeignKey('Ejercicio', on_delete=models.CASCADE)
-    numero = models.PositiveIntegerField(default=3, null=False, blank=False,
+    numero = models.PositiveIntegerField(default=2, null=False, blank=False,
         validators=[
-            MaxValueValidator(3),
+            MaxValueValidator(2),
             MinValueValidator(0)
         ])
 

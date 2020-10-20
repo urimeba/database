@@ -1,10 +1,16 @@
-
 {% extends 'navbar.html' %}
 {% block content %}
+{% load static %}
 <div id="mid-container-ajuste">
+   
     <div id="container-top">
         <div id="compilador-top">
-            <p id="titulo">Compilador <b>Oracle</b></p>
+            <p id="titulo">Compilador   <b> Oracle</b></p>
+            <div class="databases">
+                <p id="tituloDB">Databases</p>
+                <button id="openDB1">HR</button>
+                <button id="openDB2">Tienda Celular</button>
+            </div>
             <div id="buttons">
                 <button id="borrar" onclick="limpiar()">Borrar</button>
                 <button id="play" onclick="compile()"> Ejecutar</button>
@@ -23,5 +29,48 @@
     </div>
 </div>
 
+<div class="modal-container" id="modal_container">
+    <div class="modalC">
+        <h1>HR</h1>
+        <picture class="modal_imagen">
+            <img src="{% static 'img/DBhr.jpeg' %}" alt="" srcset="">
+        </picture>
+        <div class="botonCerrar" id="close">Cerrar</div>
+    </div>
+</div>
+<div class="modal-container2" id="modal_container2">
+    <div class="modalC">
+        <h1>Tienda Celular</h1>
+        <picture class="modal_imagen">
+            <img src="{% static 'img/DBcelular.jpeg' %}" alt="" srcset="">
+        </picture>
+        <div class="botonCerrar" id="close2">Cerrar</div>
+    </div>
+</div>
+
+<script>
+    //Modal 1
+    const open = document.getElementById('openDB1')                         
+    const modal_container=document.getElementById('modal_container')
+    const close=document.getElementById('close')
+    open.addEventListener('click', () => {
+        modal_container.classList.add('show')
+    })
+    close.addEventListener('click', () =>{
+        modal_container.classList.remove('show')
+    })
+
+    //Modal 2
+    const open2 = document.getElementById('openDB2')                         
+    const modal_container2=document.getElementById('modal_container2')
+    const close2=document.getElementById('close2')
+    open2.addEventListener('click', () => {
+        modal_container2.classList.add('show')
+    })
+    close2.addEventListener('click', () =>{
+        modal_container2.classList.remove('show')
+    })
+
+</script>
 <div id="snackbar"></div>
 {% endblock %}

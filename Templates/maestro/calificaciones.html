@@ -26,7 +26,7 @@
                     <li class="opciones"><a href="{% url 'dashboard' %}" class="opcionInicio">Inicio</a></li>
                     <li class="opciones"><a href="{% url 'respuestas31' %}" class="opcionContenido">Respuestas</a></li>
                     <li class="opciones"><a href="{% url 'getCalificaciones' %}"
-                            class="opcionHerramientas">Calificaciones</a></li>
+                            class="opcionCalificaciones {% if request.path == '/ejercicios/calificaciones'   %} active {%endif%}">Calificaciones</a></li>
                     <li class="opciones"><a href="{% url 'ejercicios' %}" class="opcionHerramientas">Estado</a></li>
                 </ul>
                 <div class="navbar-profile">
@@ -81,19 +81,24 @@
                         <ul>
                             {% for calificacion in unidad.list %}
                             <li>
-                                {{calificacion.ejercicio}}:</span>
-                                <input id="{{calificacion.id}}" type="number" step=".01"
-                                    value="{{calificacion.calificacion}}">
-                                (fecha: 
-                                {% if calificacion.fecha %}
-                                    {{calificacion.fecha}}
-                                {% else %}
-                                    Sin entregar
-                                {% endif %}
-                                )
-                                <button id="btn-actualizar" class="btn-actualiza-calificaciones"
+                                <div class="EjerciciosT">
+                                    {{calificacion.ejercicio}}:</span>
+                                    <input id="{{calificacion.id}}" type="number" step=".01"
+                                        value="{{calificacion.calificacion}}">
+                                    (fecha: 
+                                    {% if calificacion.fecha %}
+                                        {{calificacion.fecha}}
+                                    {% else %}
+                                        Sin entregar
+                                    {% endif %}
+                                    )
+                                </div>
+                                <div class="EjerciciosB">
+                                    <button id="btn-actualizar" class="btn-actualiza-calificaciones"
                                     data-idcalificacion="{{calificacion.id}}"
                                     onclick="actualizarCalificacion(this)">Actualizar</button>
+                                </div>
+                                
                             </li>
                             {% endfor %}
                         </ul>

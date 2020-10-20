@@ -11,7 +11,7 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SECRET_KEY = '$j%4gtvt-_6e@nwuw*eejm2-15^c_firai7i^r(abf%&4v0u^f'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = True
 
 ALLOWED_HOSTS = ['*']
 
@@ -134,5 +134,5 @@ LOGIN_URL="Loginn"
 LOGIN_REDIRECT_URL="dashboard"
 LOGOUT_REDIRECT_URL="Loginn"
 
-SECURE_SSL_REDIRECT = True
+SECURE_SSL_REDIRECT = False
 SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')

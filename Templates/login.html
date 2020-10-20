@@ -6,8 +6,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="{% static 'css/estilos.css' %}">
     <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700&display=swap" rel="stylesheet">    <title>DataBass</title>
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 </head>
 <body>
+    
     <div id="principalLogin">
         <div id="divimagenLogin">
             <img src="{% static 'img/imagenlogin.png' %}" alt="">
@@ -34,9 +36,36 @@
                         <p>**Si es la primera vez que ingresas, tu contraseña es tu expediente seguido de un punto.</p> 
                        
                     </div>
-                   
+            
                     <input type="submit" value="Iniciar sesión" id="botonLogin">
-                    {{ form.non_field_errors }}
+                    <div class="modal-container" id="modal_container">
+                        <div class="modal">
+                            <h1>DataBass</h1>
+                            <p>{{form.non_field_errors}}</p>
+                            <div class="botonCerrar" id="close">Cerrar</div>
+                        </div>
+                    </div>
+                    {% if form.non_field_errors %}
+                        <div class="non-field-errors">
+                            {% for err in form.non_field_errors %}
+                                <!--<script>
+                                    const error = "{{ err|safe }}";
+                                     window.alert(error)
+                                </script>
+                                -->
+                                <script>
+                                    
+                                    const modal_container=document.getElementById('modal_container')
+                                    const close=document.getElementById('close')
+                                    modal_container.classList.add('show')
+                                    close.addEventListener('click', () =>{
+                                        modal_container.classList.remove('show')
+                                    })
+                                </script>
+                            {% endfor %}
+                        </div>
+                        
+                    {% endif %}
                 </form>
  
             </div>
