@@ -4,11 +4,17 @@ from .models import User, Profesor, Alumno
 from import_export import resources 
 from import_export.admin import ImportExportModelAdmin
 
+
 class CategoriaResource(resources.ModelResource):
     class Meta:
         model = User
+        fields = ('id','password','username','first_name','last_name','email',)
+
+class CategoriaResource2(resources.ModelResource):
+    class Meta:
         model = Alumno
         
+
 class UsuarioAdmin(ImportExportModelAdmin,UserAdmin):
     fieldsets = UserAdmin.fieldsets + (
         ('Campos Extra', {
@@ -19,6 +25,11 @@ class UsuarioAdmin(ImportExportModelAdmin,UserAdmin):
     )
     resource_class = CategoriaResource
 
+class UsuarioAlumno(ImportExportModelAdmin):
+    class Meta:
+        resource_class = CategoriaResource
+      
+
 admin.site.register(User, UsuarioAdmin)
 admin.site.register(Profesor)
-admin.site.register(Alumno)
+admin.site.register(Alumno, UsuarioAlumno)

@@ -111,6 +111,7 @@ updateIntentos = (numeroIntentos) => {
     divIntentos.innerText=numeroIntentos;
 }
 
+
 // Funcion para actualizar al calificacion
 updateCalificacion = (calificacion) =>{
     calificacion = parseFloat(calificacion);

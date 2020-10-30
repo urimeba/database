@@ -1,7 +1,7 @@
 from django.shortcuts import render, redirect
 from django.http import JsonResponse, HttpResponse
 from Apps.Clases.models import Unidad, Parcial, Clase
-from Apps.Usuarios.models import Alumno, Profesor
+from Apps.Usuarios.models import Alumno, Profesor, User
 from Apps.Ejercicios.models import Ejercicio, Respuesta, Intentos, CalificacionEjercicio
 from .forms import formEjercicio31
 from django.contrib.auth.decorators import login_required, user_passes_test
@@ -11,7 +11,8 @@ from decimal import Decimal
 from datetime import datetime
 from django.utils import timezone
 from django.utils.timezone import localtime, now
-
+from tablib import Dataset 
+from Apps.Usuarios.admin import CategoriaResource, CategoriaResource2
 # Create your views here.
 @login_required
 def ejercicio(request, pk, id):
@@ -1606,3 +1607,26 @@ def actualizarEjercicio(request):
 
     return HttpResponse("Ejercicio actualizado correctamente")
 
+@login_required
+@user_passes_test(lambda user: user.isMaestro())
+def addUser(request):
+       #template = loader.get_template('export/importar.html')  
+    if request.method == 'POST': 
+        usuario_resource = CategoriaResource()
+        usuario_resource2 = CategoriaResource2()   
+        dataset = Dataset()
+        dataset2 = Dataset() 
+     #print(dataset)  
+        nuevos_usuarios = request.FILES['xlsxfile']
+        nuevos_usuarios2 = request.FILES['xlsxfile2']
+     #print(nuevas_personas)  
+        imported_data = dataset.load(nuevos_usuarios.read())
+        imported_data2 = dataset2.load(nuevos_usuarios2.read())
+        print(dataset) 
+        result = usuario_resource.import_data(dataset, dry_run=False)
+        result2 = usuario_resource2.import_data(dataset2, dry_run=False)
+    return render(request, 'maestro/addUsers.html')
+
+
+        
+    

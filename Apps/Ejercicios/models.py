@@ -1,6 +1,5 @@
 from django.db import models
 from django.core.validators import MaxValueValidator, MinLengthValidator, MinValueValidator
-
 # Create your models here.
 class Ejercicio(models.Model):
     unidad = models.ForeignKey('Clases.Unidad', on_delete=models.CASCADE)
