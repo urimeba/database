@@ -33,5 +33,6 @@ urlpatterns = [
     path('setCalificacionAlumno', views_ejercicios.setCalificacionAlumno, name='setCalificacionAlumno'),
     path('ejercicios', views_ejercicios.ejercicios, name='ejercicios'),
     path('actualizarEjercicio', views_ejercicios.actualizarEjercicio, name='actualizarEjercicio'),
+    path('addUser', views_ejercicios.addUser, name='addUser'),
     
 ]

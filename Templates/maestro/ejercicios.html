@@ -34,6 +34,13 @@
                         </div>
                     </div> -->
                             <div class="navbar-logout navbar-avatar">
+                                <div>
+                                    <a href="{% url 'addUser' %}">
+                                        <img src="{% static 'img/add.png' %}" alt="" class="img-logout">
+                                    </a>
+                                </div>
+                            </div>
+                            <div class="navbar-logout navbar-avatar">
                                 <div >
                                     <a href="{% url 'cerrarSesion' %}">
                                         <img src="{% static 'img/logout.png' %}" alt="" class="img-logout">

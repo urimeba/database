@@ -5,7 +5,6 @@
     
 }
     /* Escritorio */
-@media screen and (min-width: 768px){
 
     #Principal{
         width: 100%;
@@ -204,8 +203,11 @@
     #titulo{
         
         color: white;
-        padding-top: 27px;
+        padding-top: 17px;
         
+    }
+    .databases{
+        margin-top: -8px;
     }
     #tituloDB{
         
@@ -429,17 +431,51 @@
         table {     font-family: "Lucida Sans Unicode", "Lucida Grande", Sans-Serif;
             font-size: 12px;    margin: 10px;     width: 480px; text-align: left;    border-collapse: collapse; }
         
-        th {     font-size: 13px;     font-weight: normal;     padding: 8px;     background: #b9c9fe;
-            border-top: 4px solid #aabcfe;    border-bottom: 1px solid #fff; color: #039; }
+        th {     font-size: 13px;     font-weight: normal;     padding: 8px;     background: #3390ff;
+            border: 2px solid #0075ff;    border-bottom: 2px solid #0075ff; color: white; }
         
         td {    padding: 8px;    ;     border-bottom: 1px solid #fff;
-            color: #669;    border-top: 1px solid transparent; }
+            color: #c2c4c3;    border-top: 1px solid transparent; }
         
         tr:hover td { background: #97a3cf; color: #339; }
-        table tr:nth-child(odd) {background-color: #c1c9e9;}
+        table tr:nth-child(odd) {background-color: #e7e7e9;}
 
-        table tr:nth-child(even) {background-color: #e8edff;}
-}
+        table tr:nth-child(even) {background-color: #f0f2f1;}
+        .botonesRestablecer{
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .botonesRestablecer a{
+            text-decoration: none;
+        }
+        #botonCambiarRestablecer{
+            background-color: rgb(50, 143, 7);
+            color: white !important;
+            width: 80px;
+            height: 25px;
+            border: none;
+            transition: .85s;
+        }
+        
+        #botonCambiarRestablecer:hover{
+            background-color: rgb(41, 117, 6) !important;
+            cursor: pointer;
+        
+        }
+        #botonRegresarRestablecer{
+            border:none;
+            width: 170px;
+            height: 25px;
+           margin-right: 35px;
+           background-color: #ED5A09;
+           transition: .55s;
+           text-decoration: none;
+        }
+        #botonRegresarRestablecer:hover{
+       
+            background-color: rgb(187, 69, 6);
+         }
 
 /* CSS LOADER */
 

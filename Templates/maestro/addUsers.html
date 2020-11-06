@@ -1,0 +1,76 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calificaciones</title>
+    <link rel="stylesheet" type="text/css" href="{% static 'css/estilos.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'css/addUser.css' %}">
+    <link href="https://fonts.googleapis.com/css?family=Montserrat&display=swap" rel="stylesheet">
+    <script src="{% static 'js/funcionesUriel.js' %}"></script>
+    <script src="{% static 'js/jQuery.js' %}"></script>
+</head>
+
+<body>
+    <div class="container" style="background-color: #333645; ">
+        <div class="row">
+            <nav class="nav-menu">
+                <a href="{% url 'dashboard' %}" style="text-decoration: none;">
+                    <p id="tituloEjercicio1" class="titulo-data">Data</p>
+                </a>
+                <a href="{% url 'dashboard' %}" style="text-decoration: none;">
+                    <p id="tituloEjercicio2" class="titulo-base">Bass</p>
+                </a>
+                <ul class="navbar-list">
+                    <li class="opciones"><a href="{% url 'dashboard' %}" class="opcionInicio">Inicio</a></li>
+                    <li class="opciones"><a href="{% url 'respuestas31' %}" class="opcionContenido">Respuestas</a></li>
+                    <li class="opciones"><a href="{% url 'getCalificaciones' %}"
+                            class="opcionCalificaciones {% if request.path == '/ejercicios/calificaciones'   %} active {%endif%}">Calificaciones</a></li>
+                    <li class="opciones"><a href="{% url 'ejercicios' %}" class="opcionHerramientas">Estado</a></li>
+                </ul>
+                <div class="navbar-profile">
+                    <!-- <div class="navbar-notification navbar-avatar">
+                        <div class="navbar-picture">
+                            <a href="{% url 'perfil' %}">
+                                <img src="{% static 'img/perfil.jpg' %}" alt="" class="img-profile">
+                            </a>
+                        </div>
+                    </div> -->
+                    <div class="navbar-logout navbar-avatar">
+                        <div>
+                            <a href="{% url 'addUser' %}">
+                                <img src="{% static 'img/add.png' %}" alt="" class="img-logout">
+                            </a>
+                        </div>
+                    </div>
+                    <div class="navbar-logout navbar-avatar">
+                        <div>
+                            <a href="{% url 'cerrarSesion' %}">
+                                <img src="{% static 'img/logout.png' %}" alt="" class="img-logout">
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </nav>
+            
+        </div>
+        <div class="principalAddUser">
+            <div class="contenedorAddUser">
+                <div class="contenidoAddUser">
+                    <span class="AddUser-title">Importar Alumnos</span>
+                    
+                    <span class="AddUser-subtitle">Seleccionar archivo de excel</span>
+                    <button id="addUser" onclick="compile()">Importar</button>
+                </div>
+    
+            </div>
+    
+        </div>
+    </div>
+
+    
+</body>
+
+</html>

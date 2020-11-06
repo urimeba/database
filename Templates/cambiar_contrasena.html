@@ -16,7 +16,9 @@
             {% csrf_token %}
 
             <div>
-              Consejos para tu contraseña:
+              <section class="formRestablecer-title">
+                <span>Consejos para tu contraseña:</span>
+              </section>
               <ul>
                 <li>No deberá ser parecida a tu información personal</li>
                 <li>Debe contener minimo 8 caracteres</li>
@@ -29,14 +31,48 @@
             
             <ul>
                 {% for message in messages %}
-                <li>{{ message }}</li>
+                
+                <div class="modal-container" id="modal_container">
+                  <div class="modal">
+                      <h1>DataBass</h1>
+                      <p>{{message}}</p>
+                      <div class="botonCerrar" id="close">Cerrar</div>
+                  </div>
+                </div>
+                <script>
+                                    
+                  const modal_container=document.getElementById('modal_container')
+                  const close=document.getElementById('close')
+                  modal_container.classList.add('show')
+                  close.addEventListener('click', () =>{
+                      modal_container.classList.remove('show')
+                  })
+                </script>
                 {% endfor %}
             </ul>
             {% endif %}
-
+            <section class="tabla">
             <table border="1" class="tablaRestablecer">
                 {% for field in form %}
-                {{ field.errors }}
+                {% if field.errors %}
+                <div class="modal-container" id="modal_container">
+                  <div class="modal">
+                      <h1 class="modalblack">DataBass</h1>
+                      <p class="modalblack">{{field.errors}}</p>      
+                      <div class="botonCerrar" id="close">Cerrar</div>
+                  </div>
+                </div>
+                <script>
+                                    
+                  const modal_container=document.getElementById('modal_container')
+                  const close=document.getElementById('close')
+                  modal_container.classList.add('show')
+                  close.addEventListener('click', () =>{
+                      modal_container.classList.remove('show')
+                  })
+                </script>
+                
+                {% endif %}
                   <tr>
                     <th class="thRestablecer">{{ field.label_tag }}</th>
                     <td class="tdRestablecer">
@@ -45,11 +81,12 @@
                   </tr>
                 {% endfor %}
               </table>
+            </section>
               <div class="botonesRestablecer">
                 <a href="{% url 'perfil' %}">
-                    <button class="botonRegresarRestablecer">Regresar a mi perfil</button>
+                    <div id="botonRegresarRestablecer">Regresar a mi perfil</div>
                 </a>
-                <button type="submit" class="botonCambiarRestablecer">Cambiar</button>
+                <button type="submit" id="botonCambiarRestablecer">Cambiar</button>
               </div>
         </form>
     </div>

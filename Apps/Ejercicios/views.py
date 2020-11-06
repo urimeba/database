@@ -1464,3 +1464,10 @@ def actualizarEjercicio(request):
 
     return HttpResponse("Ejercicio actualizado correctamente")
 
+@login_required
+@user_passes_test(lambda user: user.isMaestro())
+def addUser(request):
+    
+
+    return render(request, 'maestro/addUsers.html')
+
