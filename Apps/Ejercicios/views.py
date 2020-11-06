@@ -6,6 +6,7 @@ from Apps.Ejercicios.models import Ejercicio, Respuesta, Intentos, CalificacionE
 from .forms import formEjercicio31
 from django.contrib.auth.decorators import login_required, user_passes_test
 import json
+import tablib
 from django.contrib import messages
 from decimal import Decimal
 from datetime import datetime
@@ -1611,21 +1612,31 @@ def actualizarEjercicio(request):
 @user_passes_test(lambda user: user.isMaestro())
 def addUser(request):
        #template = loader.get_template('export/importar.html')  
-    if request.method == 'POST': 
+    if request.method == 'POST':
+        grupo = request.POST['grupo']
+        consulta1 = User.objects.all().values_list('id', flat=True).order_by('id')
+        lista1 = list(consulta1)    
         usuario_resource = CategoriaResource()
         usuario_resource2 = CategoriaResource2()   
         dataset = Dataset()
-        dataset2 = Dataset() 
      #print(dataset)  
         nuevos_usuarios = request.FILES['xlsxfile']
-        nuevos_usuarios2 = request.FILES['xlsxfile2']
      #print(nuevas_personas)  
         imported_data = dataset.load(nuevos_usuarios.read())
-        imported_data2 = dataset2.load(nuevos_usuarios2.read())
-        print(dataset) 
+        longitud = len(dataset)
         result = usuario_resource.import_data(dataset, dry_run=False)
-        result2 = usuario_resource2.import_data(dataset2, dry_run=False)
+        consulta2 = User.objects.all().values_list('id', flat=True).order_by('id')
+        lista2 = list(consulta2) 
+        for i in lista2:
+            if i in lista1:
+                lista1.remove(i)
+            else:
+                print(i)
+                dataset2 = tablib.Dataset(['', i , grupo], headers=['id','usuario', 'clase'])
+                result2 = usuario_resource2.import_data(dataset2, dry_run=False) 
     return render(request, 'maestro/addUsers.html')
+
+    
 
 
         
