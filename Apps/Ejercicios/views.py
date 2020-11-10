@@ -1335,7 +1335,8 @@ def respuestas31(request):
         alumno__clase__in=clases
     )
     return render(request, 'maestro/respuestas31.html', {
-        'alumnos':alumnos_entregados
+        'alumnos':alumnos_entregados,
+        'path':'respuestas31'
     })
 
 @login_required
@@ -1374,13 +1375,15 @@ def getRespuesta31(request, idAlumno):
             'alumnos':alumnos_entregados,
             'alumno':respuesta.alumno,
             'respuesta':json.loads(respuesta.respuesta),
+            'path':'respuestas31'
         })
         else:
             return render(request, 'maestro/tabla31.html', {
             'form':form,
             'alumnos':alumnos_entregados,
             'alumno':respuesta.alumno,
-            'respuesta':json.loads(respuesta.respuesta)
+            'respuesta':json.loads(respuesta.respuesta),
+            'path':'respuestas31'
         })
 
     else:
@@ -1391,7 +1394,8 @@ def getRespuesta31(request, idAlumno):
             'form':form,
             'alumnos':alumnos_entregados,
             'alumno':respuesta.alumno,
-            'respuesta':json.loads(respuesta.respuesta)
+            'respuesta':json.loads(respuesta.respuesta),
+            'path':'respuestas31'
         })
 
 @login_required

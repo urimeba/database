@@ -258,6 +258,24 @@
         opacity: 1;
         pointer-events: auto;
       }
+      .modal-container3 {
+        position: fixed;
+        display: flex;
+        align-items: center;
+        background-color: rgba(0,0,0,0.3);
+        top: 0;
+        left: 0;
+        height: 100vh;
+        width: 100vw;
+        justify-content: center;
+        opacity: 0;
+        pointer-events: none;
+      }
+      .modal-container3.show {
+        
+        opacity: 1;
+        pointer-events: auto;
+      }
       .modal_imagen{
           width: 70px;
           height: 40px;
@@ -275,7 +293,36 @@
         padding: 30px 50px;
         text-align: center;
       }
-      
+      .modalHistorial{
+        background-color: #fff;
+        width: 70%;
+        height: auto;
+        max-height: 50%;
+        display: flex;
+        flex-direction: column;
+        border-radius: 5px;
+        padding: 30px 50px;
+        text-align: center;
+        overflow: scroll;
+      }
+      .modaltitle{
+          font-weight: bold;
+          font-size: 20px;
+          padding-bottom: 10px;
+          
+      }
+      .cerrarHistorial{
+        cursor: pointer;
+        margin-top: 15px;
+        background-color: #0075ff;
+        border-radius: 15px;
+        width: 30%;
+        height: 1.6rem;
+        margin-left: 35%;
+        padding-top:6px ;
+        padding-bottom: 6px;
+        color: white;
+      }
       .botonCerrar{
         margin-top: 15px;
         background-color: #0075ff;
@@ -343,10 +390,19 @@
         
     
     }
-    #borrar{
+    #openHIST{
         border:none;
        margin-right: 35px;
        background-color: #ED5A09;
+       transition: .55s;
+    }
+    #openHIST:hover{
+        background-color: rgb(187, 69, 6);
+     }
+    #borrar{
+       border:none;
+       margin-right: 35px;
+       background-color: #cd0006;
        transition: .55s;
     }
     #borrar:hover{
@@ -356,11 +412,10 @@
     #buttons>button{
         box-shadow: 6px 6px 13px 0px rgba(51,51,51,1);
        cursor: pointer;
-        width: 100px;
+        width: 80px;
         border-radius: 4px;
         color: white;
-       
-        height: 32px;
+        height: 28px;
         font-size: 1rem;
     }
 
@@ -597,4 +652,52 @@
   @keyframes fadeout {
     from {bottom: 30px; opacity: 1;}
     to {bottom: 0; opacity: 0;}
+  }
+  @media screen and (max-width:810px){
+    #openDB1{
+        background-color:  #0075ff;
+        border: 0;
+        width: 75px;
+        height: 25px;
+        color: white;
+        border-radius: 5px;
+        margin-right: 5px;
+        font-size: 10px;
+    }
+    
+    #openDB2{
+        background-color:  #0075ff;
+        border: 0;
+        width: 75px;
+        height: 25px;
+        color: white;
+        border-radius: 5px;
+        margin-left: 5px;
+        font-size: 10px;
+    }
+    
+  }
+  @media screen and (max-width:700px){
+    #openDB1{
+        background-color:  #0075ff;
+        border: 0;
+        width: 55px;
+        height: 25px;
+        color: white;
+        border-radius: 5px;
+        margin-right: 5px;
+        font-size: 6px;
+    }
+    
+    #openDB2{
+        background-color:  #0075ff;
+        border: 0;
+        width: 55px;
+        height: 25px;
+        color: white;
+        border-radius: 5px;
+        margin-left: 5px;
+        font-size: 6px;
+    }
+    
   }
