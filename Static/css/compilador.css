@@ -5,7 +5,6 @@
     
 }
     /* Escritorio */
-@media screen and (min-width: 768px){
 
     #Principal{
         width: 100%;
@@ -191,7 +190,7 @@
         width: 100%;
         height: 15%;
         display: flex;
-        justify-content: center;
+        justify-content: space-between;
     }
     #compilador-bottom{
         width: 100%;
@@ -202,19 +201,207 @@
         box-shadow: 2px 2px 8px 0px rgb(43, 42, 45);
     }
     #titulo{
-        display: flex;
-        align-items: center;
-        width: 70%;
+        
+        color: white;
+        padding-top: 17px;
+        
+    }
+    .databases{
+        margin-top: -8px;
+    }
+    #tituloDB{
+        
         color: white;
         
     }
     #buttons{
-        width: 30%;
         height: 100%;
         display: flex;
         justify-content: flex-end;
         align-items: center;
         
+    }
+
+    .modal-container {
+        position: fixed;
+        display: flex;
+        align-items: center;
+        background-color: rgba(0,0,0,0.3);
+        top: 0;
+        left: 0;
+        height: 100vh;
+        width: 100vw;
+        justify-content: center;
+        opacity: 0;
+        pointer-events: none;
+        z-index: 999;
+      }
+      .modal-container.show {
+        
+        opacity: 1;
+        pointer-events: auto;
+      }
+      .modal-container2 {
+        position: fixed;
+        display: flex;
+        align-items: center;
+        background-color: rgba(0,0,0,0.3);
+        top: 0;
+        left: 0;
+        height: 100vh;
+        width: 100vw;
+        justify-content: center;
+        opacity: 0;
+        pointer-events: none;
+        z-index: 999;
+      }
+      .modal-container2.show {
+        
+        opacity: 1;
+        pointer-events: auto;
+      }
+      .modal-container3 {
+        position: fixed;
+        display: flex;
+        align-items: center;
+        background-color: rgba(0,0,0,0.3);
+        top: 0;
+        left: 0;
+        height: 100vh;
+        width: 100vw;
+        justify-content: center;
+        opacity: 0;
+        pointer-events: none;
+        z-index: 999;
+      }
+      .modal-container3.show {
+        
+        opacity: 1;
+        pointer-events: auto;
+      }
+      .modal_imagen{
+          width: 70px;
+          height: 40px;
+      }
+      .modal_imagen img{
+        width: 700px;
+        height: 530px;
+    }
+      .modalC{
+        background-color: #fff;
+        width: auto;
+        max-height: 100%;
+        max-width: 100%;
+        border-radius: 5px;
+        padding: 30px 50px;
+        text-align: center;
+      }
+      .modalHistorial{
+        background-color: #fff;
+        width: 70%;
+        height: auto;
+        max-height: 50%;
+        display: flex;
+        flex-direction: column;
+        border-radius: 5px;
+        padding: 30px 50px;
+        text-align: center;
+        overflow: auto;
+        align-items: center;
+        overflow-x: hidden;
+      }
+      #historia{
+          padding: 10px;
+          width: 80%;
+      }
+      #historia tbody tr td{
+        color: black;
+        padding: 15px;
+        font-family:'Roboto Mono', monospace;
+        text-align: center;
+        letter-spacing: .6px;
+        text-transform: uppercase;
+        border: 5px transparent;
+    }
+    #historia tbody tr{
+        background-color: white;
+       
+    }
+    #historia tbody tr td:hover{
+        background-color: #e8f2fe;
+        color: black;
+    }
+      .modaltitle{
+          font-weight: bold;
+          font-size: 20px;
+          padding-bottom: 10px;
+          
+      }
+      .cerrarHistorial{
+        cursor: pointer;
+        margin-top: 25px;
+        background-color: #0075ff;
+        border-radius: 15px;
+        width: 30%;
+        height: 1.6rem;
+        
+        padding-top:6px ;
+        padding-bottom: 6px;
+        color: white;
+      }
+      .botonCerrar{
+        margin-top: 15px;
+        background-color: #0075ff;
+        border-radius: 15px;
+        width: 30%;
+        height: 1.5rem;
+        margin-left: 35%;
+        padding-top:7px ;
+        color: white;
+      }
+      .botonCerrar:hover{
+        cursor: pointer;
+        background-color: #3390ff;
+      }
+      .botonCerrar:active{
+          background-color: #005dcc;
+      }
+
+    #tituloDB{
+        text-align: center;
+        font-weight: 500;
+    }
+    #openDB1{
+        background-color:  #0075ff;
+        border: 0;
+        width: 125px;
+        height: 25px;
+        color: white;
+        border-radius: 5px;
+        margin-right: 5px;
+    }
+    #openDB1:hover{
+        cursor: pointer;
+        background-color:  #3390ff;
+    }
+    #openDB1:active{
+        background-color: #005dcc;
+    }
+    #openDB2{
+        background-color:  #0075ff;
+        border: 0;
+        width: 125px;
+        height: 25px;
+        color: white;
+        border-radius: 5px;
+        margin-left: 5px;
+    }
+    #openDB2:hover{
+        cursor: pointer;
+        background-color:  #3390ff;
+    }
+    #openDB2:active{
+        background-color: #005dcc;
     }
     #play{
         background-color: rgb(50, 143, 7);
@@ -223,15 +410,25 @@
         border: none;
         transition: .85s;
     }
+    
     #play:hover{
         background-color: rgb(41, 117, 6) !important;
         
     
     }
-    #borrar{
+    #openHIST{
         border:none;
        margin-right: 35px;
        background-color: #ED5A09;
+       transition: .55s;
+    }
+    #openHIST:hover{
+        background-color: rgb(187, 69, 6);
+     }
+    #borrar{
+       border:none;
+       margin-right: 35px;
+       background-color: #cd0006;
        transition: .55s;
     }
     #borrar:hover{
@@ -241,13 +438,13 @@
     #buttons>button{
         box-shadow: 6px 6px 13px 0px rgba(51,51,51,1);
        cursor: pointer;
-        width: 100px;
+        width: 80px;
         border-radius: 4px;
         color: white;
-       
-        height: 32px;
+        height: 28px;
         font-size: 1rem;
     }
+
 
     .number{
         width: 35px;
@@ -315,17 +512,52 @@
         table {     font-family: "Lucida Sans Unicode", "Lucida Grande", Sans-Serif;
             font-size: 12px;    margin: 10px;     width: 480px; text-align: left;    border-collapse: collapse; }
         
-        th {     font-size: 13px;     font-weight: normal;     padding: 8px;     background: #b9c9fe;
-            border-top: 4px solid #aabcfe;    border-bottom: 1px solid #fff; color: #039; }
+        th {     font-size: 13px;     font-weight: normal;     padding: 8px;     background: #3390ff;
+            border: 2px solid #0075ff;    border-bottom: 2px solid #0075ff; color: white; }
         
         td {    padding: 8px;    ;     border-bottom: 1px solid #fff;
-            color: #669;    border-top: 1px solid transparent; }
+            color: black;    border-top: 1px solid transparent; font-family: 'Roboto Mono',monospace; text-align: center;
+         text-transform: uppercase; border: 5px transparent; letter-spacing: .6px;}
         
         tr:hover td { background: #97a3cf; color: #339; }
-        table tr:nth-child(odd) {background-color: #c1c9e9;}
+        table tr:nth-child(odd) {background-color: #e7e7e9;}
 
-        table tr:nth-child(even) {background-color: #e8edff;}
-}
+        table tr:nth-child(even) {background-color: #f0f2f1;}
+        .botonesRestablecer{
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .botonesRestablecer a{
+            text-decoration: none;
+        }
+        #botonCambiarRestablecer{
+            background-color: rgb(50, 143, 7);
+            color: white !important;
+            width: 80px;
+            height: 25px;
+            border: none;
+            transition: .85s;
+        }
+        
+        #botonCambiarRestablecer:hover{
+            background-color: rgb(41, 117, 6) !important;
+            cursor: pointer;
+        
+        }
+        #botonRegresarRestablecer{
+            border:none;
+            width: 170px;
+            height: 25px;
+           margin-right: 35px;
+           background-color: #ED5A09;
+           transition: .55s;
+           text-decoration: none;
+        }
+        #botonRegresarRestablecer:hover{
+       
+            background-color: rgb(187, 69, 6);
+         }
 
 /* CSS LOADER */
 
@@ -447,4 +679,52 @@
   @keyframes fadeout {
     from {bottom: 30px; opacity: 1;}
     to {bottom: 0; opacity: 0;}
+  }
+  @media screen and (max-width:810px){
+    #openDB1{
+        background-color:  #0075ff;
+        border: 0;
+        width: 75px;
+        height: 25px;
+        color: white;
+        border-radius: 5px;
+        margin-right: 5px;
+        font-size: 10px;
+    }
+    
+    #openDB2{
+        background-color:  #0075ff;
+        border: 0;
+        width: 75px;
+        height: 25px;
+        color: white;
+        border-radius: 5px;
+        margin-left: 5px;
+        font-size: 10px;
+    }
+    
+  }
+  @media screen and (max-width:700px){
+    #openDB1{
+        background-color:  #0075ff;
+        border: 0;
+        width: 55px;
+        height: 25px;
+        color: white;
+        border-radius: 5px;
+        margin-right: 5px;
+        font-size: 6px;
+    }
+    
+    #openDB2{
+        background-color:  #0075ff;
+        border: 0;
+        width: 55px;
+        height: 25px;
+        color: white;
+        border-radius: 5px;
+        margin-left: 5px;
+        font-size: 6px;
+    }
+    
   }
