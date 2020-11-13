@@ -234,6 +234,7 @@
         justify-content: center;
         opacity: 0;
         pointer-events: none;
+        z-index: 999;
       }
       .modal-container.show {
         
@@ -252,6 +253,7 @@
         justify-content: center;
         opacity: 0;
         pointer-events: none;
+        z-index: 999;
       }
       .modal-container2.show {
         
@@ -270,6 +272,7 @@
         justify-content: center;
         opacity: 0;
         pointer-events: none;
+        z-index: 999;
       }
       .modal-container3.show {
         
@@ -303,8 +306,31 @@
         border-radius: 5px;
         padding: 30px 50px;
         text-align: center;
-        overflow: scroll;
+        overflow: auto;
+        align-items: center;
+        overflow-x: hidden;
       }
+      #historia{
+          padding: 10px;
+          width: 80%;
+      }
+      #historia tbody tr td{
+        color: black;
+        padding: 15px;
+        font-family:'Roboto Mono', monospace;
+        text-align: center;
+        letter-spacing: .6px;
+        text-transform: uppercase;
+        border: 5px transparent;
+    }
+    #historia tbody tr{
+        background-color: white;
+       
+    }
+    #historia tbody tr td:hover{
+        background-color: #e8f2fe;
+        color: black;
+    }
       .modaltitle{
           font-weight: bold;
           font-size: 20px;
@@ -313,12 +339,24 @@
       }
       .cerrarHistorial{
         cursor: pointer;
-        margin-top: 15px;
+        margin-top: 25px;
         background-color: #0075ff;
         border-radius: 15px;
         width: 30%;
         height: 1.6rem;
-        margin-left: 35%;
+        
+        padding-top:6px ;
+        padding-bottom: 6px;
+        color: white;
+      }
+      .fix{
+
+        margin-top: 25px;
+        background-color: white;
+        border-radius: 15px;
+        width: 30%;
+        height: 1.6rem;
+        
         padding-top:6px ;
         padding-bottom: 6px;
         color: white;
