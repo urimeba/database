@@ -12,6 +12,7 @@
                 <button id="openDB2">Tienda Celular</button>
             </div>
             <div id="buttons">
+                <button id="openHIST" onclick="historial()">Historial</button>
                 <button id="borrar" onclick="limpiar()">Borrar</button>
                 <button id="play" onclick="compile()"> Ejecutar</button>
             </div>
@@ -29,9 +30,55 @@
     </div>
 </div>
 
+<div class="modal-container3" id="modal_container3">
+    <div class="modalHistorial">
+        <h1 class="modaltitle">HISTORIAL</h1>
+        <table id="historia">
+            <tr>
+                <td>Selec sahjfhja from asjkhfjfhja as sajhajfhsjhfa where sajhhjsfagSelec sahjfhja from asjkhfjfhja as sajhajfhsjhfa where sajhhjsfagSelec sahjfhja from asjkhfjfhja as sajhajfhsjhfa where sajhhjsfagjhsfgsaf</td>
+            </tr>
+            <tr>
+                <td>Selec sahjfhja from asjkhfjfhja as sajhajfhsjhfa where sajhhjsfagjhsfgsaf</td>
+            </tr>
+            <tr>
+                <td>Selec sahjfhja from asjkhfjfhja as sajhajfhsjhfa where sajhhjsfagjhsfgsaf</td>
+            </tr>
+            <tr>
+                <td>Selec sahjfhja from asjkhfjfhja as sajhajfhsjhfa where sajhhjsfagjhsfgsaf</td>
+            </tr>
+            <tr>
+                <td>Selec sahjfhja from asjkhfjfhja as sajhajfhsjhfa where sajhhjsfagjhsfgsaf</td>
+            </tr>
+            <tr>
+                <td>Selec sahjfhja from asjkhfjfhja as sajhajfhsjhfa where sajhhjsfagjhsfgsaf</td>
+            </tr>
+            <tr>
+                <td>Selec sahjfhja from asjkhfjfhja as sajhajfhsjhfa where sajhhjsfagjhsfgsaf</td>
+            </tr>
+            <tr>
+                <td>Selec sahjfhja from asjkhfjfhja as sajhajfhsjhfa where sajhhjsfagjhsfgsaf</td>
+            </tr>
+            <tr>
+                <td>Selec sahjfhja from asjkhfjfhja as sajhajfhsjhfa where sajhhjsfagjhsfgsaf</td>
+            </tr>
+            <tr>
+                <td>Selec sahjfhja from asjkhfjfhja as sajhajfhsjhfa where sajhhjsfagjhsfgsaf</td>
+            </tr>
+            <tr>
+                <td>Selec sahjfhja from asjkhfjfhja as sajhajfhsjhfa where sajhhjsfagjhsfgsaf</td>
+            </tr>
+            <tr>
+                <td>Selec sahjfhja from asjkhfjfhja as sajhajfhsjhfa where sajhhjsfagjhsfgsaf</td>
+            </tr>
+        </table>
+        <div class="cerrarHistorial" id="close3">Cerrar</div>
+        <div class="fix" ></div>
+    </div>
+</div>
+
 <div class="modal-container" id="modal_container">
     <div class="modalC">
-        <h1>HR</h1>
+        <h1 class="modaltitle">HR</h1>
         <picture class="modal_imagen">
             <img src="{% static 'img/DBhr.jpeg' %}" alt="" srcset="">
         </picture>
@@ -40,7 +87,7 @@
 </div>
 <div class="modal-container2" id="modal_container2">
     <div class="modalC">
-        <h1>Tienda Celular</h1>
+        <h1 class="modaltitle">Tienda Celular</h1>
         <picture class="modal_imagen">
             <img src="{% static 'img/DBcelular.jpeg' %}" alt="" srcset="">
         </picture>
@@ -69,6 +116,16 @@
     })
     close2.addEventListener('click', () =>{
         modal_container2.classList.remove('show')
+    })
+    //Modal Hisotoral
+    const open3 = document.getElementById('openHIST')                         
+    const modal_container3=document.getElementById('modal_container3')
+    const close3=document.getElementById('close3')
+    open3.addEventListener('click', () => {
+        modal_container3.classList.add('show')
+    })
+    close3.addEventListener('click', () =>{
+        modal_container3.classList.remove('show')
     })
 
 </script>

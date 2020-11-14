@@ -5,9 +5,22 @@
 {% if messages %}
     <ul class="messages">
         {% for message in messages %}
-        <li>
-            {{ message }}
-        </li>
+        <div class="modal-container" id="modal_container">
+            <div class="modal">
+                <h1>DataBass</h1>
+                <p>{{message}}</p>
+                <div class="botonCerrar" id="close">Cerrar</div>
+            </div>
+          </div>
+          <script>
+                              
+            const modal_container=document.getElementById('modal_container')
+            const close=document.getElementById('close')
+            modal_container.classList.add('show')
+            close.addEventListener('click', () =>{
+                modal_container.classList.remove('show')
+            })
+          </script>
         {% endfor %}
     </ul>
 {% endif %}

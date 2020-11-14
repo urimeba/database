@@ -1155,7 +1155,52 @@ transition: .55s;
 .botonCerrar:active{
   background-color: #005dcc;
 }
+.contenidoRestablecer{
+  height: 80vh;
+  overflow: hidden
+}
+.contenidotextoRestablecer{
+  height: 80vh;
+}
 
+.formRestablecer{
+  margin-top: 55px;
+  display: flex;
+  flex-direction: column;
+  height: 80vh;
+}
+.errorlist{
+  color: black;
+}
+.modalblack{
+  color: black;
+  font-weight: 600;
+}
+.formRestablecer div{
+  color: white;
+  text-align: center;
+}
+.formRestablecer span{
+  font-size: 25px;
+  font-weight: bold;
+  
+}
+.formRestablecer-title{
+  margin-bottom: 10px;
+}
+.formRestablecer li{
+  line-height: 25px;
+}
+.tabla{
+  margin-top: 20px;
+  margin-bottom: 20px;
+  align-self: center;
+  justify-self: center;
+}
+.tablaRestablecer{
+  table-layout: fixed;
+  
+}
 
 /*-----------------------------------------------*/
 @media (max-width: 1122px) {

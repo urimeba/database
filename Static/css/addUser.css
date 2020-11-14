@@ -1,0 +1,51 @@
+.principalAddUser {
+    background-color: #333645;
+    width: 100vw;
+    
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  .contenedorAddUser{
+    width: 90%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    
+  }
+  .contenidoAddUser {
+    width: 90%;
+    height: 80vh;
+    display: flex;
+    color: white;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    background-color: #333645;
+    
+    
+  }
+  
+  .AddUser-title{
+    justify-self: flex-start;
+    font-size: 44px;
+    
+  }
+  .AddUser-subtitle{
+    font-size: 24px;
+    opacity: 80%;
+    margin-top: 5px;
+    margin-bottom: 40px;
+  }
+  #addUser{
+    width: 100px;
+    height: 40px;
+    border: none;
+    color: white;
+    background-color: #FF5A09;
+    border-radius: 4px;
+    transition: 0.5s;
+    cursor: pointer;
+    font-weight: bold;
+    box-shadow: 2px 2px 4px 0px rgba(0,0,0,0.75);
+  }

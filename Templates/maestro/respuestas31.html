@@ -27,7 +27,7 @@
 				</a>
 				<ul class="navbar-list">
 					<li class="opciones"><a href="{% url 'dashboard' %}" class="opcionInicio">Inicio</a></li>
-					<li class="opciones"><a href="{% url 'respuestas31' %}" class="opcionRespuestas {% if request.path == '/ejercicios/respuestas31' %} active {%endif%}">Respuestas</a></li>
+					<li class="opciones"><a href="{% url 'respuestas31' %}" class="opcionRespuestas {% if path == 'respuestas31' %} active {%endif%}">Respuestas</a></li>
 					<li class="opciones"><a href="{% url 'getCalificaciones' %}"
 							class="opcionHerramientas">Calificaciones</a></li>
 					<li class="opciones"><a href="{% url 'ejercicios' %}" class="opcionHerramientas">Estado</a></li>
@@ -40,6 +40,13 @@
 							</a>
 						</div>
 					</div> -->
+					<div class="navbar-logout navbar-avatar">
+						<div>
+							<a href="{% url 'addUser' %}">
+								<img src="{% static 'img/add.png' %}" alt="" class="img-logout">
+							</a>
+						</div>
+					</div>
 					<div class="navbar-logout navbar-avatar">
 						<div>
 							<a href="{% url 'cerrarSesion' %}">

@@ -2,16 +2,18 @@
 {% load static %}
 {% block content %}
 <div class="container">
-
+  
     {% if first_login %}
         <p>Te recomendamos cambiar tu contraseña la primera vez que inicias sesion</p>
         <p>Después de esto, podras encontrar esta opcion en tu perfil</p>
     {% endif %}
 
     <form method="POST" action="/cambiarContraseña">
+      
         {% csrf_token %}
 
         {% if messages %}
+      
         <ul>
             {% for message in messages %}
             <li>{{ message }}</li>
@@ -21,13 +23,25 @@
 
         <table border="1">
             {% for field in form %}
-              <tr>
-                <th>{{ field.label_tag }}</th>
-                <td>
-                  {{ field.errors }}
-                  {{ field }}
-                </td>
-              </tr>
+            <div class="modal-container" id="modal_container">
+              <div class="modal">
+                  <h1>DataBass</h1>
+                  <p>{{field.label_tag}}</p>
+                  <p>{{field.errors}}</p>
+                  <p>{{field}}</p>
+                  <div class="botonCerrar" id="close">Cerrar</div>
+              </div>
+            </div>
+            <script>
+                                
+              const modal_container=document.getElementById('modal_container')
+              const close=document.getElementById('close')
+              modal_container.classList.add('show')
+              close.addEventListener('click', () =>{
+                  modal_container.classList.remove('show')
+              })
+            </script>
+              
             {% endfor %}
           </table>
         <button type="submit">Cambiar</button>
@@ -35,6 +49,7 @@
     <a href="{% url 'perfil' %}">
         <button>Regresar a mi perfil</button>
     </a>
+  </div>
 </div>
 
 {% endblock %}
