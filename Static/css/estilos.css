@@ -1162,6 +1162,11 @@ transition: .55s;
 .contenidotextoRestablecer{
   height: 80vh;
 }
+.textoRestablecer{
+  text-align: center;
+  color: #e75f2c;
+  font-weight: bold;
+}
 
 .formRestablecer{
   margin-top: 55px;
