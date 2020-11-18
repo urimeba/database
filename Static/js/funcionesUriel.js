@@ -1,4 +1,4 @@
-var serverWeb = 'http://127.0.0.1:8000/';
+var serverWeb = 'https://uaqdatabass.herokuapp.com/dashboard';
 
 // Funcion para obtener la Cookie y mandarla al Back
 function getCookie(name) {
