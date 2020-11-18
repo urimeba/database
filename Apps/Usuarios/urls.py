@@ -17,6 +17,9 @@ from django.contrib import admin
 from django.urls import path
 from Apps.Usuarios import views as views_usuarios
 
+
 urlpatterns = [
     path('reset/password/', views_usuarios.reset_password, name='reset_password'),
+    
+    
 ]

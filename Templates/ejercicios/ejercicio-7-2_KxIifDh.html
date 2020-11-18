@@ -14,6 +14,21 @@
     });
   }
 </script>
+
+<script>
+    var count = 0;
+    
+    function clickFunction() {
+        count += 1;
+        // var click = document.getElementById('click').innerHTML = count;
+        var btn = document.getElementById("btn-ejercicio-6-2");
+    
+        if(count >= 2)  {
+            btn.disabled = true;
+        }        
+    }
+    </script>
+
 <ol>
     <li>El departamento de Recursos Humanos requiere una lista de todos los códigos de departamento (sin que se repitan) que están asignados a los empleados.</li>
     <li>Se requiere saber cuál es la fecha de contratación (hire_date) de aquellos empleados que tienen por primer nombre “David”.</li>
@@ -42,6 +57,6 @@
 </div>
 
 <div class="container">
-    <button id="btn-ejercicio-6-2">Enviar</button>
+    <button onclick="clickFunction()" id="btn-ejercicio-6-2">Enviar</button>
 </div>
 {% endblock %}

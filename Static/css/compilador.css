@@ -349,6 +349,16 @@
         padding-bottom: 6px;
         color: white;
       }
+      .botonCerrar{
+        margin-top: 15px;
+        background-color: #0075ff;
+        border-radius: 15px;
+        width: 30%;
+        height: 1.5rem;
+        margin-left: 35%;
+        padding-top:7px ;
+        color: white;
+      }
       .fix{
 
         margin-top: 25px;
@@ -359,16 +369,6 @@
         
         padding-top:6px ;
         padding-bottom: 6px;
-        color: white;
-      }
-      .botonCerrar{
-        margin-top: 15px;
-        background-color: #0075ff;
-        border-radius: 15px;
-        width: 30%;
-        height: 1.5rem;
-        margin-left: 35%;
-        padding-top:7px ;
         color: white;
       }
       .botonCerrar:hover{
@@ -528,7 +528,8 @@
             border: 2px solid #0075ff;    border-bottom: 2px solid #0075ff; color: white; }
         
         td {    padding: 8px;    ;     border-bottom: 1px solid #fff;
-            color: #c2c4c3;    border-top: 1px solid transparent; }
+            color: black;    border-top: 1px solid transparent; font-family: 'Roboto Mono',monospace; text-align: center;
+         text-transform: uppercase; border: 5px transparent; letter-spacing: .6px;}
         
         tr:hover td { background: #97a3cf; color: #339; }
         table tr:nth-child(odd) {background-color: #e7e7e9;}

@@ -1,6 +1,9 @@
 from django.db import models
 from django.core.validators import MaxValueValidator, MinLengthValidator, MinValueValidator
 from django.contrib.auth.models import AbstractUser
+from import_export import resources 
+from import_export.admin import ImportExportModelAdmin
+
 
 MAJORS = [
     ('SOF', 'Ingeniería de Software'),
@@ -9,7 +12,6 @@ MAJORS = [
     ('INC', 'Ingeniería en Computación'),
     ('TEL', 'Ingeniería en Telecomunicaciones y Redes'),
 ]
-
 
 class User(AbstractUser):
     first_name = models.CharField(max_length=128, blank=False, null=False)
@@ -20,7 +22,7 @@ class User(AbstractUser):
     class Meta:
         verbose_name = 'User'
         verbose_name_plural = 'Users'
-
+      
     def __str__(self):
         return "{}".format(self.username)
 
@@ -44,13 +46,18 @@ class Alumno(models.Model):
     nacimiento = models.DateField(auto_now=False, auto_now_add=False, blank=True, null=True)
     carrera = models.CharField(max_length=3, choices=MAJORS, blank=True, null=True)
     promedio = models.DecimalField(max_digits=4, decimal_places=2, blank=True, null=True)
+                         
 
     class Meta:
         verbose_name = 'Alumno'
         verbose_name_plural = 'Alumnos'
-
+        
     def __str__(self):
         return "{}".format(self.usuario)
+    
+                   
+             
+
 
 
 

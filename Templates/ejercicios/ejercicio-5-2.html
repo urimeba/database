@@ -36,6 +36,20 @@
 
 </script>
 
+<script>
+  var count = 0;
+  
+  function clickFunction() {
+      count += 1;
+      // var click = document.getElementById('click').innerHTML = count;
+      var btn = document.getElementById("btn-ejercicio-4-2");
+  
+      if(count >= 2)  {
+          btn.disabled = true;
+      }        
+  }
+  </script>
+
 <ul id="sortable1" class="droptrue">
   Atributos
   <li class="ui-state-default">PK - ID(number)</li>
@@ -88,7 +102,7 @@
  
 <br style="clear:both">
 <div class="container">
-  <button id="btn-ejercicio-4-2">Enviar</button>
+  <button onclick="clickFunction()" id="btn-ejercicio-4-2">Enviar</button>
 </div>
 
 {% endblock %}

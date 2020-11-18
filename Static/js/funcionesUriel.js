@@ -51,7 +51,78 @@ function compile() {
         return false
     }
 }
+//INICIA PROCESO DE HISTORIAL
+function eliminarSessionStorage(){
+    sessionStorage.clear();
+}
 
+let n = 0;
+let lista0 = []
+let lista = []
+function recuperarSessionstore(){
+    var aLength0 = sessionStorage.length;
+    //aLength0++;
+    let obt0 =sessionStorage.getItem(0, aLength0);
+    lista0.push(obt0);
+    console.log(lista0);
+    var tbody0 = document.querySelector('#historia');
+    //tbody0.innerHTML = '';
+    for(a = 0; a < sessionStorage.length; a++){
+        var fila = document.createElement('tr');
+        let query2 = document.createElement('td');
+        query2.innerHTML = sessionStorage[a];
+
+        fila.appendChild(query2);
+
+        tbody0.appendChild(fila);
+    }
+}
+
+function historial(){
+    var aLength = sessionStorage.length;
+    console.log(aLength)
+    //aLength++;
+    let seleccionarTexto = code.getValue();
+    sessionStorage.setItem(aLength, seleccionarTexto);
+    let obt =sessionStorage.getItem(aLength);
+    lista.push(obt);
+    console.log(lista);
+    var tbody = document.querySelector('#historia');
+    tbody.innerHTML = '';
+    for(let i = 0; i < lista.length; i++){
+        var fila = document.createElement('tr');
+        let query1 = document.createElement('td');
+        query1.innerHTML = lista[i];
+
+        fila.appendChild(query1);
+
+        tbody.appendChild(fila);
+    }
+    return true;
+  }
+  function recuperarValores(){
+    var aLength0 = sessionStorage.length;
+    //aLength0++;
+    let obt0 =sessionStorage.getItem(0, aLength0);
+    lista0.push(obt0);
+    console.log(lista0);
+    var tbody0 = document.querySelector('#historia');
+    tbody0.innerHTML = '';
+    for(a = 0; a < sessionStorage.length; a++){
+        var fila = document.createElement('tr');
+        let query2 = document.createElement('td');
+        query2.innerHTML = sessionStorage[a];
+
+        fila.appendChild(query2);
+
+        tbody0.appendChild(fila);
+    }
+}
+
+  //var almacenaje = localStorage.setItem("ddvalue", ListaQuerys);
+  //localStorage.getItem('ddvalue');
+  //return true;
+//TERMINA PROCESO HISTORIAL
 function processResponseCompiler(data) {
     if(data.length === 0) addToast('Tú consulta ha sido procesada con exito.', 'successfully')
     for(const response of data) {
@@ -111,6 +182,7 @@ updateIntentos = (numeroIntentos) => {
     divIntentos.innerText=numeroIntentos;
 }
 
+
 // Funcion para actualizar al calificacion
 updateCalificacion = (calificacion) =>{
     calificacion = parseFloat(calificacion);
@@ -132,6 +204,7 @@ enviarEjercicio0_1 = () =>{
     if(!confirmacion){
         return;
     }
+
 
     let res1 = getTextSelect("pregunta-1");
     let res2 = getTextSelect("pregunta-2");

@@ -31,6 +31,21 @@
   }
 </script>
 
+<script>
+  var count = 0;
+  
+  function clickFunction() {
+      count += 1;
+      // var click = document.getElementById('click').innerHTML = count;
+      var btn = document.getElementById("btn-ejercicio-3-2");
+  
+      if(count >= 2)  {
+          btn.disabled = true;
+      }        
+  }
+  </script>
+  
+
 
 1. ¿Que es un DBMS?
 <select name="" id="pregunta-1">
@@ -128,6 +143,6 @@
 </select>
 
 <div class="container">
-    <button id="btn-ejercicio-3-2">Enviar</button>
+    <button onclick="clickFunction()" id="btn-ejercicio-3-2">Enviar</button>
 </div>
 {% endblock %}
