@@ -446,9 +446,7 @@
 
         /*MEDIA*/
          @media (max-width: 840px) {
-        #botonLogin{
-            /*background:pink;*/
-        }
+        
          #divdatosLogin{
             padding: 1rem;
          }

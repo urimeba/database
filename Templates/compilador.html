@@ -1,6 +1,7 @@
 {% extends 'navbar.html' %}
 {% block content %}
 {% load static %}
+<body onload="recuperarSessionstore()"></body>
 <div id="mid-container-ajuste">
    
     <div id="container-top">
@@ -12,9 +13,9 @@
                 <button id="openDB2">Tienda Celular</button>
             </div>
             <div id="buttons">
-                <button id="openHIST" onclick="historial()">Historial</button>
+                <button id="openHIST">Historial</button>
                 <button id="borrar" onclick="limpiar()">Borrar</button>
-                <button id="play" onclick="compile()"> Ejecutar</button>
+                <button id="play" onclick="compile(), historial(), recuperarValores()"> Ejecutar</button>
             </div>
         </div>
         <div id="compilador-bottom">
@@ -34,45 +35,13 @@
     <div class="modalHistorial">
         <h1 class="modaltitle">HISTORIAL</h1>
         <table id="historia">
-            <tr>
-                <td>Selec sahjfhja from asjkhfjfhja as sajhajfhsjhfa where sajhhjsfagSelec sahjfhja from asjkhfjfhja as sajhajfhsjhfa where sajhhjsfagSelec sahjfhja from asjkhfjfhja as sajhajfhsjhfa where sajhhjsfagjhsfgsaf</td>
-            </tr>
-            <tr>
-                <td>Selec sahjfhja from asjkhfjfhja as sajhajfhsjhfa where sajhhjsfagjhsfgsaf</td>
-            </tr>
-            <tr>
-                <td>Selec sahjfhja from asjkhfjfhja as sajhajfhsjhfa where sajhhjsfagjhsfgsaf</td>
-            </tr>
-            <tr>
-                <td>Selec sahjfhja from asjkhfjfhja as sajhajfhsjhfa where sajhhjsfagjhsfgsaf</td>
-            </tr>
-            <tr>
-                <td>Selec sahjfhja from asjkhfjfhja as sajhajfhsjhfa where sajhhjsfagjhsfgsaf</td>
-            </tr>
-            <tr>
-                <td>Selec sahjfhja from asjkhfjfhja as sajhajfhsjhfa where sajhhjsfagjhsfgsaf</td>
-            </tr>
-            <tr>
-                <td>Selec sahjfhja from asjkhfjfhja as sajhajfhsjhfa where sajhhjsfagjhsfgsaf</td>
-            </tr>
-            <tr>
-                <td>Selec sahjfhja from asjkhfjfhja as sajhajfhsjhfa where sajhhjsfagjhsfgsaf</td>
-            </tr>
-            <tr>
-                <td>Selec sahjfhja from asjkhfjfhja as sajhajfhsjhfa where sajhhjsfagjhsfgsaf</td>
-            </tr>
-            <tr>
-                <td>Selec sahjfhja from asjkhfjfhja as sajhajfhsjhfa where sajhhjsfagjhsfgsaf</td>
-            </tr>
-            <tr>
-                <td>Selec sahjfhja from asjkhfjfhja as sajhajfhsjhfa where sajhhjsfagjhsfgsaf</td>
-            </tr>
-            <tr>
-                <td>Selec sahjfhja from asjkhfjfhja as sajhajfhsjhfa where sajhhjsfagjhsfgsaf</td>
-            </tr>
+            <tbody id="historia">
+
+            </tbody>
         </table>
-        <div class="cerrarHistorial" id="close3">Cerrar</div>
-        <div class="fix" ></div>
+            <div class="cerrarHistorial" id="close3">Cerrar</div>
+            <div class="fix" ></div>
+
     </div>
 </div>
 
