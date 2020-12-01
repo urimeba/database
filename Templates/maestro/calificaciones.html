@@ -67,7 +67,8 @@
                             <ul>
                                 {% for alumno in clase.list %}
                                 <a href="{% url 'getCalificacionesAlumno' idAlumno=alumno.id %}">
-                                    <li>{{alumno.usuario.get_full_name}}</li>
+                                    <li>{{alumno.usuario.last_name}} {{alumno.usuario.first_name}}</li>
+                            
                                 </a>
                                 {% endfor %}
                             </ul>

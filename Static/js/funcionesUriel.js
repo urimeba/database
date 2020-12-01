@@ -941,7 +941,7 @@ actualizarCalificacion = (elementoHTML) =>{
 }
 
 actualizarEjercicio = (elementoHTML) =>{
-    let idEjercicio = elementoHTML.dataset.idejercicio;
+    let idEjercicio = elementoHTML.dataset.idEjercicio;
     let estado = document.getElementById(idEjercicio).checked;
 
     let token = getCookie('csrftoken');
@@ -951,6 +951,25 @@ actualizarEjercicio = (elementoHTML) =>{
         data: {
             csrfmiddlewaretoken: token,
             idEjercicio:idEjercicio,
+            estado: estado
+        },
+        success: function(data){
+            alert(data);
+        }
+    });
+}
+
+actualizarUnidad = (elementoHTML) =>{
+    let idUnidad = elementoHTML.dataset.idunidad;
+    let estado = document.getElementById(idUnidad).checked;
+
+    let token = getCookie('csrftoken');
+    $.ajax({
+        type: 'POST',
+        url: serverWeb+'ejercicios/actualizarUnidad',
+        data: {
+            csrfmiddlewaretoken: token,
+            idUnidad:idUnidad,
             estado: estado
         },
         success: function(data){
