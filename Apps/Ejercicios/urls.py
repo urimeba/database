@@ -35,6 +35,6 @@ urlpatterns = [
     path('actualizarEjercicio', views_ejercicios.actualizarEjercicio, name='actualizarEjercicio'),
     path('actualizarUnidad', views_ejercicios.actualizarUnidad, name='actualizarUnidad'),
     path('addUser', views_ejercicios.addUser, name='addUser'),
-    path('unidades', views_ejercicios.unidades, name='unidades'),
+    path('unidades1', views_ejercicios.unidades, name='unidades1'),
 
 ]
