@@ -34,8 +34,5 @@ urlpatterns = [
     path('ejercicios', views_ejercicios.ejercicios, name='ejercicios'),
     path('actualizarEjercicio', views_ejercicios.actualizarEjercicio, name='actualizarEjercicio'),
     path('addUser', views_ejercicios.addUser, name='addUser'),
-<<<<<<< HEAD
     
-=======
->>>>>>> 670a8a8ddf69a0fcca3a638f7fb70d9d3e45b3db
 ]

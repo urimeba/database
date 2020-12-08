@@ -65,7 +65,7 @@
                         {% for clase in lista_clases %}
                         <li>{{clase.grouper}}
                             <ul>
-                                {% for alumno in clase.list %}
+                                {% for alumno in clase.list%}
                                 <a href="{% url 'getCalificacionesAlumno' idAlumno=alumno.id %}">
                                     <li>{{alumno.usuario.get_full_name}}</li>
                                 </a>

@@ -1615,12 +1615,6 @@ def actualizarEjercicio(request):
 @login_required
 @user_passes_test(lambda user: user.isMaestro())
 def addUser(request):
-<<<<<<< HEAD
-    
-
-    return render(request, 'maestro/addUsers.html')
-
-=======
        #template = loader.get_template('export/importar.html')  
     if request.method == 'POST':
         grupo = request.POST['grupo']
@@ -1651,4 +1645,3 @@ def addUser(request):
 
         
     
->>>>>>> 670a8a8ddf69a0fcca3a638f7fb70d9d3e45b3db
