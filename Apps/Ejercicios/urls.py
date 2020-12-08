@@ -33,6 +33,8 @@ urlpatterns = [
     path('setCalificacionAlumno', views_ejercicios.setCalificacionAlumno, name='setCalificacionAlumno'),
     path('ejercicios', views_ejercicios.ejercicios, name='ejercicios'),
     path('actualizarEjercicio', views_ejercicios.actualizarEjercicio, name='actualizarEjercicio'),
+    path('actualizarUnidad', views_ejercicios.actualizarUnidad, name='actualizarUnidad'),
     path('addUser', views_ejercicios.addUser, name='addUser'),
-    
+    path('unidades1', views_ejercicios.unidades, name='unidades1'),
+
 ]

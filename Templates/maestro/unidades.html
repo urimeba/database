@@ -34,14 +34,13 @@
                             
                         </div>
                     </div> -->
-                    
-                            <div class="navbar-logout navbar-avatar">
-                                <div>
-                                    <a href="{% url 'addUser' %}">
-                                        <img src="{% static 'img/add.png' %}" alt="" class="img-logout">
-                                    </a>
-                                </div>
-                            </div>
+                    <div class="navbar-logout navbar-avatar">
+                        <div>
+                            <a href="{% url 'addUser' %}">
+                                <img src="{% static 'img/add.png' %}" alt="" class="img-logout">
+                            </a>
+                        </div>
+                    </div>
                             <div class="navbar-logout navbar-avatar">
                                 <div >
                                     <a href="{% url 'cerrarSesion' %}">
@@ -55,22 +54,22 @@
         <div class="principalEjercicios">
             <div class="contenedorEjercicios">
                 <div class="contenidoEjercicios">
-                    <p class="tituloContenidoEjercicios">Activar ejercicios</p>
-                    {% regroup ejercicios by unidad as unidades_lista %}
+                    <p class="tituloContenidoEjercicios">Activar Unidades</p>
+                    {% regroup unidades by parcial.clase as unidades_lista %}
                     <ul class="contenidoEjerciciosMain">
                         {% for unidad in unidades_lista %}
                         <li class="contenidoEjerciciosTitle">{{ unidad.grouper }}</li>
                         <ul>
-                            {% for ejercicio in unidad.list %}
+                            {% for unidad in unidad.list %}
                             <div class="contenidoEjerciciosContent">
-                                <li class="contenidoEjerciciosContentA">{{ejercicio}}
+                                <li class="contenidoEjerciciosContentA">{{unidad}}
                                 </li>
                                 <div class="contenidoEjerciciosContentB">
-                                    <span><input type="checkbox" name="active" class="contenidoEjerciciosContentinput" id="{{ejercicio.id}}"
-                                        {%  if ejercicio.is_active %} checked {% endif %}></span>
+                                    <span><input type="checkbox" name="active" class="contenidoEjerciciosContentinput" id="{{unidad.id}}"
+                                        {%  if unidad.is_active %} checked {% endif %}></span>
                                     <label class="contenidoEjerciciosContentlabel" for="active">Activo</label>
-                                    <button class="btn-actualiza-ejercicios" onclick="actualizarEjercicio(this)"
-                                        data-idejercicio="{{ejercicio.id}}">Actualizar</button>
+                                    <button class="btn-actualiza-ejercicios" onclick="actualizarUnidad(this)"
+                                        data-idunidad="{{unidad.id}}">Actualizar</button>
                                 </div>
                             </div>
                             

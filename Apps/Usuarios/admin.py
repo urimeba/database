@@ -13,6 +13,7 @@ class CategoriaResource(resources.ModelResource):
         model = User
         fields = ('id','password','username','first_name','last_name','email',)
         import_order = ('id','username','first_name','last_name','email','password')
+        
 class CategoriaResource2(resources.ModelResource):
     class Meta:
         model = Alumno

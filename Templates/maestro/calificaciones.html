@@ -28,6 +28,7 @@
                     <li class="opciones"><a href="{% url 'getCalificaciones' %}"
                             class="opcionCalificaciones {% if request.path == '/ejercicios/calificaciones'   %} active {%endif%}">Calificaciones</a></li>
                     <li class="opciones"><a href="{% url 'ejercicios' %}" class="opcionHerramientas">Estado</a></li>
+                    <li class="opciones"><a href="{% url 'unidades1' %}" class="opcionHerramientas">Unidad</a></li>
                 </ul>
                 <div class="navbar-profile">
                     <!-- <div class="navbar-notification navbar-avatar">
@@ -67,7 +68,8 @@
                             <ul>
                                 {% for alumno in clase.list%}
                                 <a href="{% url 'getCalificacionesAlumno' idAlumno=alumno.id %}">
-                                    <li>{{alumno.usuario.get_full_name}}</li>
+                                    <li>{{alumno.usuario.last_name}} {{alumno.usuario.first_name}}</li>
+                            
                                 </a>
                                 {% endfor %}
                             </ul>
