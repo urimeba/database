@@ -26,7 +26,7 @@
                     <li class="opciones"><a href="{% url 'dashboard' %}" class="opcionInicio">Inicio</a></li>
                     <li class="opciones"><a href="{% url 'respuestas31' %}" class="opcionContenido">Respuestas</a></li>
                     <li class="opciones"><a href="{% url 'getCalificaciones' %}"
-                            class="opcionCalificaciones {% if request.path == '/ejercicios/calificaciones' %} active {%endif%}">Calificaciones</a></li>
+                            class="opcionCalificaciones {% if path == 'calificaciones' %} active {%endif%}">Calificaciones</a></li>
                     <li class="opciones"><a href="{% url 'ejercicios' %}" class="opcionHerramientas">Estado</a></li>
                     <li class="opciones"><a href="{% url 'unidades1' %}" class="opcionHerramientas">Unidad</a></li>
                 </ul>
@@ -66,7 +66,7 @@
                         {% for clase in lista_clases %}
                         <li>{{clase.grouper}}
                             <ul>
-                                {% for alumno in clase.list %}
+                                {% for alumno in clase.list%}
                                 <a href="{% url 'getCalificacionesAlumno' idAlumno=alumno.id %}">
                                     <li>{{alumno.usuario.last_name}} {{alumno.usuario.first_name}}</li>
                             

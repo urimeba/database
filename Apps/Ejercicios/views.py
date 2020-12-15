@@ -1539,7 +1539,7 @@ def getRespuesta31(request, idAlumno):
             'alumnos':alumnos_entregados,
             'alumno':respuesta.alumno,
             'respuesta':json.loads(respuesta.respuesta),
-            'path':'respuestas31'
+            'path':'respuestas31',
         })
 
 @login_required
@@ -1552,7 +1552,8 @@ def getCalificaciones(request):
     
     print(alumnos)
     return render(request, 'maestro/calificaciones.html', {
-        'alumnos':alumnos
+        'alumnos':alumnos,
+        'path':'calificaciones'
     })
 
 @login_required
@@ -1568,7 +1569,8 @@ def getCalificacionesAlumno(request, idAlumno):
 
     return render(request, 'maestro/calificaciones.html', {
         'alumnos':alumnos,
-        'calificaciones':calificaciones
+        'calificaciones':calificaciones,
+        'path':'calificaciones'
     })
 
 @login_required

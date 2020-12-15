@@ -349,16 +349,6 @@
         padding-bottom: 6px;
         color: white;
       }
-      .botonCerrar{
-        margin-top: 15px;
-        background-color: #0075ff;
-        border-radius: 15px;
-        width: 30%;
-        height: 1.5rem;
-        margin-left: 35%;
-        padding-top:7px ;
-        color: white;
-      }
       .fix{
 
         margin-top: 25px;
@@ -369,6 +359,16 @@
         
         padding-top:6px ;
         padding-bottom: 6px;
+        color: white;
+      }
+      .botonCerrar{
+        margin-top: 15px;
+        background-color: #0075ff;
+        border-radius: 15px;
+        width: 30%;
+        height: 1.5rem;
+        margin-left: 35%;
+        padding-top:7px ;
         color: white;
       }
       .botonCerrar:hover{
