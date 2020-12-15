@@ -941,7 +941,7 @@ actualizarCalificacion = (elementoHTML) =>{
 }
 
 actualizarEjercicio = (elementoHTML) =>{
-    let idEjercicio = elementoHTML.dataset.idEjercicio;
+    let idEjercicio = elementoHTML.dataset.idejercicio;
     let estado = document.getElementById(idEjercicio).checked;
 
     let token = getCookie('csrftoken');
