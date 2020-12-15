@@ -1548,7 +1548,7 @@ def getCalificaciones(request):
     maestro = Profesor.objects.get(usuario=request.user)
     clases = Clase.objects.filter(profesor=maestro)
 
-    alumnos = Alumno.objects.filter(clase__in=clases)
+    alumnos = Alumno.objects.filter(clase__in=clases).order_by("usuario__last_name")
     
     print(alumnos)
     return render(request, 'maestro/calificaciones.html', {
@@ -1560,7 +1560,7 @@ def getCalificaciones(request):
 def getCalificacionesAlumno(request, idAlumno):
     maestro = Profesor.objects.get(usuario=request.user)
     clases = Clase.objects.filter(profesor=maestro)
-    alumnos = Alumno.objects.filter(clase__in=clases)
+    alumnos = Alumno.objects.filter(clase__in=clases).order_by("usuario__last_name")
 
     calificaciones = CalificacionEjercicio.objects.filter(
         alumno__id=idAlumno
@@ -1598,6 +1598,7 @@ def ejercicios(request):
         'ejercicios':ejercicios
     })
 
+
 @login_required
 @user_passes_test(lambda user: user.isMaestro())
 def actualizarEjercicio(request):
@@ -1611,6 +1612,20 @@ def actualizarEjercicio(request):
     ejercicio.save()
 
     return HttpResponse("Ejercicio actualizado correctamente")
+
+@login_required
+@user_passes_test(lambda user: user.isMaestro())
+def actualizarUnidad(request):
+    idUnidad = request.POST['idUnidad']
+    estado = request.POST['estado']
+    value = True if estado=="true" else False
+
+    print(idUnidad, estado)
+    unidad = Unidad.objects.get(id=idUnidad)
+    unidad.is_active=value
+    unidad.save()
+
+    return HttpResponse("Unidad actualizada correctamente")
 
 @login_required
 @user_passes_test(lambda user: user.isMaestro())
@@ -1635,10 +1650,60 @@ def addUser(request):
             if i in lista1:
                 lista1.remove(i)
             else:
-                print(i)
                 dataset2 = tablib.Dataset(['', i , grupo], headers=['id','usuario', 'clase'])
                 result2 = usuario_resource2.import_data(dataset2, dry_run=False) 
     return render(request, 'maestro/addUsers.html')
+
+
+@login_required
+def unidades(request):
+    alumno = Alumno.objects.get(usuario=request.user.id)
+    parciales = Parcial.objects.filter(clase=alumno.clase)
+    unidades = Unidad.objects.filter(parcial__in=parciales, is_active=True)
+
+    if(alumno.clase.is_active):
+        if(unidades.count() > 0):
+            idUltimaUnidad = unidades.last().id
+            return redirect('unidad', pk=idUltimaUnidad)
+        else:
+            return render(request, 'actividadesEjercicios.html')
+    else:
+        return redirect('dashboard')
+
+@login_required
+def unidad(request, pk):
+    alumno = Alumno.objects.get(usuario=request.user.id)
+    parciales = Parcial.objects.filter(clase=alumno.clase)
+    unidades = Unidad.objects.filter(parcial__in=parciales)
+
+    try:
+        unidad_seleccionada = unidades.get(pk=pk)
+    except:
+        return redirect('dashboard')
+
+    if(unidad_seleccionada.is_active):
+        ejercicios = Ejercicio.objects.filter(unidad__id=unidad_seleccionada.id)
+        return render(request, 'actividadesEjercicios.html', 
+            {'unidades': unidades, 
+            'ejercicios':ejercicios, 
+            'unidad_seleccionada':unidad_seleccionada
+            })
+    else:
+        return redirect('dashboard')
+
+@login_required
+@user_passes_test(lambda user: user.isMaestro())
+def unidades(request):
+    maestro = Profesor.objects.get(usuario=request.user)
+    clases = Clase.objects.filter(profesor=maestro)
+
+    unidades = Unidad.objects.filter(
+        parcial__clase__in=clases
+    ).order_by('parcial__clase')
+    # print(ejercicios)
+    return render(request, 'maestro/unidades.html', {
+        'unidades':unidades
+    })
 
     
 
