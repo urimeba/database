@@ -20,7 +20,7 @@ python-decouple==3.3
 pytz==2020.4
 PyYAML==5.3.1
 six==1.15.0
-sqlparse==0.4.1
+sqlparse==0.4.2
 tablib==2.0.0
 whitenoise==5.1.0
 xlrd==1.2.0
