@@ -13,12 +13,10 @@
     <img src="https://img.shields.io/github/actions/workflow/status/amplication/amplication/ci.yml?branch=master&label=pipeline&style=flat-square" alt="continuous integration" style="height: 20px;">
   </a>
   <a href="https://github.com/urimeba/database/graphs/contributors">
-    <img src="https://img.shields.io/github/contributors/urimeba/database
-" alt="contributors" style="height: 20px;">
+    <img src="https://img.shields.io/github/contributors/urimeba/database" alt="contributors" style="height: 20px;">
   </a>
   <a href="https://opensource.org/licenses/Apache-2.0">
-    <img src="https://img.shields.io/github/license/urimeba/database
-" alt="license" style="height: 20px;">
+    <img src="https://img.shields.io/github/license/urimeba/database" alt="license" style="height: 20px;">
   </a>
 </h4>
 
